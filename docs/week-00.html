@@ -126,12 +126,31 @@ legend { font-weight: 600; color: var(--ink); padding: 0 .3rem; }
 .idea h3 { margin-top: 0; }
 #copied { color: var(--good); }
 </style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
 </head>
 <body>
 <div class="wrap">
 <nav class="top" aria-label="Course pages">
   <a href="./">Programme handbook</a>
-  <a href="week-00.html" aria-current="page">Week 0 · Orientation &amp; baseline</a>
+  <a href="dashboard.html">My course</a>
+  <a href="week-00.html" aria-current="page">Week 0</a>
+  <a href="module-01.html">Module 1</a>
+  <a href="module-02.html">Module 2</a>
+  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
+  <a href="login.html">Sign in</a>
 </nav>
 
 <p class="eyebrow">Week 0 · Before Module 1</p>
@@ -232,6 +251,10 @@ legend { font-weight: 600; color: var(--ink); padding: 0 .3rem; }
 <p>Copy everything you entered on this page, then paste it into the chat. Your answers are kept in this browser as you type, but nobody else, including the coach, can see them until you paste them.</p>
 <p class="row"><button class="btn primary" id="copy" type="button">Copy all answers</button><span id="copied" aria-live="polite"></span></p>
 <textarea id="fallback" hidden readonly aria-label="Your answers as text"></textarea>
+<nav class="pn" aria-label="Previous and next">
+  <a href="./"><small>← Previous</small>Programme handbook</a>
+  <a class="next" href="module-01.html"><small>Next →</small>Module 1 · The AI product role and lifecycle</a>
+</nav>
 <p class="foot">Week 0 · Handbook v1.1 · 20 October 2026</p>
 </div>
 

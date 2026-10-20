@@ -96,14 +96,30 @@ button { font: inherit; cursor: pointer; }
 .facts span { font-size: .8rem; color: var(--muted); }
 .pending { border: 1px dashed var(--rule); border-radius: 4px; padding: .8rem 1rem; color: var(--muted); }
 </style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
 </head>
 <body>
 <div class="wrap">
 <nav class="top" aria-label="Course pages">
   <a href="./" aria-current="page">Programme handbook</a>
-  <a href="#case">Case: Harbourview Polyclinics</a>
-  <a href="#map">Programme map</a>
   <a href="dashboard.html">My course</a>
+  <a href="week-00.html">Week 0</a>
+  <a href="module-01.html">Module 1</a>
+  <a href="module-02.html">Module 2</a>
+  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
   <a href="login.html">Sign in</a>
 </nav>
 
@@ -114,6 +130,8 @@ button { font: inherit; cursor: pointer; }
   <li>14 weeks</li><li>Week 0 + 12 modules</li><li>3 terms + capstone</li><li>6–8 hours per week</li><li>No coding required</li><li>Updated 20 Oct 2026</li>
 </ul>
 <p>This programme teaches the decisions that make or break products built on artificial intelligence (AI): whether to use AI at all, how to specify behaviour that varies, how to test it, how to pay for it, how to govern it, and how to defend a launch decision. It follows the structure of leading public courses and runs every assignment on one case company, a fictional Singapore polyclinic group, so that learners from any background work on the same realistic problems.</p>
+
+<div class="cta"><a class="primary" href="week-00.html">Start with Week 0 →</a><a href="login.html">Sign in to track your progress</a></div>
 
 <div class="note"><p><strong>Conventions.</strong> Every acronym is written out in full the first time it appears on a page, with the short form in brackets. The glossary at the end lists them all.</p></div>
 
@@ -200,10 +218,10 @@ button { font: inherit; cursor: pointer; }
 <div class="scroll"><table>
 <thead><tr><th>Week</th><th>Module</th><th>Harbourview initiative</th><th>Summative deliverable</th></tr></thead>
 <tbody>
-<tr><td class="num"><span class="chip c-form">Week 0</span></td><td>Orientation, self-assessment and pre-test</td><td>A</td><td>Baseline memo, recorded but not graded</td></tr>
+<tr><td class="num"><span class="chip c-form">Week 0</span></td><td><a href="week-00.html">Orientation, self-assessment and pre-test</a></td><td>A</td><td>Baseline memo, recorded but not graded</td></tr>
 </tbody>
 <tbody id="maprows"></tbody></table></div>
-<div class="pending"><p style="margin:0"><strong>Week 0 is built last.</strong> Its pre-test will be sampled from the finished end-of-module tests, so it measures exactly what the programme teaches. Its scenario, a memo on Harbourview's medicine questions assistant, is repeated unchanged in Week 14 to show how much each learner has learned.</p></div>
+<div class="note"><p><strong>Start with Week 0.</strong> It sets your baseline: a short briefing, a practice quiz and a timed memo on Harbourview's medicine questions assistant. The same memo is repeated unchanged in Week 14 to show how much you have learned. The current Week 0 is a pilot version and will be updated once Modules 1–12 are complete. Modules with a link below are open now; the rest open in sequence.</p></div>
 
 <div id="modules"></div>
 
@@ -266,13 +284,13 @@ button { font: inherit; cursor: pointer; }
 <script>
 const T = {1:['c-t1','Term I'],2:['c-t2','Term II'],3:['c-t3','Term III'],4:['c-cap','Capstone']};
 const M = [
- {n:1,t:1,wk:'Week 1',title:'The AI product role and the AI product lifecycle',src:'Duke course 1; Nika introductory course; Reforge AI Foundations',init:'All five',
+ {n:1,t:1,page:'module-01.html',wk:'Week 1',title:'The AI product role and the AI product lifecycle',src:'Duke course 1; Nika introductory course; Reforge AI Foundations',init:'All five',
   out:['Explain how AI products differ from rule-based software: outputs vary, depend on data and need continuous testing.','Map the lifecycle from opportunity to monitoring, and the product decisions at each stage.','Decide whether a problem needs AI at all, and name the cheaper alternative.'],
   quiz:'Probabilistic versus rule-based behaviour; lifecycle stages; when AI is the wrong tool.',
   task:'AI-or-not audit of Harbourview\'s five initiatives. For each: the user problem, the non-AI alternative, what AI adds, the cost of a wrong answer and who bears it, and a go or no-go verdict.',
   del:'Two-page memo to the board with a scored decision table.',lab:'Try the same patient question ten times on a public AI assistant and record how the answers vary.',
   read:'Google People + AI Research (PAIR) Guidebook, "User Needs + Defining Success"; Chip Huyen, AI Engineering (2025), chapter 1.'},
- {n:2,t:1,wk:'Week 2',title:'Technical fluency for product decisions',src:'Duke course 2; Nika advanced course; Reforge AI Foundations',init:'A, D',
+ {n:2,t:1,page:'module-02.html',wk:'Week 2',title:'Technical fluency for product decisions',src:'Duke course 2; Nika advanced course; Reforge AI Foundations',init:'A, D',
   out:['Choose between prompting, retrieval, fine-tuning, classical machine learning and agents, and defend the choice.','Trade off quality, cost and response time to pick a model.','Read a system diagram and spot where it will fail.'],
   quiz:'Tokens and context windows; embeddings and retrieval; structured output; tool use; precision and recall.',
   task:'For the medicine questions assistant, compare three designs (prompt only, retrieval from approved leaflets, a fine-tuned model) on cost per 1,000 questions, ease of updating and main failure. For the missed-appointment predictor, explain which error matters more: a missed no-show or a false alarm.',
@@ -344,7 +362,7 @@ const names={1:'Foundations',2:'Mastery',3:'Strategy and leadership',4:''};
 let lastT=0, html='<h2 id="detail">5. Module detail</h2>';
 M.forEach(m=>{
   const [c,label]=T[m.t];
-  rows.insertAdjacentHTML('beforeend',`<tr><td class="num"><span class="chip ${c}">${m.wk}</span></td><td><a href="#m${m.n}">M${m.n}. ${m.title}</a></td><td>${m.init}</td><td>${m.del}</td></tr>`);
+  rows.insertAdjacentHTML('beforeend',`<tr><td class="num"><span class="chip ${c}">${m.wk}</span></td><td><a href="${m.page||'#m'+m.n}">M${m.n}. ${m.title}</a>${m.page?' <span class="chip c-form">Open</span>':''}</td><td>${m.init}</td><td>${m.del}</td></tr>`);
   if(m.t!==lastT){ html+=`<h3 style="margin-top:2.25rem"><span class="chip ${c}">${label}${names[m.t]?' · '+names[m.t]:''}</span></h3>`; lastT=m.t; }
   html+=`<section class="mod" id="m${m.n}"><span class="chip ${c}">${m.wk} · Module ${m.n}</span><h3>${m.title}</h3><p class="src">Draws on: ${m.src}</p>
   <h4>Learning outcomes</h4><ul>${m.out.map(o=>`<li>${o}</li>`).join('')}</ul>
@@ -352,7 +370,7 @@ M.forEach(m=>{
   <dt>Reading</dt><dd>${m.read}</dd>
   <dt>Harbourview assignment</dt><dd>${m.task}</dd>
   <dt>Summative</dt><dd><span class="chip c-sum">Graded</span> ${m.del}${m.n<12?' Plus the end-of-module test and viva.':''}</dd>
-  <dt>Optional lab</dt><dd>${m.lab}</dd></dl></section>`;
+  <dt>Optional lab</dt><dd>${m.lab}</dd></dl>${m.page?`<a class="open" href="${m.page}">Open Module ${m.n} →</a>`:'<p class="src" style="margin-top:.6rem">Page opens later in the programme.</p>'}</section>`;
 });
 box.innerHTML=html;
 </script>

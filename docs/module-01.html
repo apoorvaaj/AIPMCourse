@@ -182,13 +182,30 @@ blockquote cite { display: block; font-family: var(--text); font-style: normal; 
 #copied { color: var(--good); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
 </head>
 <body>
 <div class="wrap">
 <nav class="top" aria-label="Course pages">
   <a href="./">Programme handbook</a>
+  <a href="dashboard.html">My course</a>
+  <a href="week-00.html">Week 0</a>
   <a href="module-01.html" aria-current="page">Module 1</a>
-  <a href="./#case">Case: Harbourview Polyclinics</a>
+  <a href="module-02.html">Module 2</a>
+  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
   <a href="login.html">Sign in</a>
 </nav>
 
@@ -665,6 +682,10 @@ blockquote cite { display: block; font-family: var(--text); font-style: normal; 
 <tr><td>Viva</td><td>Viva voce: a short spoken examination</td></tr>
 </tbody></table></div>
 
+<nav class="pn" aria-label="Previous and next">
+  <a href="week-00.html"><small>← Previous</small>Week 0 · Orientation and baseline</a>
+  <a class="next" href="module-02.html"><small>Next →</small>Module 2 · Technical fluency</a>
+</nav>
 <p class="foot">Module 1 · Version 1.0 · 20 October 2026 · Harbourview Polyclinics is fictional; all names and figures are invented for teaching.</p>
 </div>
 

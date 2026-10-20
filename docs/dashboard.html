@@ -146,14 +146,31 @@ body{margin:0}
 td.num, th.num { text-align: right; }
 .empty { color: var(--muted); font-size: .9rem; padding: 1rem; }
 </style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
 </head>
 <body>
 <div class="wrap dash">
 <nav class="top" aria-label="Course pages">
-  <a href="dashboard.html" aria-current="page">My course</a>
   <a href="./">Programme handbook</a>
-  <a href="why.html">Why this course</a>
-  <a href="./#case">Case: Harbourview Polyclinics</a>
+  <a href="dashboard.html" aria-current="page">My course</a>
+  <a href="week-00.html">Week 0</a>
+  <a href="module-01.html">Module 1</a>
+  <a href="module-02.html">Module 2</a>
+  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
+  <a href="login.html">Sign in</a>
 </nav>
 
 <div class="who"><span>Signed in as <b id="who">—</b></span><button class="link" type="button" id="signOut">Sign out</button></div>
@@ -163,8 +180,8 @@ td.num, th.num { text-align: right; }
 <div class="preview" id="preview" hidden>
   <span><strong>Preview mode.</strong> No sign-in service is connected, so this page shows</span>
   <span class="seg" role="group" aria-label="Preview data">
-    <button type="button" id="pvSample" aria-pressed="true">Sample learner</button>
-    <button type="button" id="pvLocal" aria-pressed="false">My work in this browser</button>
+    <button type="button" id="pvLocal" aria-pressed="true">My work in this browser</button>
+    <button type="button" id="pvSample" aria-pressed="false">Sample learner</button>
   </span>
 </div>
 
@@ -252,7 +269,9 @@ function localProgress() {
     const draft = (misc.memo || '').trim().length > 0 || Object.keys(dt).length > 0;
     if (qa || qb || draft) out[1] = { qa, qb, deliverable: draft ? 'drafting' : 'none' };
   }
-  return { email: 'you (this browser only)', progress: out, week0: null };
+  const w0 = lsGet('w0:yn') || {}, w0m = lsGet('w0:misc') || {};
+  const week0 = (Object.keys(w0).length || (w0m.memo || '').trim()) ? 'started' : null;
+  return { email: 'you (this browser only)', progress: out, week0 };
 }
 
 /* ===== Calculations ===== */
@@ -284,7 +303,9 @@ function status(m, p) {
   if (s[3] !== 'lock') return { chip: '<span class="chip c-mid">Test unlocked</span>', mk: 'Both quizzes mastered' };
   return { chip: '<span class="chip c-form">In progress</span>', mk: p.qa ? `Quiz A ${p.qa.c}/${p.qa.total}` + (p.qb ? ` · Quiz B ${p.qb.c}/${p.qb.total}` : '') : '' };
 }
+const W0 = { n:0, wk:'Week 0', title:'Orientation and baseline', page:'week-00.html' };
 function nextStep(data) {
+  if (data.week0 !== 'done' && !data.progress[1]) return { m: W0, label: data.week0 === 'started' ? 'Continue Week 0' : 'Start with Week 0', sub: 'Read the briefing, take the practice quiz and write your baseline memo.', anchor: '' };
   for (const m of MODS) {
     const p = data.progress[m.n];
     const s = steps(p);
@@ -309,7 +330,7 @@ function render(data) {
   const meritPlus = graded.filter(p => p >= 60).length;
   const finished = taught.filter(m => { const p = data.progress[m.n]; const pct = p ? moduleMark(p.marks) : null; return steps(p).every(s => s === 'done') && pct != null && pct >= 50; }).length;
   const avg = graded.length ? Math.round(graded.reduce((a, b) => a + b, 0) / graded.length) : null;
-  const w0 = data.week0 === 'done' ? 'Recorded' : 'Not yet available';
+  const w0 = data.week0 === 'done' ? 'Recorded' : data.week0 === 'started' ? 'In progress' : 'Not started';
   $('stats').innerHTML = [
     ['Modules completed', `${finished}<small> of 11</small>`, finished / 11],
     ['Merit or better', `${meritPlus}<small> of 9 needed</small>`, Math.min(meritPlus / 9, 1)],
@@ -319,7 +340,7 @@ function render(data) {
 
   const nx = nextStep(data);
   if (nx) {
-    $('nextEyebrow').textContent = `Module ${nx.m.n} · ${nx.m.wk}`;
+    $('nextEyebrow').textContent = nx.m.n ? `Module ${nx.m.n} · ${nx.m.wk}` : 'Start here · Week 0';
     $('nextTitle').textContent = nx.label;
     $('nextSub').textContent = `${nx.m.title}. ${nx.sub}`;
     $('nextGo').textContent = nx.m.page ? 'Continue' : 'Not yet published';
@@ -329,7 +350,8 @@ function render(data) {
     $('nextEyebrow').textContent = 'Programme complete'; $('nextTitle').textContent = 'All modules finished'; $('nextSub').textContent = 'Well done.'; $('nextGo').hidden = true;
   }
 
-  let html = '', lastT = 0;
+  const w0chip = data.week0 === 'done' ? '<span class="chip c-good">Recorded</span>' : data.week0 === 'started' ? '<span class="chip c-form">In progress</span>' : '<span class="chip c-none">Not started</span>';
+  let html = `<section class="term"><h3 style="color:var(--accent)">Start here</h3><div class="mods"><div class="mrow"><span class="n">00</span><div class="t"><a href="week-00.html">Orientation and baseline</a><span class="sub">Week 0 · not graded</span></div><div class="bar" style="font-size:.8rem;color:var(--muted)">Practice quiz and baseline memo</div><div class="st">${w0chip}</div></div></div></section>`, lastT = 0;
   MODS.forEach(m => {
     if (m.t !== lastT) { if (lastT) html += '</div></section>'; html += `<section class="term"><h3 style="color:${TERMS[m.t][1]}">${TERMS[m.t][0]}</h3><div class="mods">`; lastT = m.t; }
     const p = data.progress[m.n], s = steps(p), st = status(m, p);
@@ -354,7 +376,7 @@ let client = null;
 (async () => {
   if (!LIVE) {
     $('preview').hidden = false;
-    let mode = lsGet('dash:preview') || 'sample';
+    let mode = lsGet('dash:preview') || 'local';
     const set = md => { mode = md; lsSet('dash:preview', md); $('pvSample').setAttribute('aria-pressed', md === 'sample'); $('pvLocal').setAttribute('aria-pressed', md === 'local'); render(md === 'sample' ? SAMPLE : localProgress()); };
     $('pvSample').addEventListener('click', () => set('sample'));
     $('pvLocal').addEventListener('click', () => set('local'));

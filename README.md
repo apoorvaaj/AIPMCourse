@@ -48,20 +48,24 @@ Only the `docs/` folder is published. The `course-owner/` folder is not served b
 
 Bands: Distinction 75%+ · Merit 60–74% · Pass 50–59% · Resubmit below 50%.
 
+## Learner flow
+
+Handbook → Sign in → My course → Week 0 → Module 1 → Module 2. Every learner page shares one navigation bar, and Week 0 and each module end with Previous / Next links.
+
 ## Status
 
 | Item | Status |
 |---|---|
 | Handbook, sign-in, dashboard | Done (preview mode) |
-| Week 0 | Draft; to be rebuilt last for the general audience |
+| Week 0 | Live (pilot version); rewrite for a general audience later |
 | Modules 1–2 | Done |
 | Module 1 assessor pack | To do |
 | Modules 3–12 | To do |
 
 ## Known gaps
 
-- `why.html` is linked from the navigation but has not been written yet.
-- `week-00.html` still refers to the original pilot learner's own products (Attic, Quaestio, BeatKeeper, MealPartner). Rewrite it for a general audience before sharing.
+- "Why this course" links to the page on the main site: `https://apoorvaaj.github.io/learn-ai-product-management.html`. That page should carry a "Start the course" button pointing to `/AIPMCourse/`.
+- `week-00.html` is linked and live, but it is a pilot version that still refers to the original learner's own products (Attic, Quaestio, BeatKeeper, MealPartner). Rewrite it for a general audience.
 - Sign-in and the dashboard run in preview mode until Supabase details are added (see `course-owner/login-setup.html`).
 - Static hosting does not stop someone reading course pages directly; see section 2 of the sign-in setup guide.
 - Learner progress is saved in each learner's own browser until the database step is done.
