@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn AI Product Management | Apoorva Joshi</title>
+<meta name="description" content="Why business analysts, data analysts and product managers should take a 14-week AI Product Management programme: the problem it solves, what employers hire for, and what you leave with.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn AI Product Management: a 14-week programme for analysts and product managers">
+<meta property="og:description" content="Most AI projects stall at the decision, not the model. A 14-week, no-code programme for analysts and product managers.">
+<meta property="og:url" content="https://apoorvaaj.github.io/learn-ai-product-management.html">
+<meta property="og:site_name" content="Apoorva Joshi">
+<meta property="og:image" content="https://apoorvaaj.github.io/preview.png">
+<meta property="og:image:secure_url" content="https://apoorvaaj.github.io/preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://apoorvaaj.github.io/preview.png">
+<link rel="canonical" href="https://apoorvaaj.github.io/learn-ai-product-management.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a7178'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='white' text-anchor='middle'%3EAJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f6fa; --surface: #ffffff; --surface2: #e9eef5; --border: #d6dfea;
+    --accent: #0a7178; --accent2: #c2410c; --accent3: #2b56a8; --text: #0f2240; --text-dim: #43536b; --text-dimmer: #5f6e84;
+    --sans: Verdana, Geneva, Tahoma, sans-serif;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        padding: 1.1rem 4rem; background: rgba(243,246,250,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+  .nav-logo span { color: var(--text-dim); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; }
+  .nav-links li { padding: 0; margin: 0; font-size: inherit; line-height: inherit; }
+  .nav-links li::before { display: none; }
+  .nav-links a { position: relative; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.25s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-links a.active { color: var(--accent); }
+
+  article { max-width: 760px; margin: 0 auto; padding: 4.5rem 1.5rem 3rem; }
+  .kicker { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: bold;
+            display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+  .kicker::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  .kicker .dim { color: var(--text-dimmer); font-weight: normal; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(2.1rem, 5.3vw, 3.2rem); line-height: 1.12; margin: 1.1rem 0 1.6rem; }
+  h1 em { color: var(--accent); }
+  .byline { display: flex; align-items: center; gap: 0.9rem; padding-bottom: 2rem; margin-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
+  .avatar { width: 46px; height: 46px; border-radius: 10px; background: var(--accent); color: #fff; font-family: var(--serif); font-size: 1.15rem;
+            display: flex; align-items: center; justify-content: center; flex: none; }
+  .byline b { display: block; font-size: 0.88rem; }
+  .byline span { font-size: 0.76rem; color: var(--text-dimmer); }
+
+  .lede { font-family: var(--serif); font-size: 1.45rem; line-height: 1.5; color: var(--text); margin-bottom: 1.6rem; }
+  p { font-size: 1rem; line-height: 1.85; color: var(--text-dim); margin-bottom: 1.35rem; }
+  p strong, li strong, td strong { color: var(--text); }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 1.75rem; line-height: 1.25; margin: 3rem 0 1.1rem; color: var(--text); }
+  h3 { font-family: var(--sans); font-size: 1rem; font-weight: bold; color: var(--text); margin: 2rem 0 0.7rem; }
+  ul { list-style: none; margin: 0 0 1.6rem; }
+  li { position: relative; padding-left: 1.5rem; margin-bottom: 0.95rem; font-size: 1rem; line-height: 1.8; color: var(--text-dim); }
+  li::before { content: ''; position: absolute; left: 0.2rem; top: 0.72rem; width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); }
+  a { color: var(--accent); }
+
+  .toc { background: var(--surface); border: 1px solid var(--border); padding: 1.4rem 1.6rem; margin: 0 0 2.4rem; }
+  .toc-title { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: bold; margin-bottom: 0.7rem; }
+  .toc ol { margin: 0; padding-left: 1.2rem; }
+  .toc li { padding-left: 0.2rem; margin-bottom: 0.35rem; font-size: 0.88rem; line-height: 1.6; }
+  .toc li::before { display: none; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .summary { background: var(--surface); border: 1px solid rgba(10,113,120,0.3); border-top: 3px solid var(--accent); padding: 1.5rem 1.7rem 0.6rem; margin: 0 0 2.6rem; }
+  .summary-title { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: bold; margin-bottom: 0.9rem; }
+  .summary dl { margin: 0; }
+  .summary dt { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 0.15rem; }
+  .summary dd { font-size: 0.92rem; line-height: 1.7; color: var(--text); margin: 0 0 0.95rem; }
+  .summary dd a { white-space: nowrap; }
+
+  .pull { margin: 2.6rem 0; padding: 1.6rem 1.8rem; border-left: 3px solid var(--accent); background: var(--surface); }
+  .pull p { font-family: var(--serif); font-size: 1.45rem; line-height: 1.45; color: var(--text); margin: 0; }
+
+  /* Career timeline */
+  .timeline { position: relative; margin: 1.8rem 0 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+  .t-item { position: relative; padding-left: 2.2rem; margin-bottom: 1.6rem; }
+  .t-item::before { content: ''; position: absolute; left: 2px; top: 7px; width: 9px; height: 9px; border: 1px solid var(--accent); background: var(--bg); transform: rotate(45deg); }
+  .t-item.recent::before { background: var(--accent); }
+  .t-date { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-dimmer); text-transform: uppercase; }
+  .t-role { font-weight: bold; font-size: 0.95rem; color: var(--text); }
+  .t-org { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.3rem; }
+  .t-learn { font-size: 0.88rem; line-height: 1.7; color: var(--text-dim); }
+  .t-learn b { color: var(--text); font-weight: normal; font-style: italic; }
+  .era { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent3); font-weight: bold; margin: 2rem 0 1rem 2.2rem; }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 1.6rem 0 2rem; border: 1px solid var(--border); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; line-height: 1.55; min-width: 560px; }
+  th { text-align: left; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+       background: var(--surface2); padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); }
+  td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--text); font-weight: bold; width: 28%; }
+
+  /* Role cards */
+  .role { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.5rem 1.6rem 0.4rem; margin: 1.4rem 0; }
+  .role.second { border-left-color: var(--accent3); }
+  .role.adjacent { border-left-color: var(--text-dimmer); }
+  .role-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+  .role-title { font-family: var(--serif); font-size: 1.3rem; color: var(--text); }
+  .fit { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--accent); color: var(--accent); white-space: nowrap; }
+  .role.second .fit { border-color: var(--accent3); color: var(--accent3); }
+  .role.adjacent .fit { border-color: var(--text-dimmer); color: var(--text-dimmer); }
+  .role p { font-size: 0.93rem; margin-bottom: 0.9rem; }
+  .role li { font-size: 0.92rem; margin-bottom: 0.6rem; }
+  .role ul { margin-bottom: 1rem; }
+
+  /* Steps for other BAs */
+  .steps { counter-reset: s; }
+  .steps li { padding-left: 2.4rem; }
+  .steps li::before { counter-increment: s; content: counter(s); transform: none; width: 1.5rem; height: 1.5rem; top: 0.25rem; left: 0;
+                      background: var(--accent); color: #fff; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+
+  .cta { margin: 3.2rem 0 0; padding: 2rem; background: var(--surface); border: 1px solid var(--border); }
+  .cta h3 { font-family: var(--serif); font-weight: 500; font-size: 1.45rem; margin: 0 0 0.5rem; }
+  .cta p { font-size: 0.9rem; margin-bottom: 1.3rem; }
+  .cta-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em;
+         text-transform: uppercase; text-decoration: none; padding: 0.85rem 1.4rem; border: 1px solid var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--text); border-color: var(--text); }
+  .btn.secondary { color: var(--text-dim); border-color: var(--border); background: transparent; }
+  .btn.secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 4rem; display: flex; justify-content: center; font-size: 0.68rem;
+           color: var(--text-dimmer); letter-spacing: 0.06em; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .nav-logo span { display: none; }
+    .nav-links { gap: 0.75rem; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.04em; white-space: nowrap; }
+    article { padding: 2.6rem 1.25rem 2rem; }
+    .lede { font-size: 1.25rem; }
+    h2 { font-size: 1.5rem; margin-top: 2.4rem; }
+    .pull { padding: 1.2rem 1.2rem; }
+    .pull p { font-size: 1.25rem; }
+    .role { padding: 1.2rem 1.1rem 0.3rem; }
+    .cta { padding: 1.4rem 1.2rem; }
+    .btn { width: 100%; }
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.4rem 1.25rem; }
+  }
+  @media (max-width: 400px) {
+    nav { padding-left: 1rem; padding-right: 1rem; }
+    .nav-links { gap: 0.6rem; }
+    .nav-links a { font-size: 0.58rem; letter-spacing: 0.03em; }
+  }
+  @media print {
+    nav, .cta-actions { display: none; }
+    body { background: #fff; }
+    .role, .t-item, tr { break-inside: avoid; }
+  }
+
+  /* Why-this-course page */
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem; margin: 1.6rem 0 2rem; }
+  .fact { border-top: 2px solid var(--accent); padding-top: 0.6rem; min-width: 0; }
+  .fact b { display: block; font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1.1; color: var(--text); font-variant-numeric: tabular-nums; }
+  .fact span { display: block; font-size: 0.78rem; line-height: 1.55; color: var(--text-dim); margin-top: 0.3rem; }
+  .role dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.5rem 1rem; margin: 0 0 1.1rem; }
+  .role dt { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dimmer); padding-top: 0.2rem; }
+  .role dd { font-size: 0.92rem; line-height: 1.7; color: var(--text-dim); margin: 0; min-width: 0; }
+  .role.third { border-left-color: var(--accent2); }
+  .role.third .fit { border-color: var(--accent2); color: var(--accent2); }
+  .term { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.15rem 0.45rem; border: 1px solid currentColor; white-space: nowrap; font-weight: normal; }
+  .term.t1 { color: var(--accent); } .term.t2 { color: var(--accent3); } .term.t3 { color: var(--accent2); } .term.cap { color: var(--text); }
+  table.shift td:first-child { font-weight: normal; color: var(--text-dimmer); width: 42%; }
+  table.shift td:last-child { color: var(--text); }
+  details { border-top: 1px solid var(--border); padding: 0.9rem 0; }
+  details:last-of-type { border-bottom: 1px solid var(--border); margin-bottom: 1.6rem; }
+  summary { cursor: pointer; font-weight: bold; color: var(--text); font-size: 0.98rem; }
+  details p { margin: 0.6rem 0 0; font-size: 0.95rem; }
+  .note { font-size: 0.78rem; color: var(--text-dimmer); margin-top: -1.2rem; }
+  .sources li { font-size: 0.82rem; line-height: 1.6; margin-bottom: 0.5rem; }
+  @media (max-width: 560px) { .role dl { grid-template-columns: 1fr; gap: 0.1rem; } .role dd { margin-bottom: 0.6rem; } }
+
+  /* Phones: let the menu wrap onto a second line */
+  @media (max-width: 480px) {
+    nav { align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.4rem; }
+  }
+
+  /* Course tab: full name on wide screens, short name on smaller ones */
+  .nav-short { display: none; }
+  @media (max-width: 1100px) { .nav-full { display: none; } .nav-short { display: inline; } }
+  @media (min-width: 769px) and (max-width: 1100px) { .nav-links { gap: 1.4rem; } }
+  @media (min-width: 769px) and (max-width: 880px) { .nav-links { gap: 0.9rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">AJ<span> / Portfolio</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#profile">Profile</a></li>
+    <li><a href="ba-to-ai-consultant.html">My Path</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#blogs">Blogs</a></li>
+    <li><a href="learn-ai-product-management.html" class="active" aria-current="page">Learn AI <span class="nav-full">Product Management</span><span class="nav-short">PM</span></a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="kicker">Learn AI Product Management <span class="dim">· 14 weeks · No coding required</span></div>
+  <h1>Most AI projects stall at the <em>decision</em>, not the model</h1>
+
+  <aside class="summary" aria-label="Summary">
+    <div class="summary-title">In short</div>
+    <dl>
+      <dt>Who it is for</dt>
+      <dd>Business analysts, data analysts and product managers who want to lead AI products, plus engineers, designers and domain experts moving into AI product work.</dd>
+      <dt>What you learn</dt>
+      <dd>How to decide whether to use AI, specify behaviour that varies, test it, pay for it, govern it and defend a launch decision.</dd>
+      <dt>What you leave with</dt>
+      <dd>Twelve graded work products and a launch decision defended to a mock executive panel.</dd>
+      <dt>Time</dt>
+      <dd>14 weeks at 6–8 hours a week, about 85–110 hours in total.</dd>
+    </dl>
+  </aside>
+
+  <p class="lede">Organisations are not short of AI pilots. They are short of people who can turn a pilot into a product that is worth running.</p>
+  <p>This programme is built for the people best placed to do that: the analysts and product managers who already own requirements, metrics and launch decisions. It adds the AI judgement those roles now demand.</p>
+
+  <h2 id="problem">The problem organisations keep paying for</h2>
+  <p>Research by IDC with Lenovo found that only four in every 33 AI proofs of concept reached wide deployment. An MIT study published in August 2025 reported that only around 5% of generative AI pilots were delivering measurable business value at scale.</p>
+  <div class="facts">
+    <div class="fact"><b>88%</b><span>of AI proofs of concept never reach wide deployment (IDC)</span></div>
+    <div class="fact"><b>~95%</b><span>of generative AI pilots show no measurable return (MIT NANDA, 2025)</span></div>
+    <div class="fact"><b>4 of 33</b><span>pilots reached production in the IDC sample</span></div>
+  </div>
+  <p>The reasons these studies give are rarely about the model. They are unclear returns, data that was never ready, weak business cases rushed through under board pressure, and tools that did not fit the real workflow. Each of those is a product decision that someone made, or failed to make, before any code was written.</p>
+  <div class="pull"><p>An AI product succeeds or fails on four questions: should we use AI here, how do we know it is good enough, what does it cost to run, and who is harmed when it is wrong?</p></div>
+  <p>Those questions belong to whoever owns the requirements, the metrics and the launch decision. In most organisations that person is a business analyst, a data analyst or a product manager.</p>
+
+  <h2 id="market">What employers are hiring for</h2>
+  <p>AI product roles are not entry-level jobs. An analysis of 12,397 United States AI product postings in 2026 found that 93% were at senior level or above and only 2% were junior. Most asked for around seven years of experience. The capability employers valued most was choosing the right use case for AI.</p>
+  <p>That is good news if you already have years of analysis or product work behind you. Employers do not want people who know AI and nothing else. They want proven business judgement plus the ability to reason about models, evaluation, cost and risk. LinkedIn's 2026 Jobs on the Rise list points the same way: AI consultants and strategists, with a typical eight years of experience, are among the fastest-growing roles.</p>
+  <p><strong>The gap this course closes:</strong> your experience gets you shortlisted. What decides the interview is whether you can talk precisely about evaluation, unit economics and governance, and show work that proves it.</p>
+
+  <h2 id="you">Where you start, and where you finish</h2>
+  <p>Three groups in particular each bring something the others lack, and each has a specific gap.</p>
+
+  <div class="role">
+    <div class="role-head"><div class="role-title">Business analyst</div><span class="fit">Requirements → behaviour</span></div>
+    <dl>
+      <dt>You bring</dt><dd>Requirements, process mapping, stakeholder management, acceptance criteria.</dd>
+      <dt>The gap</dt><dd>AI output varies from one request to the next, so a requirement must describe acceptable behaviour and a test that checks it. Traditional templates cannot do this.</dd>
+      <dt>You leave with</dt><dd>An AI requirements document where every rule maps to a test, a failure taxonomy built from 100 real outputs, and the cost model that justifies funding.</dd>
+    </dl>
+  </div>
+  <div class="role second">
+    <div class="role-head"><div class="role-title">Data analyst</div><span class="fit">Measure → decide</span></div>
+    <dl>
+      <dt>You bring</dt><dd>Metrics, data quality checks, experiments, comfort with uncertainty.</dd>
+      <dt>The gap</dt><dd>User discovery, experience design and strategy. Analysts are often asked whether a model works, and rarely asked whether it should exist.</dd>
+      <dt>You leave with</dt><dd>A discovery synthesis with a go, pivot or stop call, an automated judge checked against human labels, and an 18-month AI portfolio strategy on one page.</dd>
+    </dl>
+  </div>
+  <div class="role third">
+    <div class="role-head"><div class="role-title">Product manager</div><span class="fit">Features → systems</span></div>
+    <dl>
+      <dt>You bring</dt><dd>Discovery, prioritisation, roadmaps, launch experience.</dd>
+      <dt>The gap</dt><dd>Technical fluency, evaluation and governance. The usual launch checklist does not cover a product whose quality drifts or whose costs grow with every user.</dd>
+      <dt>You leave with</dt><dd>An architecture decision record with a cost table, an autonomy map for an AI agent, a regulator-ready trust pack, and a launch decision defended to an executive panel.</dd>
+    </dl>
+  </div>
+
+  <h2 id="different">Why this course and not another</h2>
+  <h3>You finish with a portfolio, not just a certificate</h3>
+  <p>Every module ends in a work product an employer would recognise: a board memo, a requirements document, an evaluation report, a funding case, a trust pack. By Week 14 you have twelve pieces of evidence that you can do the job.</p>
+  <h3>Evaluation gets two full modules</h3>
+  <p>Most courses treat testing as a footnote. Here you label real outputs, build a failure taxonomy, write an automated judge and set a release threshold. It is the skill hiring managers find hardest to fill.</p>
+  <h3>One realistic case from start to finish</h3>
+  <p>Every assignment uses Harbourview Polyclinics, a fictional Singapore primary care group with five AI initiatives and real tensions between safety, cost and fairness. If your reasoning holds in healthcare, it holds in banking, insurance, retail or logistics. You can use your own product instead if it raises the same questions.</p>
+  <h3>Assessed the way the job is assessed</h3>
+  <p>Each module closes with a viva: ten minutes of questions on your own work, including challenges you did not prepare for. The capstone panel plays a chief financial officer, a chief medical officer and a chief information officer, which is much closer to a real launch review, or a real interview loop, than a multiple-choice exam.</p>
+  <h3>Built on the best public programmes</h3>
+  <p>The syllabus draws on Duke University's AI Product Management specialisation, Marily Nika's AI PM bootcamp, Hamel Husain and Shreya Shankar's evaluation course, Reforge and Product School, and brings their strongest ideas into one sequence with one case.</p>
+
+  <h2 id="map">The 14 weeks</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Week</th><th>Module</th><th>Graded work product</th></tr></thead>
+      <tbody>
+        <tr><td><span class="term t1">Week 1</span></td><td>The AI product role and lifecycle</td><td>Board memo: which initiatives need AI at all</td></tr>
+        <tr><td><span class="term t1">Week 2</span></td><td>Technical fluency for product decisions</td><td>Architecture decision record with a cost table</td></tr>
+        <tr><td><span class="term t1">Week 3</span></td><td>Problem framing, discovery and data readiness</td><td>Discovery synthesis and go, pivot or stop decision</td></tr>
+        <tr><td><span class="term t2">Week 4</span></td><td>Specifying AI products</td><td>AI requirements document mapped to tests</td></tr>
+        <tr><td><span class="term t2">Week 5</span></td><td>Evaluation I: error analysis and test sets</td><td>Failure taxonomy and top three fixes</td></tr>
+        <tr><td><span class="term t2">Week 6</span></td><td>Evaluation II: automated judges and live metrics</td><td>Judge agreement report and metrics tree</td></tr>
+        <tr><td><span class="term t2">Week 7</span></td><td>AI user experience and human factors</td><td>Storyboard of failure and handoff moments</td></tr>
+        <tr><td><span class="term t2">Week 8</span></td><td>Agents and rapid prototyping</td><td>Autonomy map and tested prototype</td></tr>
+        <tr><td><span class="term t3">Week 9</span></td><td>Unit economics and pricing</td><td>Cost model and funding recommendation</td></tr>
+        <tr><td><span class="term t3">Week 10</span></td><td>Responsible AI, risk and governance</td><td>Trust pack with red-team log and model card</td></tr>
+        <tr><td><span class="term t3">Week 11</span></td><td>AI strategy, defensibility and rollout</td><td>Strategy on a page and proof-of-concept plan</td></tr>
+        <tr><td><span class="term cap">Weeks 12–14</span></td><td>Capstone: decide, evaluate and defend</td><td>Launch recommendation defended to an executive panel</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="shift">What changes for you</h2>
+  <div class="table-wrap">
+    <table class="shift">
+      <thead><tr><th>Today you might say</th><th>After Week 14 you can say</th></tr></thead>
+      <tbody>
+        <tr><td>"We should try AI for this."</td><td>"AI adds value here and not there. Here is the cheaper alternative, and who bears the cost of a wrong answer."</td></tr>
+        <tr><td>"The demo looked good."</td><td>"It passes 94% of our test set. Most remaining failures are one type, and here is the fix."</td></tr>
+        <tr><td>"The vendor says it is accurate."</td><td>"Our judge agrees with human reviewers on 9 in 10 cases, so we can use it as a release gate."</td></tr>
+        <tr><td>"It should pay for itself."</td><td>"At 30% adoption it costs this much per task, and it still pays back if model prices rise by half."</td></tr>
+        <tr><td>"Legal will review it."</td><td>"Here is the risk classification, the red-team log and the model card the regulator will ask for."</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The figures on the right are illustrative examples of the statements you will learn to make and support with evidence.</p>
+
+  <h2 id="commitment">What it asks of you</h2>
+  <p>Fourteen weeks at six to eight hours a week. Each week follows the same rhythm: a lesson and quiz, a case study, a three-to-four-hour assignment, then a short test and viva. Optional technical labs are there for hands-on practice, and none requires you to write code.</p>
+  <p>You need no background in machine learning. You do need to be willing to defend your reasoning out loud, because that is what the role demands.</p>
+
+  <h2 id="faq">Common questions</h2>
+  <details><summary>I do not code. Will I keep up?</summary><p>Yes. Every graded deliverable is a written work product. Technical content is taught at the level a product decision needs: what retrieval, fine-tuning and agents are, what they cost and how they fail.</p></details>
+  <details><summary>AI changes every few months. Will this go out of date?</summary><p>Model names will change. The decisions do not: whether to use AI, how to test it, what it costs and how to govern it. Week 11 is specifically about writing a strategy that survives the next model release.</p></details>
+  <details><summary>I do not work in healthcare. Is the case relevant?</summary><p>Patient safety, regulatory scrutiny and fairness across groups have direct equivalents in financial services, insurance, public services and retail. You may substitute your own product for any assignment.</p></details>
+  <details><summary>I am already a product manager. What will I gain?</summary><p>The parts standard product training skips: evaluation design, behaviour specifications, unit economics that move with model prices, and governance documents. These are where experienced product managers most often get caught out in interviews and launch reviews.</p></details>
+  <details><summary>How do I show an employer what I learned?</summary><p>Your module deliverables form a portfolio, and the capstone pack brings them together into one launch recommendation you can walk through in an interview.</p></details>
+
+  <div class="cta">
+    <h3>Interested in the programme?</h3>
+    <p>Get in touch on LinkedIn to register your interest or ask about the syllabus.</p>
+    <div class="cta-actions">
+      <a class="btn primary" href="https://www.linkedin.com/in/apoorva-joshi" target="_blank" rel="noopener">Connect on LinkedIn →</a>
+      <a class="btn secondary" href="ba-to-ai-consultant.html">From business analyst to AI →</a>
+    </div>
+  </div>
+
+  <h2 id="sources">Sources</h2>
+  <ul class="sources">
+    <li>IDC with Lenovo, as reported by CIO: <a href="https://www.cio.com/article/3850763/88-of-ai-pilots-fail-to-reach-production-but-thats-not-all-on-it.html" target="_blank" rel="noopener">88% of AI pilots fail to reach production</a>.</li>
+    <li>MIT NANDA, "The GenAI Divide: State of AI in Business 2025", summarised by <a href="https://www.freevacy.com/news/fortune/mit-study-reveals-95-of-generative-ai-pilots-fail/6657" target="_blank" rel="noopener">Freevacy from Fortune</a>. The figure measures business return and has been debated, so treat it as directional.</li>
+    <li>Axial Search, <a href="https://axialsearch.com/insights/ai-product-management-jobs/" target="_blank" rel="noopener">AI Product Jobs in 2026: What 12,400 Postings Reveal</a>.</li>
+    <li>LinkedIn Jobs on the Rise 2026, as reported by <a href="https://www.outlookbusiness.com/ampstories/deeptech/artificial-intelligence/ai-roles-lead-linkedins-fastest-growing-jobs-in-2026-check-out-top-picks-here" target="_blank" rel="noopener">Outlook Business</a>.</li>
+  </ul>
+</article>
+
+<footer>
+  <span>© 2026 Apoorva Joshi · Singapore</span>
+</footer>
+
+<!-- Visitor analytics: GoatCounter -->
+<script data-goatcounter="https://apoorvaaj.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
