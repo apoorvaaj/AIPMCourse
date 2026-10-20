@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign-in Setup Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem) with wide tables in scroll boxes; term colours encode the programme sequence */
+:root {
+  --paper: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #12233b;
+  --body: #2c3a4f;
+  --muted: #5d6b7e;
+  --rule: #d5dde5;
+  --accent: #0b7077;
+  --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1;
+  --t2: #2a5596; --t2-soft: #e7edf7;
+  --t3: #9a5a0c; --t3-soft: #f8eedf;
+  --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9;
+  --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.7rem; color: var(--ink); margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .3rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+pre { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem 1rem; overflow-x: auto; font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--ink); }
+code { font-family: var(--mono); font-size: .88em; }
+ol.setup > li { margin-bottom: 1.1rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="eyebrow">Course author pack · not for learners</p>
+<h1>Sign-in setup guide</h1>
+<p class="lede">Connect the course sign-in page to a real email-code service</p>
+<p>The sign-in page uses Supabase, a hosted backend service, for passwordless sign-in by email code. Until you add your project details, the page runs in preview mode: no email is sent and the code <code>123456</code> works.</p>
+
+<h2>1. Set up the service</h2>
+<ol class="setup">
+<li><strong>Create a Supabase project.</strong> Choose the Singapore region if it is offered, so learners' data stays close to them. Keep the database password somewhere safe; the course does not use it.</li>
+<li><strong>Turn on email sign-in.</strong> In Authentication, then Sign In / Providers, make sure Email is enabled.</li>
+<li><strong>Send a code instead of a link.</strong> In Authentication, then Email Templates, open the <em>Magic Link</em> template. Supabase uses this template for email codes too. Replace its body with:
+<pre>&lt;h2&gt;Your sign-in code&lt;/h2&gt;
+&lt;p&gt;Enter this code to sign in to the AI Product Management Programme:&lt;/p&gt;
+&lt;p style="font-size:28px;letter-spacing:6px;font-weight:bold"&gt;{{ .Token }}&lt;/p&gt;
+&lt;p&gt;The code expires in 10 minutes and works once only.
+If you did not ask for it, ignore this email.&lt;/p&gt;</pre>
+Set the subject to <code>Your course sign-in code</code>.</li>
+<li><strong>Shorten the code's life.</strong> In the email provider settings, set the email one-time password (OTP) expiry to <code>600</code> seconds (10 minutes). The default is one hour. This setting also applies to other email links Supabase sends.</li>
+<li><strong>Use your own email sender before launch.</strong> Supabase's built-in email sender is meant for testing and is tightly limited. Connect an email delivery service through the custom SMTP (Simple Mail Transfer Protocol) settings, using an address on your own domain, so codes arrive reliably and do not land in spam.</li>
+<li><strong>Set the site address.</strong> In Authentication, then URL Configuration, set the Site URL to where the course will live, for example its own subdomain linked from your main website.</li>
+<li><strong>Connect the page.</strong> In Project Settings, then API, copy the Project URL and the <em>anon</em> (publishable) key into the <code>CONFIG</code> block near the bottom of <code>login.html</code>:
+<pre>const CONFIG = {
+  supabaseUrl: 'https://YOUR-PROJECT.supabase.co',
+  supabaseAnonKey: 'YOUR-ANON-KEY',
+  afterSignIn: './',
+  resendSeconds: 60
+};</pre>
+The anon key is designed to sit in public web pages. Never put the <em>service role</em> key in any page: it bypasses every protection.</li>
+</ol>
+
+<h2>2. What this does not do yet</h2>
+<p>The sign-in page identifies learners. On its own it does not stop someone reading course pages directly if they know the address, because pages on a static host such as GitHub Pages are open to anyone. Before launch, choose one of these:</p>
+<ul>
+<li><strong>Serve course pages from private storage.</strong> Put the pages in a private Supabase Storage bucket that only signed-in users can read. The site shell loads each page after sign-in.</li>
+<li><strong>Put the course behind an access gate.</strong> Host on Cloudflare Pages or Netlify and check the sign-in session at the server before any page is sent.</li>
+</ul>
+<p>The same step will store quiz progress in a table protected by row-level security, so each learner can read and write only their own rows.</p>
+
+<h2>3. Personal data checklist</h2>
+<ul>
+<li>Store only email address and course progress. Do not add name or employer fields.</li>
+<li>Publish the privacy notice before launch, and link it from the consent box on the sign-in page.</li>
+<li>Give learners a way to request deletion, and delete both the user and their progress rows.</li>
+<li>Record who has administrator access to the Supabase project, and turn on two-factor authentication for those administrator accounts.</li>
+</ul>
+<h2>Source</h2>
+<ul><li><a href="https://supabase.com/docs/guides/auth/passwordless-login/auth-email-otp">Supabase documentation, email one-time password sign-in</a></li></ul>
+<p class="foot">Course author pack · 20 October 2026</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign in · AI Product Management Programme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem) with wide tables in scroll boxes; term colours encode the programme sequence */
+:root {
+  --paper: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #12233b;
+  --body: #2c3a4f;
+  --muted: #5d6b7e;
+  --rule: #d5dde5;
+  --accent: #0b7077;
+  --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1;
+  --t2: #2a5596; --t2-soft: #e7edf7;
+  --t3: #9a5a0c; --t3-soft: #f8eedf;
+  --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9;
+  --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 2rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.7rem; color: var(--ink); margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+h3 { font-size: 1.05rem; color: var(--ink); margin: 1.75rem 0 .4rem; text-wrap: balance; }
+h4 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .3rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+abbr { text-decoration: none; }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-t2 { background: var(--t2-soft); color: var(--t2); }
+.c-t3 { background: var(--t3-soft); color: var(--t3); } .c-cap { background: var(--cap-soft); color: var(--cap); }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child { margin: 0; }
+.mod { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1.75rem; }
+.mod h3 { margin-top: .35rem; }
+.mod .src { font-size: .82rem; color: var(--muted); font-style: italic; }
+.mod dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: .35rem 1rem; margin: .6rem 0 0; font-size: .92rem; }
+.mod dt { font-weight: 600; color: var(--ink); }
+.mod dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .mod dl { grid-template-columns: 1fr; } .mod dd { margin-bottom: .5rem; } }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+[hidden]{display:none!important}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+.wrap.login { max-width: 62rem; }
+.split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; align-items: start; margin-top: 1rem; }
+@media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 1.5rem; } }
+.intro h1 { font-size: clamp(2rem, 5vw, 2.7rem); }
+.intro ul { list-style: none; padding: 0; margin: 1.25rem 0; display: grid; gap: .7rem; }
+.intro li { border-top: 1px solid var(--rule); padding-top: .6rem; }
+.intro li b { display: block; color: var(--ink); font-weight: 600; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; }
+.panel h2 { border: 0; margin: 0 0 .35rem; padding: 0; font-size: 1.5rem; }
+.panel .sub { color: var(--muted); font-size: .92rem; margin-bottom: 1.1rem; }
+.steps { display: flex; gap: .4rem; margin-bottom: 1.1rem; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.steps span { flex: 1; border-top: 3px solid var(--rule); padding-top: .35rem; }
+.steps span.on { border-color: var(--accent); color: var(--accent); }
+label.f { display: block; font-weight: 600; color: var(--ink); font-size: .9rem; margin-bottom: .3rem; }
+input.in { width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .65rem .75rem; }
+input.in:focus { border-color: var(--accent); outline: 2px solid var(--accent-soft); outline-offset: 0; }
+input.code { font-family: var(--mono); font-size: 1.6rem; letter-spacing: .5em; text-align: center; padding: .55rem .5rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; font-size: .87rem; margin: 1rem 0; }
+.check input { margin-top: .3rem; flex: none; }
+.go { width: 100%; border: 0; background: var(--accent); color: var(--paper); font-weight: 600; padding: .75rem; border-radius: 4px; font-size: 1rem; margin-top: .4rem; }
+.go:disabled { opacity: .5; cursor: not-allowed; }
+.link { background: none; border: 0; color: var(--accent); padding: 0; text-decoration: underline; font-size: .88rem; }
+.link:disabled { color: var(--muted); text-decoration: none; cursor: default; }
+.msg { border-radius: 4px; padding: .6rem .8rem; font-size: .9rem; margin: .8rem 0 0; }
+.msg.err { background: var(--bad-soft); color: var(--bad); }
+.msg.ok { background: var(--good-soft); color: var(--good); }
+.msg.info { background: var(--t2-soft); color: var(--t2); }
+.demo { background: var(--t3-soft); color: var(--t3); border-radius: 4px; padding: .5rem .75rem; font-size: .82rem; margin-bottom: 1rem; }
+.row2 { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; font-size: .88rem; color: var(--muted); }
+.fine { font-size: .8rem; color: var(--muted); margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+<div class="wrap login">
+<nav class="top" aria-label="Course pages">
+  <a href="why.html">Why this course</a>
+  <a href="./">Programme handbook</a>
+  <a href="dashboard.html">My course</a>
+  <a href="login.html" aria-current="page">Sign in</a>
+</nav>
+
+<div class="split">
+<section class="intro">
+  <p class="eyebrow">AI Product Management Programme</p>
+  <h1>Sign in to the course</h1>
+  <p class="lede">No password needed. We email you a code each time you sign in.</p>
+  <ul>
+    <li><b>New here?</b>Enter your email and the code we send. Your account is created the first time you sign in.</li>
+    <li><b>What we store</b>Your email address and your course progress. Nothing else: no name, no employer, no password.</li>
+    <li><b>Your choice</b>You can ask for your account and progress to be deleted at any time.</li>
+  </ul>
+</section>
+
+<section class="panel" aria-labelledby="ptitle">
+  <div class="demo" id="demo" hidden><strong>Preview mode.</strong> No sign-in service is connected yet, so no email is sent. Use the code <b>123456</b> to try the flow.</div>
+  <div class="steps" aria-hidden="true"><span id="st1" class="on">1 · Email</span><span id="st2">2 · Code</span><span id="st3">3 · Done</span></div>
+
+  <form id="emailForm" novalidate>
+    <h2 id="ptitle">Enter your email</h2>
+    <p class="sub">We will send a 6-digit code to this address.</p>
+    <label class="f" for="email">Email address</label>
+    <input class="in" id="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com">
+    <div class="check"><input type="checkbox" id="consent"><label for="consent">I agree that the programme stores my email address and course progress to run my account, as set out in the privacy notice. I can ask for deletion at any time.</label></div>
+    <button class="go" id="sendBtn" type="submit">Send code</button>
+    <p class="msg err" id="emailErr" role="alert" hidden></p>
+  </form>
+
+  <form id="codeForm" novalidate hidden>
+    <h2>Check your email</h2>
+    <p class="sub">We sent a 6-digit code to <b id="sentTo"></b>. It expires in 10 minutes. Check your spam folder if it has not arrived.</p>
+    <label class="f" for="code">6-digit code</label>
+    <input class="in code" id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="••••••">
+    <button class="go" id="verifyBtn" type="submit" disabled>Sign in</button>
+    <p class="msg err" id="codeErr" role="alert" hidden></p>
+    <p class="msg info" id="codeInfo" role="status" hidden></p>
+    <div class="row2">
+      <button class="link" type="button" id="changeEmail">Use a different email</button>
+      <button class="link" type="button" id="resend" disabled>Resend code</button>
+    </div>
+  </form>
+
+  <div id="done" hidden>
+    <h2>You are signed in</h2>
+    <p class="sub">Signed in as <b id="who"></b>.</p>
+    <a class="go" id="continue" href="dashboard.html" style="display:block;text-align:center;text-decoration:none">Go to the course</a>
+    <div class="row2"><button class="link" type="button" id="signOut">Sign out</button></div>
+  </div>
+
+  <p class="fine">Sign-in is handled by a secure authentication service. Codes can be used once only. If you did not ask for a code, you can ignore the email.</p>
+</section>
+</div>
+<p class="foot">AI Product Management Programme · Sign-in by email code · Privacy notice to be published before launch</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* ===== Configuration: fill these in from your Supabase project (Settings → API). =====
+   The anonymous (publishable) key is designed to be public; protect data with row-level security. */
+const CONFIG = {
+  supabaseUrl: '',          // e.g. https://abcdefgh.supabase.co
+  supabaseAnonKey: '',      // the "anon" / publishable key
+  afterSignIn: 'dashboard.html', // where to send learners once signed in
+  resendSeconds: 60         // matches Supabase's default limit of one code per 60 seconds
+};
+
+const DEMO = !(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey) || !window.supabase;
+let client = null;
+if (!DEMO) client = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+const $ = id => document.getElementById(id);
+$('demo').hidden = !DEMO;
+$('continue').href = CONFIG.afterSignIn;
+
+let email = '', timer = null;
+const show = step => {
+  $('emailForm').hidden = step !== 1; $('codeForm').hidden = step !== 2; $('done').hidden = step !== 3;
+  [1,2,3].forEach(n => $('st'+n).classList.toggle('on', n <= step));
+};
+const err = (id, text) => { $(id).textContent = text || ''; $(id).hidden = !text; };
+const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+function friendly(e) {
+  const s = e && (e.status || 0), m = (e && e.message || '').toLowerCase();
+  if (s === 429 || m.includes('rate')) return 'Too many requests. Wait a minute, then try again.';
+  if (m.includes('expired')) return 'That code has expired. Press "Resend code" to get a new one.';
+  if (m.includes('invalid') || m.includes('token')) return 'That code is not right. Check the latest email and try again.';
+  if (m.includes('fetch') || m.includes('network')) return 'We could not reach the sign-in service. Check your connection and try again.';
+  return 'Something went wrong. Try again in a moment.';
+}
+
+function startResendTimer() {
+  let left = CONFIG.resendSeconds; const b = $('resend');
+  b.disabled = true; clearInterval(timer);
+  const tick = () => { b.textContent = left > 0 ? `Resend code in ${left}s` : 'Resend code'; if (left-- <= 0) { b.disabled = false; clearInterval(timer); } };
+  tick(); timer = setInterval(tick, 1000);
+}
+
+async function sendCode() {
+  if (DEMO) return { error: null };
+  return client.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
+}
+
+$('emailForm').addEventListener('submit', async e => {
+  e.preventDefault(); err('emailErr');
+  const v = $('email').value.trim().toLowerCase();
+  if (!validEmail(v)) return err('emailErr', 'Enter a full email address, such as name@example.com.');
+  if (!$('consent').checked) return err('emailErr', 'Tick the box to agree to the privacy terms before continuing.');
+  email = v; const b = $('sendBtn'); b.disabled = true; b.textContent = 'Sending…';
+  const { error } = await sendCode();
+  b.disabled = false; b.textContent = 'Send code';
+  if (error) return err('emailErr', friendly(error));
+  $('sentTo').textContent = email; $('code').value = ''; $('verifyBtn').disabled = true;
+  err('codeErr'); $('codeInfo').hidden = true;
+  show(2); startResendTimer(); $('code').focus();
+});
+
+$('code').addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+  $('verifyBtn').disabled = e.target.value.length !== 6;
+  if (e.target.value.length === 6) $('codeForm').requestSubmit();
+});
+
+$('codeForm').addEventListener('submit', async e => {
+  e.preventDefault(); err('codeErr'); $('codeInfo').hidden = true;
+  const token = $('code').value; if (token.length !== 6) return;
+  const b = $('verifyBtn'); b.disabled = true; b.textContent = 'Checking…';
+  let res;
+  if (DEMO) res = token === '123456' ? { data: { user: { email } }, error: null } : { error: { message: 'invalid token' } };
+  else res = await client.auth.verifyOtp({ email, token, type: 'email' });
+  b.textContent = 'Sign in';
+  if (res.error) { b.disabled = false; $('code').select(); return err('codeErr', friendly(res.error)); }
+  $('who').textContent = (res.data.user && res.data.user.email) || email;
+  clearInterval(timer); show(3);
+  if (!DEMO) setTimeout(() => { location.href = CONFIG.afterSignIn; }, 1200);
+});
+
+$('resend').addEventListener('click', async () => {
+  err('codeErr'); const { error } = await sendCode();
+  if (error) return err('codeErr', friendly(error));
+  $('codeInfo').textContent = 'A new code is on its way. Use the code in the latest email.'; $('codeInfo').hidden = false;
+  startResendTimer();
+});
+$('changeEmail').addEventListener('click', () => { clearInterval(timer); show(1); $('email').focus(); });
+$('signOut').addEventListener('click', async () => { if (!DEMO) await client.auth.signOut(); email = ''; $('email').value = ''; show(1); });
+
+(async () => {
+  if (DEMO) return;
+  const { data } = await client.auth.getSession();
+  if (data && data.session) { $('who').textContent = data.session.user.email; show(3); }
+})();
+</script>
+
+</body>
+</html>

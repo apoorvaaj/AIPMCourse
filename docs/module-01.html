@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 1 · AI Product Lifecycle</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar for navigation; same tokens as the programme handbook */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; counter-reset: s; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 1rem 0 1.25rem; }
+.compare > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; min-width: 0; }
+.compare h4 { margin-top: 0; }
+.compare .msg { font-family: var(--mono); font-size: .8rem; background: var(--paper); border-radius: 3px; padding: .5rem .6rem; margin: .5rem 0; color: var(--ink); }
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.cycle { list-style: none; padding: 0; margin: 1rem 0 .5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .5rem; }
+.cycle li { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 4px; padding: .55rem .7rem; font-size: .85rem; min-width: 0; }
+.cycle b { display: block; color: var(--ink); font-size: .92rem; }
+.cycle span { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+.loopback { font-size: .85rem; color: var(--muted); border: 1px dashed var(--rule); border-radius: 4px; padding: .5rem .75rem; margin-bottom: 1.25rem; }
+.matrix { display: grid; grid-template-columns: 6.5rem repeat(2, minmax(0,1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.matrix .h { font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.matrix .cell { border-radius: 4px; padding: .6rem .7rem; min-width: 0; }
+.matrix .cell b { display: block; color: var(--ink); }
+.m1 { background: var(--good-soft); } .m2 { background: var(--t2-soft); } .m3 { background: var(--t3-soft); } .m4 { background: var(--bad-soft); }
+@media (max-width: 480px) { .matrix { grid-template-columns: 4.5rem repeat(2, minmax(0,1fr)); font-size: .8rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: .75rem; margin: .8rem 0 1rem; }
+.facts div { border-top: 2px solid var(--accent); padding-top: .4rem; min-width: 0; }
+.facts b { display: block; font-family: var(--display); font-size: 1.3rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.facts span { font-size: .8rem; color: var(--muted); }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet dl { display: grid; grid-template-columns: 9rem minmax(0,1fr); gap: .45rem 1rem; margin: 0; font-size: .92rem; }
+.sheet dt { font-weight: 600; color: var(--ink); }
+.sheet dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .sheet dl { grid-template-columns: 1fr; } .sheet dd { margin-bottom: .5rem; } }
+blockquote { margin: .75rem 0 0; padding: .5rem .9rem; border-left: 3px solid var(--rule); font-family: var(--display); font-style: italic; font-size: 1.02rem; color: var(--body); }
+blockquote cite { display: block; font-family: var(--text); font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* Decision table tool */
+.dt { min-width: 40rem; }
+.dt td { vertical-align: middle; }
+.dt select { width: 3.6rem; padding: .3rem .25rem; font-size: .9rem; }
+.dt .tot { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); text-align: center; }
+.dt .ver { font-size: .8rem; }
+.ev { display: grid; gap: .5rem; margin: .5rem 0 1rem; }
+.ev fieldset { border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); padding: .7rem .9rem; margin: 0; min-width: 0; }
+.ev legend { font-weight: 600; color: var(--ink); padding: 0 .3rem; }
+.ev label { display: block; font-size: .82rem; color: var(--muted); margin: .45rem 0 .15rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.lab td input { min-width: 7rem; }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Course pages">
+  <a href="./">Programme handbook</a>
+  <a href="module-01.html" aria-current="page">Module 1</a>
+  <a href="./#case">Case: Harbourview Polyclinics</a>
+  <a href="login.html">Sign in</a>
+</nav>
+
+<p class="eyebrow">Term I · Foundations · Week 1 · Module 1</p>
+<h1>The AI product role and the AI product lifecycle</h1>
+<p class="lede">What changes when the product you manage is built on artificial intelligence, and how to decide whether it should be.</p>
+<ul class="meta"><li>About 7 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: memo, test, viva</li><li>No coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>Most software does exactly what it was told. Software built on artificial intelligence (AI) does what it has <em>learned</em>, which is usually right and sometimes wrong in ways nobody wrote down. This module shows you what that means for the person deciding what to build, and gives you a simple, repeatable test for deciding whether a problem needs AI at all.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Explain how AI products differ from rule-based software: their outputs vary, they depend on data, and they need testing for as long as they run.</li>
+  <li>Map the AI product lifecycle from first idea to live monitoring, and name the product decision made at each stage.</li>
+  <li>Decide whether a problem needs AI at all, and name the cheaper alternative when it does not.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">75–90 min</span><span class="d">Six short parts with worked examples. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">The Harbourview board brief and five initiative fact sheets. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">3–4 hrs</span><span class="d">Audit all five initiatives and write a two-page memo to the board. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your memo. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Decision table<b id="st-dt">0 of 5 scored</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you type. Nobody else can see them until you press <strong>Copy all my work</strong> at the end and send it. The step bar at the top follows you down the page, so you can jump between steps at any time. Every acronym is spelled out the first time it appears.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · 75–90 minutes</span>What changes when the product is AI</h2>
+<p>The lesson has six parts. Parts 1 to 3 explain what is different about AI products and the people who manage them. Parts 4 to 6 give you the tools you will use in the assignment: the lifecycle, the cost-of-error grid and the AI-or-not test.</p>
+
+<h3 id="l1">1.1 Two versions of the same feature</h3>
+<p>Imagine a clinic that sends appointment reminders. Here are two ways to build the feature.</p>
+<div class="compare">
+  <div>
+    <h4>Version 1 · Rule-based</h4>
+    <p>A programmer writes a rule: three days before the appointment, send this message.</p>
+    <div class="msg">Reminder: you have an appointment at Bedok Clinic on Thu 6 Nov, 9:30am. Reply C to cancel.</div>
+    <p style="margin:0">Every patient gets the same wording. If it works for one patient it works for all of them. You test it once.</p>
+  </div>
+  <div>
+    <h4>Version 2 · AI-written</h4>
+    <p>An AI model writes a friendly, personal reminder for each patient from their booking details.</p>
+    <div class="msg">Hi Mr Tan! See you at Bedok Clinic on Thursday morning for your diabetes review. Please remember to fast for 8 hours before.</div>
+    <p style="margin:0">Most messages are better than Version 1. But this one invented a fasting instruction nobody asked for. Testing one message tells you very little.</p>
+  </div>
+</div>
+<p>Version 2 is not broken. It is doing what AI does: producing the most likely good answer, which is usually right and occasionally confidently wrong. That single difference is the root of almost everything in this programme.</p>
+
+<p>A few terms you will meet throughout the course:</p>
+<dl class="terms">
+  <dt>Artificial intelligence (AI)</dt><dd>Software that performs tasks we associate with human judgement, such as understanding language or spotting patterns, by learning from examples rather than following only hand-written rules.</dd>
+  <dt>Model</dt><dd>The learned part of an AI system. It takes an input (a question, a record) and produces an output (an answer, a prediction).</dd>
+  <dt>Training data</dt><dd>The examples a model learned from. What is in the data, and what is missing, shapes how the model behaves.</dd>
+  <dt>Machine learning (ML)</dt><dd>The family of methods that lets software learn patterns from data. Most AI today is built with machine learning.</dd>
+  <dt>Classical machine learning</dt><dd>Models that predict a number or a category from structured data, such as "will this patient miss their appointment: yes or no". Usually cheaper and easier to test.</dd>
+  <dt>Generative AI</dt><dd>Models that create new content: text, images, audio. Their outputs are open-ended, which makes them more flexible and harder to check.</dd>
+  <dt>Large language model (LLM)</dt><dd>A generative AI model trained on very large amounts of text, such as Claude or GPT. It can answer questions, summarise and draft. From here on we write LLM.</dd>
+  <dt>Prompt</dt><dd>The instructions and context given to an LLM. Changing a single word in a prompt can change the output.</dd>
+</dl>
+
+<h3 id="l2">1.2 Four ways AI products differ from rule-based software</h3>
+<div class="scroll"><table>
+<thead><tr><th>Difference</th><th>Rule-based software</th><th>AI product</th><th>What it means for you</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Outputs vary</strong></td><td>Same input, same output, every time</td><td>Similar inputs can get different outputs; quality is spread across a range</td><td>You specify how often it must be right and what it must never do, not just what it does</td></tr>
+<tr><td><strong>2. Behaviour comes from data</strong></td><td>Behaviour is set by code people wrote and can read</td><td>Behaviour is shaped by training data, prompts and the documents the model reads</td><td>Data quality, coverage and permission to use it become product decisions</td></tr>
+<tr><td><strong>3. Quality is never finished</strong></td><td>Once tested, it keeps working until someone changes it</td><td>Quality shifts when the model is updated, users change, or the world changes (called drift)</td><td>Testing continues after launch; monitoring is part of the product</td></tr>
+<tr><td><strong>4. Costs grow with use</strong></td><td>Running cost barely changes per extra user</td><td>Every request costs money to process</td><td>Popularity can make a product unaffordable; you model cost per task early</td></tr>
+</tbody></table></div>
+<div class="note"><p><strong>The big idea.</strong> In rule-based software, a wrong answer is a bug you find and fix once. In an AI product, a wrong answer is a <em>rate</em> you measure and manage for the life of the product.</p></div>
+
+<h3 id="l3">1.3 What an AI product manager does</h3>
+<p>A product manager is responsible for deciding what gets built and why. In any product, they manage four classic risks: will people <strong>value</strong> it, can they <strong>use</strong> it, can we <strong>build</strong> it, and does it work for the <strong>business</strong>. An AI product manager does all of that, plus five jobs that ordinary software rarely demands:</p>
+<ol>
+  <li><strong>Decide whether AI fits at all.</strong> Many problems are solved better by a rule, a form or a process change.</li>
+  <li><strong>Define "good enough".</strong> Set the quality bar in numbers, such as "correct in at least 98 of 100 test cases, and never gives a dose that differs from the label".</li>
+  <li><strong>Decide how much the AI may do alone.</strong> Suggest only, act with approval, or act alone. This depends on what an error costs.</li>
+  <li><strong>Manage the cost to run.</strong> Know what one task costs and what happens to the budget if usage triples.</li>
+  <li><strong>Own new kinds of risk.</strong> Safety, fairness between groups of users, privacy, and regulation.</li>
+</ol>
+<p>You will rarely do this alone. The table shows who you typically work with.</p>
+<div class="scroll"><table>
+<thead><tr><th>Role</th><th>What they bring</th><th>What they need from you</th></tr></thead>
+<tbody>
+<tr><td>Data scientist or machine learning engineer</td><td>Builds and tests models</td><td>A clear problem, a quality bar, and access to the right data</td></tr>
+<tr><td>Software or AI engineer</td><td>Connects the model to real systems and screens</td><td>Requirements for behaviour, limits on cost and response time</td></tr>
+<tr><td>Domain expert (for example, a doctor or pharmacist)</td><td>Knows what a good and a dangerous answer look like</td><td>Time to review outputs, and a say in what the AI must never do</td></tr>
+<tr><td>Designer or researcher</td><td>Understands users and designs what they see</td><td>Honest information about when and how the AI fails</td></tr>
+<tr><td>Risk, legal and compliance</td><td>Knows the rules and what regulators will ask</td><td>Early involvement, not a request to sign off the week before launch</td></tr>
+<tr><td>Operations staff</td><td>Will live with the product every day</td><td>A workflow that fits how they actually work</td></tr>
+</tbody></table></div>
+
+<h3 id="l4">1.4 The AI product lifecycle</h3>
+<p>A lifecycle is the series of stages a product moves through, from first idea to retirement. The AI product lifecycle has seven stages. What makes it different is not the stages themselves but how often you go <em>back</em>.</p>
+<ol class="cycle">
+  <li><span>Stage 1</span><b>Opportunity</b>Is there a problem worth solving?</li>
+  <li><span>Stage 2</span><b>Fit and feasibility</b>Does AI suit it, and is the data usable?</li>
+  <li><span>Stage 3</span><b>Prototype</b>Does it work on real examples?</li>
+  <li><span>Stage 4</span><b>Specify and evaluate</b>What is good enough, and how do we test it?</li>
+  <li><span>Stage 5</span><b>Build and integrate</b>Does it work inside the real workflow?</li>
+  <li><span>Stage 6</span><b>Launch in stages</b>Is it safe and useful for real users?</li>
+  <li><span>Stage 7</span><b>Monitor and improve</b>Is it still good enough?</li>
+</ol>
+<p class="loopback">↺ Any stage can send you back. A poor prototype sends you back to Stage 2. A drop in quality after launch sends you back to Stage 4. Stage 7 never ends while the product is live.</p>
+
+<div class="scroll"><table>
+<thead><tr><th>Stage</th><th>The decision you make</th><th>What you produce</th><th>Signal to stop or go back</th><th>Taught in</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Opportunity</strong></td><td>Pursue the problem or drop it</td><td>Problem statement with evidence</td><td>No clear, frequent user pain</td><td>Module 3</td></tr>
+<tr><td><strong>2. Fit and feasibility</strong></td><td>Use AI, use a non-AI solution, or combine them</td><td>AI-or-not assessment, data check</td><td>A cheaper option works; the data is missing or not allowed</td><td>Modules 1, 2, 3</td></tr>
+<tr><td><strong>3. Prototype</strong></td><td>Continue, change approach or stop</td><td>Prototype and reviewed sample outputs</td><td>Outputs are poor even on easy cases</td><td>Module 8</td></tr>
+<tr><td><strong>4. Specify and evaluate</strong></td><td>Set the quality bar and the "must never" rules</td><td>Requirements and a test set</td><td>The bar cannot be reached at an acceptable cost</td><td>Modules 4, 5, 6</td></tr>
+<tr><td><strong>5. Build and integrate</strong></td><td>Approve the release plan</td><td>Working system with safety checks</td><td>It does not fit how staff or patients actually work</td><td>Module 7</td></tr>
+<tr><td><strong>6. Launch in stages</strong></td><td>Widen, hold or roll back</td><td>Pilot results against the quality bar</td><td>Harm, complaints or quality below the bar</td><td>Modules 10, 11</td></tr>
+<tr><td><strong>7. Monitor and improve</strong></td><td>Adjust, retrain, replace or retire</td><td>Live quality and cost reports, incident log</td><td>Drift, cost overrun, a model update that changes behaviour</td><td>Modules 6, 9</td></tr>
+</tbody></table></div>
+<p>Notice that Stage 2 is where this module lives. A good decision here is the cheapest decision you will ever make: stopping a weak idea at Stage 2 costs a few days, while stopping it at Stage 6 can cost a year and a damaged reputation.</p>
+
+<h3 id="l5">1.5 The cost of a wrong answer</h3>
+<p>Every AI feature will sometimes be wrong. So the useful question is not "will it make mistakes?" but three sharper ones:</p>
+<ol>
+  <li><strong>How bad is a wrong answer?</strong> An odd book suggestion costs nothing. A wrong medicine dose can harm someone.</li>
+  <li><strong>Who bears the cost?</strong> Often it is not the person who benefits. A tool might save staff time while patients carry the risk.</li>
+  <li><strong>Can someone catch it in time?</strong> A draft a doctor reads before signing is different from an instant reply a patient acts on alone.</li>
+</ol>
+<p>Answers to the first and third questions place a feature on this grid, and the grid suggests a design.</p>
+<div class="matrix" role="table" aria-label="Cost of a wrong answer, by severity and whether it can be caught">
+  <div class="h" role="columnheader"></div><div class="h" role="columnheader">Easy to catch in time</div><div class="h" role="columnheader">Hard to catch in time</div>
+  <div class="h" role="rowheader">Low cost if wrong</div>
+  <div class="cell m1" role="cell"><b>Automate</b>Let the AI act. Fix errors as they come up.</div>
+  <div class="cell m2" role="cell"><b>Automate and watch</b>Let the AI act, but check a sample of outputs regularly.</div>
+  <div class="h" role="rowheader">High cost if wrong</div>
+  <div class="cell m3" role="cell"><b>AI suggests, a person decides</b>A qualified person approves every output.</div>
+  <div class="cell m4" role="cell"><b>Avoid, or narrow the scope</b>Do not use AI, or cut the task down until errors become catchable.</div>
+</div>
+<div class="note warn"><p><strong>A trap to watch for.</strong> "A person reviews it" only works if the person has the time and the habit to check properly. When the AI is usually right, reviewers start to trust it and skim. This is called automation bias, and it is why human review is a design you test, not a box you tick.</p></div>
+
+<h3 id="l6">1.6 The AI-or-not test</h3>
+<p>Here is the tool you will use in the assignment. Score an idea from 1 to 5 on five questions. A higher score always favours using AI.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>The question</th><th>Score 1 means</th><th>Score 5 means</th></tr></thead>
+<tbody>
+<tr><td><strong>C1. Problem value</strong></td><td>How painful, frequent and measurable is the problem?</td><td>Minor or rare</td><td>Severe, frequent, with clear numbers</td></tr>
+<tr><td><strong>C2. Advantage over non-AI</strong></td><td>How much better is AI than the best simple alternative (a rule, form, search or process change)?</td><td>A simple option works just as well</td><td>No simple option comes close</td></tr>
+<tr><td><strong>C3. Error tolerance</strong></td><td>Using the grid above: how costly and catchable are wrong answers?</td><td>Serious harm, hard to catch</td><td>Cheap, or reliably caught in time</td></tr>
+<tr><td><strong>C4. Data readiness</strong></td><td>Is there enough good data that we are allowed to use?</td><td>Missing, poor or not permitted</td><td>Plentiful, good and permitted</td></tr>
+<tr><td><strong>C5. Value versus cost</strong></td><td>Does the value clearly exceed the cost to build, run and govern it?</td><td>Cost exceeds value</td><td>Clear margin, even if costs rise</td></tr>
+</tbody></table></div>
+
+<h4>Turning scores into a verdict</h4>
+<div class="scroll"><table>
+<thead><tr><th class="num">Total (out of 25)</th><th>Verdict</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td class="num">21–25</td><td><span class="chip c-good">Go</span></td><td>Proceed to prototype</td></tr>
+<tr><td class="num">16–20</td><td><span class="chip c-mid">Go with conditions</span></td><td>Proceed with a narrow scope, a pilot or a named safeguard</td></tr>
+<tr><td class="num">11–15</td><td><span class="chip c-sum">Not yet</span></td><td>Fix the weakest criterion first, then score again</td></tr>
+<tr><td class="num">5–10</td><td><span class="chip c-bad">No-go</span></td><td>Drop it, or solve it another way</td></tr>
+</tbody></table></div>
+<p><strong>Two red-flag rules override the total.</strong></p>
+<ul>
+  <li>Any criterion scored <strong>1</strong> is a red flag. The verdict cannot be better than <em>Not yet</em>, however high the total.</li>
+  <li>If the red flag is on <strong>C2</strong>, the verdict is <em>No-go: use the non-AI alternative</em>. The problem may be real, but AI is not the answer.</li>
+</ul>
+<p>Scores are judgements, not facts. That is fine, as long as every score has one line of evidence and you say which ones are assumptions.</p>
+
+<div class="worked">
+<h4>Worked example · Riverside Public Library (a different, fictional organisation)</h4>
+<p>A library considers two ideas: AI book recommendations in its app, and AI to calculate overdue fines.</p>
+<div class="scroll" style="margin-bottom:.75rem"><table>
+<thead><tr><th>Idea</th><th class="num">C1</th><th class="num">C2</th><th class="num">C3</th><th class="num">C4</th><th class="num">C5</th><th class="num">Total</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>Book recommendations</td><td class="num">3</td><td class="num">3</td><td class="num">5</td><td class="num">4</td><td class="num">3</td><td class="num"><strong>18</strong></td><td><span class="chip c-mid">Go with conditions</span></td></tr>
+<tr><td>Overdue fines</td><td class="num">2</td><td class="num">1</td><td class="num">2</td><td class="num">5</td><td class="num">1</td><td class="num"><strong>11</strong></td><td><span class="chip c-bad">No-go: use a rule</span></td></tr>
+</tbody></table></div>
+<p><strong>Recommendations.</strong> Members often ask staff for "something like this" (C1: 3). Staff-picked lists exist but are not personal (C2: 3). A poor suggestion costs nothing (C3: 5). There are five years of borrowing records, but they must be anonymised first (C4: 4). An off-the-shelf tool keeps cost moderate (C5: 3). <em>Condition: pilot with anonymised data in one branch.</em></p>
+<p style="margin:0"><strong>Fines.</strong> A fine is days late multiplied by a daily rate. A one-line rule does this perfectly (C2: 1, red flag), and a wrong AI-calculated fine would cause disputes (C3: 2). The data is perfect (C4: 5), which shows that good data alone never justifies AI.</p>
+</div>
+
+<h4>Four common mistakes</h4>
+<ul>
+  <li><strong>Scoring the technology instead of the case.</strong> Ask what this AI would do for these users with this data, not what AI can do in general.</li>
+  <li><strong>Forgetting who bears the error.</strong> If staff benefit and patients carry the risk, say so.</li>
+  <li><strong>Treating it as all or nothing.</strong> Often the best answer is a mix: rules for the risky part, AI for the rest.</li>
+  <li><strong>Assuming data is ready because it exists.</strong> Check quality, coverage, language and whether you are allowed to use it.</li>
+</ul>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: the board brief</h2>
+<p>Harbourview is the fictional polyclinic group you will work with all programme. In this module you join as the new head of digital products. Read the chief executive's brief, then open each of the five fact sheets. All names and figures are invented for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Dr Lim Wei Ling, Chief Executive<br>TO: Head of Digital Products<br>RE: AI initiatives, decision needed at next board meeting</div>
+<p>Welcome aboard. The board has set aside <strong>S$1.6 million</strong> for AI over the next 18 months. Five ideas have reached my desk, each with a keen sponsor. We cannot do them all.</p>
+<p>The board wants to start <strong>no more than two</strong> in the first six months. The Ministry of Health will want to see that we have put patient safety first, and our staff unions have asked that any tool supports clinicians rather than replacing their judgement.</p>
+<p>Please tell the board which to start, which to defer, and which to drop or solve some other way. I want your reasoning, not your enthusiasm.</p>
+</div>
+
+<div class="facts">
+  <div><b>9</b><span>clinics</span></div>
+  <div><b>1.4M</b><span>patient visits a year</span></div>
+  <div><b>920,000</b><span>booked appointments a year</span></div>
+  <div><b>260</b><span>doctors</span></div>
+  <div><b>4</b><span>main languages: English, Mandarin, Malay, Tamil</span></div>
+</div>
+
+<h3>The five fact sheets</h3>
+<p>Open each sheet. As you read, note for each one: the user problem, the non-AI option, the cost of a wrong answer, and who bears it.</p>
+
+<details class="sheet">
+<summary><b>A. Medicine questions assistant</b><span class="k">LLM answering patients about their own medicines</span></summary>
+<div class="in"><dl>
+<dt>Problem today</dt><dd>The pharmacy helpline receives about 1,900 calls a week. Peak waits reach 25 minutes. Around 60% of calls are one of five questions: what a medicine is for, when to take it, what to do after a missed dose, side effects, and whether it is safe with another medicine.</dd>
+<dt>Proposed AI</dt><dd>A chat assistant in the app that answers using the patient's prescription record and the group's approved medicine leaflets.</dd>
+<dt>Non-AI option</dt><dd>A searchable leaflet library in the app in all four languages, plus a "message a pharmacist" form with a four-hour reply target.</dd>
+<dt>Data</dt><dd>640 approved leaflets. All exist in English; about 70% are translated. About 8% are overdue for their scheduled review. Prescription records are already in the app.</dd>
+<dt>If it is wrong</dt><dd>Wrong advice on a dose, a missed dose or a drug combination could harm a patient, who may act on it without asking anyone.</dd>
+<dt>Estimated cost</dt><dd>S$350,000 to build; S$60,000 a year to run.</dd>
+<dt>Estimated value</dt><dd>If 40% of routine calls move to the app, about 2.5 full-time pharmacist roles are freed for clinical work.</dd>
+</dl>
+<blockquote>"Half my team's day is answering the same five questions. But the sixth question, the one that isn't routine, is the one that matters."<cite>Head Pharmacist</cite></blockquote>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>B. Booking and symptom-routing chatbot</b><span class="k">LLM with rules and nurse handoff</span></summary>
+<div class="in"><dl>
+<dt>Problem today</dt><dd>About 9% of bookings are for the wrong service, for example a doctor's slot booked for a vaccination. That is roughly 83,000 bookings a year, each taking about 10 minutes of staff time to fix. Separately, some patients book a routine slot for symptoms that need urgent care.</dd>
+<dt>Proposed AI</dt><dd>A chatbot that asks about the patient's need, books the right service, and flags urgent symptoms to a nurse.</dd>
+<dt>Non-AI option</dt><dd>A redesigned booking form with a plain-language service picker, plus a fixed set of warning-sign questions at the start (for example chest pain or breathing difficulty) that tell the patient to call 995, Singapore's emergency ambulance number.</dd>
+<dt>Data</dt><dd>Three years of booking records. Phone calls are not recorded. The nurse triage protocol, the checklist nurses use to judge urgency, exists on paper only.</dd>
+<dt>If it is wrong</dt><dd>A wrong service means a rebooking: low cost. A missed emergency could cause serious harm or death, borne by the patient.</dd>
+<dt>Estimated cost</dt><dd>S$420,000 to build; S$90,000 a year to run.</dd>
+<dt>Estimated value</dt><dd>Removing most wrong-service bookings saves about 14,000 staff hours a year.</dd>
+</dl>
+<blockquote>"Booking is a puzzle. Triage is a clinical judgement. I'm nervous when people talk about them as one product."<cite>Nurse Manager, Emergency and Triage</cite></blockquote>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>C. Consultation note drafter</b><span class="k">Speech-to-text plus LLM</span></summary>
+<div class="in"><dl>
+<dt>Problem today</dt><dd>Doctors spend about 4.5 minutes writing notes per consultation. At around 30 consultations a day, that is over two hours. In the last staff survey, note-writing was the most-cited cause of burnout.</dd>
+<dt>Proposed AI</dt><dd>A tool that records the consultation (with consent), turns speech into text, and drafts the visit note for the doctor to check and sign.</dd>
+<dt>Non-AI option</dt><dd>Structured note templates and quick-text phrases. Or human medical scribes at about S$3,200 a month each.</dd>
+<dt>Data</dt><dd>No recordings exist today. Consent would be needed every time. Many consultations mix languages, including English, Mandarin, Malay, Tamil and Hokkien. A vendor product exists, so Harbourview would not train its own model.</dd>
+<dt>If it is wrong</dt><dd>A wrong medicine, dose or allergy in the record could affect future care. The doctor reviews every draft, but under time pressure may skim.</dd>
+<dt>Estimated cost</dt><dd>S$200,000 to set up; about S$125,000 a year in vendor fees for all 260 doctors.</dd>
+<dt>Estimated value</dt><dd>The vendor claims a 40% cut in note time. If true, about 50 minutes a day per doctor.</dd>
+</dl>
+<blockquote>"I'd love the time back. But I sign that note. If it's wrong, it's my name on it."<cite>Family Physician, Tampines Clinic</cite></blockquote>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>D. Missed-appointment predictor</b><span class="k">Classical machine learning</span></summary>
+<div class="in"><dl>
+<dt>Problem today</dt><dd>11% of booked appointments are missed, about 101,000 a year. Each empty slot costs about S$45 in idle clinic time. All patients get one text message three days before.</dd>
+<dt>Proposed AI</dt><dd>A model that predicts who is likely to miss an appointment, so staff can call them or book an extra patient into that slot (overbooking).</dd>
+<dt>Non-AI option</dt><dd>A second reminder text message for everyone the day before, plus a phone call for anyone who missed their last appointment (a simple rule).</dd>
+<dt>Data</dt><dd>Five years of appointment records with attendance, age, postcode, chronic-condition flags and past missed appointments. Postcode can act as a stand-in for income.</dd>
+<dt>If it is wrong</dt><dd>A false alarm means an unneeded call or an overbooked slot where patients wait longer. If the model learns that poorer or older patients miss more often, those groups may be overbooked more and served worse.</dd>
+<dt>Estimated cost</dt><dd>S$120,000 to build; S$15,000 a year to run.</dd>
+<dt>Estimated value</dt><dd>Cutting missed appointments by a fifth recovers about S$900,000 a year in clinic time.</dd>
+</dl>
+<blockquote>"We already know who misses: people juggling shifts, carers, the elderly who live alone. I'd rather help them come than punish them for not coming."<cite>Director of Operations</cite></blockquote>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>E. Patient feedback analyser</b><span class="k">LLM classification</span></summary>
+<div class="in"><dl>
+<dt>Problem today</dt><dd>About 24,000 free-text comments arrive a year from the post-visit survey. One quality officer reads a 10% sample each month. In 2025, a complaint that a patient was given the wrong medicine went unread for six weeks.</dd>
+<dt>Proposed AI</dt><dd>A tool that sorts every comment into themes for clinic managers and flags possible safety issues for urgent review.</dd>
+<dt>Non-AI option</dt><dd>Add a yes/no question to the survey, "Did anything about your care feel unsafe?", which alerts the quality team, plus alerts on keywords such as "wrong medicine".</dd>
+<dt>Data</dt><dd>Three years of comments, about 72,000. About 15% are not in English. Many contain names and phone numbers.</dd>
+<dt>If it is wrong</dt><dd>A comment in the wrong theme matters little. A missed safety complaint matters a great deal. All outputs go to staff, not patients.</dd>
+<dt>Estimated cost</dt><dd>S$90,000 to build; S$20,000 a year to run.</dd>
+<dt>Estimated value</dt><dd>Every comment read within a day; managers get monthly themes for every clinic instead of a sample.</dd>
+</dl>
+<blockquote>"I don't need a machine to tell me patients dislike waiting. I need it to make sure I never miss the one comment that says someone was hurt."<cite>Quality and Patient Safety Officer</cite></blockquote>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 15 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. Use the fact sheets as you answer.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 3–4 hours · Graded 60%</span>The AI-or-not audit</h2>
+<div class="note"><p><strong>Your task.</strong> Write a memo of no more than two pages (about 1,000 words plus the table) recommending to the Harbourview board which initiatives to start in the next six months, which to defer, and which to drop or solve without AI.</p></div>
+
+<h3>What your memo must contain</h3>
+<ol>
+  <li><strong>Recommendation first.</strong> In three to five sentences: which (at most two) to start, which to defer, which to drop or solve another way.</li>
+  <li><strong>Scored decision table</strong> for all five initiatives, using criteria C1 to C5 from Lesson 1.6, with totals, red flags and your verdict.</li>
+  <li><strong>One short paragraph per initiative</strong> covering: the user problem; the non-AI alternative; what AI adds beyond it; the cost of a wrong answer and who bears it; your verdict and any conditions.</li>
+  <li><strong>Assumptions and what would change your mind.</strong> Name your two or three biggest assumptions and the evidence that would reverse your recommendation.</li>
+  <li><strong>Next steps.</strong> What happens in the next 30 days for each initiative you start.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>A clear choice of at most two starts. Rejected options and hybrid designs are considered. The choice follows from the scores.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Every score has evidence from the fact sheets. Assumptions are labelled. Numbers are used, not just adjectives.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>For each initiative: the worst plausible error, who bears it, and the safeguard or condition you set.</td></tr>
+<tr><td><strong>Communication</strong></td><td>A board member could act on it after five minutes. Two pages, recommendation first, plain language.</td></tr>
+</tbody></table></div>
+
+<h3>Build your decision table</h3>
+<p>Score each initiative below. The page adds up totals and applies the red-flag rules to suggest a verdict. Your final verdict can differ from the suggestion, but your memo must explain why.</p>
+<div class="scroll"><table class="dt" id="dt">
+<thead><tr><th>Initiative</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th class="num">Total</th><th>Suggested</th><th>Your verdict</th></tr></thead>
+<tbody id="dt-body"></tbody>
+</table></div>
+<h4>Evidence for each score (one line each)</h4>
+<div class="ev" id="dt-ev"></div>
+
+<h3>Draft your memo</h3>
+<p>You may draft here or in your own document tool. Submit the final version as a document.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert memo outline</button></p>
+<label for="memo" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your memo</label>
+<textarea id="memo" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. No notes, no AI tools.</li>
+  <li><strong>Covers:</strong> everything in the lesson. The short answers ask you to apply ideas to a short new scenario you have not seen.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. Your assessor sends the test paper.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>You summarise your recommendation in your own words, without reading the memo.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your scores and verdicts. Expect "why a 3 and not a 2?" and "who bears that error?"</td></tr>
+<tr><td class="num">7–10</td><td>A new fact you have not seen, which may change the case. You say whether it changes your recommendation and why.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you know your own assumptions, how you handle the new fact, and how clearly you speak. Changing your mind for a good reason scores well. Defending a weak position stubbornly does not.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Memo (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>This copies your quiz answers, decision table, memo draft and checklist as plain text. Send it with your final memo document.</p>
+<p class="row"><button class="btn primary" id="copy" type="button">Copy all my work</button><span id="copied" aria-live="polite"></span></p>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 1–2 hours · not assessed</span>Same question, ten answers</h2>
+<p>See Difference 1 (outputs vary) for yourself. Ask a public AI assistant the same question ten times, each in a fresh chat, and record what changes.</p>
+<div class="note warn"><p><strong>Use only the question below.</strong> Never type your own or anyone else's health or personal details into a public AI tool.</p></div>
+<p><strong>The question:</strong> <em>"I take amlodipine for blood pressure. I forgot my morning tablet and it's now 8pm. What should I do?"</em></p>
+<div class="scroll"><table class="lab">
+<thead><tr><th class="num">Run</th><th>Main advice in a few words</th><th>Tells you to ask a pharmacist or doctor?</th><th>Anything you could not check?</th></tr></thead>
+<tbody id="lab-body"></tbody>
+</table></div>
+<p><strong>Reflect:</strong> How many different main answers did you get? Would any of them worry a pharmacist? What would Harbourview need to test before letting the medicine assistant answer this question?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Google People + AI Research (PAIR), <a href="https://pair.withgoogle.com/guidebook/">People + AI Guidebook</a>, chapter "User Needs + Defining Success". Practical guidance on when AI adds value, written for product teams. About 30 minutes.</li>
+  <li>Chip Huyen, <em>AI Engineering</em> (O'Reilly, 2025), chapter 1. A clear account of how products built on large models differ from earlier software. About 60 minutes.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<p>The AI-or-not test works on any idea. Try it on one of these, or on a proposal from your own workplace, and bring it to your viva if you like.</p>
+<ul>
+  <li><strong>Invoice reader:</strong> AI that reads supplier invoices and fills in the finance system.</li>
+  <li><strong>Complaint replier:</strong> AI that drafts replies to customer complaints for staff to send.</li>
+  <li><strong>Course recommender:</strong> AI that suggests training courses to employees from their role and goals.</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Automation bias</td><td>The habit of trusting an automated system too much and checking its output less carefully over time</td></tr>
+<tr><td>Classical machine learning</td><td>Models that predict a number or category from structured data</td></tr>
+<tr><td>Drift</td><td>A gradual change in how well a model performs because users, data or the world have changed</td></tr>
+<tr><td>Generative AI</td><td>AI that creates new content such as text, images or audio</td></tr>
+<tr><td>LLM</td><td>Large language model: a generative AI model trained on large amounts of text</td></tr>
+<tr><td>ML</td><td>Machine learning</td></tr>
+<tr><td>Model</td><td>The learned part of an AI system, which turns inputs into outputs</td></tr>
+<tr><td>Overbooking</td><td>Booking an extra patient into a slot expected to be missed</td></tr>
+<tr><td>PAIR</td><td>People + AI Research, a Google team that publishes design guidance</td></tr>
+<tr><td>Prompt</td><td>The instructions and context given to an LLM</td></tr>
+<tr><td>Red flag (AI-or-not test)</td><td>A score of 1 on any criterion; it limits the verdict to Not yet or worse</td></tr>
+<tr><td>Training data</td><td>The examples a model learned from</td></tr>
+<tr><td>Triage</td><td>Judging how urgently a patient needs care</td></tr>
+<tr><td>Viva</td><td>Viva voce: a short spoken examination</td></tr>
+</tbody></table></div>
+
+<p class="foot">Module 1 · Version 1.0 · 20 October 2026 · Harbourview Polyclinics is fictional; all names and figures are invented for teaching.</p>
+</div>
+
+<script>
+/* ===== Optional sign-in gate. Fill in the same values as login.html to require sign-in. Empty = open preview. ===== */
+const AUTH = { supabaseUrl: '', supabaseAnonKey: '', loginPage: 'login.html' };
+if (AUTH.supabaseUrl && AUTH.supabaseAnonKey) {
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+  s.onload = async () => { try { const c = window.supabase.createClient(AUTH.supabaseUrl, AUTH.supabaseAnonKey); const { data } = await c.auth.getSession(); if (!data || !data.session) location.href = AUTH.loginPage; } catch (e) {} };
+  document.head.appendChild(s);
+}
+
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m1:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m1:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["If you give an AI system exactly the same input twice, should you expect exactly the same output both times?","No","AI outputs can vary even for identical inputs, and they change when the model is updated. That is why one good test result proves little."],
+  ["Is an AI feature that is correct 95% of the time always ready to launch?","No","It depends on what the other 5% costs and who bears it. A 5% error rate may be fine for book suggestions and unacceptable for medicine advice."],
+  ["Is the behaviour of an AI product shaped largely by data, while rule-based software is shaped mainly by code people wrote?","Yes","Training data, prompts and the documents a model reads all shape what it does. That makes data quality and permission product decisions."],
+  ["Once an AI feature passes its tests before launch, can you safely stop testing it?","No","Quality can drift when users, data or the model change. Monitoring after launch is part of the product (Stage 7 of the lifecycle)."],
+  ["Does each use of an AI feature usually add running cost in a way that is rarely true of rule-based software?","Yes","Every AI request costs money to process, so cost grows with usage. You need to know the cost per task early."],
+  ["Is the AI product lifecycle a straight sequence that ends at launch?","No","Any stage can send you back to an earlier one, and monitoring continues for as long as the product is live."],
+  ["Should you look for a non-AI alternative before deciding to use AI?","Yes","A rule, form, search or process change is often cheaper, more predictable and easier to test. Criterion C2 asks exactly this."],
+  ["If a wrong answer is costly but a qualified person can reliably catch it before harm is done, is 'AI suggests, a person decides' a sensible design?","Yes","That is the high-cost, easy-to-catch box on the grid. The design still needs testing, because reviewers can drift into automation bias."],
+  ["If the data needed already sits in a company database, does that mean it is ready for AI?","No","Data must also be good enough, cover the right cases and languages, and be permitted for this use. Existing is not the same as ready."],
+  ["In the AI-or-not test, can a high total score override a red flag (a score of 1 on any criterion)?","No","A red flag limits the verdict to Not yet at best. If the red flag is on C2, the verdict is No-go: use the non-AI alternative."]
+ ], sa: [
+  ["Using an example of your own, explain why a wrong AI answer is 'a rate you manage, not a bug you fix once'.",
+   ["AI outputs vary, so errors will recur at some rate rather than disappear after one fix","The rate can change over time (model updates, new users, drift)","So you set an acceptable rate, measure it with tests, and keep monitoring after launch","Gives a concrete example with a clear wrong answer"]],
+  ["Name two stages of the AI product lifecycle where a product manager might decide to stop or go back, and give a stop signal for each.",
+   ["Names real stages, for example Fit and feasibility, Prototype, Specify and evaluate, or Launch in stages","Gives a matching signal, for example a cheaper non-AI option works, outputs poor on easy cases, quality bar unreachable, harm in pilot","Notes that stopping early is far cheaper than stopping late"]],
+  ["Describe a task where AI is the wrong tool and say what you would use instead.",
+   ["The task has clear, stable rules or needs an exact answer","Errors would be costly or hard to catch, or there is little usable data","Names a specific simpler alternative: a rule, form, lookup, search or process change","Explains the trade-off rather than rejecting AI in general"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["Could Harbourview reduce missed appointments without any AI, using a simple rule?","Yes","A second reminder for everyone plus a phone call for anyone who missed their last appointment is a rule-based option. The AI must beat it to earn its cost."],
+  ["For the booking and symptom-routing chatbot, do all wrong answers cost about the same?","No","A wrong service costs a rebooking. A missed emergency could cost a life. These two jobs sit in different boxes of the cost-of-error grid."],
+  ["Because a doctor reviews every draft note, is the risk of errors in the medical record removed?","No","Review reduces the risk but does not remove it. Under time pressure, doctors may skim drafts that are usually right: automation bias."],
+  ["Is putting a patient comment into the wrong theme in the feedback analyser a low-cost error?","Yes","A mislabelled theme matters little, and all outputs go to staff. The high-cost error is a different one: missing a safety complaint."],
+  ["Does having 640 approved leaflets mean data readiness for the medicine assistant is fully solved?","No","About 30% are untranslated and about 8% are overdue for review. An assistant is only as safe as the leaflets it reads."]
+ ], sa: [
+  ["For the missed-appointment predictor, who benefits when it works, and who bears the cost when it is wrong?",
+   ["Benefits: the clinic recovers idle time and money; patients who get extra slots","Cost of false alarms: patients who wait longer in overbooked slots; staff time on unneeded calls","Fairness risk: older or poorer patients may be flagged and overbooked more often","Notes that the people bearing the cost are not the ones gaining the benefit"]],
+  ["The booking chatbot combines two jobs. Explain why you might split them and use AI for only one.",
+   ["The jobs are booking the right service (low error cost) and spotting urgent symptoms (very high error cost)","They sit in different boxes of the cost-of-error grid","A fixed set of warning-sign questions handles urgency predictably and can be tested completely","AI can then help with booking, where mistakes are cheap and easy to fix"]],
+  ["Choose the initiative you think has the strongest non-AI alternative. Describe that alternative and say what AI would still add.",
+   ["Picks an initiative and names its non-AI option from the fact sheet","Explains why that option is strong: cheaper, predictable, already possible","Says honestly what AI would add beyond it, or that it adds too little","Links the judgement to criterion C2"]]
+ ]}
+};
+
+/* ===== Quiz engine ===== */
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+const QSTATE = {}, EXPORT = {};
+
+/* ===== Decision table ===== */
+const INIT = ["A. Medicine questions assistant","B. Booking and symptom-routing chatbot","C. Consultation note drafter","D. Missed-appointment predictor","E. Patient feedback analyser"];
+const CRIT = ["C1 Problem value","C2 Advantage over non-AI","C3 Error tolerance","C4 Data readiness","C5 Value versus cost"];
+const VERD = ["Go","Go with conditions","Not yet","No-go","No-go: use the non-AI alternative"];
+let dt = store.get('dt') || {};
+function suggest(s){
+  if (s.some(v=>!v)) return '';
+  const t = s.reduce((a,b)=>a+b,0);
+  let band = t>=21 ? 0 : t>=16 ? 1 : t>=11 ? 2 : 3;
+  if (s[1]===1) return VERD[4];
+  if (s.includes(1) && band<2) band = 2;
+  return VERD[band];
+}
+const vchip = v => !v ? '<span style="color:var(--muted)">—</span>' : `<span class="chip ${v==='Go'?'c-good':v==='Go with conditions'?'c-mid':v==='Not yet'?'c-sum':'c-bad'}">${esc(v)}</span>`;
+$('dt-body').innerHTML = INIT.map((n,r)=>`<tr><td><strong>${esc(n)}</strong></td>${CRIT.map((c,k)=>`<td><select data-r="${r}" data-k="${k}" aria-label="${esc(n)}, ${esc(c)}"><option value="">–</option>${[1,2,3,4,5].map(v=>`<option>${v}</option>`).join('')}</select></td>`).join('')}
+  <td class="tot" id="tot${r}">–</td><td class="ver" id="sug${r}"></td>
+  <td><select data-r="${r}" data-k="v" aria-label="${esc(n)}, your verdict" style="width:auto;min-width:9rem"><option value="">Choose</option>${VERD.map(v=>`<option>${esc(v)}</option>`).join('')}</select></td></tr>`).join('');
+$('dt-ev').innerHTML = INIT.map((n,r)=>`<fieldset><legend>${esc(n)}</legend>${CRIT.map((c,k)=>`<label for="ev${r}-${k}">${esc(c)}</label><input type="text" id="ev${r}-${k}" data-r="${r}" data-e="${k}" placeholder="Evidence from the fact sheet, or 'Assumption: …'">`).join('')}</fieldset>`).join('');
+function drawDT(){
+  let scored=0;
+  INIT.forEach((n,r)=>{
+    const s = CRIT.map((c,k)=>+((dt[r]||{})[k]||0));
+    const done = s.every(v=>v); if(done) scored++;
+    $('tot'+r).textContent = done ? s.reduce((a,b)=>a+b,0) : '–';
+    $('sug'+r).innerHTML = vchip(suggest(s)) + (done && s.includes(1) ? ' <span class="chip c-bad">red flag</span>' : '');
+  });
+  DTSCORED = scored; progress();
+}
+let DTSCORED = 0;
+document.querySelectorAll('#dt select').forEach(el=>{ const r=el.dataset.r,k=el.dataset.k; el.value=(dt[r]||{})[k]||''; el.addEventListener('change',()=>{ dt[r]=dt[r]||{}; dt[r][k]=el.value; store.set('dt',dt); drawDT(); }); });
+document.querySelectorAll('#dt-ev input').forEach(el=>{ const r=el.dataset.r,k='e'+el.dataset.e; el.value=(dt[r]||{})[k]||''; el.addEventListener('input',()=>{ dt[r]=dt[r]||{}; dt[r][k]=el.value; store.set('dt',dt); }); });
+
+/* ===== Memo, checklist, lab ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `MEMO TO THE BOARD · Harbourview Polyclinics
+From: Head of Digital Products
+Subject: AI initiatives: what to start, defer and drop
+
+1. Recommendation
+[3–5 sentences. Start: … Defer: … Drop or solve without AI: …]
+
+2. Decision table
+[Paste or attach your scored table: C1–C5, total, red flags, verdict]
+
+3. The five initiatives
+A. Medicine questions assistant: [problem · non-AI option · what AI adds · cost of a wrong answer and who bears it · verdict and conditions]
+B. Booking and symptom-routing chatbot: […]
+C. Consultation note drafter: […]
+D. Missed-appointment predictor: […]
+E. Patient feedback analyser: […]
+
+4. Assumptions and what would change my mind
+[2–3 assumptions, and the evidence that would reverse the recommendation]
+
+5. Next 30 days
+[For each initiative you start]`;
+const memo = $('memo'); memo.value = misc.memo || '';
+function wc(){ const w=words(memo.value); $('wc').textContent = w+' words'+(w>1100?' · over the two-page guide of about 1,000 words':''); }
+memo.addEventListener('input',()=>{ misc.memo=memo.value; store.set('misc',misc); wc(); progress(); });
+$('tmpl').addEventListener('click',()=>{ if(memo.value.trim() && !confirm('Replace your current draft with the outline?')) return; memo.value=OUTLINE; misc.memo=OUTLINE; store.set('misc',misc); wc(); memo.focus(); });
+wc();
+const CHECKS = ["The recommendation is in the first paragraph and names at most two initiatives to start","All five initiatives are scored on C1 to C5, with a line of evidence for each score","Each initiative names its non-AI alternative","Each initiative names the worst plausible error and who bears it","Red-flag rules are applied, or I explain why my verdict differs","Assumptions are labelled, with what would change my mind","The memo fits on two pages and uses plain language","Every acronym is spelled out the first time it appears"];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c,i)=>`<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el=>{ el.checked=!!ck[el.dataset.i]; el.addEventListener('change',()=>{ ck[el.dataset.i]=el.checked; store.set('ck',ck); }); });
+let lab = store.get('lab') || {};
+$('lab-body').innerHTML = Array.from({length:10},(_,i)=>`<tr><td class="num">${i+1}</td>${['a','b','c'].map(k=>`<td><input type="text" data-k="${i}${k}" aria-label="Run ${i+1}, column ${k}"></td>`).join('')}</tr>`).join('');
+document.querySelectorAll('#lab-body input').forEach(el=>{ el.value=lab[el.dataset.k]||''; el.addEventListener('input',()=>{ lab[el.dataset.k]=el.value; store.set('lab',lab); }); });
+$('lab-ref').value = lab.ref || ''; $('lab-ref').addEventListener('input',e=>{ lab.ref=e.target.value; store.set('lab',lab); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d=$(id); if(!d) return; d.className='dot'+(s==='done'?' done':s==='prog'?' prog':''); }
+function progress(){
+  const a=QSTATE.qa, b=QSTATE.qb;
+  if(a) { $('st-qa').textContent=qlabel(a); dot('d-qa', a.mast?'done':a.started?'prog':''); dot('d-lesson', a.started?'done':''); }
+  if(b) { $('st-qb').textContent=qlabel(b); dot('d-qb', b.mast?'done':b.started?'prog':''); dot('d-case', b.started?'done':''); }
+  $('st-dt').textContent = `${DTSCORED} of 5 scored`;
+  dot('d-as', DTSCORED===5 && words(memo.value)>300 ? 'done' : (DTSCORED>0||words(memo.value)>0) ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask your assessor for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a&&a.mast?'done':'not yet'} · Quiz B: ${b&&b.mast?'done':'not yet'}.`;
+}
+
+/* ===== Step bar highlight ===== */
+const links=[...document.querySelectorAll('.stepbar a')], secs=links.map(l=>document.querySelector(l.getAttribute('href')));
+const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.toggle('here', l.getAttribute('href')==='#'+e.target.id)); const h=links.find(l=>l.classList.contains('here')); if(h) h.scrollIntoView({block:'nearest',inline:'nearest'}); } }); },{rootMargin:'-20% 0px -75% 0px'});
+secs.forEach(s=>s&&io.observe(s));
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); drawDT();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click',()=>{
+  const L=['MODULE 1 SUBMISSION · The AI product role and the AI product lifecycle','','CHECKPOINT QUIZ A',...EXPORT.qa(),'CHECKPOINT QUIZ B',...EXPORT.qb(),'DECISION TABLE'];
+  INIT.forEach((n,r)=>{ const d=dt[r]||{}; const s=CRIT.map((c,k)=>+(d[k]||0)); L.push(`${n}: ${CRIT.map((c,k)=>c.split(' ')[0]+'='+(d[k]||'-')).join(', ')} | Total ${s.every(v=>v)?s.reduce((a,b)=>a+b,0):'-'} | Suggested: ${suggest(s)||'-'} | My verdict: ${d.v||'-'}`); CRIT.forEach((c,k)=>{ if(d['e'+k]) L.push(`   ${c}: ${d['e'+k]}`); }); });
+  L.push('','MEMO DRAFT',(misc.memo||'(blank)').trim(),`Word count: ${words(misc.memo)}`,'','CHECKLIST');
+  CHECKS.forEach((c,i)=>L.push(`[${ck[i]?'x':' '}] ${c}`));
+  const labRows=Array.from({length:10},(_,i)=>[lab[i+'a'],lab[i+'b'],lab[i+'c']]).filter(r=>r.some(Boolean));
+  if(labRows.length||lab.ref){ L.push('','OPTIONAL LAB'); labRows.forEach((r,i)=>L.push(`Run: ${r.map(x=>x||'-').join(' | ')}`)); L.push('Reflection: '+(lab.ref||'-')); }
+  const text=L.join('\n'), out=$('copied'), fb=$('fallback');
+  const fallback=()=>{ fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(()=>{ out.textContent='Copied. Send it with your final memo.'; fb.hidden=true; }, fallback); } catch(e) { fallback(); }
+});
+</script>
+</body>
+</html>

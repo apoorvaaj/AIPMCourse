@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Course · AI Product Management Programme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem) with wide tables in scroll boxes; term colours encode the programme sequence */
+:root {
+  --paper: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #12233b;
+  --body: #2c3a4f;
+  --muted: #5d6b7e;
+  --rule: #d5dde5;
+  --accent: #0b7077;
+  --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1;
+  --t2: #2a5596; --t2-soft: #e7edf7;
+  --t3: #9a5a0c; --t3-soft: #f8eedf;
+  --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9;
+  --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 2rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.7rem; color: var(--ink); margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+h3 { font-size: 1.05rem; color: var(--ink); margin: 1.75rem 0 .4rem; text-wrap: balance; }
+h4 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .3rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+abbr { text-decoration: none; }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-t2 { background: var(--t2-soft); color: var(--t2); }
+.c-t3 { background: var(--t3-soft); color: var(--t3); } .c-cap { background: var(--cap-soft); color: var(--cap); }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child { margin: 0; }
+.mod { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1.75rem; }
+.mod h3 { margin-top: .35rem; }
+.mod .src { font-size: .82rem; color: var(--muted); font-style: italic; }
+.mod dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: .35rem 1rem; margin: .6rem 0 0; font-size: .92rem; }
+.mod dt { font-weight: 600; color: var(--ink); }
+.mod dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .mod dl { grid-template-columns: 1fr; } .mod dd { margin-bottom: .5rem; } }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+[hidden]{display:none!important}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+.wrap.dash { max-width: 54rem; }
+.who { display: flex; justify-content: space-between; align-items: center; gap: .5rem 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--muted); margin-bottom: .25rem; }
+.who b { color: var(--ink); font-weight: 600; }
+.link { background: none; border: 0; color: var(--accent); padding: 0; text-decoration: underline; font-size: .85rem; }
+.preview { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; background: var(--t3-soft); color: var(--t3); border-radius: 4px; padding: .55rem .8rem; font-size: .85rem; margin: .75rem 0 1.25rem; }
+.seg { display: inline-flex; border: 1px solid var(--t3); border-radius: 3px; overflow: hidden; }
+.seg button { border: 0; background: transparent; color: var(--t3); padding: .2rem .7rem; font-size: .8rem; }
+.seg button[aria-pressed="true"] { background: var(--t3); color: var(--paper); }
+
+.next { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1.5rem; align-items: center; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: 1.1rem 1.25rem; margin: 1rem 0 1.5rem; }
+.next .eyebrow { margin-bottom: .2rem; }
+.next h2 { border: 0; padding: 0; margin: 0 0 .2rem; font-size: 1.45rem; }
+.next p { margin: 0; color: var(--muted); font-size: .92rem; }
+.go { display: inline-block; background: var(--accent); color: var(--paper); text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; white-space: nowrap; }
+.go[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+@media (max-width: 560px) { .next { grid-template-columns: 1fr; } .go { text-align: center; } }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: .75rem; margin: 0 0 .5rem; }
+.stat { border-top: 2px solid var(--rule); padding-top: .5rem; min-width: 0; }
+.stat .k { font-size: .78rem; color: var(--muted); }
+.stat .v { font-family: var(--display); font-size: 1.7rem; font-weight: 500; color: var(--ink); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.stat .v small { font-family: var(--text); font-size: .8rem; color: var(--muted); font-weight: 400; }
+.meter { height: 6px; background: var(--rule); border-radius: 3px; margin-top: .4rem; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+.term { margin-top: 2rem; }
+.term > h3 { margin: 0 0 .5rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+.mods { border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+.mrow { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) 11.5rem 9rem; gap: .4rem 1rem; align-items: center; padding: .8rem 1rem; border-bottom: 1px solid var(--rule); }
+.mrow:last-child { border-bottom: 0; }
+.mrow .n { font-family: var(--display); font-size: 1.4rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.mrow .t { min-width: 0; }
+.mrow .t a, .mrow .t span.ttl { color: var(--ink); font-weight: 600; text-decoration: none; }
+.mrow .t a:hover { color: var(--accent); text-decoration: underline; }
+.mrow .t .sub { display: block; font-size: .8rem; color: var(--muted); }
+.mrow .st { text-align: right; }
+.mrow .st .mk { display: block; font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: .15rem; }
+.steps4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.steps4 span { height: 8px; border-radius: 2px; background: var(--rule); }
+.steps4 span.half { background: linear-gradient(90deg, var(--t2) 50%, var(--rule) 50%); }
+.steps4 span.done { background: var(--good); }
+.steps4 span.lock { background: repeating-linear-gradient(45deg, var(--rule) 0 3px, transparent 3px 6px); }
+.steps4l { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; font-family: var(--mono); font-size: .6rem; color: var(--muted); margin-top: .2rem; }
+@media (max-width: 680px) {
+  .mrow { grid-template-columns: 2rem minmax(0, 1fr) auto; }
+  .mrow .bar { grid-column: 2 / -1; grid-row: 2; }
+  .mrow .st { grid-column: 3; grid-row: 1; }
+}
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); } .c-none { background: var(--paper); color: var(--muted); border: 1px solid var(--rule); }
+
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .78rem; color: var(--muted); margin: .5rem 0 0; }
+.legend i { display: inline-block; width: 1.2rem; height: 8px; border-radius: 2px; margin-right: .35rem; vertical-align: middle; }
+td.num, th.num { text-align: right; }
+.empty { color: var(--muted); font-size: .9rem; padding: 1rem; }
+</style>
+</head>
+<body>
+<div class="wrap dash">
+<nav class="top" aria-label="Course pages">
+  <a href="dashboard.html" aria-current="page">My course</a>
+  <a href="./">Programme handbook</a>
+  <a href="why.html">Why this course</a>
+  <a href="./#case">Case: Harbourview Polyclinics</a>
+</nav>
+
+<div class="who"><span>Signed in as <b id="who">—</b></span><button class="link" type="button" id="signOut">Sign out</button></div>
+<p class="eyebrow">AI Product Management Programme</p>
+<h1>My course</h1>
+
+<div class="preview" id="preview" hidden>
+  <span><strong>Preview mode.</strong> No sign-in service is connected, so this page shows</span>
+  <span class="seg" role="group" aria-label="Preview data">
+    <button type="button" id="pvSample" aria-pressed="true">Sample learner</button>
+    <button type="button" id="pvLocal" aria-pressed="false">My work in this browser</button>
+  </span>
+</div>
+
+<section class="next" aria-labelledby="nextTitle">
+  <div>
+    <p class="eyebrow" id="nextEyebrow">Continue where you left off</p>
+    <h2 id="nextTitle">—</h2>
+    <p id="nextSub"></p>
+  </div>
+  <a class="go" id="nextGo" href="#">Continue</a>
+</section>
+
+<div class="stats" id="stats"></div>
+
+<div id="terms"></div>
+<div class="legend" aria-hidden="true">
+  <span><i style="background:var(--good)"></i>Done</span>
+  <span><i style="background:linear-gradient(90deg,var(--t2) 50%,var(--rule) 50%)"></i>In progress</span>
+  <span><i style="background:var(--rule)"></i>Not started</span>
+  <span><i style="background:repeating-linear-gradient(45deg,var(--rule) 0 3px,transparent 3px 6px)"></i>Locked</span>
+  <span>Steps: Quiz A · Quiz B · Deliverable · Test and viva</span>
+</div>
+
+<h2 id="marks">Marks</h2>
+<p>Your cohort lead marks the deliverable, the end-of-module test and the viva. Marks appear here once they are entered. Checkpoint quizzes are practice and are never graded.</p>
+<div class="scroll"><table>
+<thead><tr><th>Module</th><th class="num">Deliverable<br>60%</th><th class="num">Test<br>25%</th><th class="num">Viva<br>15%</th><th class="num">Module</th><th>Band</th><th>Cohort lead's note</th></tr></thead>
+<tbody id="markRows"></tbody></table></div>
+<p style="font-size:.85rem;color:var(--muted)">Bands: Distinction 75% and above · Merit 60–74% · Pass 50–59% · Resubmit below 50%. One resubmission is allowed per module, capped at Pass. To complete the programme you need Merit or better on 9 of the 11 taught modules and a passed capstone defence.</p>
+
+<h2 id="data">Your data</h2>
+<p>This page shows only your email address, your progress through each module and the marks your cohort lead enters. You can ask for your account and all your progress to be deleted at any time.</p>
+<p class="foot">My course · AI Product Management Programme</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* ===== Configuration: same values as login.html. Empty = preview mode. ===== */
+const CONFIG = { supabaseUrl: '', supabaseAnonKey: '', loginPage: 'login.html' };
+
+/* ===== Programme structure ===== */
+const MODS = [
+ {n:1,t:1,wk:'Week 1',title:'The AI product role and the AI product lifecycle',page:'module-01.html'},
+ {n:2,t:1,wk:'Week 2',title:'Technical fluency for product decisions',page:'module-02.html'},
+ {n:3,t:1,wk:'Week 3',title:'Problem framing, discovery and data readiness'},
+ {n:4,t:2,wk:'Week 4',title:'Specifying AI products: the AI requirements document'},
+ {n:5,t:2,wk:'Week 5',title:'Evaluation I: error analysis and test sets'},
+ {n:6,t:2,wk:'Week 6',title:'Evaluation II: automated judges and live metrics'},
+ {n:7,t:2,wk:'Week 7',title:'Designing AI user experience and human factors'},
+ {n:8,t:2,wk:'Week 8',title:'Agents and rapid prototyping'},
+ {n:9,t:3,wk:'Week 9',title:'Unit economics and pricing of AI products'},
+ {n:10,t:3,wk:'Week 10',title:'Responsible AI, risk and governance'},
+ {n:11,t:3,wk:'Week 11',title:'AI strategy, defensibility and rollout'},
+ {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend'}
+];
+const TERMS = {1:['Term I · Foundations','var(--t1)'],2:['Term II · Mastery','var(--t2)'],3:['Term III · Strategy and leadership','var(--t3)'],4:['Capstone','var(--cap)']};
+const STEPNAMES = ['Checkpoint quiz A','Checkpoint quiz B','Deliverable','End-of-module test and viva'];
+
+/* ===== Progress record per module (same shape in preview and live) =====
+   { qa:{c,total,mast}, qb:{c,total,mast}, deliverable:'none'|'drafting'|'submitted', marks:{deliverable,test,viva,note,resubmission} } */
+const SAMPLE = {
+  email: 'sample.learner@example.com',
+  progress: {
+    1: { qa:{c:9,total:10,mast:true}, qb:{c:5,total:5,mast:true}, deliverable:'submitted', marks:{deliverable:80,test:76,viva:73,note:'Strong use of the red-flag rule on Initiative D. Tighten the recommendation to three sentences.'} },
+    2: { qa:{c:8,total:10,mast:true}, qb:{c:4,total:5,mast:true}, deliverable:'submitted', marks:{deliverable:65,test:64,viva:60,note:'Cost table is clear. Say which design you would choose if prices doubled.'} },
+    3: { qa:{c:10,total:10,mast:true}, qb:{c:4,total:5,mast:true}, deliverable:'submitted', marks:{deliverable:42,test:60,viva:53,note:'The opportunity tree jumps to solutions. Resubmit with the stop condition stated.'} },
+    4: { qa:{c:8,total:10,mast:true}, qb:{c:3,total:5,mast:false}, deliverable:'drafting' }
+  },
+  week0: 'done'
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const lsGet = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+/* Each module page writes a 'progress:mN' summary in this browser (Module 2 onwards). Module 1 is read from its own keys. */
+function localProgress() {
+  const out = {};
+  MODS.forEach(m => { const p = lsGet('progress:m' + m.n); if (p) out[m.n] = p; });
+  if (!out[1]) {
+    const KEY = { qa: ['No','No','Yes','No','Yes','No','Yes','Yes','No','No'], qb: ['Yes','No','No','Yes','No'] }, NEED = { qa: 8, qb: 4 };
+    const q = k => { const a = lsGet('m1:' + k + ':yn') || {}; const answered = Object.keys(a).length; const c = KEY[k].filter((v, i) => a[i] === v).length; return answered ? { c, total: KEY[k].length, mast: answered === KEY[k].length && c >= NEED[k] } : null; };
+    const qa = q('qa'), qb = q('qb'), misc = lsGet('m1:misc') || {}, dt = lsGet('m1:dt') || {};
+    const draft = (misc.memo || '').trim().length > 0 || Object.keys(dt).length > 0;
+    if (qa || qb || draft) out[1] = { qa, qb, deliverable: draft ? 'drafting' : 'none' };
+  }
+  return { email: 'you (this browser only)', progress: out, week0: null };
+}
+
+/* ===== Calculations ===== */
+function moduleMark(mk) {
+  if (!mk || mk.deliverable == null || mk.test == null || mk.viva == null) return null;
+  let pct = Math.round(mk.deliverable * 0.60 + mk.test * 0.25 + mk.viva * 0.15);
+  if (mk.resubmission) pct = Math.min(pct, 59);
+  return pct;
+}
+function band(p) { return p == null ? null : p >= 75 ? 'Distinction' : p >= 60 ? 'Merit' : p >= 50 ? 'Pass' : 'Resubmit'; }
+const bandChip = b => !b ? '' : `<span class="chip ${b === 'Distinction' ? 'c-good' : b === 'Merit' ? 'c-mid' : b === 'Pass' ? 'c-sum' : 'c-bad'}">${b}</span>`;
+
+function steps(p) {
+  if (!p) return ['', '', '', 'lock'];
+  const qs = q => !q ? '' : q.mast ? 'done' : 'half';
+  const open = p.qa && p.qa.mast && p.qb && p.qb.mast;
+  const del = p.deliverable === 'submitted' ? 'done' : p.deliverable === 'drafting' ? 'half' : '';
+  const graded = moduleMark(p.marks) != null;
+  const mk = p.marks || {};
+  const close = !open ? 'lock' : graded ? 'done' : (mk.test != null || mk.viva != null) ? 'half' : '';
+  return [qs(p.qa), qs(p.qb), del, close];
+}
+function status(m, p) {
+  const pct = p ? moduleMark(p.marks) : null;
+  if (pct != null) return { chip: bandChip(band(pct)), mk: `${pct}%` };
+  if (!p) return { chip: `<span class="chip c-none">${m.page ? 'Not started' : 'Opens ' + m.wk}</span>`, mk: '' };
+  const s = steps(p);
+  if (s[2] === 'done') return { chip: '<span class="chip c-mid">Awaiting marks</span>', mk: 'Deliverable submitted' };
+  if (s[3] !== 'lock') return { chip: '<span class="chip c-mid">Test unlocked</span>', mk: 'Both quizzes mastered' };
+  return { chip: '<span class="chip c-form">In progress</span>', mk: p.qa ? `Quiz A ${p.qa.c}/${p.qa.total}` + (p.qb ? ` · Quiz B ${p.qb.c}/${p.qb.total}` : '') : '' };
+}
+function nextStep(data) {
+  for (const m of MODS) {
+    const p = data.progress[m.n];
+    const s = steps(p);
+    const pct = p ? moduleMark(p.marks) : null;
+    if (pct != null && band(pct) === 'Resubmit' && !(p.marks && p.marks.resubmission)) return { m, label: 'Resubmit your deliverable', sub: `Module ${m.n} scored ${pct}%. Read your cohort lead's note, revise and resubmit. The mark is capped at Pass.`, anchor: '#assignment' };
+    if (s.every(x => x === 'done')) continue;
+    const i = s.findIndex(x => x !== 'done');
+    const anchors = ['#quiz-a', '#quiz-b', '#assignment', '#close'];
+    if (s[i] === 'lock' && i === 3) return { m, label: STEPNAMES[3], sub: 'Locked until both checkpoint quizzes reach mastery.', anchor: '#close' };
+    const verbs = { '': 'Start', half: 'Continue' };
+    const extra = i === 0 && !p ? 'Begin with the lesson, then take Checkpoint quiz A.' : i === 1 && s[1] === 'half' ? `You have ${p.qb.c} of ${p.qb.total}. Mastery needs ${p.qb.total - 1}.` : i === 2 ? 'Draft and submit the module deliverable.' : i === 3 ? 'Ask your cohort lead for the test paper and book your viva.' : '';
+    return { m, label: `${verbs[s[i]] || 'Continue'} ${STEPNAMES[i].charAt(0).toLowerCase() + STEPNAMES[i].slice(1)}`, sub: extra, anchor: i === 0 && !p ? '#lesson' : anchors[i] };
+  }
+  return null;
+}
+
+/* ===== Render ===== */
+function render(data) {
+  $('who').textContent = data.email;
+  const taught = MODS.filter(m => m.n <= 11);
+  const graded = taught.map(m => moduleMark((data.progress[m.n] || {}).marks)).filter(x => x != null);
+  const meritPlus = graded.filter(p => p >= 60).length;
+  const finished = taught.filter(m => { const p = data.progress[m.n]; const pct = p ? moduleMark(p.marks) : null; return steps(p).every(s => s === 'done') && pct != null && pct >= 50; }).length;
+  const avg = graded.length ? Math.round(graded.reduce((a, b) => a + b, 0) / graded.length) : null;
+  const w0 = data.week0 === 'done' ? 'Recorded' : 'Not yet available';
+  $('stats').innerHTML = [
+    ['Modules completed', `${finished}<small> of 11</small>`, finished / 11],
+    ['Merit or better', `${meritPlus}<small> of 9 needed</small>`, Math.min(meritPlus / 9, 1)],
+    ['Average module mark', avg == null ? '—' : `${avg}%`, null],
+    ['Week 0 baseline', `<small style="font-size:1rem;color:var(--ink)">${w0}</small>`, null]
+  ].map(([k, v, f]) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div>${f == null ? '' : `<div class="meter" role="img" aria-label="${Math.round(f * 100)}%"><i style="width:${Math.round(f * 100)}%"></i></div>`}</div>`).join('');
+
+  const nx = nextStep(data);
+  if (nx) {
+    $('nextEyebrow').textContent = `Module ${nx.m.n} · ${nx.m.wk}`;
+    $('nextTitle').textContent = nx.label;
+    $('nextSub').textContent = `${nx.m.title}. ${nx.sub}`;
+    $('nextGo').textContent = nx.m.page ? 'Continue' : 'Not yet published';
+    $('nextGo').href = nx.m.page ? nx.m.page + nx.anchor : '#';
+    $('nextGo').setAttribute('aria-disabled', nx.m.page ? 'false' : 'true');
+  } else {
+    $('nextEyebrow').textContent = 'Programme complete'; $('nextTitle').textContent = 'All modules finished'; $('nextSub').textContent = 'Well done.'; $('nextGo').hidden = true;
+  }
+
+  let html = '', lastT = 0;
+  MODS.forEach(m => {
+    if (m.t !== lastT) { if (lastT) html += '</div></section>'; html += `<section class="term"><h3 style="color:${TERMS[m.t][1]}">${TERMS[m.t][0]}</h3><div class="mods">`; lastT = m.t; }
+    const p = data.progress[m.n], s = steps(p), st = status(m, p);
+    const title = m.page ? `<a href="${m.page}">${esc(m.title)}</a>` : `<span class="ttl">${esc(m.title)}</span>`;
+    const bar = m.n === 12 ? `<div class="bar" style="font-size:.8rem;color:var(--muted)">Pack and 20-minute defence</div>` :
+      `<div class="bar"><div class="steps4" role="img" aria-label="${STEPNAMES.map((n, i) => n + ': ' + ({ done: 'done', half: 'in progress', lock: 'locked', '': 'not started' }[s[i]])).join('; ')}">${s.map(x => `<span class="${x}"></span>`).join('')}</div><div class="steps4l" aria-hidden="true"><span>QA</span><span>QB</span><span>DEL</span><span>TEST</span></div></div>`;
+    html += `<div class="mrow"><span class="n">${String(m.n).padStart(2, '0')}</span><div class="t">${title}<span class="sub">${m.wk}${m.page ? '' : ' · page not yet published'}</span></div>${bar}<div class="st">${st.chip}<span class="mk">${esc(st.mk)}</span></div></div>`;
+  });
+  $('terms').innerHTML = html + '</div></section>';
+
+  const rows = MODS.filter(m => (data.progress[m.n] || {}).marks).map(m => {
+    const mk = data.progress[m.n].marks, pct = moduleMark(mk);
+    const f = v => v == null ? '—' : v + '%';
+    return `<tr><td style="min-width:12rem">M${m.n}. ${esc(m.title)}</td><td class="num">${f(mk.deliverable)}</td><td class="num">${f(mk.test)}</td><td class="num">${f(mk.viva)}</td><td class="num"><strong>${f(pct)}</strong></td><td>${bandChip(band(pct))}${mk.resubmission ? ' <span class="chip c-none">Resubmission</span>' : ''}</td><td style="min-width:14rem">${esc(mk.note || '')}</td></tr>`;
+  });
+  $('markRows').innerHTML = rows.length ? rows.join('') : '<tr><td colspan="7" class="empty">No marks yet. They appear here once your cohort lead enters them.</td></tr>';
+}
+
+/* ===== Start ===== */
+const LIVE = !!(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey && window.supabase);
+let client = null;
+(async () => {
+  if (!LIVE) {
+    $('preview').hidden = false;
+    let mode = lsGet('dash:preview') || 'sample';
+    const set = md => { mode = md; lsSet('dash:preview', md); $('pvSample').setAttribute('aria-pressed', md === 'sample'); $('pvLocal').setAttribute('aria-pressed', md === 'local'); render(md === 'sample' ? SAMPLE : localProgress()); };
+    $('pvSample').addEventListener('click', () => set('sample'));
+    $('pvLocal').addEventListener('click', () => set('local'));
+    $('signOut').addEventListener('click', () => { location.href = CONFIG.loginPage; });
+    set(mode);
+    return;
+  }
+  client = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+  const { data: s } = await client.auth.getSession();
+  if (!s || !s.session) { location.href = CONFIG.loginPage; return; }
+  $('signOut').addEventListener('click', async () => { await client.auth.signOut(); location.href = CONFIG.loginPage; });
+  /* Row-level security returns only this learner's rows. See the course author's dashboard data guide. */
+  const [{ data: prog }, { data: marks }] = await Promise.all([
+    client.from('progress').select('module, data'),
+    client.from('marks').select('module, deliverable, test, viva, note, resubmission')
+  ]);
+  const progress = {};
+  (prog || []).forEach(r => { progress[r.module] = Object.assign({}, r.data); });
+  (marks || []).forEach(r => { progress[r.module] = progress[r.module] || {}; progress[r.module].marks = r; });
+  render({ email: s.session.user.email, progress, week0: progress[0] ? 'done' : null });
+})();
+</script>
+
+</body>
+</html>

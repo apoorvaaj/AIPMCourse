@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Product Management Programme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem) with wide tables in scroll boxes; term colours encode the programme sequence */
+:root {
+  --paper: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #12233b;
+  --body: #2c3a4f;
+  --muted: #5d6b7e;
+  --rule: #d5dde5;
+  --accent: #0b7077;
+  --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1;
+  --t2: #2a5596; --t2-soft: #e7edf7;
+  --t3: #9a5a0c; --t3-soft: #f8eedf;
+  --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9;
+  --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 2rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.7rem; color: var(--ink); margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+h3 { font-size: 1.05rem; color: var(--ink); margin: 1.75rem 0 .4rem; text-wrap: balance; }
+h4 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .3rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+abbr { text-decoration: none; }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-t2 { background: var(--t2-soft); color: var(--t2); }
+.c-t3 { background: var(--t3-soft); color: var(--t3); } .c-cap { background: var(--cap-soft); color: var(--cap); }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child { margin: 0; }
+.mod { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1.75rem; }
+.mod h3 { margin-top: .35rem; }
+.mod .src { font-size: .82rem; color: var(--muted); font-style: italic; }
+.mod dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: .35rem 1rem; margin: .6rem 0 0; font-size: .92rem; }
+.mod dt { font-weight: 600; color: var(--ink); }
+.mod dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .mod dl { grid-template-columns: 1fr; } .mod dd { margin-bottom: .5rem; } }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+.case { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; }
+.case h3 { margin-top: 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .75rem; margin: .8rem 0 1rem; }
+.facts div { border-top: 2px solid var(--accent); padding-top: .4rem; min-width: 0; }
+.facts b { display: block; font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.facts span { font-size: .8rem; color: var(--muted); }
+.pending { border: 1px dashed var(--rule); border-radius: 4px; padding: .8rem 1rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Course pages">
+  <a href="why.html">Why this course</a>
+  <a href="./" aria-current="page">Programme handbook</a>
+  <a href="#case">Case: Harbourview Polyclinics</a>
+  <a href="#map">Programme map</a>
+  <a href="dashboard.html">My course</a>
+  <a href="login.html">Sign in</a>
+</nav>
+
+<p class="eyebrow">Formal training programme · Handbook v2.0</p>
+<h1>AI Product Management Programme</h1>
+<p class="lede">How to decide, specify, test and launch products built on artificial intelligence</p>
+<ul class="meta">
+  <li>14 weeks</li><li>Week 0 + 12 modules</li><li>3 terms + capstone</li><li>6–8 hours per week</li><li>No coding required</li><li>Updated 20 Oct 2026</li>
+</ul>
+<p>This programme teaches the decisions that make or break products built on artificial intelligence (AI): whether to use AI at all, how to specify behaviour that varies, how to test it, how to pay for it, how to govern it, and how to defend a launch decision. It follows the structure of leading public courses and runs every assignment on one case company, a fictional Singapore polyclinic group, so that learners from any background work on the same realistic problems.</p>
+
+<div class="note"><p><strong>Conventions.</strong> Every acronym is written out in full the first time it appears on a page, with the short form in brackets. The glossary at the end lists them all.</p></div>
+
+<h2 id="audience">1. Who this programme is for</h2>
+<p>The programme suits anyone who helps decide what an AI product should do, or who wants to move into AI product work. You do not need to write code. Each module has an optional technical lab for those who want hands-on practice.</p>
+<div class="scroll"><table>
+<thead><tr><th>Your background</th><th>What you already bring</th><th>Where to put extra effort</th><th>Modules that will stretch you</th></tr></thead>
+<tbody>
+<tr><td><strong>Business analyst</strong></td><td>Requirements, process mapping, stakeholder work</td><td>Requirements for behaviour that varies; measuring quality</td><td>2, 5, 6, 9</td></tr>
+<tr><td><strong>Data analyst</strong></td><td>Metrics, data quality, experiments</td><td>User discovery, user experience, strategy</td><td>3, 7, 11</td></tr>
+<tr><td><strong>Software engineer</strong></td><td>Architecture, testing, delivery</td><td>Problem framing, pricing, governance</td><td>1, 3, 9, 10</td></tr>
+<tr><td><strong>Designer or researcher</strong></td><td>User research, interaction design</td><td>Technical trade-offs and evaluation</td><td>2, 5, 6, 8</td></tr>
+<tr><td><strong>Domain expert</strong> (clinician, consultant, operations lead)</td><td>Deep knowledge of the work and its risks</td><td>Technical fluency, requirements, economics</td><td>2, 4, 6, 9</td></tr>
+<tr><td><strong>Product manager</strong> moving into AI</td><td>Discovery, prioritisation, launch</td><td>Technical fluency, evaluation, governance</td><td>2, 5, 6, 10</td></tr>
+</tbody></table></div>
+<p>The Week 0 self-assessment will suggest a starting emphasis for you based on your answers.</p>
+
+<h2 id="case">2. The running case: Harbourview Polyclinics</h2>
+<div class="case">
+<p class="eyebrow">Case company · fictional</p>
+<h3>Harbourview Polyclinics</h3>
+<p>Harbourview is a fictional group of public polyclinics (primary care clinics) in Singapore. It offers general practice, chronic disease care, vaccinations, health screening and an on-site pharmacy at each clinic. Patients book, check queue status and see their medicines in the Harbourview app. Any resemblance to a real organisation is unintended.</p>
+<div class="facts">
+  <div><b>9</b><span>clinics across the island</span></div>
+  <div><b>1.4M</b><span>patient visits a year</span></div>
+  <div><b>~2,100</b><span>staff, 260 doctors</span></div>
+  <div><b>38%</b><span>of visits for chronic conditions</span></div>
+  <div><b>11%</b><span>of booked appointments missed</span></div>
+</div>
+<p>The board has asked the new head of digital products to build an AI portfolio within 18 months, under a tight budget and close scrutiny from the Ministry of Health. Five initiatives are on the table. Each module uses one or more of them.</p>
+</div>
+<div class="scroll"><table>
+<thead><tr><th>Initiative</th><th>What it would do</th><th>Kind of AI</th><th>Main tension</th></tr></thead>
+<tbody>
+<tr><td><strong>A. Medicine questions assistant</strong></td><td>Answers patients' questions about their own prescribed medicines in the app</td><td>Large language model (LLM) with retrieval from approved leaflets</td><td>Patient safety versus convenience</td></tr>
+<tr><td><strong>B. Booking and symptom-routing chatbot</strong></td><td>Helps patients book the right service and flags urgent symptoms for a nurse</td><td>LLM with rules and human handoff</td><td>Catching emergencies versus over-referral</td></tr>
+<tr><td><strong>C. Consultation note drafter</strong></td><td>Drafts the doctor's visit notes from the recorded consultation</td><td>Speech-to-text plus LLM</td><td>Doctor time saved versus errors in the medical record</td></tr>
+<tr><td><strong>D. Missed-appointment predictor</strong></td><td>Predicts who will miss an appointment so staff can send reminders or overbook</td><td>Classical machine learning (ML)</td><td>Efficiency versus fairness to some patient groups</td></tr>
+<tr><td><strong>E. Patient feedback analyser</strong></td><td>Groups thousands of free-text comments into themes for clinic managers</td><td>LLM classification</td><td>Speed versus missing serious complaints</td></tr>
+</tbody></table></div>
+<p>Each module adds a case pack with the extra material needed: interview notes, sample outputs, cost figures, policy extracts. If you are already working on an AI product of your own, you may use it for any assignment instead, as long as it raises the same questions.</p>
+
+<h2 id="assessment">3. How assessment works</h2>
+<p>Every module has two kinds of assessment. <strong>Formative assessment</strong> checks understanding while you learn. It gives instant feedback, can be retaken, and does not count toward your grade. <strong>Summative assessment</strong> at the end of each module measures what you can do once the module is over, and it is graded.</p>
+
+<h3>Formative assessment, every module</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th>When</th><th>Format</th><th>Feedback and threshold</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-form">Formative</span><br><strong>Checkpoint quiz A</strong></td><td>After the lesson</td><td>10 Yes/No questions and 3 short-answer questions on the core concepts</td><td>Yes/No answers are checked instantly, with an explanation. Short answers are compared with a model answer. Mastery is 8 of 10 Yes/No correct; retake until reached.</td></tr>
+<tr><td><span class="chip c-form">Formative</span><br><strong>Checkpoint quiz B</strong></td><td>After the case study</td><td>5 Yes/No and 3 short-answer questions applying the concepts to Harbourview</td><td>As quiz A. Mastery is 4 of 5.</td></tr>
+</tbody></table></div>
+
+<h3>Summative assessment, end of every module</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th>Weight</th><th>Format</th><th>How it is marked</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-sum">Summative</span><br><strong>Module deliverable</strong></td><td class="num">60%</td><td>The written work product set in the module, for Harbourview</td><td>Rubric in Section 6, four criteria</td></tr>
+<tr><td><span class="chip c-sum">Summative</span><br><strong>End-of-module test</strong></td><td class="num">25%</td><td>10 Yes/No and 5 short-answer questions, closed book, 30 minutes, taken once</td><td>Yes/No: 1 mark each. Short answers: 0–3 marks each against a marking guide. Total 25 marks.</td></tr>
+<tr><td><span class="chip c-sum">Summative</span><br><strong>Viva</strong></td><td class="num">15%</td><td>10 minutes of oral questioning (a viva voce) on your deliverable, with an assessor or a peer using the viva guide</td><td>Can you defend your choices and handle a challenge you did not prepare for?</td></tr>
+</tbody></table></div>
+
+<h3>Rules that link the two</h3>
+<ul>
+  <li>The end-of-module test opens only after both checkpoint quizzes have reached mastery.</li>
+  <li>Module mark bands: <strong>Distinction</strong> 75% and above, <strong>Merit</strong> 60–74%, <strong>Pass</strong> 50–59%, <strong>Resubmit</strong> below 50%. One resubmission is allowed per module, capped at Pass.</li>
+  <li>To complete the programme: Merit or better on at least 9 of the 11 taught modules, and a passed capstone defence.</li>
+  <li>Answers and marking guides for end-of-module tests are kept in a separate assessor pack and never appear in learner pages.</li>
+</ul>
+
+<h3>Weekly rhythm</h3>
+<div class="scroll"><table>
+<thead><tr><th>Step</th><th>Time</th><th>What happens</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>1. Lesson</td><td class="num">60–90 min</td><td>Concepts with worked examples from real AI products</td><td><span class="chip c-form">Quiz A</span></td></tr>
+<tr><td>2. Case study</td><td class="num">45 min</td><td>The module's Harbourview case pack</td><td><span class="chip c-form">Quiz B</span></td></tr>
+<tr><td>3. Assignment</td><td class="num">3–4 hrs</td><td>You produce the module deliverable</td><td><span class="chip c-sum">Deliverable</span></td></tr>
+<tr><td>4. Close</td><td class="num">60 min</td><td>End-of-module test, viva and feedback</td><td><span class="chip c-sum">Test</span> <span class="chip c-sum">Viva</span></td></tr>
+<tr><td>Optional lab</td><td class="num">1–2 hrs</td><td>Hands-on technical exercise for those who want it</td><td>Not assessed</td></tr>
+</tbody></table></div>
+
+<h2 id="map">4. Programme map</h2>
+<p><span class="chip c-t1">Term I · Foundations</span> <span class="chip c-t2">Term II · Mastery</span> <span class="chip c-t3">Term III · Strategy and leadership</span> <span class="chip c-cap">Capstone</span></p>
+<div class="scroll"><table>
+<thead><tr><th>Week</th><th>Module</th><th>Harbourview initiative</th><th>Summative deliverable</th></tr></thead>
+<tbody>
+<tr><td class="num"><span class="chip c-form">Week 0</span></td><td>Orientation, self-assessment and pre-test</td><td>A</td><td>Baseline memo, recorded but not graded</td></tr>
+</tbody>
+<tbody id="maprows"></tbody></table></div>
+<div class="pending"><p style="margin:0"><strong>Week 0 is built last.</strong> Its pre-test will be sampled from the finished end-of-module tests, so it measures exactly what the programme teaches. Its scenario, a memo on Harbourview's medicine questions assistant, is repeated unchanged in Week 14 to show how much each learner has learned.</p></div>
+
+<div id="modules"></div>
+
+<h2 id="rubric">6. Marking rubric for deliverables</h2>
+<p>Each criterion is scored 0–4 and weighted equally. The total is scaled to the 60% deliverable weight.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>4 · Distinction</th><th>3 · Merit</th><th>2 · Pass</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>Clear recommendation; alternatives and trade-offs quantified</td><td>Clear recommendation; alternatives named</td><td>Recommendation present but weakly argued</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Case data, evaluation results or cost models drive the conclusion; assumptions labelled</td><td>Evidence present but partly assumed</td><td>Mostly assertion</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>Failure modes, who is harmed, mitigations and remaining risk named</td><td>Main risks named and mitigated</td><td>Risks listed only</td></tr>
+<tr><td><strong>Communication</strong></td><td>An executive can act on it after five minutes</td><td>Clear but long</td><td>Hard to follow</td></tr>
+</tbody></table></div>
+<p>A score of 0–1 on any criterion means the deliverable goes back for a rewrite before it is graded.</p>
+
+<h2 id="access">7. Access and your data</h2>
+<p>You sign in with your email address. Each time, the site sends a one-time code to your inbox, so there is no password to create, remember or leak. The programme stores only two things: your email address and your quiz and assignment progress. It does not ask for your name, employer or anything else. You can ask for your account and progress to be deleted at any time. A full privacy notice, written to meet Singapore's Personal Data Protection Act (PDPA), will be published before the programme opens.</p>
+
+<h2 id="sources">8. Courses this programme draws on</h2>
+<div class="scroll"><table>
+<thead><tr><th>Source programme</th><th>Structure</th><th>Used in</th></tr></thead>
+<tbody>
+<tr><td>Duke University, AI Product Management Specialization (Coursera)</td><td>Three courses: ML foundations for product managers; managing ML projects; human factors in AI</td><td>Modules 2, 3, 7, 10</td></tr>
+<tr><td>AI Product Academy (Marily Nika), AI Product Management Bootcamp (Maven)</td><td>An introductory course, an advanced course on strategy, organisation and ethics, and a capstone where you ship a product</td><td>Modules 1, 3, 8, 12</td></tr>
+<tr><td>Hamel Husain and Shreya Shankar, AI Evals for Engineers and Product Managers (Maven)</td><td>8 lessons on error analysis, synthetic data, using an LLM as a judge, debugging retrieval, continuous integration and red-teaming</td><td>Modules 4, 5, 6</td></tr>
+<tr><td>Reforge, AI Foundations, AI Evals, AI Prototyping, AI Strategy, AI Growth</td><td>Foundations, Mastery and Strategy pillars taught by practitioners</td><td>Term sequence; Modules 8, 9, 11</td></tr>
+<tr><td>Product School, AI Product Certification</td><td>6 modules, about 15 hours over 3–4 weeks, ending in an AI requirements document</td><td>Module 4</td></tr>
+</tbody></table></div>
+<ul>
+<li><a href="https://www.coursera.org/specializations/ai-product-management-duke">Duke University, AI Product Management Specialization</a></li>
+<li><a href="https://maven.com/marily-nika/ai-pm-bootcamp">Marily Nika, AI Product Management Bootcamp &amp; Certification</a></li>
+<li><a href="https://www.lennysnewsletter.com/p/why-ai-evals-are-the-hottest-new-skill">Husain and Shankar on evaluations, Lenny's Newsletter</a></li>
+<li><a href="https://www.reforge.com/courses">Reforge course catalogue</a></li>
+<li><a href="https://productschool.com/">Product School, AI Product Certification</a></li>
+</ul>
+
+<h2 id="glossary">9. Glossary</h2>
+<div class="scroll"><table>
+<thead><tr><th>Short form</th><th>In full</th></tr></thead>
+<tbody>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>ADR</td><td>Architecture decision record: a short document recording a design choice, the options considered and why one was chosen</td></tr>
+<tr><td>Eval</td><td>Evaluation: a repeatable test of whether an AI system's outputs are good enough</td></tr>
+<tr><td>EU</td><td>European Union</td></tr>
+<tr><td>IMDA</td><td>Infocomm Media Development Authority, Singapore</td></tr>
+<tr><td>ISO/IEC 42001</td><td>International Organization for Standardization and International Electrotechnical Commission standard for AI management systems</td></tr>
+<tr><td>LLM</td><td>Large language model, such as Claude or GPT</td></tr>
+<tr><td>ML</td><td>Machine learning</td></tr>
+<tr><td>NIST AI RMF</td><td>United States National Institute of Standards and Technology, AI Risk Management Framework</td></tr>
+<tr><td>PAIR</td><td>People + AI Research, a Google team that publishes design guidance</td></tr>
+<tr><td>PDPA</td><td>Personal Data Protection Act, Singapore</td></tr>
+<tr><td>POC</td><td>Proof of concept: a short, limited trial to show a product works</td></tr>
+<tr><td>PRD</td><td>Product requirements document</td></tr>
+<tr><td>RAG</td><td>Retrieval-augmented generation: the model is given relevant documents found by a search step before it answers</td></tr>
+<tr><td>UX</td><td>User experience</td></tr>
+</tbody></table></div>
+<p class="foot">Handbook v2.0 · 20 October 2026 · Rewritten for a general audience with the Harbourview Polyclinics case. Week 0 to follow once Modules 1–12 are complete.</p>
+</div>
+
+<script>
+const T = {1:['c-t1','Term I'],2:['c-t2','Term II'],3:['c-t3','Term III'],4:['c-cap','Capstone']};
+const M = [
+ {n:1,t:1,wk:'Week 1',title:'The AI product role and the AI product lifecycle',src:'Duke course 1; Nika introductory course; Reforge AI Foundations',init:'All five',
+  out:['Explain how AI products differ from rule-based software: outputs vary, depend on data and need continuous testing.','Map the lifecycle from opportunity to monitoring, and the product decisions at each stage.','Decide whether a problem needs AI at all, and name the cheaper alternative.'],
+  quiz:'Probabilistic versus rule-based behaviour; lifecycle stages; when AI is the wrong tool.',
+  task:'AI-or-not audit of Harbourview\'s five initiatives. For each: the user problem, the non-AI alternative, what AI adds, the cost of a wrong answer and who bears it, and a go or no-go verdict.',
+  del:'Two-page memo to the board with a scored decision table.',lab:'Try the same patient question ten times on a public AI assistant and record how the answers vary.',
+  read:'Google People + AI Research (PAIR) Guidebook, "User Needs + Defining Success"; Chip Huyen, AI Engineering (2025), chapter 1.'},
+ {n:2,t:1,wk:'Week 2',title:'Technical fluency for product decisions',src:'Duke course 2; Nika advanced course; Reforge AI Foundations',init:'A, D',
+  out:['Choose between prompting, retrieval, fine-tuning, classical machine learning and agents, and defend the choice.','Trade off quality, cost and response time to pick a model.','Read a system diagram and spot where it will fail.'],
+  quiz:'Tokens and context windows; embeddings and retrieval; structured output; tool use; precision and recall.',
+  task:'For the medicine questions assistant, compare three designs (prompt only, retrieval from approved leaflets, a fine-tuned model) on cost per 1,000 questions, ease of updating and main failure. For the missed-appointment predictor, explain which error matters more: a missed no-show or a false alarm.',
+  del:'Architecture decision record (ADR), three pages maximum, with a cost table.',lab:'Build a small retrieval demo over five sample medicine leaflets with a no-code tool.',
+  read:'Anthropic, "Building effective agents" (2024); Eugene Yan, "Patterns for Building LLM-based Systems & Products".'},
+ {n:3,t:1,wk:'Week 3',title:'Problem framing, discovery and data readiness',src:'Nika bootcamp, "Validate a Product Opportunity"; Duke course 2',init:'B, E',
+  out:['Run discovery that tests the problem, not the AI solution.','Assess data: availability, rights, quality, labelling cost, privacy.','Write a testable opportunity hypothesis with a condition for stopping.'],
+  quiz:'Opportunity solution trees; jobs to be done; manual "Wizard of Oz" tests; data audits.',
+  task:'Using the case pack\'s interview notes from patients, nurses and front-desk staff, build an opportunity solution tree for the booking chatbot and a data readiness scorecard for the feedback analyser. Optionally interview three people from your own network.',
+  del:'Discovery synthesis, tree, scorecard, and a go, pivot or stop decision.',lab:'Run a "Wizard of Oz" test: play the chatbot yourself with two volunteers.',
+  read:'Teresa Torres, Continuous Discovery Habits, chapters 4–6; PAIR Guidebook, "Data Collection + Evaluation".'},
+ {n:4,t:2,wk:'Week 4',title:'Specifying AI products: the AI requirements document',src:'Product School AI certification; Nika bootcamp; Husain and Shankar',init:'A',
+  out:['Write requirements that specify behaviour, not just features.','Turn guardrails into testable requirements.','Write acceptance criteria that an automated test can check.'],
+  quiz:'Behaviour specifications; "must, must never, should prefer" rules; refusal and fallback design; cost and response-time limits.',
+  task:'Write a six-page product requirements document (PRD) for the medicine questions assistant. Include what it must never say, when it hands over to a pharmacist, and limits on cost and response time. Every requirement maps to a test.',
+  del:'PRD plus a table linking each requirement to its test.',lab:'Turn three of your requirements into test prompts and run them.',
+  read:'Product School AI PRD template; Husain and Shankar interview on Lenny\'s Podcast.'},
+ {n:5,t:2,wk:'Week 5',title:'Evaluation I: error analysis and test sets',src:'Husain and Shankar, lessons 1–4; Reforge AI Evals',init:'A, C',
+  out:['Start from reviewing real outputs, not generic metrics.','Group failures into a taxonomy.','Build a starting test set before you have users.'],
+  quiz:'Traces; open and axial coding; synthetic test data built from persona, intent and difficulty; golden datasets.',
+  task:'The case pack holds 100 sample answers from the medicine assistant\'s pilot. Label each pass or fail with a reason, build a failure taxonomy, and rank failure types by frequency and severity. Then design 30 new test questions covering patient types the pilot missed.',
+  del:'Labelled answer sheet, failure taxonomy and the three fixes that matter most.',lab:'Generate test questions with an AI tool from a persona-by-intent grid.',
+  read:'Hamel Husain, "Your AI Product Needs Evals"; Husain and Shankar talk, "The cold-start eval problem" (2026).'},
+ {n:6,t:2,wk:'Week 6',title:'Evaluation II: automated judges and live metrics',src:'Husain and Shankar, lessons 5–8; Reforge AI Evals',init:'A, C',
+  out:['Write code checks and model-based judges, and check the judge against human labels.','Make evaluations a gate before release.','Define live metrics that link AI quality to business results.'],
+  quiz:'Pass or fail judges; agreement with human labels; regression suites; guardrail and headline metrics; A/B tests with variable outputs.',
+  task:'Write a judge for your top failure type from Module 5, compare its verdicts with your labels, and propose a release threshold. Then build a metrics tree for the consultation note drafter, from doctor time saved down to note error rate.',
+  del:'Judge prompt, agreement report and a one-page metrics tree.',lab:'Run your judge on the 100 sample answers in a spreadsheet with an AI add-on.',
+  read:'Husain and Shankar public blog posts; Reforge AI Evals public posts.'},
+ {n:7,t:2,wk:'Week 7',title:'Designing AI user experience and human factors',src:'Duke course 3; Google PAIR Guidebook',init:'A, B',
+  out:['Design for trust that matches how reliable the system is.','Design error states, uncertainty and handoff to a person.','Pick the right amount of human review for the risk.'],
+  quiz:'Mental models; explanations for users and for auditors; showing confidence; preview then approve; automation bias.',
+  task:'Storyboard eight moments where the booking chatbot or medicine assistant is wrong, unsure or out of scope, including a patient describing chest pain, with the exact words the patient sees.',
+  del:'Annotated storyboard and a rationale for how it sets patient trust.',lab:'Test your storyboard with two people over 65 or their carers.',
+  read:'PAIR Guidebook, "Explainability + Trust" and "Errors + Graceful Failure".'},
+ {n:8,t:2,wk:'Week 8',title:'Agents and rapid prototyping',src:'Nika bootcamp, "Strategy & Agentic AI"; Reforge AI Prototyping',init:'B',
+  out:['Decide when a fixed workflow is better than an agent.','Specify how much the agent may do alone, which tools it may use, and where a person checks.','Prototype in days to test value before building.'],
+  quiz:'Workflows and agents; autonomy levels; tool permissions and how much damage an error can do; testing whether agents complete tasks.',
+  task:'Harbourview wants the booking chatbot to also reschedule, cancel and move patients between clinics. Map each action to an autonomy level with a permissions table, then build a clickable prototype and test it with three people.',
+  del:'Autonomy map, prototype link and test notes.',lab:'Build a working prototype with a no-code agent builder.',
+  read:'Anthropic, "Building effective agents"; Reforge AI Prototyping public material.'},
+ {n:9,t:3,wk:'Week 9',title:'Unit economics and pricing of AI products',src:'Reforge AI Strategy and Monetization; Nika advanced course',init:'A, C',
+  out:['Model the cost to run the product for each user and each task.','Build a business case that survives changes in model prices.','Find the levers that protect the budget.'],
+  quiz:'Token costs; caching, routing and batching; per-seat, usage and outcome pricing; cost at different adoption levels.',
+  task:'Using the case pack\'s cost figures, model the medicine assistant and note drafter at 10%, 30% and 60% adoption, with model prices 50% higher or lower. Harbourview does not sell to patients, so build a business case from staff time saved and calls avoided, and say which initiative to fund first.',
+  del:'Spreadsheet model and a one-page funding recommendation.',lab:'Measure real token counts for ten sample questions.',
+  read:'Reforge public essays on AI pricing; case pack cost sheet.'},
+ {n:10,t:3,wk:'Week 10',title:'Responsible AI, risk and governance',src:'Duke course 3; Nika advanced course; Product School',init:'A, D',
+  out:['Classify a product\'s risk level under the main frameworks.','Run a structured attack test (red-team) and record the findings.','Produce the governance documents a regulator or buyer will ask for.'],
+  quiz:'Singapore\'s Model AI Governance Framework for Generative AI and AI Verify; the NIST AI Risk Management Framework; ISO/IEC 42001; European Union (EU) AI Act risk levels; model cards; PDPA; healthcare rules.',
+  task:'A trust pack for the medicine assistant: risk classification, red-team log of 30 attacks, a model card, and a check of the missed-appointment predictor for unfair effects on patient groups. End with a one-page brief for the Ministry of Health.',
+  del:'Trust pack, eight pages maximum.',lab:'Run your 30 attacks against a public assistant and log the results.',
+  read:'IMDA, Model AI Governance Framework for Generative AI; NIST AI RMF 1.0 Playbook.'},
+ {n:11,t:3,wk:'Week 11',title:'AI strategy, defensibility and rollout',src:'Reforge AI Strategy and AI Growth; Nika bootcamp; Kellogg AI and Product Strategy',init:'All five',
+  out:['Decide what to build, buy or partner on when models are widely available.','Plan how a product reaches users and staff, and how adoption is driven.','Write a strategy that survives the next model release.'],
+  quiz:'Build, buy or partner; thin layers over a model; workflow and data advantages; vendor lock-in; proof-of-concept design.',
+  task:'Write Harbourview\'s 18-month AI portfolio strategy on one page: which initiatives to build, buy or drop, in what order, and what you will not do. Add a six-week proof-of-concept (POC) plan for the first initiative with exit criteria the board would sign.',
+  del:'Strategy on a page and POC plan.',lab:'Compare two real vendor products for consultation notes against your requirements.',
+  read:'Reforge AI Strategy public posts; Hamilton Helmer, 7 Powers.'},
+ {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend',src:'Nika bootcamp capstone; Duke capstone; Product School',init:'One of A–E',
+  out:['Bring every module together into one launch decision.','Defend that decision to an executive panel.'],
+  quiz:'No checkpoint quizzes. Week 14 repeats the Week 0 scenario memo.',
+  task:'Choose one Harbourview initiative (or your own product) and assemble a capstone pack from your module deliverables, ending in a launch, limited launch or do-not-launch recommendation.',
+  del:'Capstone pack and a 20-minute defence, with 20 minutes of questions from three roles: chief financial officer (cost), chief medical officer (patient safety) and chief information officer (reliability and data).',lab:'Optional: build and demonstrate a working version.',
+  read:'Your own module deliverables.'}
+];
+const rows=document.getElementById('maprows'), box=document.getElementById('modules');
+const names={1:'Foundations',2:'Mastery',3:'Strategy and leadership',4:''};
+let lastT=0, html='<h2 id="detail">5. Module detail</h2>';
+M.forEach(m=>{
+  const [c,label]=T[m.t];
+  rows.insertAdjacentHTML('beforeend',`<tr><td class="num"><span class="chip ${c}">${m.wk}</span></td><td><a href="#m${m.n}">M${m.n}. ${m.title}</a></td><td>${m.init}</td><td>${m.del}</td></tr>`);
+  if(m.t!==lastT){ html+=`<h3 style="margin-top:2.25rem"><span class="chip ${c}">${label}${names[m.t]?' · '+names[m.t]:''}</span></h3>`; lastT=m.t; }
+  html+=`<section class="mod" id="m${m.n}"><span class="chip ${c}">${m.wk} · Module ${m.n}</span><h3>${m.title}</h3><p class="src">Draws on: ${m.src}</p>
+  <h4>Learning outcomes</h4><ul>${m.out.map(o=>`<li>${o}</li>`).join('')}</ul>
+  <dl><dt>Quiz focus</dt><dd><span class="chip c-form">Formative</span> ${m.quiz}</dd>
+  <dt>Reading</dt><dd>${m.read}</dd>
+  <dt>Harbourview assignment</dt><dd>${m.task}</dd>
+  <dt>Summative</dt><dd><span class="chip c-sum">Graded</span> ${m.del}${m.n<12?' Plus the end-of-module test and viva.':''}</dd>
+  <dt>Optional lab</dt><dd>${m.lab}</dd></dl></section>`;
+});
+box.innerHTML=html;
+</script>
+</body>
+</html>

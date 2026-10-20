@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Week 0 Orientation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem) with wide tables in scroll boxes; term colours encode the programme sequence */
+:root {
+  --paper: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #12233b;
+  --body: #2c3a4f;
+  --muted: #5d6b7e;
+  --rule: #d5dde5;
+  --accent: #0b7077;
+  --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1;
+  --t2: #2a5596; --t2-soft: #e7edf7;
+  --t3: #9a5a0c; --t3-soft: #f8eedf;
+  --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9;
+  --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 2rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.7rem; color: var(--ink); margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+h3 { font-size: 1.05rem; color: var(--ink); margin: 1.75rem 0 .4rem; text-wrap: balance; }
+h4 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .3rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+abbr { text-decoration: none; }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-t2 { background: var(--t2-soft); color: var(--t2); }
+.c-t3 { background: var(--t3-soft); color: var(--t3); } .c-cap { background: var(--cap-soft); color: var(--cap); }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child { margin: 0; }
+.mod { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1.75rem; }
+.mod h3 { margin-top: .35rem; }
+.mod .src { font-size: .82rem; color: var(--muted); font-style: italic; }
+.mod dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: .35rem 1rem; margin: .6rem 0 0; font-size: .92rem; }
+.mod dt { font-weight: 600; color: var(--ink); }
+.mod dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .mod dl { grid-template-columns: 1fr; } .mod dd { margin-bottom: .5rem; } }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+[hidden]{display:none!important}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; }
+.q .num { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 16rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+.score { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .55rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.rate { display: grid; grid-template-columns: minmax(0,1fr) 5.5rem; gap: .4rem .75rem; align-items: start; border-top: 1px solid var(--rule); padding: .7rem 0; }
+.rate label { font-weight: 600; color: var(--ink); font-size: .93rem; }
+.rate input[type=text] { grid-column: 1 / -1; }
+fieldset { border: 1px solid var(--rule); border-radius: 4px; padding: .8rem 1rem; margin: 0 0 1rem; background: var(--surface); }
+legend { font-weight: 600; color: var(--ink); padding: 0 .3rem; }
+.opt { display: flex; gap: .5rem; align-items: baseline; margin: .3rem 0; }
+.scenario { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin-bottom: 1rem; }
+.scenario p:last-child { margin: 0; }
+.idea { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.2rem 0; }
+.idea h3 { margin-top: 0; }
+#copied { color: var(--good); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Course pages">
+  <a href="./">Programme handbook</a>
+  <a href="week-00.html" aria-current="page">Week 0 · Orientation &amp; baseline</a>
+</nav>
+
+<p class="eyebrow">Week 0 · Before Module 1</p>
+<h1>Orientation and baseline</h1>
+<p class="lede">Three ideas that run through the whole programme, a practice quiz, and a baseline you will sit again in Week 14.</p>
+<ul class="meta"><li>About 2.5 hours</li><li>Formative quiz: 12 Yes/No + 5 short answer</li><li>Baseline: recorded, not graded</li></ul>
+
+<div class="scroll"><table>
+<thead><tr><th>Part</th><th>Type</th><th>Time</th><th>What you do</th></tr></thead>
+<tbody>
+<tr><td>1. Orientation briefing</td><td>Reading</td><td class="num">30 min</td><td>Read the three core ideas below</td></tr>
+<tr><td>2. Checkpoint quiz 0</td><td><span class="chip c-form">Formative</span></td><td class="num">30 min</td><td>Answer 12 Yes/No and 5 short-answer questions. Yes/No answers are checked instantly; short answers are compared with a model answer</td></tr>
+<tr><td>3. Baseline assessment</td><td><span class="chip c-sum">Summative baseline</span></td><td class="num">75 min</td><td>Self-rating, programme choices, and a timed scenario</td></tr>
+<tr><td>4. Submit</td><td>—</td><td class="num">5 min</td><td>Press "Copy all answers" and paste them into the chat for review</td></tr>
+</tbody></table></div>
+
+<h2>1. Orientation briefing</h2>
+<p>Artificial intelligence (AI) products behave differently from the software you have managed before. Three ideas explain most of that difference, and every module returns to them.</p>
+
+<div class="idea">
+<h3>Idea 1. Behaviour is a distribution, not a function</h3>
+<p>Rule-based software gives the same output for the same input. A product built on a large language model (LLM) gives a range of outputs, most good and some not. Changing the model version, the wording of an instruction (the prompt) or the documents it reads shifts that range.</p>
+<p>So a product manager (PM) cannot only say what the product does. You also say what it should usually do, what it must never do, and how you will measure how often each happens. A requirement such as "summarises the draft accurately" is incomplete until it states how accuracy is checked and what failure rate is acceptable.</p>
+</div>
+
+<div class="idea">
+<h3>Idea 2. The cost of a wrong answer sets the design</h3>
+<p>Every AI feature will sometimes be wrong. The question is what a wrong answer costs, who pays it, and whether a person can catch it first. A wrong recipe suggestion costs a mildly disappointing dinner. A wrong answer about a medicine dose could harm someone.</p>
+<p>That cost decides how much freedom the system gets. Your Attic agent proposes changes and waits for approval because deleting the wrong email is costly. Quaestio only asks questions because rewriting a student's work would breach academic integrity. Low-cost errors allow automation; high-cost errors call for human review, narrow scope, or no AI at all.</p>
+</div>
+
+<div class="idea">
+<h3>Idea 3. Evaluation is the specification</h3>
+<p>An evaluation (often shortened to "eval") is a repeatable test of whether outputs are good enough. In AI products, a well-built set of evals is the most precise statement of what the product should do: it turns "must never rewrite student text" into a check that runs on every change.</p>
+<p>Good practice starts by reading real outputs and sorting the failures you find, before writing automated tests. Generic scores such as "helpfulness out of 10" rarely tell you what to fix.</p>
+</div>
+
+<div class="note"><p><strong>How to use the quiz.</strong> Answer before reading the explanation. The quiz is formative: it does not count toward your grade, and getting questions wrong now is useful because it shows where Module 1 should spend time.</p></div>
+
+<h2 id="quiz">2. Checkpoint quiz 0 <span class="chip c-form">Formative</span></h2>
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="sc">0</b> / 12 correct · <b id="ans">0</b> answered</span>
+  <span>Short answers written: <b id="sa">0</b> / 5</span>
+  <span>Mastery: <b id="mast">10 of 12 needed</b></span>
+</div>
+<h3>Part A · Yes or No</h3>
+<div id="ynq"></div>
+<p class="row"><button class="btn" id="resetYN" type="button">Clear Yes/No answers</button></p>
+
+<h3>Part B · Short answer</h3>
+<p>Write two to five sentences for each. The model answer opens once you have written at least 20 words. Then mark yourself against its key points. The coach will also review these.</p>
+<div id="saq"></div>
+
+<h2 id="baseline">3. Baseline assessment <span class="chip c-sum">Summative baseline</span></h2>
+<p>This sets your starting point. It is recorded but not graded. Part C is repeated, unchanged, in Week 14, and the two attempts are compared using the handbook rubric.</p>
+
+<h3>Part A · Self-rating</h3>
+<p>Rate yourself from 1 (have not done this) to 5 (could teach it), and give one piece of work as evidence.</p>
+<div id="rates"></div>
+
+<h3>Part B · Programme choices</h3>
+<fieldset><legend>Your goal for the programme</legend>
+  <div class="opt"><input type="radio" name="goal" id="g1" value="In-house AI product manager role"><label for="g1">An in-house AI product manager role</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g2" value="AI presales or solutions consulting role"><label for="g2">An AI presales or solutions consulting role</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g3" value="Founder of Quaestio"><label for="g3">Founder of Quaestio</label></div>
+</fieldset>
+<fieldset><legend>Capstone product</legend>
+  <div class="opt"><input type="radio" name="cap" id="c1" value="Quaestio"><label for="c1">Quaestio (recommended)</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c2" value="BeatKeeper"><label for="c2">BeatKeeper</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c3" value="MealPartner"><label for="c3">MealPartner</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c4" value="A product from the ideas bank"><label for="c4">A product from the ideas bank</label></div>
+</fieldset>
+<fieldset><legend>Schedule</legend>
+  <label for="hours">Hours per week you can commit</label>
+  <input type="text" id="hours" placeholder="For example: 7">
+  <label for="days" style="display:block;margin-top:.6rem">Preferred session days and times</label>
+  <input type="text" id="days" placeholder="For example: Tuesday and Saturday mornings">
+</fieldset>
+
+<h3>Part C · Timed scenario (45 minutes, 300–450 words)</h3>
+<div class="scenario">
+<p><strong>The brief.</strong> A large public polyclinic group in Singapore wants a chatbot on its patient app that answers questions about the patient's own prescribed medicines: what each one is for, when to take it, common side effects, and what to do after a missed dose. It would draw on the patient's prescription record and the group's approved medicine leaflets. The chief executive wants a launch in six months and has asked you for a recommendation.</p>
+<p><strong>Write a memo that covers:</strong> (1) whether to build it, in full, in part or not at all, and why; (2) the smallest first version you would launch; (3) three things it must never do; (4) how you would know before launch that it is safe and useful; (5) the one risk you are least sure how to handle.</p>
+</div>
+<p>Set a timer and stop at 45 minutes. Do not use AI tools or references. The point is your unaided starting judgement.</p>
+<label for="memo" class="eyebrow" style="display:block;margin-bottom:.3rem">Your memo</label>
+<textarea id="memo" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+<h4>How Part C will be scored (0–4 on each)</h4>
+<ul>
+<li><strong>Decision quality:</strong> a clear recommendation, with the alternatives you rejected</li>
+<li><strong>Evidence:</strong> what you would need to know, and which statements are assumptions</li>
+<li><strong>Risk handling:</strong> failure modes, who is harmed, and how each is controlled</li>
+<li><strong>Communication:</strong> a chief executive could act on it after a five-minute read</li>
+</ul>
+
+<h2 id="submit">4. Submit</h2>
+<p>Copy everything you entered on this page, then paste it into the chat. Your answers are kept in this browser as you type, but nobody else, including the coach, can see them until you paste them.</p>
+<p class="row"><button class="btn primary" id="copy" type="button">Copy all answers</button><span id="copied" aria-live="polite"></span></p>
+<textarea id="fallback" hidden readonly aria-label="Your answers as text"></textarea>
+<p class="foot">Week 0 · Handbook v1.1 · 20 October 2026</p>
+</div>
+
+<script>
+const YN=[
+ ["If you send an identical prompt to an LLM with the temperature setting at 0, will you always get exactly the same answer, across model versions too?","No","Temperature 0 makes outputs much more consistent but not guaranteed identical, and a new model version can change behaviour completely. Tests must be re-run whenever the model changes."],
+ ["Does retrieval-augmented generation (RAG), where the model is given relevant documents before it answers, remove the need to test for made-up answers?","No","The model can still misread, ignore or go beyond the documents it is given, and retrieval can return the wrong documents. RAG reduces made-up answers but you still have to measure them."],
+ ["Is a feature that is 95% accurate always ready to launch?","No","It depends on what the other 5% costs. A 5% error rate is fine for meal ideas and unacceptable for medicine instructions."],
+ ["Should you review real outputs and sort the failures you find before writing automated evaluations?","Yes","Reading outputs first shows you which failures actually happen. Automated checks written before that tend to measure the wrong things."],
+ ["When a model does not know your company's documents, is fine-tuning (retraining the model on your data) usually the first thing to try?","No","Giving the model the documents through retrieval, or a better prompt, is usually cheaper, faster and easier to update. Fine-tuning suits style or format more than facts that change."],
+ ["Is an AI agent simply a workflow with more steps?","No","In a workflow, your code decides the sequence of steps. In an agent, the model decides which step or tool comes next. That flexibility is why agents need tighter permissions and different tests."],
+ ["Does requiring a person to approve AI actions reduce the impact of errors while adding cost and friction?","Yes","Human approval is a trade-off. Use it where an error is costly, and remove it where errors are cheap and easy to reverse."],
+ ["Do the running costs of an AI feature usually rise with usage much more than those of traditional software?","Yes","Each request costs money for model processing, so heavy users can cost more than they pay. That is why AI pricing needs its own cost model."],
+ ["If you build on the best available model, does that give your product a lasting advantage over competitors?","No","Competitors can use the same model. Lasting advantage tends to come from workflow, distribution, proprietary data, trust and switching costs."],
+ ["Under Singapore's Personal Data Protection Act (PDPA), do you need to consider anything before sending patients' personal data to an overseas AI provider?","Yes","The Act's transfer limitation obligation requires that data sent overseas is protected to a comparable standard, on top of consent and purpose rules. Healthcare adds further sector rules."],
+ ["Should a model used as an automated judge of other outputs be checked against human labels before you rely on it?","Yes","A judge model has its own errors and biases. You measure how often it agrees with careful human labels before you let it block or approve releases."],
+ ["Is getting users to trust the AI as much as possible the right design goal?","No","The goal is trust that matches how reliable the system is. Too much trust means users stop checking and miss errors; too little means they ignore useful output."]
+];
+const SA=[
+ ["Explain in your own words why an AI product's behaviour is \"a distribution, not a function\". Give one way this changes how you write requirements.",
+  ["Same input can give different outputs; quality varies across a range of cases","Model, prompt or data changes shift that range","Requirements must state acceptable failure rates and how they are measured","Include \"must never\" rules, not only desired features"]],
+ ["Describe a product problem where AI is the wrong answer, and say what you would use instead.",
+  ["The problem has clear, stable rules or needs exact answers","Errors would be costly and hard to catch","A form, rules engine, search or lookup does the job more cheaply and predictably","States the trade-off rather than rejecting AI in general"]],
+ ["What is the difference between a guardrail metric and a headline (north-star) metric? Give one example of each for Quaestio.",
+  ["Headline metric: the main measure of value, such as share of students who revise their draft after feedback","Guardrail metric: something that must not get worse, such as the rate of outputs that rewrite student text","Guardrails can block a release even if the headline metric improves"]],
+ ["In Attic, the model sees a numbered list instead of raw Gmail message identifiers. Which risk does this remove, and what risk remains?",
+  ["Removes: the model inventing or mistyping an identifier and acting on the wrong email","Remains: the model choosing the wrong item from the list, or misjudging which emails matter","Remaining risk is handled by preview, approval and limits on batch size"]],
+ ["Give two reasons why an AI prototype that works well in testing can still fail as a product.",
+  ["Cost to serve exceeds what customers will pay","Real users and inputs differ from test cases","Users do not trust it, or it does not fit their workflow","Buyers block it on privacy, safety or procurement grounds","Competitors or the model provider offer the same thing"]]
+];
+const RATE=["Framing problems for AI, including when not to use AI","Technical trade-offs (prompting, retrieval, fine-tuning, agents, cost)","User discovery and data readiness","Writing AI product requirements","Error analysis and test sets","Automated evaluation and live metrics","AI user experience and trust","Agent design and prototyping","Unit economics and pricing","Responsible AI and governance","AI strategy and go-to-market"];
+
+const store={get(k){try{return JSON.parse(localStorage.getItem('w0:'+k));}catch(e){return null;}},set(k,v){try{localStorage.setItem('w0:'+k,JSON.stringify(v));}catch(e){}}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words=s=>(s.trim().match(/\S+/g)||[]).length;
+
+// Part A
+const ynBox=document.getElementById('ynq');
+let yn=store.get('yn')||{};
+ynBox.innerHTML=YN.map((q,i)=>`<div class="q"><div class="stem"><span class="num">A${i+1}</span>${esc(q[0])}</div>
+<div class="yn" role="group" aria-label="Answer A${i+1}"><button type="button" id="yn${i}y" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" id="yn${i}n" data-i="${i}" data-v="No" aria-pressed="false">No</button></div><div class="fb" id="fb${i}" hidden></div></div>`).join('');
+function drawYN(){
+  let c=0,a=0;
+  YN.forEach((q,i)=>{
+    const v=yn[i], fb=document.getElementById('fb'+i);
+    document.getElementById('yn'+i+'y').setAttribute('aria-pressed',v==='Yes');
+    document.getElementById('yn'+i+'n').setAttribute('aria-pressed',v==='No');
+    if(!v){fb.hidden=true;return;}
+    a++; const ok=v===q[1]; if(ok)c++;
+    fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+    fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+  });
+  document.getElementById('sc').textContent=c; document.getElementById('ans').textContent=a;
+  document.getElementById('mast').textContent=a<12?'10 of 12 needed':(c>=10?'Reached':'Not yet. Review the explanations, then retake');
+}
+ynBox.addEventListener('click',e=>{const b=e.target.closest('button[data-i]'); if(!b)return; yn[b.dataset.i]=b.dataset.v; store.set('yn',yn); drawYN();});
+document.getElementById('resetYN').addEventListener('click',()=>{yn={};store.set('yn',yn);drawYN();});
+drawYN();
+
+// Part B
+const saBox=document.getElementById('saq');
+let sa=store.get('sa')||{}, saSelf=store.get('saSelf')||{};
+saBox.innerHTML=SA.map((q,i)=>`<div class="q"><label class="stem" for="sa${i}" style="display:block"><span class="num">B${i+1}</span>${esc(q[0])}</label>
+<textarea id="sa${i}" data-i="${i}"></textarea>
+<div class="row"><span id="saw${i}">0 words</span><button class="btn" type="button" id="sab${i}" data-i="${i}" disabled>Compare with model answer</button></div>
+<div class="model" id="sam${i}" hidden><strong>Key points a strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+<label for="sas${i}" style="display:block;margin-top:.5rem">How many key points did you cover?</label>
+<select id="sas${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+function drawSA(){
+  let n=0;
+  SA.forEach((q,i)=>{const t=document.getElementById('sa'+i), w=words(t.value);
+    document.getElementById('saw'+i).textContent=w+' words';
+    document.getElementById('sab'+i).disabled=w<20; if(w>=20)n++;});
+  document.getElementById('sa').textContent=n;
+}
+SA.forEach((q,i)=>{const t=document.getElementById('sa'+i); t.value=sa[i]||'';
+  const s=document.getElementById('sas'+i); s.value=saSelf[i]||'';
+  if(saSelf[i]) document.getElementById('sam'+i).hidden=false;});
+saBox.addEventListener('input',e=>{if(e.target.tagName==='TEXTAREA'){sa[e.target.dataset.i]=e.target.value;store.set('sa',sa);drawSA();}});
+saBox.addEventListener('change',e=>{if(e.target.tagName==='SELECT'){saSelf[e.target.dataset.i]=e.target.value;store.set('saSelf',saSelf);}});
+saBox.addEventListener('click',e=>{const b=e.target.closest('button[data-i]'); if(b) document.getElementById('sam'+b.dataset.i).hidden=false;});
+drawSA();
+
+// Baseline A
+const rBox=document.getElementById('rates');
+let rt=store.get('rt')||{};
+rBox.innerHTML=RATE.map((r,i)=>`<div class="rate"><label for="r${i}">${i+1}. ${esc(r)}</label>
+<select id="r${i}" data-k="r${i}" aria-label="Rating for ${esc(r)}"><option value="">Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+<input type="text" id="e${i}" data-k="e${i}" placeholder="Evidence: one piece of work" aria-label="Evidence for ${esc(r)}"></div>`).join('');
+rBox.querySelectorAll('[data-k]').forEach(el=>{el.value=rt[el.dataset.k]||''; el.addEventListener('input',()=>{rt[el.dataset.k]=el.value;store.set('rt',rt);});});
+
+// Baseline B and C
+let misc=store.get('misc')||{};
+['hours','days','memo'].forEach(id=>{const el=document.getElementById(id); el.value=misc[id]||''; el.addEventListener('input',()=>{misc[id]=el.value;store.set('misc',misc); if(id==='memo')wc();});});
+['goal','cap'].forEach(n=>{document.querySelectorAll(`input[name=${n}]`).forEach(r=>{r.checked=misc[n]===r.value; r.addEventListener('change',()=>{misc[n]=r.value;store.set('misc',misc);});});});
+function wc(){const w=words(document.getElementById('memo').value); document.getElementById('wc').textContent=w+' words'+(w>450?' · over the 450-word limit':'');}
+wc();
+
+// Copy
+document.getElementById('copy').addEventListener('click',()=>{
+  const L=['WEEK 0 SUBMISSION','','CHECKPOINT QUIZ 0, PART A (Yes/No)'];
+  let c=0; YN.forEach((q,i)=>{const v=yn[i]||'-'; if(v===q[1])c++; L.push(`A${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`);});
+  L.push(`Score: ${c}/12`,'','PART B (Short answer)');
+  SA.forEach((q,i)=>{L.push(`B${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${saSelf[i]||'-'} of ${q[1].length} key points`,'');});
+  L.push('BASELINE PART A (Self-rating)');
+  RATE.forEach((r,i)=>L.push(`${i+1}. ${r}: ${rt['r'+i]||'-'} | Evidence: ${rt['e'+i]||'-'}`));
+  L.push('','BASELINE PART B',`Goal: ${misc.goal||'-'}`,`Capstone: ${misc.cap||'-'}`,`Hours per week: ${misc.hours||'-'}`,`Session days: ${misc.days||'-'}`,'','BASELINE PART C (Scenario memo)',(misc.memo||'(blank)').trim(),`Word count: ${words(misc.memo||'')}`);
+  const text=L.join('\n'), out=document.getElementById('copied'), fb=document.getElementById('fallback');
+  const fallback=()=>{fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.';};
+  try{ navigator.clipboard.writeText(text).then(()=>{out.textContent='Copied. Paste it into the chat.'; fb.hidden=true;}, fallback); }catch(e){ fallback(); }
+});
+</script>
+
+</body>
+</html>

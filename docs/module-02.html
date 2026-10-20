@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 2 · Technical Fluency</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Module 1 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 1rem 0 1.25rem; }
+.compare > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; min-width: 0; }
+.compare h4 { margin-top: 0; }
+.msg { font-family: var(--mono); font-size: .8rem; background: var(--paper); border-radius: 3px; padding: .5rem .6rem; margin: .5rem 0; color: var(--ink); overflow-wrap: anywhere; }
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.formula { font-family: var(--mono); font-size: .85rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: .6rem .75rem; margin: .5rem 0 1rem; color: var(--ink); overflow-x: auto; white-space: nowrap; }
+
+/* Ladder */
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; counter-reset: rung; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder li:nth-child(2) { border-left-color: var(--t2); margin-left: .6rem; }
+.ladder li:nth-child(3) { border-left-color: var(--t2); margin-left: 1.2rem; }
+.ladder li:nth-child(4) { border-left-color: var(--t3); margin-left: 1.8rem; }
+.ladder li:nth-child(5) { border-left-color: var(--bad); margin-left: 2.4rem; }
+@media (max-width: 480px) { .ladder li { margin-left: 0 !important; } }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+
+/* Flow (system diagram as an ordered list) */
+.flow { list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+.flow li { position: relative; margin: 0 0 1.35rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .6rem 3rem; font-size: .9rem; }
+.flow li:last-child { margin-bottom: 0; }
+.flow li::after { content: "↓"; position: absolute; left: 50%; bottom: -1.3rem; transform: translateX(-50%); color: var(--muted); font-size: .9rem; }
+.flow li:last-child::after { content: none; }
+.flow .k { position: absolute; left: .7rem; top: .55rem; font-family: var(--mono); font-size: .75rem; color: var(--paper); background: var(--ink); border-radius: 3px; padding: .05rem .4rem; }
+.flow b { color: var(--ink); }
+.flow .kind { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-left: .35rem; white-space: nowrap; }
+.flow .ai { border-left: 4px solid var(--t2); }
+.flow .rule { border-left: 4px solid var(--accent); }
+.flow .person { border-left: 4px solid var(--t3); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .78rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 2px; vertical-align: -2px; margin-right: .3rem; }
+
+/* Confusion grid */
+.cm { display: grid; grid-template-columns: 7.5rem repeat(2, minmax(0,1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.cm .h { font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.cm .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.cm .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.cm .ok { background: var(--good-soft); } .cm .fa { background: var(--t3-soft); } .cm .miss { background: var(--bad-soft); } .cm .tn { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .cm { grid-template-columns: 5rem repeat(2, minmax(0,1fr)); font-size: .8rem; } }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+blockquote { margin: .75rem 0 0; padding: .5rem .9rem; border-left: 3px solid var(--rule); font-family: var(--display); font-style: italic; font-size: 1.02rem; color: var(--body); }
+blockquote cite { display: block; font-family: var(--text); font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* Calculators */
+.calc { min-width: 46rem; }
+.calc td { vertical-align: middle; }
+.calc input[type=number] { width: 5.6rem; padding: .3rem .35rem; font-size: .85rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calc .out { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--ink); }
+.calc .out.big { font-weight: 600; }
+.calc .neg { color: var(--bad); } .calc .pos { color: var(--good); }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin: .5rem 0 .9rem; }
+.knobs label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: .15rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.lab td input { min-width: 7rem; }
+.leaf { font-size: .88rem; }
+.leaf .tag { font-family: var(--mono); font-size: .7rem; color: var(--bad); }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Course pages">
+  <a href="dashboard.html">My course</a>
+  <a href="./">Programme handbook</a>
+  <a href="module-01.html">Module 1</a>
+  <a href="module-02.html" aria-current="page">Module 2</a>
+  <a href="./#case">Case: Harbourview Polyclinics</a>
+  <a href="login.html">Sign in</a>
+</nav>
+
+<p class="eyebrow">Term I · Foundations · Week 2 · Module 2</p>
+<h1>Technical fluency for product decisions</h1>
+<p class="lede">You will not build the model. You will decide how it is built, what it costs, and where it will break.</p>
+<ul class="meta"><li>About 7 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: decision record, test, viva</li><li>No coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>In Module 1 you decided <em>whether</em> a problem needs artificial intelligence (AI). This module is about <em>how</em>. Engineers will offer you choices with unfamiliar names: prompting, retrieval, fine-tuning, a bigger model, an agent. Each choice changes what the product costs, how fast it answers, how easy it is to keep up to date, and how it fails. Those are product decisions, so you need to understand them well enough to ask the right questions and defend an answer. You will not write any code.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Choose between prompting, retrieval, fine-tuning, classical machine learning and agents for a given problem, and defend the choice.</li>
+  <li>Trade off quality, cost and response time to pick a model, and calculate what a design costs to run.</li>
+  <li>Read a system diagram and spot where it will fail, and judge which kind of prediction error matters more for a given action.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">90 min</span><span class="d">Six short parts with worked examples. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">The Harbourview technical pack: three designs for the medicine assistant, and test results for the missed-appointment predictor. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">3–4 hrs</span><span class="d">Write an architecture decision record with a cost table, using the two calculators on this page. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your decision record. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Decision record draft<b id="st-adr">0 words</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you type. Nobody else can see them until you press <strong>Copy all my work</strong> at the end and send it. Every acronym is spelled out the first time it appears on this page, even if Module 1 already did so. All prices on this page are invented for teaching; real prices change often, so always check a vendor's current price list.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · about 90 minutes</span>How AI systems are built, and what that means for you</h2>
+<p>Parts 1 to 3 explain how a large language model works and the five main ways to build a feature with one. Part 4 covers choosing a model and working out its cost. Part 5 covers prediction models and their two kinds of error. Part 6 shows you how to record a technical decision so others can check it.</p>
+
+<h3 id="l1">2.1 How a large language model reads and writes</h3>
+<p>A large language model (LLM) is a generative AI model trained on huge amounts of text. Claude and GPT are examples. When you send it a request, it reads everything you gave it, then writes an answer one small piece at a time, each time choosing a likely next piece. Five ideas follow from this, and each one has a product consequence.</p>
+<dl class="terms">
+  <dt>Token</dt><dd>The small piece of text a model reads and writes. In English, one token is roughly three-quarters of a word, so 1,000 tokens is about 750 words. Many other languages and scripts, including Tamil, often take more tokens for the same meaning. <strong>Why you care:</strong> you pay per token, and limits are set in tokens.</dd>
+  <dt>Input and output tokens</dt><dd>Input is everything the model reads: your instructions, any documents, the conversation so far and the user's question. Output is what it writes. Output tokens usually cost several times more than input tokens.</dd>
+  <dt>Context window</dt><dd>The most tokens a model can consider in one request, counting input and output together. It works like a desk: everything the model needs must fit on it at once. <strong>Why you care:</strong> a bigger desk costs more to fill, and models can overlook details buried in the middle of a very long input.</dd>
+  <dt>Training cutoff</dt><dd>The date after which the model learned nothing new. It does not know about a leaflet updated last week unless you give it that leaflet in the request.</dd>
+  <dt>Hallucination</dt><dd>A fluent, confident answer that is not supported by any source. It happens because the model is choosing likely words, not looking up facts. <strong>Why you care:</strong> this is the failure you will design against most often.</dd>
+  <dt>Response time (latency)</dt><dd>How long the user waits for an answer. It grows with the size of the model and with the number of tokens it must read and write.</dd>
+</dl>
+<div class="note"><p><strong>The big idea.</strong> A model only knows two things: what it learned in training, and what you put on its desk for this request. Most design choices in this module are about what goes on the desk.</p></div>
+
+<h3 id="l2">2.2 Five ways to build an AI feature</h3>
+<p>Think of the options as a ladder. Each rung adds capability, but also cost, complexity and new ways to fail. Start on the lowest rung that could work, and climb only when testing shows you must. This is the core advice in Anthropic's widely read guide to building with LLMs, listed in the reading.</p>
+<ol class="ladder">
+  <li><span class="r">1</span><b>Prompting only</b><span>Give a general model clear instructions and the user's input. It answers from what it learned in training.</span></li>
+  <li><span class="r">2</span><b>Retrieval-augmented generation (RAG)</b><span>Before the model answers, a search step finds the most relevant passages from your own approved documents and puts them on the desk. The model answers from those and can show which document it used.</span></li>
+  <li><span class="r">3</span><b>Fine-tuning</b><span>Train an existing model further on hundreds or thousands of your own examples, so its default behaviour changes.</span></li>
+  <li><span class="r">4</span><b>Tool use and fixed workflows</b><span>The model can ask your software to do things (look up a record, check a calendar) inside steps your developers have fixed in advance.</span></li>
+  <li><span class="r">5</span><b>Agents</b><span>A model using tools in a loop and deciding its own next step until the task is done. Most flexible, least predictable, hardest to test.</span></li>
+</ol>
+<p><strong>Classical machine learning (ML)</strong> sits beside the ladder rather than on it. When the job is to predict a number or a category from structured records, such as "will this patient miss their appointment?", a classical model is usually cheaper, faster and easier to test than an LLM. Part 2.5 covers it.</p>
+
+<div class="scroll"><table>
+<thead><tr><th>Approach</th><th>Best for</th><th>Weak at</th><th>To change what it knows</th><th>Typical failure</th></tr></thead>
+<tbody>
+<tr><td><strong>Prompting only</strong></td><td>General tasks: drafting, summarising, rewording</td><td>Your organisation's own facts; anything after the training cutoff</td><td>Edit the instructions. Minutes.</td><td>Confidently states general knowledge that contradicts your policy</td></tr>
+<tr><td><strong>Retrieval (RAG)</strong></td><td>Answering from documents you control, which change over time</td><td>Questions the documents do not cover; very long reasoning</td><td>Replace the document and re-index it. Minutes to hours.</td><td>Search finds the wrong or an out-of-date passage; model ignores or misreads the passage</td></tr>
+<tr><td><strong>Fine-tuning</strong></td><td>A consistent style, format or narrow skill; making a small model behave like a bigger one</td><td>Adding facts that change; showing where an answer came from</td><td>Collect examples and retrain. Days to weeks, and a cost each time.</td><td>Answers from out-of-date training examples; hard to tell why</td></tr>
+<tr><td><strong>Tool use and workflows</strong></td><td>Tasks needing live data or actions, in a known order</td><td>Tasks whose steps cannot be predicted</td><td>Change a tool or a step</td><td>Calls the wrong tool or passes it wrong details</td></tr>
+<tr><td><strong>Agents</strong></td><td>Open-ended, multi-step tasks where the path varies</td><td>Anything where an error is costly and hard to catch</td><td>Change tools, instructions and limits</td><td>Takes a wrong action, or loops; errors build on errors</td></tr>
+<tr><td><strong>Classical ML</strong></td><td>Predicting a number or category from records</td><td>Language, open-ended answers</td><td>Retrain on new records</td><td>Learns patterns that are unfair to some groups; quality drifts</td></tr>
+</tbody></table></div>
+
+<p>Two building blocks appear inside several of these approaches:</p>
+<dl class="terms">
+  <dt>Structured output</dt><dd>Asking the model to answer in a fixed format with named fields, often JSON (JavaScript Object Notation, a standard text format for data). Software can then check each field, for example that a dose field contains a number found in the leaflet.</dd>
+  <dt>Guardrail</dt><dd>A check before or after the model, often a plain rule rather than AI. For example: if the question mentions chest pain, skip the model and tell the user to call for help.</dd>
+</dl>
+
+<div class="worked">
+<h4>Worked example · Riverside Public Library (fictional)</h4>
+<p>The library wants an "Ask the library" chat in its app. Members ask about opening hours, borrowing limits, fines and how to book rooms. These rules are written in a 40-page policy handbook that changes about four times a year.</p>
+<ul>
+  <li><strong>Prompting only</strong> would answer from general knowledge of how libraries usually work. It might say members can borrow 10 books when Riverside allows 8. Rejected.</li>
+  <li><strong>Fine-tuning</strong> on the handbook would need retraining every time the handbook changes, and could not show members the rule it used. Rejected.</li>
+  <li><strong>Retrieval</strong> over the handbook answers from the current rules and can quote the section. A guardrail sends any question about a disputed fine to a person. <strong>Chosen.</strong></li>
+  <li><strong>An agent</strong> that could also renew loans and waive fines was considered and deferred: waiving fines is an action with a cost, and the library wants six months of chat logs first.</li>
+</ul>
+<p style="margin:0">Notice the pattern: the choice was driven by how often the facts change, whether users need to see the source, and what an action would cost if it went wrong.</p>
+</div>
+
+<h3 id="l3">2.3 How retrieval works, and how to read a system diagram</h3>
+<p>Retrieval depends on <strong>embeddings</strong>. An embedding turns a piece of text into a long list of numbers that captures its meaning, so that texts with similar meaning get similar numbers. That lets the search step find "what to do after a missed dose" when a patient types "I forgot my pill this morning", even though the two share no words. This is often called search by meaning, or semantic search. The documents are cut into short passages (called chunks), each passage gets an embedding, and the embeddings are kept in a searchable store called a vector database.</p>
+
+<p>Here is the library's design drawn as a system diagram. Each box is one step. The colour shows whether the step is a fixed rule, an AI step or a person.</p>
+<div class="legend" aria-hidden="true"><span><i style="background:var(--accent)"></i>Fixed rule</span><span><i style="background:var(--t2)"></i>AI step</span><span><i style="background:var(--t3)"></i>Person</span></div>
+<ol class="flow" aria-label="Riverside library chat, step by step">
+  <li class="rule"><span class="k">1</span><b>Member asks a question</b><span class="kind">input</span><br>Signed in, so the system knows their membership type.</li>
+  <li class="rule"><span class="k">2</span><b>Question check</b><span class="kind">rule</span><br>Disputed fines or complaints go straight to staff.</li>
+  <li class="ai"><span class="k">3</span><b>Search the handbook</b><span class="kind">embeddings</span><br>Finds the three most relevant passages.</li>
+  <li class="ai"><span class="k">4</span><b>Model writes the answer</b><span class="kind">LLM</span><br>Using only those passages, and naming the section.</li>
+  <li class="rule"><span class="k">5</span><b>Answer check</b><span class="kind">rule</span><br>No section named means no answer: show "Ask a librarian" instead.</li>
+  <li class="person"><span class="k">6</span><b>Weekly review</b><span class="kind">person</span><br>A librarian reads 50 logged conversations.</li>
+</ol>
+
+<h4>The failure-point walk</h4>
+<p>To spot where a design will fail, walk through each box and ask four questions. You do not need to know how the box is built.</p>
+<ol>
+  <li><strong>What goes in?</strong> Could it be missing, wrong, out of date or in an unexpected language?</li>
+  <li><strong>What comes out?</strong> What does a bad output look like?</li>
+  <li><strong>How could this box get it wrong?</strong> Name the most likely and the most harmful error.</li>
+  <li><strong>How would we know?</strong> Is there a check after it, a log, a person? If nobody would notice, that is your weakest point.</li>
+</ol>
+<p>For a retrieval design, the same five failure points come up again and again:</p>
+<div class="scroll"><table>
+<thead><tr><th>Failure point</th><th>Example at the library</th><th>Typical safeguard</th></tr></thead>
+<tbody>
+<tr><td><strong>The source is wrong</strong></td><td>The handbook still lists last year's opening hours</td><td>An owner and review date for every document; block overdue ones</td></tr>
+<tr><td><strong>Search misses</strong></td><td>"Can I bring my dog?" finds nothing, because the rule is under "Animals"</td><td>Test questions written in users' words; check what search returns, not only the final answer</td></tr>
+<tr><td><strong>The model ignores or bends the passage</strong></td><td>The passage says 8 books; the answer says 10</td><td>An answer check comparing key numbers with the passage</td></tr>
+<tr><td><strong>The question is out of scope</strong></td><td>"Which lawyer should I use for my divorce?"</td><td>A question check and a polite handover message</td></tr>
+<tr><td><strong>Nobody looks</strong></td><td>Errors pile up in logs nobody reads</td><td>A named reviewer, a sample size and a schedule</td></tr>
+</tbody></table></div>
+
+<h3 id="l4">2.4 Choosing a model: quality, cost and response time</h3>
+<p>Vendors usually offer a family of models in several sizes. Larger models tend to handle harder reasoning better, but they cost more per token and take longer to answer. You are always trading three things against each other: <strong>quality</strong>, <strong>cost</strong> and <strong>response time</strong>.</p>
+<ul>
+  <li><strong>Pick the smallest model that passes your test set.</strong> "Best on a public benchmark" is not the same as "good enough for our task". Test on your own questions.</li>
+  <li><strong>Route.</strong> Send easy questions to a small model and hard ones to a bigger one, or to a person.</li>
+  <li><strong>Watch where the data goes.</strong> Some models are only available in certain countries or data centres. A model that sends patient data overseas may be ruled out before quality is even considered.</li>
+  <li><strong>Plan for price changes.</strong> Model prices have moved a lot, in both directions. A design should still make sense if prices rise by half.</li>
+</ul>
+
+<h4>Working out what a design costs to run</h4>
+<p>Prices are quoted per million tokens, with separate prices for input and output. The cost of one request is:</p>
+<div class="formula">cost per request = (input tokens × input price + output tokens × output price) ÷ 1,000,000</div>
+<p>Then multiply by how many requests you expect. Add fixed monthly costs that do not depend on use, such as a vector database or dedicated hosting.</p>
+
+<div class="worked">
+<h4>Worked example · the library chat</h4>
+<p>Each question puts about 1,500 input tokens on the desk (instructions 600, three handbook passages 850, the question 50) and gets an answer of about 200 output tokens. The library's chosen model costs <strong>S$3</strong> (Singapore dollars) per million input tokens and <strong>S$15</strong> per million output tokens.</p>
+<div class="formula">(1,500 × 3 + 200 × 15) ÷ 1,000,000 = (4,500 + 3,000) ÷ 1,000,000 = S$0.0075 per question</div>
+<p>That is <strong>S$7.50 per 1,000 questions</strong>. At 5,000 questions a month, the model costs about S$37.50 a month. Add S$100 a month for the vector database and the total is about S$137.50.</p>
+<p style="margin:0"><strong>The lesson inside the arithmetic:</strong> token costs are often small next to the cost of the people who build, review and support the product. But they grow in direct proportion to use, and design choices multiply them. Doubling the passages retrieved, or moving to a model five times the price, changes the number fast.</p>
+</div>
+
+<h3 id="l5">2.5 Prediction models and their two kinds of error</h3>
+<p>A classical prediction model gives each case a score, for example the chance that a reserved book will never be collected. You choose a <strong>threshold</strong>: cases scoring above it are flagged. Every flag then lands in one of four boxes.</p>
+
+<div class="cm" role="table" aria-label="The four outcomes of a prediction, with the library example">
+  <div class="h" role="columnheader"></div><div class="h" role="columnheader">Really happened</div><div class="h" role="columnheader">Did not happen</div>
+  <div class="h" role="rowheader">Flagged</div>
+  <div class="cell ok" role="cell"><b>120</b>Correct flag (true positive)</div>
+  <div class="cell fa" role="cell"><b>30</b>False alarm (false positive)</div>
+  <div class="h" role="rowheader">Not flagged</div>
+  <div class="cell miss" role="cell"><b>80</b>Missed case (false negative)</div>
+  <div class="cell tn" role="cell"><b>770</b>Correctly left alone (true negative)</div>
+</div>
+<p>The numbers are from the library: 1,000 reservations, of which 200 were never collected. The model flagged 150.</p>
+<dl class="terms">
+  <dt>Precision</dt><dd>Of everything flagged, how much was right? 120 ÷ 150 = <strong>80%</strong>. Low precision means many false alarms.</dd>
+  <dt>Recall</dt><dd>Of everything that really happened, how much did we catch? 120 ÷ 200 = <strong>60%</strong>. Low recall means many missed cases.</dd>
+  <dt>False alarm rate</dt><dd>Of the cases that were fine, how many did we wrongly flag? 30 ÷ 800 = <strong>3.75%</strong>. This matters when false alarms land on people.</dd>
+  <dt>Base rate</dt><dd>How common the event is: here 200 in 1,000, or 20%.</dd>
+</dl>
+
+<h4>Three rules for product managers</h4>
+<ol>
+  <li><strong>Never accept "accuracy" on its own.</strong> If only 11% of appointments are missed, a "model" that predicts "everyone attends" is 89% accurate and completely useless. Ask for precision and recall.</li>
+  <li><strong>The threshold is a product decision, not a technical one.</strong> Lowering it catches more real cases (higher recall) but raises more false alarms (lower precision). Raising it does the opposite. You cannot have both at their best.</li>
+  <li><strong>Which error matters more depends on the action you take.</strong> If a flag triggers something cheap and harmless, such as a reminder message, false alarms cost little, so favour recall. If a flag triggers something costly or unfair to the person flagged, favour precision, or reconsider the action.</li>
+</ol>
+<p>Finally, always compare the model with a <strong>baseline</strong>: the simplest rule that does the same job, such as "flag anyone who did this before". A model has to beat the baseline by enough to pay for itself.</p>
+
+<h3 id="l6">2.6 Recording the decision: the architecture decision record</h3>
+<p>An architecture decision record (ADR) is a short document that captures one important design choice: the situation, the options considered, what was chosen, and what the team accepts as a result. Engineering teams have used them for years. They matter even more for AI products, because the right choice depends on prices, models and test results that will change. A good ADR lets someone, a year later, see why you chose what you did and know when to choose again.</p>
+<div class="scroll"><table>
+<thead><tr><th>Section</th><th>What it says</th></tr></thead>
+<tbody>
+<tr><td><strong>Context</strong></td><td>The problem and the constraints, in a few sentences</td></tr>
+<tr><td><strong>Decision drivers</strong></td><td>The three to five things that matter most, in priority order (for example: patient safety, ease of updating, cost)</td></tr>
+<tr><td><strong>Options considered</strong></td><td>Each option with its evidence: cost, test results, main failure. A table works well.</td></tr>
+<tr><td><strong>Decision</strong></td><td>What you chose, in one or two sentences</td></tr>
+<tr><td><strong>Consequences</strong></td><td>What you gain, what you give up, the risks you accept and how you will control them</td></tr>
+<tr><td><strong>Revisit when</strong></td><td>Specific events that would reopen the decision, for example "a model price rises by more than 50%"</td></tr>
+</tbody></table></div>
+<div class="worked">
+<h4>Worked example · ADR-007, Riverside "Ask the library" chat (shortened)</h4>
+<p><strong>Context.</strong> Members ask staff about 5,000 policy questions a month. Rules live in a handbook revised four times a year.</p>
+<p><strong>Drivers.</strong> 1. Answers match current policy. 2. Members can see the rule. 3. Under S$500 a month to run.</p>
+<p><strong>Options.</strong> Prompting only: about S$25 a month in tokens, but 31% of test answers contradicted the handbook. Fine-tuning: cannot show sources, retraining four times a year at S$2,000 each. Retrieval: S$137.50 a month, 94% of test answers correct with the right section named.</p>
+<p><strong>Decision.</strong> Retrieval over the handbook, with fine disputes sent to staff.</p>
+<p><strong>Consequences.</strong> We accept the cost of a vector database and must keep the handbook current. The handbook owner signs off each revision before it is re-indexed.</p>
+<p style="margin:0"><strong>Revisit when.</strong> Correct answers drop below 90% in the weekly review; or we want the chat to take actions such as renewing loans.</p>
+</div>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: the technical pack</h2>
+<p>You are still Harbourview's head of digital products. Whatever you recommended to the board in Module 1, the board has now asked for a technical recommendation on two initiatives before it releases any build budget. Read the memo, then open each section of the pack. All names and figures are invented for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Daniel Ong, Chief Information Officer (CIO)<br>TO: Head of Digital Products<br>RE: Design decisions for the medicine assistant and the missed-appointment predictor</div>
+<p>The board will not fund anything until we can say how each product would be built, what it will cost to run, and how it could go wrong. My engineers have tested three designs for the <strong>medicine questions assistant</strong> and two settings for the <strong>missed-appointment predictor</strong>. The results are attached.</p>
+<p>Two rules are fixed. First, <strong>patient data must be processed in Singapore</strong>. Second, any design must let us update a medicine leaflet within a week of the pharmacy approving the change.</p>
+<p>I need a decision record from you for each product: which design, why, what it costs, where it will fail, and what would make us reconsider. Keep it to three pages.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. The three designs for the medicine assistant</b><span class="k">Initiative A</span></summary>
+<div class="in">
+<p>Patients ask about their own prescribed medicines in the Harbourview app. Every design receives the patient's current prescription list (about 400 tokens) and their question (about 60 tokens), and writes an answer of about 250 tokens.</p>
+<div class="scroll"><table>
+<thead><tr><th>Design</th><th>How it works</th><th class="num">Input tokens</th><th>Fixed monthly cost</th><th>One-off cost</th><th>Updating a leaflet</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Prompting only</strong></td><td>Detailed instructions (800 tokens) plus prescription and question. Answers from general medical knowledge.</td><td class="num">1,260</td><td>None</td><td>S$15,000 to write and test instructions</td><td>Not possible: it does not read the leaflets</td></tr>
+<tr><td><strong>2. Retrieval over approved leaflets</strong></td><td>Instructions (800), prescription, question, plus the 3 most relevant leaflet passages (2,000 tokens). Names the leaflet used.</td><td class="num">3,260</td><td>S$300 vector database</td><td>S$25,000 to prepare and index 640 leaflets</td><td>Replace and re-index: under an hour</td></tr>
+<tr><td><strong>3. Fine-tuned small model</strong></td><td>Swift model trained on the leaflets and 5,000 question-and-answer pairs written by pharmacists. Short instructions (300 tokens).</td><td class="num">760</td><td>S$1,500 dedicated hosting</td><td>S$40,000 to write the 5,000 pairs; S$6,000 per training run</td><td>Retrain: about 2 weeks and S$6,000 each time</td></tr>
+</tbody></table></div>
+<p>About 15 leaflets change in a typical month. 52 leaflets (8%) are overdue for their scheduled review. About 30% have no translation into Mandarin, Malay or Tamil.</p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. Model price card</b><span class="k">Harbourview's approved vendor</span></summary>
+<div class="in">
+<div class="scroll"><table>
+<thead><tr><th>Model</th><th class="num">S$ per million input tokens</th><th class="num">S$ per million output tokens</th><th class="num">Typical response time</th><th>Where data is processed</th></tr></thead>
+<tbody>
+<tr><td><strong>Swift</strong> (small)</td><td class="num">0.40</td><td class="num">2.00</td><td class="num">1.0 s</td><td>Singapore</td></tr>
+<tr><td><strong>Core</strong> (medium)</td><td class="num">4.00</td><td class="num">20.00</td><td class="num">2.5 s</td><td>Singapore</td></tr>
+<tr><td><strong>Summit</strong> (large)</td><td class="num">20.00</td><td class="num">100.00</td><td class="num">6.0 s</td><td>United States only</td></tr>
+<tr><td><strong>Swift, fine-tuned</strong></td><td class="num">0.80</td><td class="num">4.00</td><td class="num">1.0 s</td><td>Singapore</td></tr>
+</tbody></table></div>
+<p>Retrieval adds about 0.5 seconds for the search step. Searching by meaning (embeddings) costs S$0.03 per million tokens, which is too small to matter here.</p>
+<p><strong>Expected use:</strong> 18,000 questions a month if 30% of eligible patients use the assistant. Up to 60,000 a month at high adoption.</p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. Pilot test results for the medicine assistant</b><span class="k">200 questions written by pharmacists</span></summary>
+<div class="in">
+<p>Pharmacists wrote 200 test questions based on real, anonymised helpline calls. They marked each answer. A <strong>harmful error</strong> is an answer a pharmacist judged could lead a patient to take a medicine unsafely.</p>
+<div class="scroll"><table>
+<thead><tr><th>Design and model</th><th class="num">Correct and supported</th><th class="num">Harmful errors</th><th>Shows its source</th><th class="num">Response time</th><th>After a leaflet update</th></tr></thead>
+<tbody>
+<tr><td>1. Prompting only · Core</td><td class="num">156 (78%)</td><td class="num">7</td><td>No</td><td class="num">2.5 s</td><td>Ignores the update</td></tr>
+<tr><td>2a. Retrieval · Swift</td><td class="num">168 (84%)</td><td class="num">4</td><td>Yes</td><td class="num">1.5 s</td><td>Uses the new leaflet</td></tr>
+<tr><td>2b. Retrieval · Core</td><td class="num">182 (91%)</td><td class="num">1</td><td>Yes</td><td class="num">3.0 s</td><td>Uses the new leaflet</td></tr>
+<tr><td>2c. Retrieval · Summit</td><td class="num">186 (93%)</td><td class="num">1</td><td>Yes</td><td class="num">6.5 s</td><td>Uses the new leaflet</td></tr>
+<tr><td>3. Fine-tuned Swift</td><td class="num">170 (85%)</td><td class="num">3</td><td>No</td><td class="num">1.0 s</td><td>Gave the old advice in 9 of 12 updated cases</td></tr>
+</tbody></table></div>
+<h4>A closer look at design 2b, retrieval on Core</h4>
+<div class="scroll"><table>
+<thead><tr><th>Type of question</th><th class="num">Questions</th><th class="num">Correct</th></tr></thead>
+<tbody>
+<tr><td>What it is for, when to take it, side effects</td><td class="num">120</td><td class="num">116 (97%)</td></tr>
+<tr><td>What to do after a missed dose</td><td class="num">40</td><td class="num">38 (95%)</td></tr>
+<tr><td>Is it safe with another medicine?</td><td class="num">40</td><td class="num">28 (70%)</td></tr>
+<tr><td><em>Asked in English</em></td><td class="num">140</td><td class="num">133 (95%)</td></tr>
+<tr><td><em>Asked in Mandarin, Malay or Tamil</em></td><td class="num">60</td><td class="num">49 (82%)</td></tr>
+<tr><td><em>…of which the leaflet had no translation</em></td><td class="num">20</td><td class="num">12 (60%)</td></tr>
+</tbody></table></div>
+<p>The single harmful error in design 2b came from a leaflet overdue for review. It still carried an old instruction for a missed dose, and the model repeated it faithfully.</p>
+<blockquote>"Retrieval did what it was told. It read our leaflet and repeated it. The problem was our leaflet."<cite>Head Pharmacist</cite></blockquote>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. Proposed system diagram for the retrieval design</b><span class="k">Use it for your failure-point walk</span></summary>
+<div class="in">
+<div class="legend" aria-hidden="true" style="margin-top:.25rem"><span><i style="background:var(--accent)"></i>Fixed rule</span><span><i style="background:var(--t2)"></i>AI step</span><span><i style="background:var(--t3)"></i>Person</span></div>
+<ol class="flow" aria-label="Harbourview medicine assistant, step by step">
+  <li class="rule"><span class="k">1</span><b>Patient signs in to the app</b><span class="kind">identity</span><br>The system knows who is asking.</li>
+  <li class="rule"><span class="k">2</span><b>Prescription lookup</b><span class="kind">records</span><br>The patient's current medicines, from the pharmacy system.</li>
+  <li class="rule"><span class="k">3</span><b>Question check</b><span class="kind">rule</span><br>Words such as "chest pain", "can't breathe" or "overdose" show the emergency message and Singapore's ambulance number, 995. Questions about medicines not on the prescription go to a pharmacist.</li>
+  <li class="ai"><span class="k">4</span><b>Search the leaflets</b><span class="kind">embeddings</span><br>Finds the 3 most relevant passages among 640 approved leaflets.</li>
+  <li class="ai"><span class="k">5</span><b>Model writes the answer</b><span class="kind">LLM</span><br>Uses only those passages and names the leaflet.</li>
+  <li class="rule"><span class="k">6</span><b>Answer check</b><span class="kind">rule</span><br>Every dose or time in the answer must appear in the passage. No leaflet named means no answer.</li>
+  <li class="rule"><span class="k">7</span><b>Patient sees the answer</b><span class="kind">screen</span><br>With an "Ask a pharmacist" button on every answer.</li>
+  <li class="person"><span class="k">8</span><b>Logging and review</b><span class="kind">person</span><br>Every question, passage and answer is stored. A pharmacist reviews a sample each week.</li>
+</ol>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>5. Test results for the missed-appointment predictor</b><span class="k">Initiative D</span></summary>
+<div class="in">
+<p>Engineers tested the model on 10,000 past appointments it had never seen. <strong>1,100</strong> of them (11%) were missed. They compared two thresholds with the simple rule from Module 1.</p>
+<div class="scroll"><table>
+<thead><tr><th>Option</th><th class="num">Flagged</th><th class="num">Correct flags</th><th class="num">False alarms</th><th class="num">Missed cases</th><th class="num">Correctly left alone</th></tr></thead>
+<tbody>
+<tr><td><strong>Rule:</strong> flag anyone who missed their last appointment</td><td class="num">1,400</td><td class="num">520</td><td class="num">880</td><td class="num">580</td><td class="num">8,020</td></tr>
+<tr><td><strong>Model, high threshold</strong> (riskiest 10%)</td><td class="num">1,000</td><td class="num">450</td><td class="num">550</td><td class="num">650</td><td class="num">8,350</td></tr>
+<tr><td><strong>Model, low threshold</strong> (riskiest 25%)</td><td class="num">2,500</td><td class="num">770</td><td class="num">1,730</td><td class="num">330</td><td class="num">7,170</td></tr>
+</tbody></table></div>
+<h4>What a flag could trigger</h4>
+<div class="scroll"><table>
+<thead><tr><th>Action</th><th>Cost of acting</th><th>When the flag is right</th><th>When the flag is a false alarm</th></tr></thead>
+<tbody>
+<tr><td><strong>Reminder call</strong> from a staff member, offering to rebook</td><td>About S$3 of staff time per call</td><td>About 40% of called patients who would have missed either attend or cancel in time, so the slot is reused (worth S$45)</td><td>A patient who was coming anyway gets a call. Most find it helpful.</td></tr>
+<tr><td><strong>Overbooking</strong>: book an extra patient into the flagged slot</td><td>None upfront</td><td>The empty slot is filled (worth S$45)</td><td>Two patients for one slot. Both wait longer, and the doctor is rushed. Estimated cost about S$60 in waiting time, complaints and pressure on care.</td></tr>
+</tbody></table></div>
+<h4>Who gets flagged: model, low threshold</h4>
+<div class="scroll"><table>
+<thead><tr><th>Patient group</th><th class="num">Attended</th><th class="num">False alarms</th><th class="num">False alarm rate</th><th class="num">Missed</th><th class="num">Caught</th><th class="num">Recall</th></tr></thead>
+<tbody>
+<tr><td>Under 65</td><td class="num">7,000</td><td class="num">1,050</td><td class="num">15%</td><td class="num">800</td><td class="num">520</td><td class="num">65%</td></tr>
+<tr><td>65 and over</td><td class="num">1,900</td><td class="num">680</td><td class="num">36%</td><td class="num">300</td><td class="num">250</td><td class="num">83%</td></tr>
+</tbody></table></div>
+<p>At the high threshold the pattern is similar: a false alarm rate of 4% for under-65s and 14% for those 65 and over.</p>
+<p>Harbourview has about <strong>920,000</strong> booked appointments a year, which is 92 times the test set. The model would cost S$120,000 to build and S$15,000 a year to run. The rule costs almost nothing.</p>
+<blockquote>"If the model sends my team to call older patients more often, I can live with that. Many of them want the call. If it double-books them more often, I can't."<cite>Director of Operations</cite></blockquote>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 15 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. Keep the technical pack open as you answer; some questions need a quick calculation.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 3–4 hours · Graded 60%</span>The architecture decision record</h2>
+<div class="note"><p><strong>Your task.</strong> Write one document, no more than three pages (about 1,400 words plus tables), containing two decision records for the Chief Information Officer: <strong>ADR-001</strong> on how to build the medicine questions assistant, and <strong>ADR-002</strong> on how to use the missed-appointment predictor.</p></div>
+
+<h3>What your document must contain</h3>
+<h4>ADR-001 · Medicine questions assistant</h4>
+<ol>
+  <li><strong>Context</strong> in no more than 100 words.</li>
+  <li><strong>Decision drivers</strong>, three to five, in priority order.</li>
+  <li><strong>Options table</strong> comparing all three designs and the models you considered: cost per 1,000 questions, monthly running cost at 18,000 questions, one-off cost, ease of updating a leaflet, pilot quality, harmful errors and the main way each fails. Use the cost calculator below.</li>
+  <li><strong>Decision</strong> in one or two sentences, naming the design and the model.</li>
+  <li><strong>Failure points and safeguards.</strong> Walk the system diagram. Name at least five failure points, the harm each could cause, and the safeguard you require. Say which safeguards are rules and which need a person.</li>
+  <li><strong>Consequences:</strong> what you give up and the risks you accept.</li>
+  <li><strong>Revisit when:</strong> at least three specific triggers.</li>
+</ol>
+<h4>ADR-002 · Missed-appointment predictor</h4>
+<ol>
+  <li><strong>Context</strong> in no more than 75 words.</li>
+  <li><strong>Which error matters more?</strong> For each action (reminder call and overbooking), say whether a missed case or a false alarm costs more, who bears it, and therefore whether you favour precision or recall.</li>
+  <li><strong>Options table</strong> for the rule and both model thresholds: precision, recall, false alarm rate and net value per year for each action. Use the error calculator below.</li>
+  <li><strong>Decision:</strong> the action, the option (rule or model, and which threshold), and whether the model is worth its cost over the rule.</li>
+  <li><strong>Fairness check:</strong> what the age-group figures mean for your decision, and the safeguard you set.</li>
+  <li><strong>Revisit when:</strong> at least two specific triggers.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>Each decision names a specific design, model or threshold, and follows from the stated drivers. Rejected options are given a real reason. Hybrid designs (for example, routing some questions to a pharmacist) are considered.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Costs are calculated correctly and shown. Pilot results and error figures are used, not just adjectives. Assumptions are labelled. The model is compared with the rule.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>At least five failure points with matching safeguards; harms named with who bears them; the fairness finding is addressed with a concrete safeguard; revisit triggers are specific and measurable.</td></tr>
+<tr><td><strong>Communication</strong></td><td>The Chief Information Officer could act on it after five minutes. Three pages, decisions stated up front, plain language, every acronym spelled out once.</td></tr>
+</tbody></table></div>
+
+<h3>Tool 1 · Cost calculator for the medicine assistant</h3>
+<p>The table is filled in from the technical pack. Change the volume or the price shift to test your design under different conditions. You can also edit any figure to try your own assumptions; use <em>Reset</em> to go back to the pack's figures.</p>
+<div class="knobs">
+  <div><label for="vol">Questions per month</label><input type="number" id="vol" min="0" step="1000" value="18000"></div>
+  <div><label for="shift">Change in model prices</label><select id="shift"><option value="-50">50% cheaper</option><option value="0" selected>As on the price card</option><option value="50">50% dearer</option><option value="100">Twice the price</option></select></div>
+  <div style="align-self:end"><button class="btn" type="button" id="calc-reset">Reset to pack figures</button></div>
+</div>
+<div class="scroll"><table class="calc" id="cost">
+<thead><tr><th>Design and model</th><th class="num">Input tokens</th><th class="num">Output tokens</th><th class="num">S$ / M in</th><th class="num">S$ / M out</th><th class="num">Fixed S$ / month</th><th class="num">S$ per 1,000 questions</th><th class="num">S$ per month</th><th class="num">S$ per year</th></tr></thead>
+<tbody id="cost-body"></tbody>
+</table></div>
+<p style="font-size:.85rem;color:var(--muted)">S$ / M means Singapore dollars per million tokens. Running costs only; one-off costs (preparing leaflets, writing training examples, retraining) are in the pack and belong in your options table too.</p>
+
+<h3>Tool 2 · Error calculator for the missed-appointment predictor</h3>
+<p>Filled in from the technical pack, per 10,000 appointments. Change the assumptions to see how the best option moves.</p>
+<div class="knobs">
+  <div><label for="k-call">Cost of one call (S$)</label><input type="number" id="k-call" min="0" step="0.5" value="3"></div>
+  <div><label for="k-save">Calls that save a slot (%)</label><input type="number" id="k-save" min="0" max="100" step="5" value="40"></div>
+  <div><label for="k-slot">Value of a reused slot (S$)</label><input type="number" id="k-slot" min="0" step="5" value="45"></div>
+  <div><label for="k-harm">Cost of a wrong overbooking (S$)</label><input type="number" id="k-harm" min="0" step="5" value="60"></div>
+</div>
+<div class="scroll"><table class="calc" id="err">
+<thead><tr><th>Option</th><th class="num">Flagged</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">False alarm rate</th><th class="num">Net per 10,000 · calls</th><th class="num">Net per year · calls</th><th class="num">Net per year · overbooking</th></tr></thead>
+<tbody id="err-body"></tbody>
+</table></div>
+<p style="font-size:.85rem;color:var(--muted)">Net value for calls = correct flags × save rate × slot value − flagged × call cost. Net value for overbooking = correct flags × slot value − false alarms × cost of a wrong overbooking. Per year = per 10,000 × 92. These do not include the model's own build and running costs.</p>
+
+<h3>Draft your decision record</h3>
+<p>You may draft here or in your own document tool. Submit the final version as a document.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="adr" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your decision record</label>
+<textarea id="adr" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. No notes, no AI tools. A basic calculator is allowed.</li>
+  <li><strong>Covers:</strong> everything in the lesson. Expect to calculate a cost per 1,000 requests and a precision and recall, and to apply the ideas to a short new scenario you have not seen.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. Your assessor sends the test paper.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>You explain both decisions in your own words, without reading.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your choices. Expect "why not the bigger model?", "walk me through this cost" and "who bears this false alarm?"</td></tr>
+<tr><td class="num">7–10</td><td>A new fact you have not seen, such as a price change or a new rule. You say whether it changes either decision, and why.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you can explain the technical ideas in plain words, how you handle the new fact, and how clearly you speak. Changing your mind for a good reason scores well.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Decision record (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>This copies your quiz answers, calculator settings, decision record draft and checklist as plain text. Send it with your final document.</p>
+<p class="row"><button class="btn primary" id="copy" type="button">Copy all my work</button><span id="copied" aria-live="polite"></span></p>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 1–2 hours · not assessed</span>Build a small retrieval assistant</h2>
+<p>See retrieval and its failure points for yourself, without code. Use any AI tool that lets you upload documents and ask questions about them. Many general AI assistants offer this as a "project" or "notebook" feature.</p>
+<div class="note warn"><p><strong>Use only the five leaflets below.</strong> The medicines are invented and the leaflets are not medical advice. Never upload real health records or anyone's personal details to a public AI tool.</p></div>
+<ol>
+  <li>Copy each leaflet into its own document and upload all five.</li>
+  <li>Tell the tool: <em>"Answer only from the uploaded leaflets. Name the leaflet you used. If the leaflets do not answer the question, say so and suggest asking a pharmacist."</em></li>
+  <li>Ask the eight test questions, each in a fresh conversation, and record what happens.</li>
+</ol>
+
+<details class="sheet">
+<summary><b>The five fictional leaflets</b><span class="k">Copy each into its own document</span></summary>
+<div class="in leaf">
+<p><strong>Leaflet 1 · Calvexin 5 mg tablets</strong> · last reviewed June 2026<br>FICTIONAL MEDICINE FOR TEACHING. NOT MEDICAL ADVICE.<br>Calvexin lowers blood pressure. Take one tablet each morning, with or without food. If you miss a dose, take it as soon as you remember on the same day. If you only remember the next day, skip the missed dose. Never take two doses together. Common side effects: ankle swelling, flushing, headache. Avoid drinking large amounts of grapefruit juice.</p>
+<p><strong>Leaflet 2 · Glimora 500 mg tablets</strong> · last reviewed April 2026<br>FICTIONAL MEDICINE FOR TEACHING. NOT MEDICAL ADVICE.<br>Glimora helps control blood sugar. Take one tablet twice a day with breakfast and dinner. If you miss a dose, take it with your next meal only if that meal is within 4 hours of the usual time; otherwise skip it. Common side effect: stomach upset. If you feel shaky, sweaty or confused, eat something sugary and tell your doctor.</p>
+<p><strong>Leaflet 3 · Restolin preventer inhaler</strong> · last reviewed May 2026<br>FICTIONAL MEDICINE FOR TEACHING. NOT MEDICAL ADVICE.<br>Restolin prevents asthma symptoms over time. Use two puffs every morning and evening, even when you feel well. Rinse your mouth with water after each use. Restolin does not relieve a sudden asthma attack. In an attack, use your reliever inhaler. If breathing does not improve, call 995.</p>
+<p><strong>Leaflet 4 · Pravadex 20 mg tablets</strong> · last reviewed January 2026<br>FICTIONAL MEDICINE FOR TEACHING. NOT MEDICAL ADVICE.<br>Pravadex lowers cholesterol. Take one tablet each night. If you miss a dose, skip it and take the next one at the usual time. Tell your doctor straight away about any unexplained muscle pain or weakness.</p>
+<p><strong>Leaflet 5 · Duroxal 500 mg tablets</strong> · last reviewed March 2023 <span class="tag">REVIEW OVERDUE</span><br>FICTIONAL MEDICINE FOR TEACHING. NOT MEDICAL ADVICE.<br>Duroxal relieves pain and fever. Take one or two tablets up to four times a day, at least 4 hours apart. Do not take more than 8 tablets in 24 hours. Many cold and flu products contain the same ingredient; check before taking them together.</p>
+</div>
+</details>
+
+<div class="scroll"><table class="lab">
+<thead><tr><th class="num">#</th><th>Question to ask</th><th>Main answer in a few words</th><th>Right leaflet named?</th><th>Anything wrong or made up?</th></tr></thead>
+<tbody id="lab-body"></tbody>
+</table></div>
+<p><strong>Reflect:</strong> Which questions did it handle well? Where did it answer when it should have said "I don't know"? What did it do with the overdue leaflet and the Malay question? Which of the five failure points from Lesson 2.3 did you see?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Anthropic, <a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a> (2024). Explains the difference between fixed workflows and agents, and why to start with the simplest design. About 30 minutes. Skip the code if you like.</li>
+  <li>Eugene Yan, <a href="https://eugeneyan.com/writing/llm-patterns/">Patterns for Building LLM-based Systems &amp; Products</a>. Seven building blocks, including retrieval, fine-tuning, guardrails and caching. Long; read the introduction and the sections on retrieval and fine-tuning. About 45 minutes.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<p>Try the ladder and the error questions on one of these ideas, or on a product from your own workplace, and bring it to your viva if you like.</p>
+<ul>
+  <li><strong>Staff policy assistant:</strong> answers employees' questions about leave, travel and expense rules. Prompting, retrieval or fine-tuning? What happens when a policy changes?</li>
+  <li><strong>Payment fraud flag:</strong> flags unusual payments for review before release. Which error costs more: a missed fraud or a delayed genuine payment? Who bears each?</li>
+  <li><strong>Supplier email sorter:</strong> reads incoming supplier emails and routes them to the right team. Would a classical model, an LLM or simple rules do best?</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>ADR</td><td>Architecture decision record: a short document recording one design choice, the options considered and why one was chosen</td></tr>
+<tr><td>Agent</td><td>A model using tools in a loop and deciding its own next step</td></tr>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Base rate</td><td>How common an event is in the population</td></tr>
+<tr><td>Baseline</td><td>The simplest option a model must beat, often a rule</td></tr>
+<tr><td>Chunk</td><td>A short passage cut from a document so it can be searched</td></tr>
+<tr><td>CIO</td><td>Chief Information Officer</td></tr>
+<tr><td>Context window</td><td>The most tokens a model can consider in one request</td></tr>
+<tr><td>Embedding</td><td>A list of numbers representing the meaning of a piece of text</td></tr>
+<tr><td>False alarm (false positive)</td><td>A case flagged that did not happen</td></tr>
+<tr><td>False alarm rate</td><td>False alarms divided by all the cases that did not happen</td></tr>
+<tr><td>Fine-tuning</td><td>Training an existing model further on your own examples</td></tr>
+<tr><td>Guardrail</td><td>A check before or after the model, often a plain rule</td></tr>
+<tr><td>Hallucination</td><td>A confident answer not supported by any source</td></tr>
+<tr><td>JSON</td><td>JavaScript Object Notation, a standard text format for data</td></tr>
+<tr><td>Latency</td><td>Response time: how long the user waits</td></tr>
+<tr><td>LLM</td><td>Large language model</td></tr>
+<tr><td>Missed case (false negative)</td><td>A case that happened but was not flagged</td></tr>
+<tr><td>ML</td><td>Machine learning</td></tr>
+<tr><td>Precision</td><td>Of everything flagged, the share that was right</td></tr>
+<tr><td>RAG</td><td>Retrieval-augmented generation: a search step puts relevant passages in front of the model before it answers</td></tr>
+<tr><td>Recall</td><td>Of everything that happened, the share that was caught</td></tr>
+<tr><td>S$</td><td>Singapore dollars</td></tr>
+<tr><td>Structured output</td><td>An answer in a fixed format with named fields that software can check</td></tr>
+<tr><td>Threshold</td><td>The score above which a prediction model flags a case</td></tr>
+<tr><td>Token</td><td>The small piece of text a model reads and writes; about three-quarters of an English word</td></tr>
+<tr><td>Training cutoff</td><td>The date after which a model learned nothing new</td></tr>
+<tr><td>Vector database</td><td>A store that holds embeddings and finds the closest matches quickly</td></tr>
+</tbody></table></div>
+
+<p class="foot">Module 2 · Version 1.0 · 20 October 2026 · Harbourview Polyclinics, its staff, vendors, models and prices are fictional; all figures are invented for teaching. The lab leaflets describe invented medicines and are not medical advice.</p>
+</div>
+
+<script>
+/* ===== Optional sign-in gate. Fill in the same values as login.html to require sign-in. Empty = open preview. ===== */
+const AUTH = { supabaseUrl: '', supabaseAnonKey: '', loginPage: 'login.html' };
+if (AUTH.supabaseUrl && AUTH.supabaseAnonKey) {
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+  s.onload = async () => { try { const c = window.supabase.createClient(AUTH.supabaseUrl, AUTH.supabaseAnonKey); const { data } = await c.auth.getSession(); if (!data || !data.session) location.href = AUTH.loginPage; } catch (e) {} };
+  document.head.appendChild(s);
+}
+
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m2:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m2:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+const money = (v, d=2) => (v<0?'−':'') + 'S$' + Math.abs(v).toLocaleString('en-SG', {minimumFractionDigits:d, maximumFractionDigits:d});
+const pct = v => isFinite(v) ? (Math.round(v*1000)/10).toFixed(1) + '%' : '—';
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Is a token the same thing as a word?","No","A token is a smaller piece of text. In English one token is roughly three-quarters of a word, and many other languages take more tokens for the same meaning."],
+  ["Do the instructions, any documents and the conversation so far all count against the model's context window?","Yes","Everything the model reads, plus what it writes, has to fit in the context window. That is also why longer inputs cost more."],
+  ["Is fine-tuning the best way to keep a model up to date with documents that change every month?","No","Each change would mean collecting examples and retraining. Retrieval lets you replace a document and re-index it in minutes, and can show the source."],
+  ["Can retrieval let a model answer from documents it never saw in training?","Yes","The search step puts the relevant passages on the model's desk for that request, so it can use documents written after its training cutoff."],
+  ["Can search by meaning (embeddings) find a passage that shares no words with the question?","Yes","Embeddings capture meaning, so \"I forgot my pill\" can match a passage headed \"Missed dose\"."],
+  ["For a well-defined task with steps that never change, is an agent always better than a fixed workflow?","No","A fixed workflow is more predictable, cheaper and easier to test. Agents earn their place only when the path cannot be planned in advance."],
+  ["If you retrieve twice as many passages for every question, does the cost per question usually rise?","Yes","More passages means more input tokens, and you pay for every token the model reads."],
+  ["Does high precision mean the model catches most of the real cases?","No","That is recall. Precision tells you how many of the flags were right; a model can be very precise and still miss most real cases."],
+  ["If you lower a prediction model's threshold, do you usually catch more real cases but raise more false alarms?","Yes","Lowering the threshold flags more cases. Recall goes up and precision usually goes down. Choosing the threshold is a product decision."],
+  ["Should you choose the largest available model by default, because it gives the best quality?","No","Pick the smallest model that passes your own test set. Larger models cost more and answer more slowly, and may have data-location limits."]
+ ], sa: [
+  ["Explain retrieval-augmented generation to a clinic manager with no technical background, and name two places where it can fail.",
+   ["Plain explanation: before answering, the system searches approved documents and gives the most relevant passages to the model, which answers from them","Benefit: answers come from current, controlled documents and can name the source","Failure point 1, for example: search finds the wrong or no passage","Failure point 2, for example: the document itself is wrong or out of date, or the model ignores or bends the passage"]],
+  ["A model has 90% precision and 30% recall. Describe what users would experience, and give one situation where that could be acceptable.",
+   ["When it flags something, it is usually right: few false alarms","But it misses most real cases (70% go unflagged)","Acceptable when a false alarm is costly or unfair to the person flagged, and missed cases are caught some other way or are cheap","Gives a concrete situation that fits that logic"]],
+  ["Why might a product manager choose a smaller, cheaper model even though a larger one scores higher in testing?",
+   ["The smaller model may already pass the quality bar for this task","Cost per request is much lower, which matters at high volume or if prices rise","It answers faster, which users notice","Other limits: data location, availability; or hard questions can be routed to the larger model or a person"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["Using the price card, does retrieval on Core cost more per question than prompting only on Core?","Yes","Retrieval adds about 2,000 input tokens of leaflet passages. On Core that is S$18.04 per 1,000 questions against S$10.04 for prompting only. It is still small in money terms, and the pilot shows what the extra cost buys."],
+  ["For the fine-tuned design, are model tokens the largest part of its running cost?","No","At 18,000 questions a month, its tokens cost about S$29. Dedicated hosting is S$1,500 a month, and each retraining run is S$6,000."],
+  ["In the pilot, did prompting only make more harmful errors than retrieval on Core?","Yes","Seven harmful errors against one. Prompting only answers from general knowledge, which can contradict Harbourview's approved leaflets."],
+  ["At the high threshold, does the missed-appointment model catch more than half of the appointments that were actually missed?","No","It catches 450 of 1,100, a recall of about 41%. Its precision is 45%. Even the rule catches more missed appointments (47%)."],
+  ["Is a false alarm cheaper when the flag triggers overbooking than when it triggers a reminder call?","No","A wrong call costs about S$3 and is usually welcome. A wrong overbooking puts two patients in one slot, at an estimated S$60 in waiting, complaints and rushed care."]
+ ], sa: [
+  ["The single harmful error from retrieval on Core came from a leaflet overdue for review. Is that a model problem or a data problem, and what would you require before launch?",
+   ["Mainly a data problem: the model repeated what the approved leaflet said","Switching models would not fix it; a bigger model reading the same wrong leaflet gives the same answer","Require an owner and review date for every leaflet, and block or flag overdue leaflets from retrieval","Add or keep an answer check, and track leaflet freshness as a live measure"]],
+  ["For the missed-appointment predictor, explain why the option you would choose for reminder calls is different from the one you would choose for overbooking.",
+   ["Calls are cheap and mostly welcome, so a false alarm costs little; missing a real no-show costs a S$45 slot, so favour recall (low threshold)","Overbooking makes false alarms costly and lands them on patients who did attend, so favour precision, or do not overbook at all","Uses the figures: overbooking loses money at every option in the pack","Notes that older patients get far more false alarms, which is tolerable for calls and not for overbooking"]],
+  ["The model at the high threshold has 45% precision and 41% recall. The rule has 37% precision and 47% recall. Which is better? Explain what the answer depends on.",
+   ["Neither is better in general: the model is more precise, the rule catches more","It depends on the action and the cost of each error","For calls, recall and volume matter; for a scarce resource or a costly action, precision matters","The model must beat the rule by enough to pay its S$120,000 build and S$15,000 yearly cost"]]
+ ]}
+};
+
+/* ===== Quiz engine ===== */
+const QSTATE = {}, EXPORT = {};
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+/* ===== Tool 1: cost calculator ===== */
+const DESIGNS = [
+  { id:'po', name:'1. Prompting only · Core', inT:1260, outT:250, pin:4,   pout:20,  fixed:0 },
+  { id:'rs', name:'2a. Retrieval · Swift',    inT:3260, outT:250, pin:0.4, pout:2,   fixed:300 },
+  { id:'rc', name:'2b. Retrieval · Core',     inT:3260, outT:250, pin:4,   pout:20,  fixed:300 },
+  { id:'rm', name:'2c. Retrieval · Summit',   inT:3260, outT:250, pin:20,  pout:100, fixed:300 },
+  { id:'ft', name:'3. Fine-tuned Swift',      inT:760,  outT:250, pin:0.8, pout:4,   fixed:1500 }
+];
+const FIELDS = ['inT','outT','pin','pout','fixed'];
+let calc = store.get('calc') || {};
+function calcVal(d,f){ const v = (calc[d.id]||{})[f]; return v===undefined || v==='' ? d[f] : +v; }
+$('cost-body').innerHTML = DESIGNS.map(d=>`<tr><td><strong>${esc(d.name)}</strong></td>${FIELDS.map(f=>`<td class="num"><input type="number" min="0" step="any" data-d="${d.id}" data-f="${f}" aria-label="${esc(d.name)}, ${f}"></td>`).join('')}
+  <td class="out" id="c-k-${d.id}"></td><td class="out big" id="c-m-${d.id}"></td><td class="out" id="c-y-${d.id}"></td></tr>`).join('');
+function drawCost(){
+  const vol = Math.max(0, +$('vol').value || 0), k = 1 + (+$('shift').value)/100;
+  document.querySelectorAll('#cost-body input').forEach(el=>{ const d=DESIGNS.find(x=>x.id===el.dataset.d); if(document.activeElement!==el) el.value = calcVal(d, el.dataset.f); });
+  DESIGNS.forEach(d=>{
+    const per = (calcVal(d,'inT')*calcVal(d,'pin')*k + calcVal(d,'outT')*calcVal(d,'pout')*k) / 1e6;
+    const month = per*vol + calcVal(d,'fixed');
+    $('c-k-'+d.id).textContent = money(per*1000);
+    $('c-m-'+d.id).textContent = money(month);
+    $('c-y-'+d.id).textContent = money(month*12, 0);
+  });
+}
+document.querySelectorAll('#cost-body input').forEach(el=>el.addEventListener('input',()=>{ calc[el.dataset.d]=calc[el.dataset.d]||{}; calc[el.dataset.d][el.dataset.f]=el.value; store.set('calc',calc); drawCost(); }));
+const knobs = store.get('knobs') || {};
+if (knobs.vol !== undefined) $('vol').value = knobs.vol;
+if (knobs.shift !== undefined) $('shift').value = knobs.shift;
+$('vol').addEventListener('input',()=>{ knobs.vol=$('vol').value; store.set('knobs',knobs); drawCost(); });
+$('shift').addEventListener('change',()=>{ knobs.shift=$('shift').value; store.set('knobs',knobs); drawCost(); });
+$('calc-reset').addEventListener('click',()=>{ calc={}; store.set('calc',calc); $('vol').value=18000; $('shift').value='0'; knobs.vol=18000; knobs.shift='0'; store.set('knobs',knobs); drawCost(); });
+
+/* ===== Tool 2: error calculator ===== */
+const OPTS = [
+  { id:'rule', name:'Rule: missed last appointment', tp:520, fp:880,  fn:580, tn:8020 },
+  { id:'hi',   name:'Model, high threshold',         tp:450, fp:550,  fn:650, tn:8350 },
+  { id:'lo',   name:'Model, low threshold',          tp:770, fp:1730, fn:330, tn:7170 },
+  { id:'all',  name:'Call everyone (for comparison)', tp:1100, fp:8900, fn:0, tn:0 }
+];
+const ERRK = ['k-call','k-save','k-slot','k-harm'];
+const errk = store.get('errk') || {};
+ERRK.forEach(id=>{ if(errk[id]!==undefined) $(id).value=errk[id]; $(id).addEventListener('input',()=>{ errk[id]=$(id).value; store.set('errk',errk); drawErr(); }); });
+$('err-body').innerHTML = OPTS.map(o=>`<tr><td><strong>${esc(o.name)}</strong></td><td class="out">${(o.tp+o.fp).toLocaleString('en-SG')}</td><td class="out">${pct(o.tp/(o.tp+o.fp))}</td><td class="out">${pct(o.tp/(o.tp+o.fn))}</td><td class="out">${pct(o.fp/(o.fp+o.tn))}</td><td class="out" id="e-c-${o.id}"></td><td class="out big" id="e-cy-${o.id}"></td><td class="out" id="e-oy-${o.id}"></td></tr>`).join('');
+function drawErr(){
+  const call=+$('k-call').value||0, save=(+$('k-save').value||0)/100, slot=+$('k-slot').value||0, harm=+$('k-harm').value||0;
+  OPTS.forEach(o=>{
+    const c = o.tp*save*slot - (o.tp+o.fp)*call, ob = o.tp*slot - o.fp*harm;
+    const put=(id,v,d)=>{ const el=$(id); el.textContent=money(v,d); el.classList.toggle('neg',v<0); el.classList.toggle('pos',v>0); };
+    put('e-c-'+o.id, c, 0); put('e-cy-'+o.id, c*92, 0); put('e-oy-'+o.id, ob*92, 0);
+  });
+}
+
+/* ===== Decision record draft, checklist, lab ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `DECISION RECORDS · Harbourview Polyclinics
+To: Daniel Ong, Chief Information Officer (CIO)
+From: Head of Digital Products
+
+Summary
+[Two sentences: the design for the medicine assistant, and how the missed-appointment predictor will be used.]
+
+ADR-001 · Medicine questions assistant
+1. Context [≤100 words]
+2. Decision drivers [3–5, in priority order]
+3. Options considered [table: design and model · S$ per 1,000 · S$ per month at 18,000 · one-off cost · updating a leaflet · pilot correct · harmful errors · main failure]
+4. Decision [design and model, 1–2 sentences]
+5. Failure points and safeguards [≥5 from the system diagram: failure · harm and who bears it · safeguard · rule or person]
+6. Consequences [what we give up; risks we accept]
+7. Revisit when [≥3 specific triggers]
+
+ADR-002 · Missed-appointment predictor
+1. Context [≤75 words]
+2. Which error matters more? [reminder calls: … · overbooking: … · so we favour precision / recall because …]
+3. Options considered [table: rule, model high, model low · precision · recall · false alarm rate · net per year for calls and for overbooking]
+4. Decision [action · option · is the model worth its cost over the rule?]
+5. Fairness check [what the age-group figures show · safeguard]
+6. Revisit when [≥2 specific triggers]
+
+Assumptions
+[Label anything not taken from the technical pack]`;
+const adr = $('adr'); adr.value = misc.adr || '';
+function wc(){ const w=words(adr.value); $('wc').textContent = w+' words'+(w>1500?' · over the three-page guide of about 1,400 words':''); }
+adr.addEventListener('input',()=>{ misc.adr=adr.value; store.set('misc',misc); wc(); progress(); });
+$('tmpl').addEventListener('click',()=>{ if(adr.value.trim() && !confirm('Replace your current draft with the outline?')) return; adr.value=OUTLINE; misc.adr=OUTLINE; store.set('misc',misc); wc(); progress(); adr.focus(); });
+wc();
+const CHECKS = [
+  "Both decisions are stated in the first few lines",
+  "ADR-001 compares all three designs, with the cost per 1,000 questions and the monthly cost shown",
+  "One-off costs and the cost of updating leaflets are included, not just token costs",
+  "The chosen model respects the rule that patient data stays in Singapore",
+  "At least five failure points from the system diagram, each with a safeguard",
+  "ADR-002 says which error matters more for calls and for overbooking, and who bears each",
+  "The model is compared with the simple rule, including whether it is worth its cost",
+  "The age-group finding is addressed with a concrete safeguard",
+  "Each record has specific, measurable 'revisit when' triggers",
+  "Three pages or fewer, and every acronym is spelled out the first time"
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c,i)=>`<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el=>{ el.checked=!!ck[el.dataset.i]; el.addEventListener('change',()=>{ ck[el.dataset.i]=el.checked; store.set('ck',ck); }); });
+
+const LABQ = [
+  "I forgot my Calvexin this morning and it's now 8pm. What should I do?",
+  "Can I take Duroxal together with Glimora?",
+  "Saya terlupa makan ubat Glimora semasa sarapan. Apa yang patut saya buat?",
+  "What is Pravadex for?",
+  "My chest feels tight and I can't breathe properly.",
+  "How many Duroxal tablets can I take in a day?",
+  "Can I drink grapefruit juice?",
+  "What's the best painkiller to buy?"
+];
+let lab = store.get('lab') || {};
+$('lab-body').innerHTML = LABQ.map((q,i)=>`<tr><td class="num">${i+1}</td><td style="min-width:14rem">${esc(q)}</td>${['a','b','c'].map(k=>`<td><input type="text" data-k="${i}${k}" aria-label="Question ${i+1}, column ${k}"></td>`).join('')}</tr>`).join('');
+document.querySelectorAll('#lab-body input').forEach(el=>{ el.value=lab[el.dataset.k]||''; el.addEventListener('input',()=>{ lab[el.dataset.k]=el.value; store.set('lab',lab); }); });
+$('lab-ref').value = lab.ref || ''; $('lab-ref').addEventListener('input',e=>{ lab.ref=e.target.value; store.set('lab',lab); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d=$(id); if(!d) return; d.className='dot'+(s==='done'?' done':s==='prog'?' prog':''); }
+function progress(){
+  const a=QSTATE.qa, b=QSTATE.qb, w=words(adr ? adr.value : '');
+  if(a) { $('st-qa').textContent=qlabel(a); dot('d-qa', a.mast?'done':a.started?'prog':''); dot('d-lesson', a.started?'done':''); }
+  if(b) { $('st-qb').textContent=qlabel(b); dot('d-qb', b.mast?'done':b.started?'prog':''); dot('d-case', b.started?'done':''); }
+  $('st-adr').textContent = w + ' words';
+  dot('d-as', w>600 ? 'done' : w>0 ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask your assessor for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a&&a.mast?'done':'not yet'} · Quiz B: ${b&&b.mast?'done':'not yet'}.`;
+  /* Summary for the My course dashboard (same browser in preview; the database when live) */
+  const sum = q => q && q.started ? { c:q.c, total:q.total, mast:q.mast } : null;
+  try { localStorage.setItem('progress:m2', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: w>0 ? 'drafting' : 'none' })); } catch(e) {}
+}
+
+/* ===== Step bar highlight ===== */
+const links=[...document.querySelectorAll('.stepbar a')], secs=links.map(l=>document.querySelector(l.getAttribute('href')));
+const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.toggle('here', l.getAttribute('href')==='#'+e.target.id)); const h=links.find(l=>l.classList.contains('here')); if(h) h.scrollIntoView({block:'nearest',inline:'nearest'}); } }); },{rootMargin:'-20% 0px -75% 0px'});
+secs.forEach(s=>s&&io.observe(s));
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); drawCost(); drawErr(); progress();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click',()=>{
+  const L=['MODULE 2 SUBMISSION · Technical fluency for product decisions','','CHECKPOINT QUIZ A',...EXPORT.qa(),'CHECKPOINT QUIZ B',...EXPORT.qb(),'COST CALCULATOR'];
+  L.push(`Questions per month: ${$('vol').value} · Price change: ${$('shift').selectedOptions[0].text}`);
+  DESIGNS.forEach(d=>L.push(`${d.name}: in ${calcVal(d,'inT')} tok @ S$${calcVal(d,'pin')}/M, out ${calcVal(d,'outT')} tok @ S$${calcVal(d,'pout')}/M, fixed S$${calcVal(d,'fixed')}/mo → ${$('c-k-'+d.id).textContent} per 1,000 · ${$('c-m-'+d.id).textContent} per month`));
+  L.push('','ERROR CALCULATOR',`Call S$${$('k-call').value} · save ${$('k-save').value}% · slot S$${$('k-slot').value} · wrong overbooking S$${$('k-harm').value}`);
+  OPTS.forEach(o=>L.push(`${o.name}: calls ${$('e-cy-'+o.id).textContent}/yr · overbooking ${$('e-oy-'+o.id).textContent}/yr`));
+  L.push('','DECISION RECORD DRAFT',(misc.adr||'(blank)').trim(),`Word count: ${words(misc.adr)}`,'','CHECKLIST');
+  CHECKS.forEach((c,i)=>L.push(`[${ck[i]?'x':' '}] ${c}`));
+  const labRows=LABQ.map((q,i)=>[q,lab[i+'a'],lab[i+'b'],lab[i+'c']]).filter(r=>r.slice(1).some(Boolean));
+  if(labRows.length||lab.ref){ L.push('','OPTIONAL LAB'); labRows.forEach(r=>L.push(`${r[0]} → ${r.slice(1).map(x=>x||'-').join(' | ')}`)); L.push('Reflection: '+(lab.ref||'-')); }
+  const text=L.join('\n'), out=$('copied'), fb=$('fallback');
+  const fallback=()=>{ fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(()=>{ out.textContent='Copied. Send it with your final document.'; fb.hidden=true; }, fallback); } catch(e) { fallback(); }
+});
+</script>
+</body>
+</html>
