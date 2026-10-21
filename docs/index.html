@@ -266,6 +266,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <tr><td>LLM</td><td>Large language model, such as Claude or GPT</td></tr>
 <tr><td>ML</td><td>Machine learning</td></tr>
 <tr><td>NIST AI RMF</td><td>United States National Institute of Standards and Technology, AI Risk Management Framework</td></tr>
+<tr><td>OWASP</td><td>Open Worldwide Application Security Project, which publishes lists of common security risks</td></tr>
 <tr><td>PAIR</td><td>People + AI Research, a Google team that publishes design guidance</td></tr>
 <tr><td>PDPA</td><td>Personal Data Protection Act, Singapore</td></tr>
 <tr><td>POC</td><td>Proof of concept: a short, limited trial to show a product works</td></tr>
@@ -321,12 +322,12 @@ const M = [
   task:'Using the patient panel\'s usability sessions and live handover data, storyboard eight moments where the medicine assistant or the new booking assistant is wrong, unsure or out of scope, including a patient describing chest pain and an overnight handover, with the exact words the patient sees. Then set a human review level for ten AI actions.',
   del:'Annotated storyboard of eight moments, a three-page trust rationale, review levels and a test plan.',lab:'Test your storyboard with two people over 65 or their carers, recording what they would do, not what they think.',
   read:'PAIR Guidebook, "Explainability + Trust" and "Errors + Graceful Failure"; Amershi and colleagues, "Guidelines for Human-AI Interaction" (2019).'},
- {n:8,t:2,wk:'Week 8',title:'Agents and rapid prototyping',src:'Nika bootcamp, "Strategy & Agentic AI"; Reforge AI Prototyping',init:'B',
-  out:['Decide when a fixed workflow is better than an agent.','Specify how much the agent may do alone, which tools it may use, and where a person checks.','Prototype in days to test value before building.'],
-  quiz:'Workflows and agents; autonomy levels; tool permissions and how much damage an error can do; testing whether agents complete tasks.',
-  task:'Harbourview wants the booking chatbot to also reschedule, cancel and move patients between clinics. Map each action to an autonomy level with a permissions table, then build a clickable prototype and test it with three people.',
-  del:'Autonomy map, prototype link and test notes.',lab:'Build a working prototype with a no-code agent builder.',
-  read:'Anthropic, "Building effective agents"; Reforge AI Prototyping public material.'},
+ {n:8,t:2,page:'module-08.html',wk:'Week 8',title:'Agents and rapid prototyping',src:'Nika bootcamp, "Strategy \u0026 Agentic AI"; Reforge AI Prototyping; Anthropic, "Building effective agents"; OWASP Excessive Agency; Sierra τ-bench',init:'B',
+  out:['Decide when a fixed workflow is better than an agent, in terms of predictability, risk, cost and testing.','Specify how much an agent may do alone: which tools it may use, for whose data, within what limits, where a person checks, and when it must stop.','Prototype in days to test value before building, and plan how to test whether an agent completes tasks reliably, not just once.'],
+  quiz:'Workflows and agents; five workflow patterns; tools, scope, limits and blast radius; excessive agency; prompt injection; plan previews, safe failure and stop rules; testing by end state and by success on every repeat (pass^k); prototype fidelity.',
+  task:'Harbourview\'s Chief Operating Officer wants the booking assistant to reschedule, cancel and move patients between clinics on its own, and to rebook a whole clinic after a closure. Decide workflow or agent for six jobs, map twelve tools with limits, review levels and stop rules, show how your map prevents six sandbox failures, then build a clickable prototype and test it with three people.',
+  del:'Decision memo with an autonomy map, prototype link and test notes.',lab:'Run a pretend booking agent in any AI assistant, four tasks three times each, and measure how often it succeeds every time.',
+  read:'Anthropic, "Building effective agents" (2024); OWASP, "LLM06:2025 Excessive Agency"; Sierra, "τ-Bench: benchmarking AI agents for the real world".'},
  {n:9,t:3,wk:'Week 9',title:'Unit economics and pricing of AI products',src:'Reforge AI Strategy and Monetization; Nika advanced course',init:'A, C',
   out:['Model the cost to run the product for each user and each task.','Build a business case that survives changes in model prices.','Find the levers that protect the budget.'],
   quiz:'Token costs; caching, routing and batching; per-seat, usage and outcome pricing; cost at different adoption levels.',
