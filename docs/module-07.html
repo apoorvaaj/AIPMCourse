@@ -1,0 +1,1411 @@
+<!doctype html>
+<html lang="en" data-access="learner" data-module="7">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 7 · AI User Experience</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Modules 1–6 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 1rem 0 1.25rem; }
+.compare > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; min-width: 0; }
+.compare h4 { margin-top: 0; }
+.msg { font-family: var(--mono); font-size: .8rem; background: var(--paper); border-radius: 3px; padding: .5rem .6rem; margin: .5rem 0; color: var(--ink); overflow-wrap: anywhere; }
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.formula { font-family: var(--mono); font-size: .85rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: .6rem .75rem; margin: .5rem 0 1rem; color: var(--ink); overflow-x: auto; white-space: nowrap; }
+
+/* Ladder */
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; counter-reset: rung; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder li:nth-child(2) { border-left-color: var(--t2); margin-left: .6rem; }
+.ladder li:nth-child(3) { border-left-color: var(--t2); margin-left: 1.2rem; }
+.ladder li:nth-child(4) { border-left-color: var(--t3); margin-left: 1.8rem; }
+.ladder li:nth-child(5) { border-left-color: var(--bad); margin-left: 2.4rem; }
+@media (max-width: 480px) { .ladder li { margin-left: 0 !important; } }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+
+/* Flow (system diagram as an ordered list) */
+.flow { list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+.flow li { position: relative; margin: 0 0 1.35rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .6rem 3rem; font-size: .9rem; }
+.flow li:last-child { margin-bottom: 0; }
+.flow li::after { content: "↓"; position: absolute; left: 50%; bottom: -1.3rem; transform: translateX(-50%); color: var(--muted); font-size: .9rem; }
+.flow li:last-child::after { content: none; }
+.flow .k { position: absolute; left: .7rem; top: .55rem; font-family: var(--mono); font-size: .75rem; color: var(--paper); background: var(--ink); border-radius: 3px; padding: .05rem .4rem; }
+.flow b { color: var(--ink); }
+.flow .kind { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-left: .35rem; white-space: nowrap; }
+.flow .ai { border-left: 4px solid var(--t2); }
+.flow .rule { border-left: 4px solid var(--accent); }
+.flow .person { border-left: 4px solid var(--t3); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .78rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 2px; vertical-align: -2px; margin-right: .3rem; }
+
+/* Confusion grid */
+.cm { display: grid; grid-template-columns: 7.5rem repeat(2, minmax(0,1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.cm .h { font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.cm .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.cm .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.cm .ok { background: var(--good-soft); } .cm .fa { background: var(--t3-soft); } .cm .miss { background: var(--bad-soft); } .cm .tn { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .cm { grid-template-columns: 5rem repeat(2, minmax(0,1fr)); font-size: .8rem; } }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+blockquote { margin: .75rem 0 0; padding: .5rem .9rem; border-left: 3px solid var(--rule); font-family: var(--display); font-style: italic; font-size: 1.02rem; color: var(--body); }
+blockquote cite { display: block; font-family: var(--text); font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* Calculators */
+.calc { min-width: 46rem; }
+.calc td { vertical-align: middle; }
+.calc input[type=number] { width: 5.6rem; padding: .3rem .35rem; font-size: .85rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calc .out { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--ink); }
+.calc .out.big { font-weight: 600; }
+.calc .neg { color: var(--bad); } .calc .pos { color: var(--good); }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin: .5rem 0 .9rem; }
+.knobs label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: .15rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.lab td input { min-width: 7rem; }
+.leaf { font-size: .88rem; }
+.leaf .tag { font-family: var(--mono); font-size: .7rem; color: var(--bad); }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
+<style>/* Shared with Module 4: rule-strength chips, small buttons, summary bar */
+.s { display: inline-block; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; padding: .08rem .45rem; border-radius: 3px; white-space: nowrap; font-weight: 600; }
+.s-must { background: var(--t2-soft); color: var(--t2); }
+.s-never { background: var(--bad-soft); color: var(--bad); }
+.s-prefer { background: var(--accent-soft); color: var(--accent); }
+.reqtools { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .3rem 0 0; font-size: .85rem; color: var(--muted); }
+.btn.tiny { font-size: .78rem; padding: .15rem .6rem; }
+.sumbar { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .85rem; margin: .75rem 0 1rem; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.sumbar b { color: var(--ink); }
+</style>
+<style>/* Shared with Modules 5 and 6: cards, tags, severity chips, panels, form fields */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .85rem; font-size: .9rem; min-width: 0; }
+.card .who { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .04em; display: block; margin-bottom: .3rem; }
+.card q { font-family: var(--display); font-size: 1.02rem; font-style: italic; color: var(--ink); }
+.card q::before, .card q::after { content: none; }
+.card p { margin: .35rem 0 0; font-size: .85rem; color: var(--muted); }
+.tag { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+.tag.ho { background: var(--t3-soft); color: var(--t3); border-color: transparent; }
+.tag.em { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.tag.warn { background: var(--t3-soft); color: var(--t3); border-color: transparent; }
+.tag.over { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.sev { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .45rem; border-radius: 3px; font-weight: 600; white-space: nowrap; }
+.sev-4 { background: var(--bad); color: var(--paper); } .sev-3 { background: var(--bad-soft); color: var(--bad); } .sev-2 { background: var(--t3-soft); color: var(--t3); } .sev-1 { background: var(--paper); color: var(--muted); border: 1px solid var(--rule); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: .5rem 0 1rem; }
+.kpis div { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 4px; padding: .5rem .7rem; min-width: 0; }
+.kpis b { display: block; font-family: var(--display); font-size: 1.45rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpis span { font-size: .78rem; color: var(--muted); display: block; }
+.kpis .warn { border-top-color: var(--t3); } .kpis .bad { border-top-color: var(--bad); } .kpis .good { border-top-color: var(--good); }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: .75rem 0 1.25rem; }
+.panel > h4:first-child { margin-top: 0; }
+.substep { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 .2rem; }
+.fields { display: grid; gap: .65rem; margin: .5rem 0 .9rem; }
+.fields label { display: block; font-size: .82rem; color: var(--ink); font-weight: 600; margin-bottom: .2rem; }
+.fields .hint { font-weight: 400; color: var(--muted); }
+.fields textarea { min-height: 4.6rem; font-size: .9rem; }
+.warnlist { margin: .3rem 0 .8rem; padding-left: 1.1rem; font-size: .86rem; color: var(--t3); }
+.locked-note { border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .85rem; border-radius: 0 3px 3px 0; font-size: .9rem; margin: .5rem 0 1rem; }
+</style>
+<style>/* Module 7 additions: trust grid, phone preview, storyboard builder, review-level table */
+.tg { display: grid; grid-template-columns: 8.5rem repeat(2, minmax(0, 1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.tg .h { font-family: var(--mono); font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.tg .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.tg .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.2rem; font-weight: 500; }
+.tg .ok { background: var(--good-soft); } .tg .harm { background: var(--bad-soft); } .tg .waste { background: var(--t3-soft); } .tg .fine { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .tg { grid-template-columns: 5.5rem repeat(2, minmax(0, 1fr)); font-size: .8rem; } }
+/* Message anatomy */
+.anat { list-style: none; padding: 0; margin: .75rem 0 1.25rem; counter-reset: an; display: grid; gap: .4rem; }
+.anat li { counter-increment: an; display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); gap: .1rem .6rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .5rem .75rem; margin: 0; font-size: .92rem; }
+.anat li::before { content: counter(an); font-family: var(--display); font-size: 1.3rem; line-height: 1.1; color: var(--accent); grid-row: span 2; }
+.anat b { color: var(--ink); }
+/* Phone preview */
+.phone { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: .75rem .7rem .9rem; max-width: 22rem; margin: .5rem 0 1rem; }
+.phone .bar { font-family: var(--mono); font-size: .66rem; color: var(--muted); text-align: center; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--rule); padding-bottom: .4rem; margin-bottom: .6rem; }
+.bub { border-radius: 12px; padding: .5rem .7rem; margin: .35rem 0; font-size: .9rem; line-height: 1.45; max-width: 88%; overflow-wrap: anywhere; white-space: pre-wrap; }
+.bub.user { background: var(--t2-soft); color: var(--ink); margin-left: auto; border-bottom-right-radius: 3px; }
+.bub.bot { background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-bottom-left-radius: 3px; }
+.bub.bot.em { border: 2px solid var(--bad); }
+.bub .src { display: block; font-size: .78rem; color: var(--muted); margin-top: .3rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; margin: .3rem 0 0; }
+.chips span { border: 1px solid var(--accent); color: var(--accent); background: var(--surface); border-radius: 999px; padding: .2rem .7rem; font-size: .82rem; }
+.phone .after { font-size: .78rem; color: var(--muted); font-style: italic; margin-top: .5rem; }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+.pair > div { min-width: 0; }
+.pair .phone { margin: .35rem 0 0; max-width: none; }
+.pair h4 { margin-top: 0; }
+/* Moment bank */
+.mb td:first-child { font-family: var(--mono); font-size: .8rem; white-space: nowrap; }
+.req { font-family: var(--mono); font-size: .66rem; background: var(--bad-soft); color: var(--bad); padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; }
+/* Storyboard builder */
+.frametabs { display: flex; flex-wrap: wrap; gap: .35rem; margin: .6rem 0 .8rem; }
+.frametabs button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 4px; padding: .35rem .7rem; font-size: .84rem; display: inline-flex; gap: .35rem; align-items: center; }
+.frametabs button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.frametabs .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.frametabs .dot.half { background: var(--t2); } .frametabs .dot.done { background: var(--good); }
+.fb2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 1rem; align-items: start; }
+@media (max-width: 760px) { .fb2 { grid-template-columns: 1fr; } }
+.fb2 .side { position: sticky; top: 3.4rem; }
+@media (max-width: 760px) { .fb2 .side { position: static; } }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem .7rem; }
+.fgrid .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { .fgrid { grid-template-columns: 1fr; } }
+.fgrid label { display: block; font-size: .8rem; color: var(--ink); font-weight: 600; margin-bottom: .15rem; }
+.fgrid .hint { font-weight: 400; color: var(--muted); }
+.fgrid textarea { min-height: 3.6rem; font-size: .9rem; }
+.fgrid textarea.words { min-height: 7rem; font-size: .95rem; }
+.fgrid select, .fgrid input { font-size: .88rem; padding: .35rem .45rem; }
+.mdesc { font-size: .86rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .7rem; margin: .1rem 0 .2rem; }
+.mdesc b { color: var(--ink); }
+.lint { list-style: none; padding: 0; margin: .4rem 0 0; font-size: .84rem; }
+.lint li { padding: .25rem 0 .25rem 1.3rem; position: relative; margin: 0; }
+.lint li::before { position: absolute; left: 0; font-weight: 600; }
+.lint li.w { color: var(--t3); } .lint li.w::before { content: "!"; }
+.lint li.b { color: var(--bad); } .lint li.b::before { content: "✕"; }
+.lint li.g { color: var(--good); } .lint li.g::before { content: "✓"; }
+.meter2 { display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; margin: .3rem 0 0; }
+.meter2 b { color: var(--ink); }
+.cov2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .4rem; margin: .5rem 0 1rem; }
+.cov2 div { border: 1px solid var(--rule); border-radius: 4px; padding: .4rem .6rem; font-size: .82rem; background: var(--surface); min-width: 0; }
+.cov2 div.ok { border-color: var(--good); background: var(--good-soft); color: var(--good); }
+.cov2 div.no { border-color: var(--t3); background: var(--t3-soft); color: var(--t3); }
+.cov2 b { display: block; color: inherit; }
+/* Review levels */
+.lv { min-width: 62rem; }
+.lv td { vertical-align: top; }
+.lv select, .lv input[type=text] { font-size: .8rem; padding: .25rem .3rem; }
+.lv td.act { min-width: 13rem; font-size: .85rem; }
+.lv td.act small { display: block; color: var(--muted); font-size: .76rem; }
+.lv .sug { font-family: var(--mono); font-size: .72rem; white-space: nowrap; }
+.lv .flag { display: block; font-size: .74rem; color: var(--t3); margin-top: .2rem; }
+.lv .flag.bad { color: var(--bad); }
+.levels { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; }
+.levels li { margin: 0; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: .1rem .7rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--t3); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.levels li:nth-child(2) { border-left-color: var(--t3); } .levels li:nth-child(3) { border-left-color: var(--t2); } .levels li:nth-child(4) { border-left-color: var(--t2); } .levels li:nth-child(5) { border-left-color: var(--accent); }
+.levels .lk { font-family: var(--mono); font-size: .9rem; color: var(--ink); grid-row: span 2; font-weight: 600; }
+.levels b { color: var(--ink); }
+.vs { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .05rem .4rem; border-radius: 3px; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
+
+<p class="eyebrow">Term II · Mastery · Week 7 · Module 7</p>
+<h1>Designing AI user experience and human factors</h1>
+<p class="lede">An artificial intelligence (AI) product is only as safe as what people do with its answers. Design what people see when the system is wrong, unsure or out of its depth, so that their trust matches how reliable it really is.</p>
+<ul class="meta"><li>About 8 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: storyboard and rationale, test, viva</li><li>No coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>In Modules 4 to 6 you specified Harbourview's medicine questions assistant, found its failures and built a release gate. Every one of those checks looked at the <em>answer</em>. None of them looked at the <em>person reading it</em>. When the patient panel sat eight patients and carers in front of the assistant, they found problems no evaluation had caught: a patient who thought the assistant was a pharmacist, a carer who ignored an emergency message, a woman who gave up because a leaflet was in English only. The answers were right. What people did with them was not.</p>
+<p>This module is about that gap. In product teams it is called <strong>user experience (UX)</strong> design for AI, and the study of how people actually think and behave around automated systems is called <strong>human factors</strong>. The module draws on the third course of Duke University's AI Product Management specialisation (<em>Human Factors in AI</em>), the Google People + AI Research (PAIR) Guidebook, Microsoft Research's <em>Guidelines for Human-AI Interaction</em>, and decades of research on trust in automation from aviation and medicine.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Design for trust that matches how reliable the system is: set expectations, and show sources and uncertainty in ways people understand.</li>
+  <li>Design what happens when the AI is wrong, unsure or out of scope, including emergencies, refusals and handovers to a person, with the exact words people see.</li>
+  <li>Choose the right level of human review for each AI action, and design against automation bias.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">90 min</span><span class="d">Six short parts with worked examples. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">Harbourview's usability sessions, live handover data, and the booking assistant pilot. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">4–5 hrs</span><span class="d">Storyboard eight moments with the exact words patients see, set human review levels, and write the rationale. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your storyboard. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Storyboard frames<b id="st-fr">0 of 8</b></div>
+  <div>Required moments<b id="st-req">0 of 2</b></div>
+  <div>Review levels set<b id="st-lv">0 of 10</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you work. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. You do not need an AI assistant for this module. The optional lab asks you to test your storyboard with two people aged over 65, or carers; it takes about an hour. Every acronym is spelled out the first time it appears on this page. All names, people, messages and figures in the case are invented or simplified for teaching. Nothing on this page is medical advice.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · about 90 minutes</span>Designing for people who rely on systems that are sometimes wrong</h2>
+<p>Part 1 sets the goal: trust that matches reliability. Parts 2 and 3 cover setting expectations, explaining and showing uncertainty. Part 4 designs the moments when things go wrong. Part 5 decides how much a person should check before the AI acts. Part 6 covers people at the edges and how to test what you design.</p>
+
+<h3 id="l1">7.1 The goal is calibrated trust, not maximum trust</h3>
+<p>Rule-based software does the same thing every time, so people learn quickly when to rely on it. AI products vary: the same question can get a different answer, and the product is right most of the time but not always. People still form a picture of what it can do, and they decide, often without noticing, how much to rely on it. Researchers who study automation, from aircraft autopilots to hospital alarms, call the right outcome <strong>calibrated trust</strong>: people rely on the system when it is reliable for the task in front of them, and check, question or bypass it when it is not.</p>
+<div class="tg" role="img" aria-label="Trust grid: when the system is right and people rely on it, value is gained; when the system is right and people do not rely on it, value is wasted (disuse); when the system is wrong and people rely on it, harm follows (misuse); when the system is wrong and people check or bypass it, harm is avoided.">
+  <span class="h"></span><span class="h">People rely on it</span><span class="h">People check or bypass it</span>
+  <span class="h">System is right</span><div class="cell ok"><b>Value gained</b>The product does its job</div><div class="cell waste"><b>Disuse</b>Correct help ignored; people call anyway</div>
+  <span class="h">System is wrong</span><div class="cell harm"><b>Misuse</b>A wrong answer is acted on</div><div class="cell fine"><b>Harm avoided</b>Healthy scepticism</div>
+</div>
+<p>The words <strong>misuse</strong> (relying on automation when you should not) and <strong>disuse</strong> (ignoring automation that would have helped) come from human factors research by Raja Parasuraman and Victor Riley in 1997. Both are product failures. Disuse wastes the money spent on the AI. Misuse causes harm. A design that maximises trust pushes people into the bottom-left box whenever the AI is wrong.</p>
+<h4>What moves trust without changing reliability</h4>
+<div class="compare">
+<div><h4>Raises trust, whether or not it is deserved</h4><ul>
+<li>A human name, face or personality</li>
+<li>Confident, fluent, friendly wording</li>
+<li>Speed: instant answers feel authoritative</li>
+<li>Citations that look official, even if they do not support the claim</li>
+<li>Saying "I" as if a person is reading</li>
+</ul></div>
+<div><h4>Lowers trust, whether or not it is deserved</h4><ul>
+<li>One visible mistake with no explanation or correction</li>
+<li>Refusals that give no reason and no next step</li>
+<li>Answers that change when you ask again</li>
+<li>Long, hedged answers that bury the point</li>
+<li>Technical error messages</li>
+</ul></div>
+</div>
+<p>The design job is to make trust signals <em>honest</em>: tie each one to something that is actually true about the system at that moment, such as a real source, a real scope rule or a real person who will reply.</p>
+<div class="worked">
+<h4>Worked example · Riverside Public Library's assistant gets a name (fictional)</h4>
+<p>You met "Ask Riverside", the library's chat assistant, in Modules 4 to 6. Marketing renamed it "Rita" with a smiling cartoon librarian. Satisfaction scores rose from 3.9 to 4.4 out of 5. So did something else: complaints that "the librarian told me my fine was waived". In a short test, four of five members said they had been chatting with a member of staff. The assistant had not changed; members' picture of it had. The product manager (PM) kept a friendly tone, removed the human face, and changed the first message:</p>
+<div class="pair">
+<div><h4>Before</h4><div class="phone"><div class="bar">Ask Riverside</div><div class="bub bot">Hi, I'm Rita! 😊 I'm here to help with anything you need at Riverside Libraries.</div></div></div>
+<div><h4>After</h4><div class="phone"><div class="bar">Ask Riverside</div><div class="bub bot">Hello. I'm Riverside's automated assistant. I can find opening hours, explain how to renew and reserve, and pass your message to a librarian. I can't change your account myself.</div><div class="chips"><span>Opening hours</span><span>How to renew</span><span>Talk to a librarian</span></div></div></div>
+</div>
+<p style="margin:0">Satisfaction fell slightly, to 4.2. Complaints about promised waivers stopped. That trade is the point of calibration.</p>
+</div>
+
+<h3 id="l2">7.2 Mental models and setting expectations</h3>
+<p>A <strong>mental model</strong> is the picture a person carries of how something works. People do not arrive at your product blank: they bring models from search engines ("type keywords"), from texting a friend ("it knows me"), and from talking to staff ("someone qualified is reading this"). If the model is wrong, even correct answers get misused. The cheapest time to shape the model is the first moment of use, and the most important times are the moments when the product reaches a limit.</p>
+<p>Microsoft Research's 18 <em>Guidelines for Human-AI Interaction</em> (Saleema Amershi and colleagues, 2019) begin with two that matter most here: <strong>make clear what the system can do</strong>, and <strong>make clear how well it can do it</strong>. The PAIR Guidebook adds: explain the benefit, not the technology.</p>
+<ul>
+  <li><strong>Say what it is.</strong> An automated assistant, not a person. Harbourview made this a requirement in Module 4 (R-10), but only "when asked". People who hold the wrong model rarely ask.</li>
+  <li><strong>Say what it can and cannot do, at the moment it matters.</strong> A short line on first use, and again whenever someone reaches a limit. Nobody reads a terms page.</li>
+  <li><strong>Say where the answers come from.</strong> "From your medicine leaflets" tells people both why to trust it and where its knowledge stops.</li>
+  <li><strong>Show by example.</strong> Two or three suggested questions teach the scope faster than a description.</li>
+  <li><strong>Say who is behind it.</strong> If a pharmacist or nurse can be reached, say how and when.</li>
+</ul>
+<div class="note warn"><p><strong>"Ask me anything" is a promise.</strong> Broad invitations set an expectation the product will break within a few messages. Each break costs more trust than the invitation gained.</p></div>
+
+<h3 id="l3">7.3 Explanations and uncertainty</h3>
+<h4>Two audiences, two kinds of explanation</h4>
+<div class="compare">
+<div><h4>For the person using it</h4><p style="margin:0">What should I do, and why should I believe this? Answered by the source ("from your Metformin 500 mg leaflet, section 3"), the scope ("I only answer from your leaflets") and the reason for a limit ("pregnancy questions always go to a pharmacist"). Short, in plain words, at the point of decision.</p></div>
+<div><h4>For auditors and the product team</h4><p style="margin:0">Why did the system do this? Answered by logs: which rule fired, which passage was retrieved, which model and prompt version, which judge result. Detailed, stored, never shown to the patient. This is what lets you answer a complaint or a regulator.</p></div>
+</div>
+<p>Explanations are not automatically good for users. Several studies of AI-assisted decisions have found that adding explanations made people accept the AI's <em>wrong</em> recommendations more often, because any explanation looks like evidence. A source citation helps calibration only if the source genuinely supports the claim, which is why Module 6's judge for unsupported claims matters to UX as well as to quality.</p>
+<h4>Showing uncertainty: three options</h4>
+<div class="scroll"><table>
+<thead><tr><th>Option</th><th>Example</th><th>Problem or strength</th></tr></thead>
+<tbody>
+<tr><td><strong>A number</strong></td><td>"Confidence: 82%"</td><td>Most people cannot act on it (is 82% good?). A language model's own statement of confidence is not a reliable measure of whether it is right. Use numbers only for expert users, and only when the number is measured.</td></tr>
+<tr><td><strong>Hedging words</strong></td><td>"This may possibly be…"</td><td>Hedges in every answer make everything sound equally unsure, so people learn to ignore them.</td></tr>
+<tr><td><strong>A change in behaviour</strong></td><td>Asks a clarifying question; offers two choices; gives the part it is sure of and hands over the rest</td><td><span class="chip c-good">Usually best</span> The person does not have to interpret anything; the product simply does the safer thing. Drive it from real system signals, not from the model's words.</td></tr>
+</tbody></table></div>
+<div class="worked">
+<h4>Worked example · Riverside turns system signals into behaviour</h4>
+<div class="scroll"><table>
+<thead><tr><th>What the system knows</th><th>What the member sees</th></tr></thead>
+<tbody>
+<tr><td>One source found, recently reviewed</td><td>A direct answer, with the source named</td></tr>
+<tr><td>The question names no branch, and hours differ by branch</td><td>"Which branch?" with three buttons for the nearest branches</td></tr>
+<tr><td>No source found</td><td>"I can't find that in Riverside's pages. A librarian can answer it." with a button to send it</td></tr>
+<tr><td>Request needs an action on the account</td><td>Explains how the member does it, or hands over; never claims to have done it</td></tr>
+<tr><td>Search step timed out</td><td>A fallback message that keeps the member's question (Part 4)</td></tr>
+</tbody></table></div>
+<p style="margin:0">No percentages and no hedging. Each row is triggered by something the system can check, so the behaviour is testable, which matters for the release gate.</p>
+</div>
+
+<h3 id="l4">7.4 Designing the moments when things go wrong</h3>
+<p>Evaluation finds where an AI fails. UX design decides what the person experiences when it does. The PAIR Guidebook's chapter on errors starts from the user's view: from the outside, a system limitation, a misunderstanding, a wrong answer and a server failure can all look the same ("it didn't work"), and each needs a different path to recovery.</p>
+<h4>Map the moments before you write any words</h4>
+<p>For each product, list the moments where it reaches a limit. Most AI products have all of these:</p>
+<div class="scroll"><table>
+<thead><tr><th>Kind of moment</th><th>What has happened</th><th>Response ladder rung (Module 4)</th></tr></thead>
+<tbody>
+<tr><td><strong>Emergency</strong></td><td>A message suggests someone may be in danger now</td><td>5 · Emergency stop</td></tr>
+<tr><td><strong>Handover</strong></td><td>A rule or a limit sends the question to a person</td><td>3 or 4</td></tr>
+<tr><td><strong>Unsure</strong></td><td>The request is ambiguous, or the system has more than one reading</td><td>Ask, or offer choices</td></tr>
+<tr><td><strong>Out of scope or refused</strong></td><td>The product cannot or must not do it</td><td>4 · Decline and hand over, or redirect</td></tr>
+<tr><td><strong>System failure</strong></td><td>A step failed: search, model, booking system</td><td>Fallback</td></tr>
+<tr><td><strong>Wrong answer found later</strong></td><td>An audit or a complaint shows a past answer was wrong</td><td>Correction</td></tr>
+</tbody></table></div>
+<h4>Anatomy of a good message at a limit</h4>
+<ol class="anat">
+  <li><b>What happened, in plain words</b><span>"I couldn't reach the leaflet library just now." No error codes, no blame on the person.</span></li>
+  <li><b>Why, briefly, if it helps</b><span>"Pregnancy questions always go to a pharmacist." One clause. A reason makes a limit feel deliberate rather than broken.</span></li>
+  <li><b>What happens next, who, and when, honestly</b><span>Name the person or team and a time that is true at <em>this</em> hour of the day.</span></li>
+  <li><b>What the person can do now</b><span>One clear action, as a button where possible, plus an escape route if things get worse.</span></li>
+  <li><b>Keep their words</b><span>Never make someone retype a question to a person. Carry the conversation over.</span></li>
+</ol>
+<div class="note warn"><p><strong>The emergency exception.</strong> For a possible emergency, only parts 3 and 4 matter, and part 4 comes first: "Call 995 now." Nothing to read before it, no question to answer first, no reason that could invite the person to argue themselves out of calling. Anything else, such as a quieter option for someone whose symptom has passed, goes underneath and must not compete.</p></div>
+<h4>Handovers deserve as much design as answers</h4>
+<p>A handover is the product admitting a person is needed. Done well, it builds trust. Done badly, it feels like being dropped. A <strong>warm handover</strong> carries the question and context to the person, tells the user who will reply and when, shows the status while they wait ("A pharmacist has your question"), and says what to do if things get worse in the meantime. If replies are slower at night, say so at night. A promise that is true at 2 pm and false at 10 pm teaches people that the product's words cannot be relied on.</p>
+<h4>Let people correct the AI, and make it count</h4>
+<p>Give people a way to say "that's not what I meant", to change a detail before an action happens, to undo an action, and to report a problem. Feedback controls only build trust if something visibly follows. A thumbs-down button whose meaning is unclear, or that changes nothing, is noise.</p>
+<div class="worked">
+<h4>Worked example · Riverside's fallback</h4>
+<div class="pair">
+<div><h4>Weak</h4><div class="phone"><div class="bar">Ask Riverside</div><div class="bub user">is the Tampines branch open on deepavali</div><div class="bub bot">Oops! Something went wrong 😕 Error 503. Please try again later.</div></div></div>
+<div><h4>Specified</h4><div class="phone"><div class="bar">Ask Riverside</div><div class="bub user">is the Tampines branch open on deepavali</div><div class="bub bot">Sorry, I couldn't check opening hours just now. You can try again, or send your question to a librarian. They reply by email within one working day.</div><div class="chips"><span>Try again</span><span>Send to a librarian</span></div></div></div>
+</div>
+<p style="margin:0">The specified version says what happened in plain words, offers two next steps as buttons, gives an honest time, and keeps the member's question so "Send to a librarian" passes it on. The error code goes into the log for the team.</p>
+</div>
+
+<h3 id="l5">7.5 How much should a person check before the AI acts?</h3>
+<p>Some AI outputs are only words a person reads. Others cause something to happen: an appointment moves, a note enters a medical record, a message goes to a nurse. For each action, decide how much a person checks. A simple five-level scale, adapted from Thomas Sheridan's levels of automation:</p>
+<ol class="levels" aria-label="Levels of human review">
+  <li><span class="lk">L0</span><b>Person only</b><span>The AI is not used for this action at all.</span></li>
+  <li><span class="lk">L1</span><b>AI suggests, person decides and acts</b><span>A draft or suggestion that a person can ignore. Example: suggested reply for a pharmacist.</span></li>
+  <li><span class="lk">L2</span><b>Preview, then approve</b><span>The AI prepares the action; nothing happens until a person confirms it. Example: "Move your review to Thu 14 Nov, 3:40 pm at Clementi? Confirm / Change".</span></li>
+  <li><span class="lk">L3</span><b>Act, then notify, with undo</b><span>The AI acts and tells the person, who can reverse it within a window.</span></li>
+  <li><span class="lk">L4</span><b>Act alone, audited</b><span>The AI acts; people review a sample afterwards.</span></li>
+</ol>
+<h4>Choosing a level</h4>
+<p>Ask three questions about a <em>wrong</em> action: how bad is it (<strong>severity</strong>), can it be undone (<strong>reversibility</strong>), and would anyone notice in time (<strong>detectability</strong>)? Severe, irreversible, hard-to-spot actions need a person before the action (L0 to L2). Minor, reversible, obvious ones can run with an undo or an audit (L3 or L4). One exception: when <strong>speed is the safety</strong>, as with an emergency message, putting a person in front of it adds delay that causes harm. There, use a well-tested fixed rule that acts alone, and audit it.</p>
+<h4>Automation bias: why "a person approves it" is not enough</h4>
+<p><strong>Automation bias</strong> is the tendency to accept an automated output without checking it properly. It grows as the system gets more reliable: when drafts are right 97 times in 100, reviewers stop looking hard, and the three wrong ones sail through. A preview-then-approve step can quietly become a rubber stamp. Designs that help:</p>
+<ul>
+  <li><strong>Show only what needs checking</strong>, and highlight the risky parts: medicines, doses, allergies, dates, money.</li>
+  <li><strong>Ask for confirmation of the specific risky item</strong> ("Confirm the medicine list"), not one "Approve all" button.</li>
+  <li><strong>Make disagreeing as easy as agreeing.</strong> No pre-ticked boxes; editing is one tap away.</li>
+  <li><strong>Feed back what audits find</strong>, so reviewers know their checks matter.</li>
+  <li><strong>Watch the signal from Module 6:</strong> editing that falls while audited error rates stay flat means checking has dropped, not quality risen.</li>
+</ul>
+<div class="worked">
+<h4>Worked example · Riverside's actions</h4>
+<div class="scroll"><table>
+<thead><tr><th>Action</th><th>If wrong</th><th>Level</th></tr></thead>
+<tbody>
+<tr><td>Reserve a book the member asked for</td><td>Minor; cancel in one tap; member sees it at once</td><td><span class="vs">L3</span> Act, notify, undo</td></tr>
+<tr><td>Cancel a membership</td><td>Loses loan history and holds; hard to reverse</td><td><span class="vs">L2</span> Preview and approve, with the consequences listed</td></tr>
+<tr><td>Waive a fine</td><td>Money and fairness; policy decision</td><td><span class="vs">L1</span> Suggest to a librarian, who decides</td></tr>
+<tr><td>Tag a message as a safeguarding concern</td><td>A missed child-safety issue is severe and may go unnoticed</td><td><span class="vs">L1</span> plus a fixed keyword rule that always alerts staff (L4 for the rule)</td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="l6">7.6 People at the edges, and testing what you design</h3>
+<p>Average users forgive a lot. The people most likely to be harmed by a confusing AI moment are the ones least represented in design reviews: older adults, carers acting for someone else, people writing in a second language or mixing languages, people with low vision or low literacy, and people who are frightened or in pain. Design for them first and most others benefit.</p>
+<ul>
+  <li><strong>Short sentences, one action per message.</strong> Aim for words a 12-year-old would know. Long medical words cost trust and comprehension.</li>
+  <li><strong>Large, labelled buttons</strong> instead of instructions to type a keyword. Do not rely on colour alone to carry meaning.</li>
+  <li><strong>Follow the Web Content Accessibility Guidelines (WCAG) 2.2</strong> at level AA, the level most organisations and governments aim for: readable contrast, text that can be enlarged, everything usable with a screen reader.</li>
+  <li><strong>Translate safety-critical fixed messages in advance</strong>, have them checked by qualified people, and store them. Do not let a model translate an emergency instruction on the fly.</li>
+  <li><strong>Design for carers explicitly.</strong> People already act for parents and children; if the product has no honest way for them to do so, they borrow logins.</li>
+</ul>
+<h4>Test behaviour, not opinions</h4>
+<p>Asking "do you trust it?" tells you little. Calibration shows up in what people <em>do</em>. Give participants scenarios where the AI is right and scenarios where it is wrong or at a limit, then ask "what would you do now?" and "what happens next?". Record:</p>
+<ul>
+  <li>Did they act correctly when the AI was right? (disuse shows up here)</li>
+  <li>Did they catch it, or take the safe path, when the AI was wrong? (misuse shows up here)</li>
+  <li>Could they say who would reply and when, after a handover?</li>
+  <li>Who did they think they were talking to?</li>
+  <li>How long did it take to find the way to a person?</li>
+</ul>
+<p>Five to eight participants from the edge groups find most serious comprehension problems. That is not a statistical test; it is a search for problems, like the error analysis you did in Module 5.</p>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: what patients see when things go wrong</h2>
+<p>You are still Harbourview's head of digital products. The board has approved extending the medicine questions assistant to four more clinics in week 10, subject to the release gate from Module 6. In week 11 the booking assistant pilot also starts at Clementi: the narrower product your Module 3 discovery pointed to, which lets patients change clinic-booked reviews, book vaccinations and screenings, and find the right service. Read the memo, then open each section of the pack. All names, figures and messages are invented or simplified for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Grace Teo, Head of Patient Experience; Tan Mei Ling, Head Pharmacist; Nurse Manager, Emergency and Triage<br>TO: Head of Digital Products<br>RE: Before week 10: what patients see when things go wrong</div>
+<p>The patient panel tested build 1.1 of the medicine assistant with eight patients and carers. The answers were mostly right. What people <em>understood</em> was often wrong, and none of our evaluations would have shown it. <em>(Grace)</em></p>
+<p>Before we expand, and before the booking assistant reaches patients, we need <strong>a storyboard of the moments when either product is wrong, unsure or out of its depth, with the exact words patients will see</strong>, and a clear view of where a person must check before anything happens. Pharmacy, nursing and the patient panel will sign the wording off together.</p>
+<p>One request from me: patients must never believe a pharmacist checked an answer that no pharmacist saw. <em>(Mei Ling)</em> And one from nursing: the booking assistant must not judge whether a symptom is urgent, and it must not flood the nurse line either.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. What patients see today</b><span class="k">Current wording in both products</span></summary>
+<div class="in">
+<h4>Medicine questions assistant, build 1.1 (live at Clementi and Bedok)</h4>
+<div class="scroll"><table>
+<thead><tr><th>Moment</th><th>Exact words shown today</th></tr></thead>
+<tbody>
+<tr><td>First use</td><td><div class="msg">Hi! I'm Ivy, your Harbourview health buddy 😊 Ask me anything about your medicines!</div></td></tr>
+<tr><td>Answer from a leaflet</td><td>The answer, then the source in small grey text: <div class="msg">(Metformin 500 mg leaflet, section 4.)</div> An "Ask a pharmacist" button sits below the answer, often below the edge of the screen on small phones. Thumbs-up and thumbs-down icons sit beside it, unlabelled.</td></tr>
+<tr><td>Handover to a pharmacist</td><td><div class="msg">I've sent your question to a Harbourview pharmacist with your medicine list attached. They will reply here in the app within 2 hours between 8 am and 8 pm (questions sent overnight are answered from 8 am).</div></td></tr>
+<tr><td>Possible emergency</td><td><div class="msg">This could be an emergency. Call 995 now for an ambulance. Do not wait for a reply here.</div></td></tr>
+<tr><td>Medicine not on the list</td><td><div class="msg">I can only answer questions about medicines on your prescription list.</div></td></tr>
+<tr><td>Leaflet has no translation</td><td><div class="msg">This leaflet is in English only.</div></td></tr>
+<tr><td>Search step fails</td><td><div class="msg">Error 504: upstream timeout. Please try again later.</div></td></tr>
+</tbody></table></div>
+<h4>Booking assistant, engineering's first draft (not yet live)</h4>
+<div class="scroll"><table>
+<thead><tr><th>Moment</th><th>Draft wording</th></tr></thead>
+<tbody>
+<tr><td>Possible emergency (rule from your Module 3 test)</td><td><div class="msg">This could be an emergency. Please call 995 now.</div></td></tr>
+<tr><td>Any other symptom</td><td><div class="msg">I'm not able to give medical advice. Please consult a healthcare professional.</div></td></tr>
+<tr><td>Appointment moved</td><td><div class="msg">Done! Your appointment has been moved to Thu 14 Nov, 3:40 pm at Bedok.</div> The change is made in the booking system before this message appears.</td></tr>
+<tr><td>Not understood</td><td><div class="msg">Sorry, I didn't understand. Please rephrase.</div></td></tr>
+<tr><td>Someone acting for another person</td><td><div class="msg">For privacy reasons, I can only help the account holder.</div></td></tr>
+<tr><td>Booking system unavailable</td><td><div class="msg">Booking failed. Error BK-500.</div></td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. Usability sessions with the patient panel</b><span class="k">8 participants · medicine assistant build 1.1</span></summary>
+<div class="in">
+<p>Five patients aged 58 to 79 and three carers used test accounts with fictional medicine lists. Each did four tasks while thinking aloud. A facilitator asked "What would you do now?" and "What happens next?" after each answer.</p>
+<div class="scroll"><table>
+<thead><tr><th>#</th><th>Participant</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td>U1</td><td>Mdm Lim, 72, diabetes</td><td>Got a correct answer about metformin. Said: "So nice, the pharmacist answers so fast, even at night." Believed Ivy was a pharmacist on duty.</td></tr>
+<tr><td>U2</td><td>Mr Tan, 68</td><td>Was handed over. Read the message, closed the app, and said he would phone the clinic in 20 minutes "because I don't know if anyone got it". Could not say when a reply would come.</td></tr>
+<tr><td>U3</td><td>Mr Raj, 45, carer for his father</td><td>Typed, on his father's phone, that his father had fallen and hit his head yesterday and takes warfarin. Saw the emergency message. "It says 995 but Dad's fine now, it was yesterday. I didn't know what to do, so I ignored it."</td></tr>
+<tr><td>U4</td><td>Mdm Wong, 79, low vision</td><td>Could not read the grey source line. Tapped thumbs-down, thinking it meant "No, thank you, I'm done".</td></tr>
+<tr><td>U5</td><td>Mr Ahmad, 58, speaks Malay at home</td><td>Asked in Malay; got a correct answer in Malay. "Good. Short. I can use this."</td></tr>
+<tr><td>U6</td><td>Mrs Krishnan, 66, speaks Tamil at home</td><td>Asked in Tamil about amlodipine. Saw "This leaflet is in English only." Put the phone down: "So it cannot help me." Did not see the "Ask a pharmacist" button below the edge of the screen.</td></tr>
+<tr><td>U7</td><td>Ms Chua, 51, carer for her mother</td><td>Asked about her mother's eye drops, prescribed at a hospital. Saw "I can only answer questions about medicines on your prescription list." Asked the facilitator: "Then who can?"</td></tr>
+<tr><td>U8</td><td>Mr Lee, 74</td><td>Asked about swollen ankles; the answer correctly said not to stop amlodipine without talking to his doctor. "Talk to the doctor, but my appointment is three weeks away. So what do I do?"</td></tr>
+</tbody></table></div>
+<div class="kpis">
+  <div class="bad"><b>3 of 8</b><span>believed a pharmacist or staff member was answering</span></div>
+  <div class="warn"><b>5 of 8</b><span>did not notice the source line</span></div>
+  <div class="bad"><b>6 of 8</b><span>could not say when a pharmacist would reply after a handover</span></div>
+  <div class="warn"><b>2 of 8</b><span>found the "Ask a pharmacist" button without help</span></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. Live data, weeks 3 to 6</b><span class="k">Medicine assistant, two clinics, about 2,000 conversations a week</span></summary>
+<div class="in">
+<div class="scroll"><table>
+<thead><tr><th>Measure</th><th class="num">Figure</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Conversations handed over to a pharmacist</td><td class="num">12%</td><td>About 240 a week</td></tr>
+<tr><td>Median time to pharmacist reply, 8 am to 8 pm</td><td class="num">47 min</td><td>90% within 2 hours</td></tr>
+<tr><td>Handovers sent between 8 pm and 8 am</td><td class="num">31%</td><td>These wait a median of 10.5 hours</td></tr>
+<tr><td>Patients who send another message within 15 minutes of a handover</td><td class="num">23%</td><td>Mostly "hello?", "anyone there", or the question again</td></tr>
+<tr><td>Handed-over patients who never open the pharmacist's reply</td><td class="num">9%</td><td>Higher for overnight handovers (16%)</td></tr>
+<tr><td>Emergency message shown</td><td class="num">41 times</td><td>Over four weeks</td></tr>
+<tr><td>Of those, reached by a nurse follow-up call</td><td class="num">26</td><td>7 had called 995 or gone to an emergency department; 15 said the symptom was old or mild; 4 said they "didn't know if it was real"</td></tr>
+<tr><td>Conversations ending in the search-failure message</td><td class="num">1.2%</td><td>58% of those patients did not try again</td></tr>
+<tr><td>"Not on your list" refusals</td><td class="num">6%</td><td>70% about medicines from hospitals or private general practitioners (GPs)</td></tr>
+<tr><td>Thumbs-down</td><td class="num">4.1%</td><td>Comments include "too long", "just tell me yes or no", "who are you?", "no thanks"</td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. The booking assistant pilot</b><span class="k">Initiative B · Clementi from week 11</span></summary>
+<div class="in">
+<ul>
+  <li><strong>Can do:</strong> change the date, time or clinic of clinic-booked reviews; book vaccinations and health screenings; explain each service in plain words; give opening hours.</li>
+  <li><strong>New carer access:</strong> a patient can add a family member as a carer in the app. The patient chooses what the carer may do (appointments only, or appointments and medicines). The data protection officer (DPO) requires this consent to be recorded before any carer action.</li>
+  <li><strong>Cannot do:</strong> give medical advice or judge whether a symptom is urgent.</li>
+  <li><strong>Fixed rules before the model</strong> (from your Module 3 test, now in four languages): chest pain or tightness, difficulty breathing, severe bleeding, sudden confusion, stroke signs, swelling of the face, lips, tongue or throat, or fainting → the emergency message. Any other symptom → the patient is offered a same-day appointment if one exists, or a nurse callback.</li>
+  <li><strong>Nurse line:</strong> callbacks 8 am to 5 pm on weekdays and 8 am to 12 noon on Saturdays, within 2 working hours. Spare capacity is about 60 extra callbacks a day across the island.</li>
+  <li><strong>Expected use at Clementi:</strong> about 1,200 conversations a week. From your Module 3 call data, about 7% of contacts mention a symptom.</li>
+  <li><strong>Booking actions</strong> go through the booking system, which can hold a slot for 5 minutes while the patient decides.</li>
+</ul>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>5. What people want</b><span class="k">Stakeholder voices</span></summary>
+<div class="in">
+<div class="cards">
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>Ivy tested well in focus groups. Older patients said she felt friendly. Please don't make it cold.</q></div>
+  <div class="card"><span class="who">Tan Mei Ling, Head Pharmacist</span><q>Patients must never think a pharmacist checked an answer that no pharmacist saw.</q></div>
+  <div class="card"><span class="who">Nurse Manager, Emergency and Triage</span><q>Every "just in case" callback costs another patient a slot. But I'll take ten false alarms over one missed heart attack.</q></div>
+  <div class="card"><span class="who">Patient panel representative</span><q>Tell me plainly what you can do, then do it. Don't make me read a paragraph.</q></div>
+  <div class="card"><span class="who">Mr Raj, carer</span><q>Let me act for Dad without pretending to be him.</q></div>
+  <div class="card"><span class="who">Daniel Ong, Chief Information Officer (CIO)</span><q>Every message a patient sees must be traceable to a rule, a passage or a model version, so we can answer complaints.</q></div>
+  <div class="card"><span class="who">Data protection officer</span><q>Never show a carer anything the patient has not agreed to share.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet" id="bank">
+<summary><b>6. The moment bank</b><span class="k">13 moments to storyboard · choose 8</span></summary>
+<div class="in">
+<p>Your storyboard has eight frames. Two moments are <span class="req">required</span>. Choose the other six so that you cover <strong>at least three moments from each product</strong> and <strong>every one of these six kinds</strong>: emergency, handover, unsure, out of scope or refusal, system failure, and wrong answer found later. You may replace one moment with one of your own that raises the same questions.</p>
+<div class="scroll"><table class="mb">
+<thead><tr><th>ID</th><th>Product</th><th>Kind</th><th>What happens</th></tr></thead>
+<tbody id="bank-body"></tbody>
+</table></div>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 15 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 4–5 hours · Graded 60%</span>The annotated storyboard and trust rationale</h2>
+<div class="note"><p><strong>Your task.</strong> Prepare the pack the memo asks for, for the Head of Patient Experience, the Head Pharmacist and the Nurse Manager: an <strong>annotated storyboard of eight moments</strong> across both products, with the exact words patients see; a <strong>rationale</strong> of no more than three pages (about 1,200 words) explaining how the design sets patient trust; and two appendices produced with the tools below.</p></div>
+
+<h3>What your pack must contain</h3>
+<ol>
+  <li><strong>Summary</strong> (half a page): what patients should rely on each product for, what they should not, and how your design signals the difference. Name the three changes that matter most.</li>
+  <li><strong>Expectations and identity:</strong> the first message for each product, and your decision on "Ivy", argued from the evidence.</li>
+  <li><strong>Explanation and uncertainty:</strong> how sources are shown, how each product behaves when it is unsure, and which real system signals drive that behaviour.</li>
+  <li><strong>Handovers and capacity:</strong> pharmacist and nurse handovers, honest wording after hours, the extra load your design creates (use the case figures), and how you avoid flooding the nurse line.</li>
+  <li><strong>Human review:</strong> your levels for the ten actions in Tool 2, and how you guard against automation bias.</li>
+  <li><strong>Inclusion:</strong> older adults, carers, people writing in Malay, Mandarin or Tamil, and people with low vision.</li>
+  <li><strong>How you will know it works:</strong> a test plan that measures calibration, not opinions, and two or three live measures that link to your Module 6 metrics tree.</li>
+  <li><strong>The storyboard</strong> · eight frames from Tool 1 · <strong>Appendix A</strong> · review levels from Tool 2 · <strong>Appendix B</strong> · test plan from Tool 3, with lab results if you did the lab.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>Each moment lands on the right response rung. The emergency frame puts the instruction first and asks nothing before it. Review levels follow severity, reversibility and detectability, with the time-critical exception handled. The Ivy decision weighs the evidence on both sides.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Design changes are linked to specific usability findings (U1–U8) and live figures. Handover and nurse load are estimated from the case. Assumptions are labelled.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>Each frame names who could be harmed if it is misread. Over-referral and alarm fatigue are handled, not ignored. Automation bias has concrete countermeasures. After-hours honesty, carer consent and languages are covered.</td></tr>
+<tr><td><strong>Communication</strong></td><td>A 75-year-old patient could follow every message. Messages are short, with one clear action. A pharmacist, a nurse and a designer could each act on the pack. Three pages plus storyboard and appendices; every acronym spelled out once.</td></tr>
+</tbody></table></div>
+
+<!-- Tool 1 -->
+<h3>Tool 1 · Storyboard builder</h3>
+<p>Build one frame per moment. Choose a moment from the bank (case section 6), say what the system knows at that point, pick the response rung, and write the <strong>exact words</strong> the patient sees, with any buttons. The phone preview updates as you type, and the checks beside it flag common problems: jargon, false reassurance, missing next steps, long sentences, and emergency messages that make people read before acting. The checks are prompts, not marks; you can disagree with one if you say why in your rationale.</p>
+<div class="frametabs" id="sb-tabs" role="group" aria-label="Storyboard frames"></div>
+<div class="fb2">
+  <div id="sb-form"></div>
+  <div class="side">
+    <h4 style="margin-top:0">Preview</h4>
+    <div class="phone" id="sb-phone" aria-live="polite"></div>
+    <div class="meter2" id="sb-meter"></div>
+    <ul class="lint" id="sb-lint" aria-live="polite"></ul>
+  </div>
+</div>
+<h4>Coverage</h4>
+<div class="cov2" id="sb-cov" aria-live="polite"></div>
+<p class="reqtools"><button class="btn" type="button" id="sb-clear">Clear this frame</button><button class="btn" type="button" id="sb-copy">Copy the storyboard as text</button><span id="sb-copied" aria-live="polite"></span></p>
+
+<!-- Tool 2 -->
+<h3>Tool 2 · Human review levels</h3>
+<p>For each AI action, rate what happens if the action is <em>wrong</em>: how severe it is, whether it can be undone, and whether anyone would notice in time. Tick <strong>time-critical</strong> if waiting for a person would itself cause harm. The page suggests the most autonomous level that fits the risk. Then choose your level, say who reviews, and for any <span class="vs">L1</span> or <span class="vs">L2</span> name at least one countermeasure against automation bias. Flags are prompts; a well-argued disagreement is fine.</p>
+<div class="scroll"><table class="lv">
+<thead><tr><th>Action</th><th>Severity if wrong</th><th>Can it be undone?</th><th>Noticed in time?</th><th>Time-critical?</th><th>Suggested</th><th>Your level</th><th>Who reviews · countermeasure</th></tr></thead>
+<tbody id="lv-body"></tbody>
+</table></div>
+<p class="reqtools"><span id="lv-sum" aria-live="polite"></span></p>
+
+<!-- Tool 3 -->
+<h3>Tool 3 · Test plan</h3>
+<p>Plan how you would find out whether patients understand your storyboard and act correctly. Remember 7.6: test behaviour, not opinions. If you do the optional lab, your results feed straight into this appendix.</p>
+<div class="fields">
+  <div><label for="tp-who">Who you would test with <span class="hint">· which groups, how many, how recruited, consent</span></label><textarea id="tp-who"></textarea></div>
+  <div><label for="tp-scen">Scenarios <span class="hint">· which frames, including at least one where the AI is wrong or at a limit</span></label><textarea id="tp-scen"></textarea></div>
+  <div><label for="tp-meas">What you will record <span class="hint">· calibration measures, comprehension of what happens next, who they think is answering</span></label><textarea id="tp-meas"></textarea></div>
+  <div><label for="tp-live">Live measures after launch <span class="hint">· two or three, linked to your Module 6 metrics tree, each with a threshold</span></label><textarea id="tp-live"></textarea></div>
+</div>
+
+<h3>Draft your rationale</h3>
+<p>You may draft here or in your own document tool. Submit the final version as a document, with the storyboard and both appendices copied from the tools (the <strong>Copy my work only</strong> button below includes them as text).</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="adr" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your trust rationale</label>
+<textarea id="adr" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. No notes, no AI tools.</li>
+  <li><strong>Covers:</strong> everything in the lesson. Expect to rewrite a weak message, choose and justify review levels, critique a confidence display, design an emergency moment, and spot automation bias, for a product you have not seen.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. After emailing your assignment, email the course team to request the test paper and book your viva.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>Without reading, you explain what patients should and should not rely on each product for, and how your design signals it.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your choices. Expect "defend every word of your chest pain frame", "why that review level for moving a review appointment?" and "what did you do about Ivy, and what would change your mind?"</td></tr>
+<tr><td class="num">7–10</td><td>The assessor gives you a new moment or a new finding. You design the words or the response on the spot, and say what it changes.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you can explain the ideas in plain words, how you handle the new moment, and how clearly you speak. Changing your mind for a good reason scores well.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Annotated storyboard and trust rationale (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>Your quiz answers, storyboard frames, review levels, test plan, draft, checklist and any lab results go in the email as plain text, alongside your final pack as an attachment.</p>
+<div class="submit-box" data-submit="m7" data-subject="Module 7 submission">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Finish your pack in your own document tool, such as Word or Google Docs.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach your pack.</li>
+<li>Once the email is sent, tick the box below. Module 8 opens when it is published, once you have ticked it and reached mastery on both checkpoint quizzes.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · about 1 hour · not assessed</span>Test your storyboard with two people over 65, or carers</h2>
+<p>Nothing replaces watching someone read your words. Find two people aged over 65, or two people who care for an older relative. Family, neighbours and friends are fine.</p>
+<div class="note warn"><p><strong>Keep it safe and fictional.</strong> Tell each person the products and scenarios are made up for a course, and that you are testing your words, not them. Do not ask about their own health. Stop if anyone becomes upset. If anyone mentions a real symptom that worries you, encourage them to contact their own doctor or, in an emergency, 995.</p></div>
+<ol>
+  <li>Show four of your frames, one at a time, as they would appear on a phone. Include your chest pain frame (B1) and your overnight handover frame (A1). Read the patient's message aloud so they know the situation.</li>
+  <li>After each frame ask, in this order: "What would you do now?", "What happens next?" and "Who do you think wrote this reply?"</li>
+  <li>Record what they say below, in their words where you can. Do not explain your design until the end.</li>
+</ol>
+<div class="scroll"><table class="lab">
+<thead><tr><th>Person · frame</th><th>What they would do</th><th>Right action?</th><th>What they think happens next</th><th>Who they think replied</th></tr></thead>
+<tbody id="lab-body"></tbody>
+</table></div>
+<p><strong>Reflect:</strong> Which words did they misread or skip? Did anyone hesitate on the emergency frame? Could they say when a pharmacist would reply? What will you change, and which usability finding from the case did you reproduce?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Google People + AI Research, <a href="https://pair.withgoogle.com/chapter/mental-models/">People + AI Guidebook: Mental Models</a>, <a href="https://pair.withgoogle.com/chapter/explainability-trust/">Explainability + Trust</a> and <a href="https://pair.withgoogle.com/chapter/errors-failing/">Errors + Graceful Failure</a>. Practical chapters with worksheets. About 30 minutes each.</li>
+  <li>Saleema Amershi and colleagues, <a href="https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/">Guidelines for Human-AI Interaction</a> (Microsoft Research, 2019). Eighteen guidelines, each with examples. Read the list and two or three examples, about 20 minutes.</li>
+  <li>John Lee and Katrina See, <a href="https://doi.org/10.1518/hfes.46.1.50_30392">Trust in automation: designing for appropriate reliance</a> (<em>Human Factors</em>, 2004). The classic paper on calibrated trust. Read the introduction and conclusions, about 25 minutes.</li>
+  <li>Duke University, <a href="https://www.coursera.org/learn/human-factors-in-artificial-intelligence">Human Factors in AI</a> (Coursera). The course this module draws on; audit the modules on user experience and trust.</li>
+  <li>World Wide Web Consortium (W3C), <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines 2.2</a>. Skim the summaries for contrast, text size and labels.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<ul>
+  <li><strong>Card fraud alert for a bank's app:</strong> storyboard the "Was this you?" moment for a blocked payment, at 2 am, for a customer abroad. What happens if they tap "No"? What if they ignore it? Which actions can the system take alone?</li>
+  <li><strong>Meeting notes assistant:</strong> it sends action items to attendees after each meeting. Choose a review level for sending, and design how a person corrects an action item that was never agreed.</li>
+  <li><strong>Insurance claims chat:</strong> design the message a customer sees at 11 pm on a Saturday after their water-leak claim is handed to a person who works weekdays.</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Automation bias</td><td>The tendency to accept an automated output without checking it properly</td></tr>
+<tr><td>Calibrated trust</td><td>Relying on a system when it is reliable for the task, and checking or bypassing it when it is not</td></tr>
+<tr><td>Carer access</td><td>A recorded permission that lets a family member act for a patient, within limits the patient chooses</td></tr>
+<tr><td>CIO</td><td>Chief Information Officer</td></tr>
+<tr><td>Detectability</td><td>Whether a wrong action would be noticed in time to fix it</td></tr>
+<tr><td>Disuse</td><td>Ignoring automation that would have helped</td></tr>
+<tr><td>DPO</td><td>Data protection officer</td></tr>
+<tr><td>Escape route</td><td>A clear, always-available way to reach a person or leave an automated flow</td></tr>
+<tr><td>Fallback</td><td>What the product does when a step fails, such as a search timing out</td></tr>
+<tr><td>GP</td><td>General practitioner, a family doctor</td></tr>
+<tr><td>Handover (handoff)</td><td>Passing the conversation to a person, with the question attached</td></tr>
+<tr><td>Human factors</td><td>The study of how people perceive, think and behave when working with systems and machines</td></tr>
+<tr><td>Levels of review (L0–L4)</td><td>Person only; AI suggests; preview then approve; act then notify with undo; act alone, audited</td></tr>
+<tr><td>Mental model</td><td>The picture a person carries of how something works</td></tr>
+<tr><td>Misuse</td><td>Relying on automation when you should not</td></tr>
+<tr><td>PAIR</td><td>People + AI Research, a Google team that publishes design guidance</td></tr>
+<tr><td>PM</td><td>Product manager</td></tr>
+<tr><td>Preview then approve</td><td>The AI prepares an action; nothing happens until a person confirms it</td></tr>
+<tr><td>Reading ease</td><td>A rough score of how easy English text is to read, from sentence length and word length; higher is easier</td></tr>
+<tr><td>Response ladder</td><td>Module 4's five rungs: answer; answer with a pointer; partial answer and hand over; decline and hand over; emergency stop</td></tr>
+<tr><td>Reversibility</td><td>Whether a wrong action can be undone, and how easily</td></tr>
+<tr><td>Severity</td><td>How bad the harm from a wrong action would be</td></tr>
+<tr><td>Storyboard</td><td>A sequence of frames showing what a person sees and does at each moment</td></tr>
+<tr><td>UX</td><td>User experience: everything a person sees, does and feels when using a product</td></tr>
+<tr><td>W3C</td><td>World Wide Web Consortium, the body that publishes web standards</td></tr>
+<tr><td>Warm handover</td><td>A handover that carries the context, names who will reply and when, and shows status while the person waits</td></tr>
+<tr><td>WCAG</td><td>Web Content Accessibility Guidelines</td></tr>
+</tbody></table></div>
+
+<nav class="pn" aria-label="Previous and next">
+  <a href="module-06.html"><small>← Previous</small>Module 6 · Evaluation II: automated judges and live metrics</a>
+  <span class="next"><small>Next</small>Module 8 · opens in Week 8</span>
+</nav>
+<p class="foot">Module 7 · Version 1.0 · 21 October 2026 · Harbourview Polyclinics, its staff, patients, messages and figures are fictional or simplified for teaching. Nothing on this page is medical or legal advice.</p>
+</div>
+<script>
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m7:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m7:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+function copyText(text, msgEl, okMsg){
+  const fb = $('fallback');
+  const fallback = () => { fb.hidden = false; fb.value = text; fb.focus(); fb.select(); if (msgEl) msgEl.textContent = 'Select all the text in the box at the end of the Submit section and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(() => { if (msgEl) msgEl.textContent = okMsg; fb.hidden = true; }, fallback); } catch(e) { fallback(); }
+}
+
+/* ===== Case data: the moment bank ===== */
+const KINDS = ['Emergency','Handover','Unsure','Out of scope or refusal','System failure','Wrong answer found later','Expectations and identity','Action to confirm'];
+const CORE = KINDS.slice(0, 6);
+const PROD = { A: 'Medicine assistant', B: 'Booking assistant' };
+const MOMENTS = [
+ { id:'A1', p:'A', kind:'Handover', req:true, title:'Overnight handover',
+   trig:"I just found out I'm 6 weeks pregnant. Can I keep taking my cetirizine?",
+   state:'10:40 pm on a Tuesday. The pregnancy rule (R-06) fires before the model, so a pharmacist must answer. The pharmacist queue reopens at 8 am.',
+   now:"I've sent your question to a Harbourview pharmacist with your medicine list attached. They will reply here in the app within 2 hours between 8 am and 8 pm (questions sent overnight are answered from 8 am)." },
+ { id:'A2', p:'A', kind:'Out of scope or refusal', title:'Medicine not on the list',
+   trig:"Can mummy use her eye drops with the new blood pressure tablet?",
+   state:'A carer is typing on her mother\'s phone. The eye drops were prescribed at a hospital and are not on the Harbourview list (R-04). The blood pressure tablet is on the list.',
+   now:'I can only answer questions about medicines on your prescription list.' },
+ { id:'A3', p:'A', kind:'Out of scope or refusal', title:'Leaflet in English only',
+   trig:'(in Tamil) I forgot my amlodipine yesterday. What should I do?',
+   state:'The amlodipine leaflet answers missed doses, but it has no Tamil translation (R-11). Pharmacists can reply in Tamil, with the usual handover times.',
+   now:'This leaflet is in English only.' },
+ { id:'A4', p:'A', kind:'System failure', title:'Search step fails',
+   trig:'How long should I wait after my alendronate before breakfast?',
+   state:'The leaflet search timed out after 6 seconds. No passage was retrieved, so the model must not answer. The question is saved in the conversation.',
+   now:'Error 504: upstream timeout. Please try again later.' },
+ { id:'A5', p:'A', kind:'Wrong answer found later', title:'An earlier answer was wrong',
+   trig:'(Last Thursday) My ankles are puffy since starting amlodipine. Normal?',
+   state:'Last Thursday the assistant said swollen ankles "usually go away within two weeks". The leaflet does not say that. The weekly pharmacist audit caught it on Monday. The rest of the answer was correct: a common side effect; do not stop without talking to the doctor.',
+   now:'(No message exists for this moment.)' },
+ { id:'A6', p:'A', kind:'Unsure', title:'Which tablet?',
+   trig:'the white tablet makes me giddy',
+   state:'The patient has four medicines. Three are white tablets: amlodipine, metformin and atorvastatin. Dizziness appears in the amlodipine leaflet only.',
+   now:'(Today the model picks one medicine and answers about it.)' },
+ { id:'A7', p:'A', kind:'Expectations and identity', title:'First use and “Ivy”',
+   trig:'(Opens the assistant for the first time.) Later: are you a real pharmacist?',
+   state:'First conversation for this patient. Usability: 3 of 8 believed a pharmacist was answering. R-10 requires saying it is automated when asked.',
+   now:"Hi! I'm Ivy, your Harbourview health buddy 😊 Ask me anything about your medicines!" },
+ { id:'B1', p:'B', kind:'Emergency', req:true, title:'Chest pain in the booking assistant',
+   trig:'chest very tight since this morning, want to see doctor today can?',
+   state:'The emergency rule matches "chest" + "tight" before the model runs. The patient came to book an appointment, not to report an emergency.',
+   now:'This could be an emergency. Please call 995 now.' },
+ { id:'B2', p:'B', kind:'Out of scope or refusal', title:'A symptom not on the emergency list',
+   trig:'Cough one week already, bit breathless climbing stairs. Should I come in today?',
+   state:'No emergency rule matches. The assistant must not judge urgency. Clementi has two same-day doctor slots left (3:20 pm, 4:40 pm). Nurse callbacks run 8 am to 5 pm weekdays; it is 11 am on a Wednesday.',
+   now:"I'm not able to give medical advice. Please consult a healthcare professional." },
+ { id:'B3', p:'B', kind:'Action to confirm', title:'Moving a review',
+   trig:'Move my diabetes review to next week, afternoon',
+   state:'Usual clinic: Clementi. No afternoon slots at Clementi next week. The booking system found Thu 14 Nov, 3:40 pm at Bedok and can hold it for 5 minutes.',
+   now:'Done! Your appointment has been moved to Thu 14 Nov, 3:40 pm at Bedok.' },
+ { id:'B4', p:'B', kind:'Out of scope or refusal', title:'A carer who is not yet linked',
+   trig:"I'm his son. Please cancel my father's appointment on Friday, he is in hospital.",
+   state:'Mr Raj is signed in as himself. His father has not added him as a carer, so there is no recorded consent. The DPO requires consent before any carer action.',
+   now:'For privacy reasons, I can only help the account holder.' },
+ { id:'B5', p:'B', kind:'Unsure', title:'Mixed language and two appointments',
+   trig:'can change my blood test to other day or not, Saturday can?',
+   state:'The patient has two upcoming bookings: a blood test (Tue 9:00 am) and a doctor review (Thu 10:20 am), possibly linked. Saturday blood-test slots exist at Clementi from 8 am to 11 am.',
+   now:"Sorry, I didn't understand. Please rephrase." },
+ { id:'B6', p:'B', kind:'System failure', title:'Booking system unavailable',
+   trig:'Book flu jab for this Saturday morning please',
+   state:'The booking system is down for maintenance until about 2 pm. The assistant can see that it is down but cannot hold or book a slot.',
+   now:'Booking failed. Error BK-500.' }
+];
+const MBY = {}; MOMENTS.forEach(m => MBY[m.id] = m);
+const RUNGS = [
+ ['1','Rung 1 · Answer fully'], ['2','Rung 2 · Answer with a pointer'], ['3','Rung 3 · Partial answer and hand over'], ['4','Rung 4 · Decline and hand over'], ['5','Rung 5 · Emergency stop'],
+ ['C','Ask a clarifying question or offer choices'], ['P','Preview and confirm an action'], ['F','Fallback after a failure'], ['X','Correct an earlier answer'], ['I','Introduce and set expectations'], ['R','Redirect to another service']
+];
+const RUNGNAME = {}; RUNGS.forEach(r => RUNGNAME[r[0]] = r[1]);
+const TRUST = ['Raise trust: patients can rely on this', 'Lower trust: patients should check, or not rely on this', 'Pass trust to a person', 'Repair trust after a failure or mistake'];
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Is the goal of AI user experience design to make people trust the product as much as possible?","No","The goal is calibrated trust: relying on the product when it is right for the task, and checking or bypassing it when it is not. Maximum trust turns every AI mistake into misuse."],
+  ["If patients keep phoning the pharmacy about questions the assistant answers correctly, is that a sign of disuse?","Yes","Disuse means ignoring automation that would have helped. It wastes the investment and the staff time the product was meant to save."],
+  ["Does giving an assistant a human name and a smiling face make its answers more reliable?","No","It raises trust without changing reliability, which is exactly what calibration warns against. Riverside's \"Rita\" raised satisfaction and complaints together."],
+  ["Should a product say what it cannot do, as well as what it can, when people start using it?","Yes","Microsoft's first two guidelines: make clear what the system can do, and how well. Saying the limits early shapes an accurate mental model."],
+  ["Is a language model's own statement that it is \"90% confident\" a reliable signal to show patients?","No","Self-reported confidence is not a reliable measure of whether the answer is right, and most people cannot act on a percentage. Change the product's behaviour based on real system signals instead."],
+  ["When a request could mean two different things, is asking one short question or offering two buttons usually better than guessing?","Yes","Showing uncertainty through behaviour is easier to understand than hedging words, and it avoids a confident wrong answer."],
+  ["Should an emergency message begin with a short explanation of why the system thinks it is an emergency?","No","The instruction comes first, with nothing to read before it. A reason placed first delays action and can invite the person to argue themselves out of calling."],
+  ["Does a good handover tell people who will reply, roughly when, and what to do if things get worse while they wait?","Yes","That is a warm handover. The time must be true at the hour the message is shown."],
+  ["If reviewers approve 99% of AI drafts without changes, does that prove the drafts are good?","No","It may mean reviewers have stopped checking: automation bias. Compare approval or edit rates with independent audit findings."],
+  ["Can an AI action that is minor, easy to undo and quickly noticed usually run on its own, with audits?","Yes","Low severity, high reversibility and high detectability support act-alone (L4) or act-then-notify (L3)."]
+ ], sa: [
+  ["Explain calibrated trust. Give one design choice that would raise trust without raising reliability, and one that would help trust match reliability.",
+   ["Trust that tracks how reliable the system actually is for the task at hand","Names misuse (over-reliance) and disuse (under-reliance) as the two failures","Inappropriate raiser: persona or human name, confident tone, citations that do not support the claim, speed","Calibrating choice: clear scope and identity, sources tied to real passages, behaviour that changes when unsure, honest handover"]],
+  ["Describe the parts of a good handover message. Use an example from any product.",
+   ["Says what happened and, briefly, why","Names who will reply and an honest time for this hour (including nights and weekends)","Says what to do meanwhile, and how to escalate if things get worse","Keeps the person's question so they do not retype it; shows status while they wait"]],
+  ["Choose a review level (L0 to L4) for two AI actions with different risks, from any product you know. Justify each, and name one countermeasure against automation bias.",
+   ["Two actions with clearly different risk","Uses severity, reversibility and detectability for each","Levels follow from the risk (and notes the time-critical exception if relevant)","A concrete countermeasure: highlight risky fields, confirm specific items, no pre-ticked approval, audit feedback, monitor edits against audits"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["Three of eight usability participants believed a pharmacist was answering, even though the answers were correct. Is that a trust-calibration problem?","Yes","Correct answers do not make a correct mental model. Patients who think a pharmacist checked every answer will rely on it in the cases where they should not, and the Head Pharmacist named this exact risk."],
+  ["Is \"within 2 hours\" an honest promise for a handover sent at 10:40 pm?","No","The queue reopens at 8 am; overnight handovers wait a median of 10.5 hours. The wording must change with the time of day, and say what to do if things get worse overnight."],
+  ["A patient types \"chest very tight since this morning\" into the booking assistant. Should it first ask which clinic they usually attend?","No","A possible emergency gets the emergency instruction first, with nothing before it. Booking can wait."],
+  ["In moment B3 the only slot is at Bedok, not the patient's usual Clementi. Should the assistant move the review straight away and then say \"Done!\"?","No","A wrong clinic or time can lead to a missed review. Use preview then approve: show the new date, time and clinic, highlight the change of clinic, and book only on confirmation. The system can hold the slot for 5 minutes."],
+  ["Pilot doctors' edits to note drafts fell sharply while audited error rates stayed the same. Would replacing section-by-section confirmation with one \"Approve all\" button help?","No","It would make rubber-stamping easier. Ask for confirmation of the risky sections, such as medicines and allergies, and feed audit findings back to doctors."]
+ ], sa: [
+  ["Rewrite the medicine assistant's search-failure message (\"Error 504: upstream timeout. Please try again later.\"). Explain two of your choices.",
+   ["Plain words for what happened; no error code shown (it goes in the log, which also meets the CIO's traceability need)","Keeps the patient's question; offers Try again and Send to a pharmacist as buttons","Honest timing for the pharmacist route","An escape route for urgent problems (call 995 if very unwell), placed so it does not alarm"]],
+  ["Mrs Krishnan (U6) gave up at \"This leaflet is in English only.\" Redesign that moment, and say what you would not let the model do while the patient waits.",
+   ["Message in Tamil from a pre-approved translation, saying the leaflet is in English only","Offers a pharmacist who can reply in Tamil, with honest timing, as a visible button above the fold","Optionally offers the English section, without pretending it is translated","Does not let the model translate dose or missed-dose instructions on the fly; measures abandonment by language"]],
+  ["The Nurse Manager fears the booking assistant will flood the nurse line, but would \"take ten false alarms over one missed heart attack\". Design how it handles symptoms, and estimate the load at Clementi.",
+   ["Emergency list handled by a fixed rule that shows the 995 message first, accepting some false alarms","Other symptoms: no urgency judgement; offer a same-day appointment first, nurse callback second, with honest hours","Estimate: about 1,200 × 7% ≈ 84 symptom mentions a week, roughly 15 a day if all became callbacks, against about 60 spare callbacks a day island-wide","Measure callback volume and outcomes, with a threshold that triggers review before expansion"]]
+ ]}
+};
+const QSTATE = {}, EXPORT = {};
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+
+/* ===== Moment bank table ===== */
+$('bank-body').innerHTML = MOMENTS.map(m => `<tr><td>${m.id}${m.req ? ' <span class="req">required</span>' : ''}</td><td>${PROD[m.p]}</td><td>${esc(m.kind)}</td>
+ <td><strong>${esc(m.title)}.</strong> Patient: <em>${esc(m.trig)}</em><br><span style="color:var(--muted);font-size:.86rem">${esc(m.state)}</span>${m.now && !/^\(/.test(m.now) ? `<div class="msg">Today: ${esc(m.now)}</div>` : `<div style="font-size:.84rem;color:var(--muted)">${esc(m.now)}</div>`}</td></tr>`).join('');
+
+/* ===== Tool 1: storyboard builder ===== */
+const FKEYS = ['m','own','ownP','ownKind','state','rung','words','btns','next','trust','trustWhy','harm','test'];
+let sb = store.get('sb');
+if (!sb || !Array.isArray(sb.f) || sb.f.length !== 8) { sb = { cur: 0, f: Array.from({length: 8}, () => ({})) }; sb.f[0].m = 'B1'; sb.f[1].m = 'A1'; store.set('sb', sb); }
+const fProd = f => f.m === 'own' ? (f.ownP || '') : f.m ? MBY[f.m].p : '';
+const fKind = f => f.m === 'own' ? (f.ownKind || '') : f.m ? MBY[f.m].kind : '';
+const fTrig = f => f.m === 'own' ? (f.own || '') : f.m ? MBY[f.m].trig : '';
+const fDone = f => !!(f.m && f.rung && words(f.words) >= 5 && (f.next || '').trim() && (f.harm || '').trim() && f.trust);
+const fStarted = f => FKEYS.some(k => k !== 'm' && (f[k] || '').toString().trim());
+
+function syll(w){ w = w.toLowerCase().replace(/[^a-z]/g, ''); if (!w) return 0; if (w.length <= 3) return 1; w = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '').replace(/^y/, ''); const g = w.match(/[aeiouy]{1,2}/g); return g ? g.length : 1; }
+function readStats(t){
+  const ws = (t.match(/[A-Za-z][A-Za-z'’-]*/g) || []);
+  const sents = Math.max(1, (t.split(/[.!?]+(?:\s|$)|\n+/).filter(s => s.trim().match(/[A-Za-z0-9]/)) || []).length);
+  const sy = ws.reduce((a, w) => a + syll(w), 0);
+  const ease = ws.length ? 206.835 - 1.015 * (ws.length / sents) - 84.6 * (sy / ws.length) : NaN;
+  return { n: words(t), latin: ws.length, sents, avg: ws.length / sents, ease };
+}
+const has = (t, re) => re.test(t);
+function lint(f){
+  const t = (f.words || '').trim(), L = [], kind = fKind(f), r = f.rung, low = t.toLowerCase();
+  if (!f.m) return [['w', 'Choose a moment first.']];
+  if (!t) return [['w', 'Write the exact words the patient sees.']];
+  const st = readStats(t), btns = (f.btns || '').split(',').map(s => s.trim()).filter(Boolean);
+  const emerg = r === '5' || kind === 'Emergency';
+  const handover = kind === 'Handover' || r === '3' || r === '4';
+  if (st.latin < st.n * 0.5) L.push(['w', 'Most of this text is not in English letters, so the reading checks are off. Write the English version here and put translations in your rationale.']);
+  else {
+    if (emerg && st.n > 35) L.push(['w', `${st.n} words. An emergency message should be short enough to take in at a glance (about 35 words or fewer).`]);
+    else if (!emerg && st.n > 70) L.push(['w', `${st.n} words. Patients asked for short messages; can you cut to about 60?`]);
+    if (st.avg > 20) L.push(['w', `Sentences average ${Math.round(st.avg)} words. Aim for 15 or fewer.`]);
+    if (isFinite(st.ease) && st.ease < 60 && st.n >= 12) L.push(['w', `Reading ease ${Math.round(st.ease)}. Below 60 is hard for many readers; use shorter words and sentences.`]);
+  }
+  const jarg = ['consult','healthcare professional','adverse','contraindicat','dosage','triage','upstream','timeout','time-out','rephrase','invalid','query','escalat','unable to process','account holder','authenticat','in accordance','kindly','regret to inform'].filter(j => low.includes(j));
+  if (jarg.length) L.push(['w', 'Jargon or stiff wording: ' + jarg.join(', ') + '.']);
+  if (/\berror\b|\b[A-Z]{2,}-\d{3}\b|\b50\d\b/i.test(t)) L.push(['b', 'Error codes and technical words belong in the log, not in the patient\'s message.']);
+  const reass = ["don't worry","do not worry","nothing to worry","no need to worry","you're fine","you are fine","it's safe","it is safe","perfectly safe","nothing serious","not serious"].filter(p => low.includes(p));
+  if (reass.length) L.push(['b', 'Reassurance the system cannot back up: "' + reass.join('", "') + '".']);
+  const over = ['guarantee','definitely','never fail','100%','for sure'].filter(p => low.includes(p));
+  if (over.length) L.push(['w', 'Absolute promise: ' + over.join(', ') + '. Is it true every time?']);
+  if (/\byou (?:entered|typed)\b|\byour input\b|\bplease rephrase\b/.test(low)) L.push(['w', 'Puts the problem on the patient. Say what the product will do instead.']);
+  if (/health buddy|i'?m ivy|i am ivy|i'?m a pharmacist|as your pharmacist|\bi feel\b/.test(low) || /[\u{1F300}-\u{1FAFF}☀-➿]/u.test(t)) L.push(['w', 'Persona, emoji or human claims raise trust without raising reliability. Keep them only if your rationale argues for it.']);
+  const nextVerb = /\b(tap|call|reply|choose|press|send|book|visit|come|go to|open|confirm|pick|select|try again|contact|phone)\b/.test(low);
+  if (!btns.length && !nextVerb) L.push(['w', 'No clear next step. Give one action, as a button where possible.']);
+  if (emerg) {
+    if (!/\b995\b/.test(t)) L.push(['b', 'An emergency message must tell the patient to call 995.']);
+    else {
+      const first = t.split(/\s+/).slice(0, 12).join(' ');
+      if (!/\b995\b|\bcall\b/i.test(first)) L.push(['w', 'The instruction to call 995 is not in the first dozen words. Put it first.']);
+      else L.push(['g', 'The emergency instruction comes first.']);
+    }
+    const qpos = t.indexOf('?'), npos = t.indexOf('995');
+    if (qpos >= 0 && (npos < 0 || qpos < npos)) L.push(['b', 'Asks a question before the emergency instruction.']);
+    if (btns.length > 2) L.push(['w', `${btns.length} buttons compete with the emergency instruction. Keep any other option quiet and underneath.`]);
+  }
+  if (f.m === 'B1' && r && r !== '5') L.push(['b', 'B1 matches the emergency list. It belongs on rung 5, emergency stop.']);
+  if (handover) {
+    const who = /\b(pharmacist|nurse|doctor|staff|team|librarian|person)\b/.test(low), when = /\b(am|pm|hour|hours|minute|minutes|tomorrow|morning|tonight|today|working day|by \d|from \d|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/.test(low);
+    if (!who) L.push(['w', 'Does not say who will reply.']);
+    if (!when) L.push(['w', 'Does not say when they will reply.']);
+    if (who && when) L.push(['g', 'Says who will reply and when.']);
+    if (!/\b(995|worse|urgent|unwell|emergency)\b/.test(low)) L.push(['w', 'No route if things get worse while they wait.']);
+  }
+  if (f.m === 'A1' && /\b2 hours\b|\btwo hours\b/.test(low) && !/\b(8 am|8am|morning|tomorrow|overnight|tonight)\b/.test(low)) L.push(['b', 'At 10:40 pm a reply “within 2 hours” is not true. Say when it will really come.']);
+  if (kind === 'System failure') {
+    if (!/try again|retry/.test(low) && !/pharmacist|nurse|staff|call|phone/.test(low) && !btns.some(b => /try|again|pharmacist|nurse|call/i.test(b))) L.push(['w', 'Offer a way forward: try again, or a person.']);
+  }
+  if (kind === 'Wrong answer found later' && !/sorry|correct|mistake|wrong|not right/.test(low)) L.push(['w', 'Say plainly that the earlier answer was wrong, and what is right.']);
+  if (kind === 'Unsure' && !t.includes('?') && !btns.length) L.push(['w', 'When unsure, ask one short question or offer choices.']);
+  if (fKind(f) === 'Expectations and identity' && !/automated|not a person|not a pharmacist|computer|ai assistant|automatic/.test(low)) L.push(['w', 'Does not say it is automated. Three of eight patients thought a pharmacist was answering.']);
+  if (fKind(f) === 'Action to confirm' && !btns.some(b => /confirm|yes|book|change|cancel|keep/i.test(b))) L.push(['w', 'An action to confirm needs Confirm and Change buttons.']);
+  if (!L.some(x => x[0] !== 'g')) L.push(['g', 'No problems found by the automatic checks. Now test it with a person.']);
+  return L;
+}
+function drawTabs(){
+  $('sb-tabs').innerHTML = sb.f.map((f, i) => { const s = fDone(f) ? 'done' : (f.m && fStarted(f)) ? 'half' : '';
+    return `<button type="button" data-i="${i}" aria-pressed="${i === sb.cur}"><span class="dot ${s}"></span>Frame ${i+1}${f.m ? ' · ' + (f.m === 'own' ? 'Own' : f.m) : ''}</button>`; }).join('');
+}
+$('sb-tabs').addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (!b) return; sb.cur = +b.dataset.i; store.set('sb', sb); drawSB(); });
+function drawForm(){
+  const f = sb.f[sb.cur], m = f.m && f.m !== 'own' ? MBY[f.m] : null;
+  const used = new Set(sb.f.map((x, i) => i !== sb.cur ? x.m : null).filter(Boolean));
+  $('sb-form').innerHTML = `<div class="fgrid">
+   <div class="full"><label for="f-m">Moment</label><select id="f-m" data-k="m"><option value="">Choose a moment</option>
+     ${['A','B'].map(p => `<optgroup label="${PROD[p]}">${MOMENTS.filter(x => x.p === p).map(x => `<option value="${x.id}">${x.id} · ${esc(x.title)}${x.req ? ' (required)' : ''}${used.has(x.id) ? ' (already used)' : ''}</option>`).join('')}</optgroup>`).join('')}
+     <option value="own">My own moment</option></select></div>
+   ${f.m === 'own' ? `<div class="full"><label for="f-own">Your moment <span class="hint">· what the patient types or does</span></label><input type="text" id="f-own" data-k="own"></div>
+     <div><label for="f-ownP">Product</label><select id="f-ownP" data-k="ownP"><option value="">Choose</option><option value="A">Medicine assistant</option><option value="B">Booking assistant</option></select></div>
+     <div><label for="f-ownKind">Kind of moment</label><select id="f-ownKind" data-k="ownKind"><option value="">Choose</option>${KINDS.map(k => `<option>${k}</option>`).join('')}</select></div>` : ''}
+   ${m ? `<div class="full mdesc"><b>${esc(m.title)}</b> · ${PROD[m.p]} · ${esc(m.kind)}<br>${esc(m.state)}<br><span style="color:var(--muted)">Today: ${esc(m.now)}</span></div>` : ''}
+   <div class="full"><label for="f-state">What the system knows at this point <span class="hint">· the real signal that triggers this response (a rule, no passage, two matches, a failure)</span></label><textarea id="f-state" data-k="state"></textarea></div>
+   <div class="full"><label for="f-rung">Response</label><select id="f-rung" data-k="rung"><option value="">Choose</option>${RUNGS.map(r => `<option value="${r[0]}">${esc(r[1])}</option>`).join('')}</select></div>
+   <div class="full"><label for="f-words">Exact words the patient sees <span class="hint">· write the English version; the checks assume English</span></label><textarea id="f-words" class="words" data-k="words"></textarea></div>
+   <div class="full"><label for="f-btns">Buttons shown <span class="hint">· separate with commas, in order</span></label><input type="text" id="f-btns" data-k="btns" placeholder="e.g. Send to a pharmacist, Try again"></div>
+   <div class="full"><label for="f-next">What happens next <span class="hint">· who acts, when, what the patient sees while waiting</span></label><textarea id="f-next" data-k="next"></textarea></div>
+   <div><label for="f-trust">Trust intent</label><select id="f-trust" data-k="trust"><option value="">Choose</option>${TRUST.map(t => `<option>${esc(t)}</option>`).join('')}</select></div>
+   <div><label for="f-trustWhy">Why <span class="hint">· cite a finding, U1–U8 or a figure</span></label><textarea id="f-trustWhy" data-k="trustWhy"></textarea></div>
+   <div class="full"><label for="f-harm">Who could be harmed if this is misread, and how</label><textarea id="f-harm" data-k="harm"></textarea></div>
+   <div class="full"><label for="f-test">How you would test it with patients</label><textarea id="f-test" data-k="test"></textarea></div>
+  </div>`;
+  $('sb-form').querySelectorAll('[data-k]').forEach(el => {
+    el.value = f[el.dataset.k] || '';
+    if (el.dataset.k === 'state' && m) el.placeholder = 'e.g. ' + m.state.split('. ')[0] + '.';
+    const ev = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(ev, () => {
+      f[el.dataset.k] = el.value; store.set('sb', sb);
+      if (el.dataset.k === 'm' || el.dataset.k === 'ownKind' || el.dataset.k === 'ownP') { drawSB(); return; }
+      drawTabs(); drawPreview(); drawCov(); progress();
+    });
+  });
+}
+function drawPreview(){
+  const f = sb.f[sb.cur], btns = (f.btns || '').split(',').map(s => s.trim()).filter(Boolean), emerg = f.rung === '5';
+  const prod = fProd(f);
+  $('sb-phone').innerHTML = `<div class="bar">${prod ? esc(PROD[prod]) : 'Harbourview app'}</div>` +
+    (fTrig(f) ? `<div class="bub user">${esc(fTrig(f))}</div>` : '') +
+    (f.words && f.words.trim() ? `<div class="bub bot${emerg ? ' em' : ''}">${esc(f.words.trim())}</div>` : '<div class="bub bot" style="color:var(--muted)">Your message appears here.</div>') +
+    (btns.length ? `<div class="chips">${btns.map(b => `<span>${esc(b)}</span>`).join('')}</div>` : '') +
+    ((f.next || '').trim() ? `<div class="after">Then: ${esc(f.next.trim())}</div>` : '');
+  const st = readStats(f.words || '');
+  $('sb-meter').innerHTML = f.words && f.words.trim() ? `<span><b>${st.n}</b> words</span><span><b>${st.sents}</b> sentence${st.sents === 1 ? '' : 's'}</span>${st.latin >= st.n * 0.5 && isFinite(st.ease) ? `<span>Reading ease <b>${Math.max(0, Math.min(100, Math.round(st.ease)))}</b></span>` : ''}` : '';
+  $('sb-lint').innerHTML = lint(f).map(([c, s]) => `<li class="${c}">${esc(s)}</li>`).join('');
+}
+function coverage(){
+  const fs = sb.f.filter(f => f.m);
+  const ids = new Set(fs.map(f => f.m));
+  const prodN = p => fs.filter(f => fProd(f) === p).length;
+  const kinds = new Set(fs.map(fKind));
+  return { b1: ids.has('B1'), a1: ids.has('A1'), a: prodN('A'), b: prodN('B'), kinds, missing: CORE.filter(k => !kinds.has(k)), done: sb.f.filter(fDone).length, own: fs.filter(f => f.m === 'own').length,
+    dup: fs.length - new Set(fs.filter(f => f.m !== 'own').map(f => f.m)).size - fs.filter(f => f.m === 'own').length };
+}
+function drawCov(){
+  const c = coverage();
+  const box = (ok, title, sub) => `<div class="${ok ? 'ok' : 'no'}"><b>${title}</b>${sub}</div>`;
+  $('sb-cov').innerHTML = box(c.done === 8, `${c.done} of 8 frames complete`, 'Moment, response, words, next step, trust and harm filled') +
+    box(c.b1 && c.a1, 'Required moments', `B1 chest pain ${c.b1 ? '✓' : '✗'} · A1 overnight ${c.a1 ? '✓' : '✗'}`) +
+    box(c.a >= 3 && c.b >= 3, 'Both products', `Medicine ${c.a} · Booking ${c.b} (3 each needed)`) +
+    box(!c.missing.length, 'Six kinds of moment', c.missing.length ? 'Missing: ' + c.missing.join(', ') : 'All six covered') +
+    box(c.own <= 1 && c.dup <= 0, 'Own moments and repeats', `${c.own} own${c.dup > 0 ? ` · ${c.dup} repeated` : ''} (at most 1 own; no repeats)`);
+}
+function drawSB(){ drawTabs(); drawForm(); drawPreview(); drawCov(); progress(); }
+$('sb-clear').addEventListener('click', () => { if (!confirm(`Clear everything in frame ${sb.cur + 1}?`)) return; sb.f[sb.cur] = {}; store.set('sb', sb); drawSB(); });
+function sbText(){
+  const out = [];
+  sb.f.forEach((f, i) => {
+    if (!f.m) { out.push(`FRAME ${i+1} · (empty)`, ''); return; }
+    const m = f.m !== 'own' ? MBY[f.m] : null;
+    out.push(`FRAME ${i+1} · ${m ? m.id + ' · ' + m.title : 'Own moment'} · ${PROD[fProd(f)] || '-'} · ${fKind(f) || '-'}`,
+      `Patient: ${fTrig(f) || '-'}`, `System knows: ${(f.state || '').trim() || '-'}`, `Response: ${RUNGNAME[f.rung] || '-'}`,
+      `Words shown: ${(f.words || '').trim() || '-'}`, `Buttons: ${(f.btns || '').trim() || '-'}`, `Next: ${(f.next || '').trim() || '-'}`,
+      `Trust intent: ${f.trust || '-'} · Why: ${(f.trustWhy || '').trim() || '-'}`, `Harm if misread: ${(f.harm || '').trim() || '-'}`, `Test: ${(f.test || '').trim() || '-'}`);
+    const st = readStats(f.words || ''); if ((f.words || '').trim()) out.push(`Checks: ${st.n} words${st.latin >= st.n * 0.5 && isFinite(st.ease) ? ', reading ease ' + Math.round(st.ease) : ''} · ` + lint(f).map(x => (x[0] === 'g' ? 'OK: ' : x[0] === 'b' ? 'PROBLEM: ' : 'CHECK: ') + x[1]).join(' | '));
+    out.push('');
+  });
+  const c = coverage();
+  out.push(`Coverage: ${c.done}/8 complete · B1 ${c.b1 ? 'yes' : 'no'} · A1 ${c.a1 ? 'yes' : 'no'} · medicine ${c.a}, booking ${c.b} · missing kinds: ${c.missing.join(', ') || 'none'}`);
+  return out;
+}
+$('sb-copy').addEventListener('click', () => copyText(['STORYBOARD', ...sbText()].join('\n'), $('sb-copied'), 'Storyboard copied.'));
+
+/* ===== Tool 2: human review levels ===== */
+const ACTIONS = [
+ { id:'V1', p:'B', a:'Show available slots when a patient asks to move a review', note:'A list only; nothing is booked' },
+ { id:'V2', p:'B', a:'Move a clinic-booked diabetes review to a new date, time or clinic', note:'Moment B3' },
+ { id:'V3', p:'B', a:'Cancel an appointment the patient asked to cancel', note:'The slot may be taken by someone else at once' },
+ { id:'V4', p:'B', a:'Book a flu vaccination for a patient, asked for by their linked carer', note:'Carer consent covers appointments' },
+ { id:'V5', p:'B', a:'Show the emergency message when a typed symptom matches the emergency list', note:'A fixed rule, tested on a large phrasing set' },
+ { id:'V6', p:'B', a:'Put a patient on the nurse callback list after they describe a symptom', note:'Uses nurse capacity' },
+ { id:'V7', p:'A', a:'Answer a question from the patient\'s own leaflet', note:'Covered by the Module 6 release gate and weekly judge' },
+ { id:'V8', p:'A', a:'Reply to a pregnancy question about a medicine', note:'R-06 requires a pharmacist' },
+ { id:'V9', p:'A', a:'Send a patient a correction of an earlier wrong answer', note:'Moment A5' },
+ { id:'V10', p:'C', a:'Draft the medicines and allergies section of a consultation note', note:'Consultation note drafter, Module 6 pilot' }
+];
+const LV = ['L0','L1','L2','L3','L4'], LVNAME = { L0:'Person only', L1:'AI suggests', L2:'Preview then approve', L3:'Act, notify, undo', L4:'Act alone, audited' };
+const PNAME = { A:'Medicine', B:'Booking', C:'Note drafter' };
+let lv = store.get('lv') || {};
+function suggest(r){
+  if (!r.sev || !r.undo || !r.notice) return null;
+  const s = +r.sev + { easy:0, hard:1, no:2 }[r.undo] + { quick:0, maybe:1, unlikely:2 }[r.notice];
+  return s <= 2 ? 'L4' : s <= 4 ? 'L3' : s <= 6 ? 'L2' : 'L1';
+}
+function lvFlags(r){
+  const F = [], sg = suggest(r);
+  if (!r.lvl) return F;
+  if (sg && LV.indexOf(r.lvl) > LV.indexOf(sg) && !r.tc) F.push(['bad', `More autonomy than the risk suggests (${sg}). Justify it, or lower it.`]);
+  if (r.tc && LV.indexOf(r.lvl) <= 2) F.push(['', 'Time-critical: a person before this step adds delay. Is the delay itself safe?']);
+  if ((r.lvl === 'L1' || r.lvl === 'L2') && words(r.who) < 4) F.push(['', 'Say who reviews and name a countermeasure against automation bias.']);
+  if (sg && LV.indexOf(r.lvl) < LV.indexOf(sg) - 1) F.push(['', `Much less autonomy than the risk suggests (${sg}). Who pays for the extra checking?`]);
+  return F;
+}
+function drawLV(){
+  $('lv-body').innerHTML = ACTIONS.map(x => { const r = lv[x.id] || {}, sg = suggest(r);
+    return `<tr data-id="${x.id}"><td class="act"><span class="vs">${PNAME[x.p]}</span> ${esc(x.a)}<small>${esc(x.note)}</small></td>
+    <td><select data-k="sev" aria-label="Severity"><option value="">—</option><option value="1">1 · Minor</option><option value="2">2 · Moderate</option><option value="3">3 · Serious</option><option value="4">4 · Critical</option></select></td>
+    <td><select data-k="undo" aria-label="Can it be undone"><option value="">—</option><option value="easy">Easily</option><option value="hard">With effort</option><option value="no">No</option></select></td>
+    <td><select data-k="notice" aria-label="Noticed in time"><option value="">—</option><option value="quick">Quickly</option><option value="maybe">Maybe</option><option value="unlikely">Unlikely</option></select></td>
+    <td><input type="checkbox" data-k="tc" aria-label="Time-critical"></td>
+    <td class="sug" data-sug>${sg ? sg + ' · ' + LVNAME[sg] : '—'}</td>
+    <td><select data-k="lvl" aria-label="Your level"><option value="">Choose</option>${LV.map(l => `<option value="${l}">${l} · ${LVNAME[l]}</option>`).join('')}</select></td>
+    <td><input type="text" data-k="who" aria-label="Who reviews and countermeasure" placeholder="e.g. Patient confirms; clinic change highlighted" style="min-width:14rem"><span data-flags></span></td></tr>`; }).join('');
+  $('lv-body').querySelectorAll('tr').forEach(tr => { const id = tr.dataset.id; tr.querySelectorAll('[data-k]').forEach(el => {
+    const r = () => (lv[id] = lv[id] || {});
+    if (el.type === 'checkbox') el.checked = !!(lv[id] || {})[el.dataset.k]; else el.value = (lv[id] || {})[el.dataset.k] || '';
+    el.addEventListener(el.tagName === 'SELECT' || el.type === 'checkbox' ? 'change' : 'input', () => { r()[el.dataset.k] = el.type === 'checkbox' ? el.checked : el.value; store.set('lv', lv); lvRow(tr); lvSum(); });
+  }); lvRow(tr); });
+  lvSum();
+}
+function lvRow(tr){ const r = lv[tr.dataset.id] || {}, sg = suggest(r);
+  tr.querySelector('[data-sug]').textContent = sg ? sg + ' · ' + LVNAME[sg] + (r.tc ? ' (time-critical)' : '') : '—';
+  tr.querySelector('[data-flags]').innerHTML = lvFlags(r).map(([c, s]) => `<span class="flag ${c}">${esc(s)}</span>`).join(''); }
+function lvSum(){ const n = ACTIONS.filter(x => (lv[x.id] || {}).lvl).length, fl = ACTIONS.reduce((a, x) => a + lvFlags(lv[x.id] || {}).length, 0);
+  $('lv-sum').textContent = `${n} of ${ACTIONS.length} levels set` + (fl ? ` · ${fl} prompt${fl === 1 ? '' : 's'} to look at` : ''); progress(); }
+
+/* ===== Tool 3, draft, checklist, lab ===== */
+let misc = store.get('misc') || {};
+['tp-who','tp-scen','tp-meas','tp-live'].forEach(id => { const el = $(id); el.value = misc[id] || ''; el.addEventListener('input', () => { misc[id] = el.value; store.set('misc', misc); progress(); }); });
+const OUTLINE = `ANNOTATED STORYBOARD AND TRUST RATIONALE · Medicine questions assistant and booking assistant
+Harbourview Polyclinics · Version 0.1 · Author: Head of Digital Products
+For: Head of Patient Experience, Head Pharmacist, Nurse Manager (Emergency and Triage)
+
+1. Summary
+[What patients should rely on each product for · what they should not · how the design signals the difference · the three changes that matter most]
+
+2. Expectations and identity
+[First message for each product · decision on "Ivy", with evidence (U1, focus groups, Head Pharmacist) · when and how the products say they are automated]
+
+3. Explanation and uncertainty
+[How sources are shown (U4, 5 of 8 missed the source line) · behaviour when unsure (A6, B5) · which system signals drive each behaviour]
+
+4. Handovers and capacity
+[Pharmacist handover by time of day (31% overnight, 23% "hello?") · nurse callbacks and same-day slots · estimated extra load from case figures · emergency false alarms (41 shown, 15 old or mild) and how you handle them]
+
+5. Human review
+[Levels for the ten actions (Appendix A) · time-critical exception · countermeasures against automation bias]
+
+6. Inclusion
+[Older adults · carers and consent · Malay, Mandarin and Tamil, and pre-approved translations · low vision and button placement (U4, U6)]
+
+7. How you will know it works
+[Test plan measuring calibration (Appendix B) · lab results if done · two or three live measures linked to your Module 6 metrics tree]
+
+Storyboard · eight frames (from Tool 1)
+Appendix A · Human review levels (from Tool 2)
+Appendix B · Test plan (from Tool 3) and lab results`;
+const adr = $('adr'); adr.value = misc.adr || '';
+function wc(){ const w = words(adr.value); $('wc').textContent = w + ' words' + (w > 1400 ? ' · the rationale should be about 1,200 words; storyboard and appendices are extra' : ''); }
+adr.addEventListener('input', () => { misc.adr = adr.value; store.set('misc', misc); wc(); progress(); });
+$('tmpl').addEventListener('click', () => { if (adr.value.trim() && !confirm('Replace your current draft with the outline?')) return; adr.value = OUTLINE; misc.adr = OUTLINE; store.set('misc', misc); wc(); progress(); adr.focus(); });
+wc();
+
+const CHECKS = [
+  "Eight frames, including B1 (chest pain) and A1 (overnight handover), at least three per product, and all six kinds of moment",
+  "Every frame has the exact words the patient sees, the buttons, what happens next, and who could be harmed if it is misread",
+  "My emergency frame puts the instruction to call 995 first and asks nothing before it",
+  "Every handover says who will reply and a time that is true at that hour, plus what to do if things get worse",
+  "Each product says it is automated, what it can and cannot do, and where its answers come from; my Ivy decision is argued from evidence",
+  "Uncertainty is shown by what the product does, driven by real system signals, not by percentages or hedging",
+  "Review levels follow severity, reversibility and detectability; L1 and L2 actions name a countermeasure against automation bias",
+  "I estimated pharmacist and nurse load from the case figures",
+  "My test plan measures what people do when the AI is right and when it is wrong",
+  "Three pages of rationale plus storyboard and appendices; every acronym spelled out once"
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c, i) => `<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el => { el.checked = !!ck[el.dataset.i]; el.addEventListener('change', () => { ck[el.dataset.i] = el.checked; store.set('ck', ck); }); });
+
+let lab = store.get('lab') || {};
+$('lab-body').innerHTML = [1, 2].flatMap(p => [1, 2, 3, 4].map(k => `<tr><td><span class="vs">Person ${p}</span> <input type="text" data-k="p${p}f${k}" aria-label="Person ${p}, frame tested ${k}" placeholder="Frame, e.g. B1" style="width:6.5rem"></td>
+  <td><input type="text" data-k="p${p}f${k}do" aria-label="What they would do"></td>
+  <td><select data-k="p${p}f${k}ok" aria-label="Right action"><option value="">—</option><option>Yes</option><option>Partly</option><option>No</option></select></td>
+  <td><input type="text" data-k="p${p}f${k}nx" aria-label="What they think happens next"></td>
+  <td><input type="text" data-k="p${p}f${k}who" aria-label="Who they think replied"></td></tr>`)).join('');
+document.querySelectorAll('#lab-body [data-k]').forEach(el => { el.value = lab[el.dataset.k] || ''; el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { lab[el.dataset.k] = el.value; store.set('lab', lab); }); });
+$('lab-ref').value = lab.ref || ''; $('lab-ref').addEventListener('input', e => { lab.ref = e.target.value; store.set('lab', lab); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d = $(id); if (!d) return; d.className = 'dot' + (s === 'done' ? ' done' : s === 'prog' ? ' prog' : ''); }
+function progress(){
+  const a = QSTATE.qa, b = QSTATE.qb, w = words(typeof adr !== 'undefined' ? adr.value : '');
+  const c = typeof sb !== 'undefined' ? coverage() : { done: 0, b1: false, a1: false };
+  const nl = typeof lv !== 'undefined' ? ACTIONS.filter(x => (lv[x.id] || {}).lvl).length : 0;
+  if (a) { $('st-qa').textContent = qlabel(a); dot('d-qa', a.mast ? 'done' : a.started ? 'prog' : ''); dot('d-lesson', a.started ? 'done' : ''); }
+  if (b) { $('st-qb').textContent = qlabel(b); dot('d-qb', b.mast ? 'done' : b.started ? 'prog' : ''); dot('d-case', b.started ? 'done' : ''); }
+  $('st-fr').textContent = `${c.done} of 8`; $('st-req').textContent = `${(c.b1 ? 1 : 0) + (c.a1 ? 1 : 0)} of 2`; $('st-lv').textContent = `${nl} of 10`;
+  const started = (typeof sb !== 'undefined' && sb.f.some(f => fStarted(f))) || nl || w;
+  dot('d-as', c.done === 8 && nl === 10 && w > 600 ? 'done' : started ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask the course team for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a && a.mast ? 'done' : 'not yet'} · Quiz B: ${b && b.mast ? 'done' : 'not yet'}.`;
+  const sum = q => q && q.started ? { c: q.c, total: q.total, mast: q.mast } : null;
+  try { localStorage.setItem('progress:m7', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: started ? 'drafting' : 'none' })); } catch(e) {}
+}
+
+/* ===== Step bar highlight ===== */
+const links = [...document.querySelectorAll('.stepbar a')], secs = links.map(l => document.querySelector(l.getAttribute('href')));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('here', l.getAttribute('href') === '#' + e.target.id)); const h = links.find(l => l.classList.contains('here')); if (h && h.scrollIntoView) h.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } }); }, { rootMargin: '-20% 0px -75% 0px' });
+  secs.forEach(s => s && io.observe(s));
+}
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); drawSB(); drawLV(); progress();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click', () => {
+  const out = ['MODULE 7 SUBMISSION · Designing AI user experience and human factors', '', 'CHECKPOINT QUIZ A', ...EXPORT.qa(), 'CHECKPOINT QUIZ B', ...EXPORT.qb()];
+  out.push('STORYBOARD (from Tool 1)', ...sbText(), '');
+  out.push('APPENDIX A · HUMAN REVIEW LEVELS (action · severity · undo · noticed · time-critical · suggested · chosen · who reviews and countermeasure)');
+  ACTIONS.forEach(x => { const r = lv[x.id] || {}, sg = suggest(r); out.push(`${x.id} ${PNAME[x.p]}: ${x.a} · ${r.sev || '-'} · ${r.undo || '-'} · ${r.notice || '-'} · ${r.tc ? 'yes' : 'no'} · ${sg || '-'} · ${r.lvl ? r.lvl + ' ' + LVNAME[r.lvl] : '-'} · ${(r.who || '').trim() || '-'}${lvFlags(r).length ? ' · prompts: ' + lvFlags(r).map(f => f[1]).join(' | ') : ''}`); });
+  out.push('', 'APPENDIX B · TEST PLAN', 'Who: ' + ((misc['tp-who'] || '').trim() || '-'), 'Scenarios: ' + ((misc['tp-scen'] || '').trim() || '-'), 'Measures: ' + ((misc['tp-meas'] || '').trim() || '-'), 'Live measures: ' + ((misc['tp-live'] || '').trim() || '-'));
+  out.push('', 'RATIONALE DRAFT', (misc.adr || '(blank)').trim(), `Word count: ${words(misc.adr)}`, '', 'CHECKLIST');
+  CHECKS.forEach((c, i) => out.push(`[${ck[i] ? 'x' : ' '}] ${c}`));
+  const labRows = [1, 2].flatMap(p => [1, 2, 3, 4].map(k => { const g = s => (lab[`p${p}f${k}${s}`] || '').trim(); return [p, g(''), g('do'), g('ok'), g('nx'), g('who')]; })).filter(r => r.slice(1).some(Boolean));
+  if (labRows.length || (lab.ref || '').trim()) { out.push('', 'OPTIONAL LAB'); labRows.forEach(r => out.push(`Person ${r[0]} · frame ${r[1] || '-'} · would do: ${r[2] || '-'} · right action: ${r[3] || '-'} · next: ${r[4] || '-'} · who replied: ${r[5] || '-'}`)); out.push('Reflection: ' + ((lab.ref || '').trim() || '-')); }
+  copyText(out.join('\n'), $('copied'), 'Copied. Paste it into your email and attach your pack.');
+});
+</script>
+</body>
+</html>
