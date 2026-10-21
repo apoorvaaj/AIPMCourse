@@ -16,6 +16,8 @@ docs/                  Learner website (static HTML, no build step)
   week-00.html         Week 0 orientation and baseline
   module-01.html       Module 1 · The AI product role and lifecycle
   module-02.html       Module 2 · Technical fluency for product decisions
+  …
+  module-09.html       Module 9 · Unit economics and pricing of AI products
 
 course-owner/          Instructions for the course owner and cohort leads. NOT for learners.
   login-setup.html             Connecting sign-in to Supabase
@@ -85,9 +87,9 @@ Your main site → Syllabus → Start the course → Sign in → My course → W
 |---|---|
 | Syllabus, sign-in, dashboard, level 1 access | Done (preview mode) |
 | Week 0 | Live (pilot version); rewrite for a general audience later |
-| Modules 1–2 | Done |
+| Modules 1–9 | Done (Module 9 adds a starter workbook in `docs/assets/`) |
 | Module 1 assessor pack | To do |
-| Modules 3–12 | To do |
+| Modules 10–12 | To do |
 
 ## Known gaps
 

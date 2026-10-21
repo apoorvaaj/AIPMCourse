@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="en" data-access="learner" data-module="9">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 9 · AI Unit Economics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Modules 1–8 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 1rem 0 1.25rem; }
+.compare > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; min-width: 0; }
+.compare h4 { margin-top: 0; }
+.msg { font-family: var(--mono); font-size: .8rem; background: var(--paper); border-radius: 3px; padding: .5rem .6rem; margin: .5rem 0; color: var(--ink); overflow-wrap: anywhere; }
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.formula { font-family: var(--mono); font-size: .85rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: .6rem .75rem; margin: .5rem 0 1rem; color: var(--ink); overflow-x: auto; white-space: nowrap; }
+
+/* Ladder */
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; counter-reset: rung; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder li:nth-child(2) { border-left-color: var(--t2); margin-left: .6rem; }
+.ladder li:nth-child(3) { border-left-color: var(--t2); margin-left: 1.2rem; }
+.ladder li:nth-child(4) { border-left-color: var(--t3); margin-left: 1.8rem; }
+.ladder li:nth-child(5) { border-left-color: var(--bad); margin-left: 2.4rem; }
+@media (max-width: 480px) { .ladder li { margin-left: 0 !important; } }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+
+/* Flow (system diagram as an ordered list) */
+.flow { list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+.flow li { position: relative; margin: 0 0 1.35rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .6rem 3rem; font-size: .9rem; }
+.flow li:last-child { margin-bottom: 0; }
+.flow li::after { content: "↓"; position: absolute; left: 50%; bottom: -1.3rem; transform: translateX(-50%); color: var(--muted); font-size: .9rem; }
+.flow li:last-child::after { content: none; }
+.flow .k { position: absolute; left: .7rem; top: .55rem; font-family: var(--mono); font-size: .75rem; color: var(--paper); background: var(--ink); border-radius: 3px; padding: .05rem .4rem; }
+.flow b { color: var(--ink); }
+.flow .kind { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-left: .35rem; white-space: nowrap; }
+.flow .ai { border-left: 4px solid var(--t2); }
+.flow .rule { border-left: 4px solid var(--accent); }
+.flow .person { border-left: 4px solid var(--t3); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .78rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 2px; vertical-align: -2px; margin-right: .3rem; }
+
+/* Confusion grid */
+.cm { display: grid; grid-template-columns: 7.5rem repeat(2, minmax(0,1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.cm .h { font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.cm .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.cm .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.cm .ok { background: var(--good-soft); } .cm .fa { background: var(--t3-soft); } .cm .miss { background: var(--bad-soft); } .cm .tn { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .cm { grid-template-columns: 5rem repeat(2, minmax(0,1fr)); font-size: .8rem; } }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+blockquote { margin: .75rem 0 0; padding: .5rem .9rem; border-left: 3px solid var(--rule); font-family: var(--display); font-style: italic; font-size: 1.02rem; color: var(--body); }
+blockquote cite { display: block; font-family: var(--text); font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* Calculators */
+.calc { min-width: 46rem; }
+.calc td { vertical-align: middle; }
+.calc input[type=number] { width: 5.6rem; padding: .3rem .35rem; font-size: .85rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calc .out { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--ink); }
+.calc .out.big { font-weight: 600; }
+.calc .neg { color: var(--bad); } .calc .pos { color: var(--good); }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin: .5rem 0 .9rem; }
+.knobs label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: .15rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.lab td input { min-width: 7rem; }
+.leaf { font-size: .88rem; }
+.leaf .tag { font-family: var(--mono); font-size: .7rem; color: var(--bad); }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
+<style>/* Shared with Module 4: rule-strength chips, small buttons, summary bar */
+.s { display: inline-block; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; padding: .08rem .45rem; border-radius: 3px; white-space: nowrap; font-weight: 600; }
+.s-must { background: var(--t2-soft); color: var(--t2); }
+.s-never { background: var(--bad-soft); color: var(--bad); }
+.s-prefer { background: var(--accent-soft); color: var(--accent); }
+.reqtools { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .3rem 0 0; font-size: .85rem; color: var(--muted); }
+.btn.tiny { font-size: .78rem; padding: .15rem .6rem; }
+.sumbar { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .85rem; margin: .75rem 0 1rem; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.sumbar b { color: var(--ink); }
+</style>
+<style>/* Shared with Modules 5 and 6: cards, tags, severity chips, panels, form fields */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .85rem; font-size: .9rem; min-width: 0; }
+.card .who { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .04em; display: block; margin-bottom: .3rem; }
+.card q { font-family: var(--display); font-size: 1.02rem; font-style: italic; color: var(--ink); }
+.card q::before, .card q::after { content: none; }
+.card p { margin: .35rem 0 0; font-size: .85rem; color: var(--muted); }
+.tag { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+.tag.ho { background: var(--t3-soft); color: var(--t3); border-color: transparent; }
+.tag.em { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.tag.warn { background: var(--t3-soft); color: var(--t3); border-color: transparent; }
+.tag.over { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.sev { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .45rem; border-radius: 3px; font-weight: 600; white-space: nowrap; }
+.sev-4 { background: var(--bad); color: var(--paper); } .sev-3 { background: var(--bad-soft); color: var(--bad); } .sev-2 { background: var(--t3-soft); color: var(--t3); } .sev-1 { background: var(--paper); color: var(--muted); border: 1px solid var(--rule); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: .5rem 0 1rem; }
+.kpis div { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 4px; padding: .5rem .7rem; min-width: 0; }
+.kpis b { display: block; font-family: var(--display); font-size: 1.45rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpis span { font-size: .78rem; color: var(--muted); display: block; }
+.kpis .warn { border-top-color: var(--t3); } .kpis .bad { border-top-color: var(--bad); } .kpis .good { border-top-color: var(--good); }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: .75rem 0 1.25rem; }
+.panel > h4:first-child { margin-top: 0; }
+.substep { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 .2rem; }
+.fields { display: grid; gap: .65rem; margin: .5rem 0 .9rem; }
+.fields label { display: block; font-size: .82rem; color: var(--ink); font-weight: 600; margin-bottom: .2rem; }
+.fields .hint { font-weight: 400; color: var(--muted); }
+.fields textarea { min-height: 4.6rem; font-size: .9rem; }
+.warnlist { margin: .3rem 0 .8rem; padding-left: 1.1rem; font-size: .86rem; color: var(--t3); }
+.locked-note { border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .85rem; border-radius: 0 3px 3px 0; font-size: .9rem; margin: .5rem 0 1rem; }
+</style>
+<style>/* Module 7 additions: trust grid, phone preview, storyboard builder, review-level table */
+.tg { display: grid; grid-template-columns: 8.5rem repeat(2, minmax(0, 1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.tg .h { font-family: var(--mono); font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.tg .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.tg .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.2rem; font-weight: 500; }
+.tg .ok { background: var(--good-soft); } .tg .harm { background: var(--bad-soft); } .tg .waste { background: var(--t3-soft); } .tg .fine { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .tg { grid-template-columns: 5.5rem repeat(2, minmax(0, 1fr)); font-size: .8rem; } }
+/* Message anatomy */
+.anat { list-style: none; padding: 0; margin: .75rem 0 1.25rem; counter-reset: an; display: grid; gap: .4rem; }
+.anat li { counter-increment: an; display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); gap: .1rem .6rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .5rem .75rem; margin: 0; font-size: .92rem; }
+.anat li::before { content: counter(an); font-family: var(--display); font-size: 1.3rem; line-height: 1.1; color: var(--accent); grid-row: span 2; }
+.anat b { color: var(--ink); }
+/* Phone preview */
+.phone { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: .75rem .7rem .9rem; max-width: 22rem; margin: .5rem 0 1rem; }
+.phone .bar { font-family: var(--mono); font-size: .66rem; color: var(--muted); text-align: center; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--rule); padding-bottom: .4rem; margin-bottom: .6rem; }
+.bub { border-radius: 12px; padding: .5rem .7rem; margin: .35rem 0; font-size: .9rem; line-height: 1.45; max-width: 88%; overflow-wrap: anywhere; white-space: pre-wrap; }
+.bub.user { background: var(--t2-soft); color: var(--ink); margin-left: auto; border-bottom-right-radius: 3px; }
+.bub.bot { background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-bottom-left-radius: 3px; }
+.bub.bot.em { border: 2px solid var(--bad); }
+.bub .src { display: block; font-size: .78rem; color: var(--muted); margin-top: .3rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; margin: .3rem 0 0; }
+.chips span { border: 1px solid var(--accent); color: var(--accent); background: var(--surface); border-radius: 999px; padding: .2rem .7rem; font-size: .82rem; }
+.phone .after { font-size: .78rem; color: var(--muted); font-style: italic; margin-top: .5rem; }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+.pair > div { min-width: 0; }
+.pair .phone { margin: .35rem 0 0; max-width: none; }
+.pair h4 { margin-top: 0; }
+/* Moment bank */
+.mb td:first-child { font-family: var(--mono); font-size: .8rem; white-space: nowrap; }
+.req { font-family: var(--mono); font-size: .66rem; background: var(--bad-soft); color: var(--bad); padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; }
+/* Storyboard builder */
+.frametabs { display: flex; flex-wrap: wrap; gap: .35rem; margin: .6rem 0 .8rem; }
+.frametabs button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 4px; padding: .35rem .7rem; font-size: .84rem; display: inline-flex; gap: .35rem; align-items: center; }
+.frametabs button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.frametabs .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.frametabs .dot.half { background: var(--t2); } .frametabs .dot.done { background: var(--good); }
+.fb2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 1rem; align-items: start; }
+@media (max-width: 760px) { .fb2 { grid-template-columns: 1fr; } }
+.fb2 .side { position: sticky; top: 3.4rem; }
+@media (max-width: 760px) { .fb2 .side { position: static; } }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem .7rem; }
+.fgrid .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { .fgrid { grid-template-columns: 1fr; } }
+.fgrid label { display: block; font-size: .8rem; color: var(--ink); font-weight: 600; margin-bottom: .15rem; }
+.fgrid .hint { font-weight: 400; color: var(--muted); }
+.fgrid textarea { min-height: 3.6rem; font-size: .9rem; }
+.fgrid textarea.words { min-height: 7rem; font-size: .95rem; }
+.fgrid select, .fgrid input { font-size: .88rem; padding: .35rem .45rem; }
+.mdesc { font-size: .86rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .7rem; margin: .1rem 0 .2rem; }
+.mdesc b { color: var(--ink); }
+.lint { list-style: none; padding: 0; margin: .4rem 0 0; font-size: .84rem; }
+.lint li { padding: .25rem 0 .25rem 1.3rem; position: relative; margin: 0; }
+.lint li::before { position: absolute; left: 0; font-weight: 600; }
+.lint li.w { color: var(--t3); } .lint li.w::before { content: "!"; }
+.lint li.b { color: var(--bad); } .lint li.b::before { content: "✕"; }
+.lint li.g { color: var(--good); } .lint li.g::before { content: "✓"; }
+.meter2 { display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; margin: .3rem 0 0; }
+.meter2 b { color: var(--ink); }
+.cov2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .4rem; margin: .5rem 0 1rem; }
+.cov2 div { border: 1px solid var(--rule); border-radius: 4px; padding: .4rem .6rem; font-size: .82rem; background: var(--surface); min-width: 0; }
+.cov2 div.ok { border-color: var(--good); background: var(--good-soft); color: var(--good); }
+.cov2 div.no { border-color: var(--t3); background: var(--t3-soft); color: var(--t3); }
+.cov2 b { display: block; color: inherit; }
+/* Review levels */
+.lv { min-width: 62rem; }
+.lv td { vertical-align: top; }
+.lv select, .lv input[type=text] { font-size: .8rem; padding: .25rem .3rem; }
+.lv td.act { min-width: 13rem; font-size: .85rem; }
+.lv td.act small { display: block; color: var(--muted); font-size: .76rem; }
+.lv .sug { font-family: var(--mono); font-size: .72rem; white-space: nowrap; }
+.lv .flag { display: block; font-size: .74rem; color: var(--t3); margin-top: .2rem; }
+.lv .flag.bad { color: var(--bad); }
+.levels { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; }
+.levels li { margin: 0; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: .1rem .7rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--t3); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.levels li:nth-child(2) { border-left-color: var(--t3); } .levels li:nth-child(3) { border-left-color: var(--t2); } .levels li:nth-child(4) { border-left-color: var(--t2); } .levels li:nth-child(5) { border-left-color: var(--accent); }
+.levels .lk { font-family: var(--mono); font-size: .9rem; color: var(--ink); grid-row: span 2; font-weight: 600; }
+.levels b { color: var(--ink); }
+.vs { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .05rem .4rem; border-radius: 3px; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+</style>
+<style>/* Module 8 carry-overs used here: small calculators, bars, field grids, copy blocks, flags */
+.calcbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+.calcbox > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem .9rem; min-width: 0; }
+.calcbox h4 { margin-top: 0; }
+.calcbox label { display: block; font-size: .8rem; color: var(--muted); margin: .35rem 0 .1rem; }
+.calcbox input[type=number] { width: 7rem; }
+.calcbox .res { font-family: var(--display); font-size: 1.45rem; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: .5rem; line-height: 1.25; }
+.calcbox .res small { display: block; font-family: var(--text); font-size: .8rem; color: var(--muted); }
+.stops { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .6rem; margin: .5rem 0 1rem; }
+.stops label { display: block; font-size: .8rem; font-weight: 600; color: var(--ink); margin-bottom: .15rem; }
+.stops .hint { font-weight: 400; color: var(--muted); }
+.copyblock { font-family: var(--mono); font-size: .78rem; white-space: pre-wrap; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .8rem; max-height: 16rem; overflow: auto; color: var(--ink); }
+.flag { display: block; font-size: .78rem; color: var(--t3); margin-top: .2rem; }
+.flag.bad { color: var(--bad); }
+</style>
+<style>/* Module 9 additions: cost stack, lever list, scenario grids, swing bars, plan cards */
+.stack { display: flex; height: 1.6rem; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); margin: .4rem 0 .3rem; background: var(--paper); }
+.stack span { display: block; height: 100%; min-width: 2px; }
+.stack .m { background: var(--t2); } .stack .h { background: var(--t3); } .stack .f { background: var(--accent); }
+.stackkey { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .78rem; color: var(--muted); }
+.stackkey i { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; vertical-align: -1px; margin-right: .3rem; }
+.levers { display: grid; gap: .45rem; margin: .5rem 0 1rem; }
+.levers label.lv9 { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr) auto; gap: .1rem .5rem; align-items: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .9rem; cursor: pointer; }
+.levers label.lv9:hover { border-color: var(--accent); }
+.levers label.lv9 input[type=checkbox] { margin-top: .3rem; }
+.levers label.lv9 b { color: var(--ink); }
+.levers .sv { font-family: var(--mono); font-size: .78rem; color: var(--good); white-space: nowrap; text-align: right; }
+.levers .sv.neg { color: var(--bad); }
+.levers .risk { grid-column: 2 / -1; font-size: .8rem; color: var(--t3); }
+.levers .inl { display: inline-flex; gap: .35rem; align-items: center; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+.levers .inl input { width: 4.5rem; padding: .15rem .3rem; font-size: .82rem; }
+.g9 { min-width: 0; }
+@media (max-width: 560px) { .g9, .d9 { font-size: .8rem; } .g9 th, .g9 td { padding: .45rem .5rem; } }
+.g9 th, .g9 td { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.g9 th { white-space: normal; }
+.g9 th:first-child, .g9 td:first-child { text-align: left; }
+.g9 td.pos { background: var(--good-soft); color: var(--good); font-weight: 600; }
+.g9 td.neg { background: var(--bad-soft); color: var(--bad); font-weight: 600; }
+.g9 td.over { color: var(--bad); font-weight: 600; }
+.d9 { min-width: 44rem; }
+.d9 td, .d9 th { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.d9 td:first-child, .d9 th:first-child { text-align: left; white-space: normal; }
+.d9 tr.key td { font-weight: 600; color: var(--ink); }
+.torn { display: grid; grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr); gap: .35rem .7rem; align-items: center; margin: .6rem 0 1rem; font-size: .84rem; }
+.torn .nm { color: var(--ink); }
+.torn .nm small { display: block; color: var(--muted); font-size: .74rem; }
+.torn .tr { position: relative; height: 1.5rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; }
+.torn .tr .bar { position: absolute; top: 3px; bottom: 3px; background: var(--t2-soft); border: 1px solid var(--t2); border-radius: 2px; }
+.torn .tr .zero { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--bad); }
+.torn .tr .base { position: absolute; top: -2px; bottom: -2px; width: 0; border-left: 2px solid var(--ink); }
+.torn .tr .lo, .torn .tr .hi { position: absolute; top: .18rem; font-family: var(--mono); font-size: .66rem; color: var(--ink); white-space: nowrap; }
+@media (max-width: 560px) { .torn { grid-template-columns: 1fr; } .torn .nm { margin-top: .4rem; } }
+.tornkey { font-size: .78rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .6rem; margin: .75rem 0 1rem; }
+.plans > div { background: var(--surface); border: 1px solid var(--rule); border-top: 4px solid var(--t2); border-radius: 4px; padding: .7rem .85rem; font-size: .88rem; min-width: 0; }
+.plans > div:nth-child(2) { border-top-color: var(--accent); } .plans > div:nth-child(3) { border-top-color: var(--t3); }
+.plans h4 { margin: 0 0 .25rem; color: var(--ink); letter-spacing: .04em; }
+.plans .pr { font-family: var(--display); font-size: 1.35rem; color: var(--ink); line-height: 1.2; }
+.plans p { margin: .35rem 0 0; }
+.plans .pc { display: block; font-size: .8rem; color: var(--muted); }
+.pick { display: flex; flex-wrap: wrap; gap: .4rem; margin: .4rem 0 .8rem; }
+.pick button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .25rem .8rem; font-size: .84rem; }
+.pick button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.tok td input { width: 5.5rem; }
+.tok td.q { font-size: .88rem; min-width: 16rem; white-space: normal; }
+.tok td.q span[lang] { font-size: .95rem; }
+.recap { font-size: .86rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; margin: .4rem 0 .8rem; }
+.recap b { color: var(--ink); }
+.dl { display: inline-flex; gap: .5rem; align-items: center; text-decoration: none; font-weight: 600; border: 1px solid var(--accent); color: var(--accent); border-radius: 4px; padding: .45rem .9rem; margin: .3rem 0 .8rem; }
+.dl:hover { background: var(--accent-soft); }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
+
+<p class="eyebrow">Term III · Strategy and leadership · Week 9 · Module 9</p>
+<h1>Unit economics and pricing of AI products</h1>
+<p class="lede">Every request to an artificial intelligence (AI) model costs money, and so does every person who checks its work. Work out what one task really costs, what happens as more people use it, and which decision still holds when prices move.</p>
+<ul class="meta"><li>About 8 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: spreadsheet model, one-page recommendation, test, viva</li><li>Spreadsheet, no coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>Modules 4 to 8 asked whether Harbourview's AI products work, and whether they are safe. This module asks whether they are worth what they cost. It is March. The consultation note drafter has run for ten weeks with six doctors. The medicine questions assistant has run at two clinics since October, and the board's plan to extend it was put on hold for the budget round. The Chief Financial Officer (CFO) has money for one rollout in the year from 1 April, and wants numbers that hold up whether AI prices fall or rise.</p>
+<p>You will build a cost model for both initiatives, test it at three levels of adoption and three price levels, find the levers that protect the budget, and recommend which to fund first. Harbourview does not sell to patients, so the value side comes from staff time saved and calls avoided, not revenue. The module draws on Reforge's <em>AI Strategy</em> and <em>Monetization and Pricing Strategy</em> courses and its essay <em>How to price your AI product</em>, the cost, speed and quality trade-offs in Marily Nika's <em>Advanced AI Product Management</em> course, Epoch AI's research on falling AI prices, and model providers' published terms for caching and batching.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Model the cost to run an AI product for each task and each user, including the people who check its work.</li>
+  <li>Build a business case that still points the same way when model prices change by half, and say which assumptions could change it.</li>
+  <li>Find and rank the levers that protect the budget, and say what evidence each one needs before you use it.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">90 min</span><span class="d">Six short parts with worked examples and three calculators. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">The CFO's rules, pilot figures for both initiatives, the vendor's three price plans and the model price list. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">4–5 hrs</span><span class="d">Build the spreadsheet model, test nine scenarios for each initiative, choose levers, and write a one-page funding recommendation. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your recommendation. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Levers reviewed<b id="st-lev">Not started</b></div>
+  <div>Scenario assumptions<b id="st-sc">Case defaults</b></div>
+  <div>Recommendation parts<b id="st-rec">0 of 7</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you work. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. You will need a spreadsheet program: Microsoft Excel, Google Sheets or Apple Numbers. A starter workbook with every case figure is provided in the assignment. The tools on this page calculate the same model, so you can check your spreadsheet against them. Every acronym is spelled out the first time it appears on this page. All names, prices and figures in the case are invented or simplified for teaching. S$ means Singapore dollars.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · about 90 minutes</span>What AI really costs, and what it is worth</h2>
+<p>Part 1 explains why AI changes the economics of a product. Part 2 builds the cost of one task. Part 3 covers the levers that cut cost. Part 4 shows what happens as more people use a product and when prices move. Part 5 compares ways of pricing AI: per user, per use and per result. Part 6 builds a business case when nobody pays you for the product.</p>
+
+<h3 id="l1">9.1 Why AI changes the economics of a product</h3>
+<p>Most software costs a lot to build and very little to run for one more user. Serving the thousandth person to open an app costs almost nothing extra. Products built on a large language model (LLM) are different. Every question sends text to a model, and the provider charges for it, measured in <strong>tokens</strong>, the word-pieces you met in Module 2. A product used twice as much costs roughly twice as much to run. Add the people who check the AI's work, answer the questions it hands over, and review samples for safety, and the cost of each extra task is real.</p>
+<p>Reforge's essay on pricing AI products puts it this way: model costs raise the <em>floor</em> under any price, because each use has a cost. Its example is a monthly subscription with unlimited AI writing, where a single heavy user can cost the seller many times what they pay. The same logic applies inside an organisation. A free internal tool that staff love can blow its budget precisely because it succeeds.</p>
+<dl class="terms">
+  <dt>Unit economics</dt><dd>The cost and value of one unit of the product: one question answered, one note drafted, one active user in a month. If one unit does not pay, more units will not fix it.</dd>
+  <dt>Cost to serve</dt><dd>Everything it costs to deliver one unit: model tokens, extra model calls, databases, hosting, and the staff time each unit creates.</dd>
+  <dt>Fixed cost</dt><dd>Costs that do not change with use in a month: hosting, a database subscription, a weekly safety review, a minimum licence fee.</dd>
+  <dt>Variable cost</dt><dd>Costs that rise with each unit: tokens, per-use fees, and the staff time for each handover or review.</dd>
+  <dt>One-off cost</dt><dd>Spending to get started: building, integrating, training staff, translating content. Also called set-up or capital cost.</dd>
+</dl>
+<p><strong>Prices fall, bills often do not.</strong> Epoch AI, a research group that tracks AI trends, found that the price of reaching a fixed level of performance fell between 9 and 900 times a year between 2021 and early 2025, depending on the task. Yet many organisations' AI bills keep growing, because use grows faster, prompts get longer as teams add context, agents make many calls per task (Module 8), and teams move to newer, larger models. A product manager (PM) plans for prices going both ways.</p>
+
+<h3 id="l2">9.2 Cost to serve: what one task really costs</h3>
+<p>List everything that happens when one task runs, and put a price on each part.</p>
+<ol class="flow" aria-label="What one question costs">
+  <li class="ai"><span class="k">1</span><b>The main model call</b><span class="kind">variable</span><br>Input tokens (instructions, the user's data, retrieved passages, recent messages) plus output tokens (the answer). Output tokens usually cost four to five times as much as input tokens.</li>
+  <li class="ai"><span class="k">2</span><b>Extra model calls</b><span class="kind">variable</span><br>A router that sorts the request, an automated judge that checks a sample (Module 6), retries when a step fails, and agent steps (Module 8: a median of 7 tool calls).</li>
+  <li class="rule"><span class="k">3</span><b>Systems around it</b><span class="kind">mostly fixed</span><br>The search database for retrieval, hosting, monitoring, logging.</li>
+  <li class="person"><span class="k">4</span><b>People</b><span class="kind">variable and fixed</span><br>Staff who answer handovers, doctors who correct drafts, reviewers who audit samples, the team that keeps content up to date. This is often the largest cost.</li>
+</ol>
+<div class="legend"><span><i style="background:var(--t2)"></i>Model</span><span><i style="background:var(--accent)"></i>Systems</span><span><i style="background:var(--t3)"></i>People</span></div>
+<div class="formula">model cost per task = (input tokens × input price + output tokens × output price) ÷ 1,000,000</div>
+<div class="formula">monthly cost = fixed costs + tasks per month × (model cost + extra calls + staff time per task)</div>
+<div class="worked">
+<h4>Worked example · Ask Riverside (fictional, from Modules 2, 4 and 6)</h4>
+<p>Riverside Public Library's assistant sends about 2,000 input tokens and gets about 200 output tokens per question. Its model costs S$1 per million input tokens and S$5 per million output tokens. It answers 10,000 questions a month. Fixed costs are S$150 for the search database and S$400 for hosting and support.</p>
+<p>Model cost per question: (2,000 × 1 + 200 × 5) ÷ 1,000,000 = <strong>S$0.003</strong>. Fifteen in every hundred questions go to the desk, and each takes a librarian 2 minutes at S$36 an hour (S$1.20 each): 0.15 × S$1.20 = <strong>S$0.18</strong> per question.</p>
+<div class="stack" aria-label="Riverside monthly cost: model S$30, fixed S$550, desk time S$1,800"><span class="m" style="width:1.3%"></span><span class="f" style="width:23.1%"></span><span class="h" style="width:75.6%"></span></div>
+<div class="stackkey"><span><i style="background:var(--t2)"></i>Model S$30</span><span><i style="background:var(--accent)"></i>Fixed S$550</span><span><i style="background:var(--t3)"></i>Desk time for handovers S$1,800</span><span>Total S$2,380 a month</span></div>
+<p style="margin:.75rem 0 0">The model is about 1% of the monthly cost. The staff time created by handovers is sixty times the model cost. When people say an AI feature "costs a fraction of a cent", ask what happens after the answer.</p>
+</div>
+
+<h3 id="l3">9.3 Levers that protect the budget</h3>
+<p>Each lever below reduces a cost line. Every one of them also changes what the product does, so each must pass your release gate from Module 6 before it goes live. A cheaper product that fails the gate is not cheaper; it moves the cost to whoever deals with the mistakes.</p>
+<div class="scroll"><table>
+<thead><tr><th>Lever</th><th>How it saves</th><th>What can go wrong</th><th>Evidence before you use it</th></tr></thead>
+<tbody>
+<tr><td><strong>Prompt caching</strong></td><td>The provider stores the part of the prompt that is the same every time, such as the instructions. Later requests that start the same way pay much less for that part. One major provider charges a tenth of the normal input price to read from its cache and a quarter more than normal to write to it; the cache lasts five minutes after its last use.</td><td>Saves little when traffic is light, because the cache expires between requests. Any change to the instructions resets it.</td><td>Traffic pattern; how much of each prompt is fixed</td></tr>
+<tr><td><strong>Trim the context</strong></td><td>Send fewer or shorter retrieved passages and less chat history.</td><td>Answers miss facts, or the model fills gaps with unsupported claims (Module 6).</td><td>Error analysis and judge results on the trimmed version</td></tr>
+<tr><td><strong>Cap the answer length</strong></td><td>Output tokens are the expensive ones.</td><td>Cut-off or incomplete answers.</td><td>Completeness checks; user ratings</td></tr>
+<tr><td><strong>Route to a smaller model</strong></td><td>Send easy, common requests to a model costing a fraction as much. A small router decides which model gets each request.</td><td>Quality drops on the routed requests; the router misroutes a hard question.</td><td>Release gate passed on the routed slice, not just overall; router accuracy</td></tr>
+<tr><td><strong>Batch work that can wait</strong></td><td>Providers offer about half price for requests that can take up to 24 hours. Fits overnight judge runs and theme analysis; not a patient waiting for an answer.</td><td>Delays; a failed batch noticed late.</td><td>That nobody needs the result within the hour</td></tr>
+<tr><td><strong>Reuse answers</strong></td><td>Store answers to identical, non-personal questions ("what are your opening hours?").</td><td>Stale or wrongly personalised answers.</td><td>That the answer does not depend on who is asking</td></tr>
+<tr><td><strong>Limits and alerts</strong></td><td>A daily limit per user, a monthly budget alert, and stop rules for agents (Module 8).</td><td>Blocks legitimate heavy users. Some languages use more tokens per question, so a token limit can fall unfairly on some groups (see the lab).</td><td>Usage spread across users and languages</td></tr>
+<tr><td><strong>Less human work per task</strong></td><td>Fewer needless handovers, clearer drafts, better routing (Modules 5 to 7).</td><td>Fewer handovers can mean missing the ones that matter.</td><td>Handover reasons labelled; safety failures still zero</td></tr>
+</tbody></table></div>
+<div class="worked">
+<h4>Worked example · Riverside's levers compared</h4>
+<p>Riverside caches its 600-token instructions (90% of requests reuse the cache), sends two passages instead of three (400 fewer tokens) and caps answers at 150 tokens instead of 200. Together these save about S$0.0011 a question: <strong>S$11 a month</strong>.</p>
+<p style="margin:0">Separately, the team fixes the two most common reasons for needless handovers, and the handover rate falls from 15% to 10%. That saves 10,000 × 0.05 × S$1.20 = <strong>S$600 a month</strong>, more than fifty times the token levers. Rank levers by the cost line they attack, and attack the biggest line first.</p>
+</div>
+
+<h3 id="l4">9.4 Cost at different adoption levels, and when prices move</h3>
+<p><strong>Adoption</strong> is the share of the people who could use a product who actually use it in a month. As adoption rises, fixed costs are shared among more users, so the cost per active user falls, and value usually rises with use. Two things break this smooth picture:</p>
+<ul>
+  <li><strong>Step costs.</strong> A queue staffed by people has a capacity. Beyond it, you hire, pay for agency staff, or let replies slip. Cost jumps at that point.</li>
+  <li><strong>Minimums and commitments.</strong> A licence with a minimum number of users, or a 12-month commitment, costs the same whether people use it or not.</li>
+</ul>
+<div class="formula">break-even users = fixed monthly cost ÷ (value per active user − variable cost per active user)</div>
+<p><strong>Testing price changes.</strong> Model prices can fall (providers cut list prices) or rise (a model is retired and its successor costs more, a vendor passes costs on at renewal, exchange rates move). A simple test is to run the model with prices 50% lower and 50% higher. A business case is <strong>robust to price</strong> if the decision is the same in all three. It is fragile if it only works at one price.</p>
+<p><strong>Finding what swings the answer.</strong> Change one assumption at a time from a low to a high value and record the result. Draw the results as bars, longest at the top. This is a <strong>tornado chart</strong>. The longest bars are the assumptions worth measuring before you spend money; a bar that crosses zero is one that can flip the decision.</p>
+<div class="worked">
+<h4>Worked example · What swings Riverside's case</h4>
+<p>Riverside has 20,000 members. An active member asks 3 questions a month. Each question costs S$0.183 (model plus desk time) and saves 0.5 desk enquiries of 4 minutes (S$1.20 of desk time). At 15% adoption, 3,000 active members, the net value is about <strong>S$8,600 a month</strong>. Each bar shows the net value when one assumption moves between the values in brackets.</p>
+<div class="torn" id="riv-torn" aria-label="Riverside sensitivity"></div>
+<p class="tornkey">Solid line: base case. Bars show the range of net value per month.</p>
+<p style="margin:0">Halving or raising the model price by half moves the answer by about S$14. How many desk enquiries each question really saves moves it by more than S$8,000. Riverside should measure that before anything else.</p>
+</div>
+
+<h3 id="l5">9.5 Pricing models: per user, per use and per result</h3>
+<p>Whether you sell an AI product or buy one, the way it is priced decides who carries the risk when use, quality or costs change. Reforge describes four decisions in any monetisation design: how price <strong>scales</strong> with the value a customer gets (the <strong>value metric</strong>), <strong>what</strong> is included at each level, the <strong>amount</strong>, and <strong>when</strong> payment starts.</p>
+<div class="scroll"><table>
+<thead><tr><th>Model</th><th>You pay for</th><th>Good when</th><th>Risk for the buyer</th><th>Risk for the seller</th></tr></thead>
+<tbody>
+<tr><td><strong>Per seat</strong></td><td>Each licensed user, each month</td><td>Use per person is steady and high; budgets must be predictable</td><td>Paying for seats nobody uses; minimums and commitments</td><td>Heavy users cost more to serve than they pay</td></tr>
+<tr><td><strong>Usage</strong></td><td>Each unit: tokens, requests, notes, minutes</td><td>Use varies or is uncertain; you want to start small</td><td>The bill grows with success; harder to budget</td><td>Revenue swings with the customer's activity</td></tr>
+<tr><td><strong>Outcome</strong></td><td>Each result: a resolved conversation, an accepted draft</td><td>The result is clear, measurable and agreed</td><td>Who defines and measures the outcome, and what behaviour it rewards</td><td>Paying the cost of failed attempts</td></tr>
+<tr><td><strong>Hybrid</strong></td><td>A base fee plus usage or outcome charges</td><td>Most AI products today</td><td>Two things to forecast</td><td>Complexity to explain</td></tr>
+</tbody></table></div>
+<p>An outcome price is only as good as its definition. Intercom, a customer-service software company, charges US$0.99 per conversation its AI agent, Fin, resolves. It counts a resolution when the customer confirms the answer helped, <em>or</em> when the customer leaves without asking for more help. The second kind is an assumption, not a fact, and a buyer should know how often it is used.</p>
+<p><strong>The buyer's crossover point.</strong> Divide the seat price by the price per unit. Above that many units per seat each month, the per-seat plan is cheaper; below it, pay per use. Then check minimums and commitments.</p>
+<div class="worked">
+<h4>Worked example · Riverside buys a cataloguing assistant</h4>
+<p>A vendor offers AI that suggests subject tags for new books three ways: S$30 per librarian a month, S$0.05 per item, or S$0.08 per tag a librarian accepts (about 70% are accepted, so about S$0.056 per item). The crossover for seat versus per item is 30 ÷ 0.05 = <strong>600 items per librarian a month</strong>. Riverside's 12 cataloguers handle about 400 items each, so per item costs S$20 per librarian against S$30 per seat. Per item wins today. The accepted-tag price looks fair, but it pays the vendor more when librarians accept more tags without checking; Module 7's automation bias, now with a price on it.</p>
+</div>
+<p>When you sell, price from the value to the customer, not from your cost. Cost sets the floor below which you lose money; value sets the ceiling. Check the margin for your heaviest users, not your average ones.</p>
+
+<h3 id="l6">9.6 The business case when nobody pays</h3>
+<p>Harbourview, like many public bodies and internal teams, does not sell its AI products. The value is in what they save or make possible:</p>
+<ul>
+  <li><strong>Staff time freed</strong>: minutes per task × tasks × the cost of that person's hour.</li>
+  <li><strong>Demand avoided</strong>: calls, emails or visits that no longer happen.</li>
+  <li><strong>Capacity gained</strong>: more appointments seen with the same staff.</li>
+  <li><strong>Costs avoided</strong>: agency or overtime hours, errors, complaints.</li>
+  <li><strong>Benefits to users</strong> that have no price: answers after hours, shorter waits, less burnout. Name them; do not invent a dollar value for them.</li>
+</ul>
+<p>Not all freed time is money. <strong>Cash-releasing</strong> savings stop spending you would otherwise make: fewer agency hours, a vacancy not filled. <strong>Capacity-releasing</strong> savings free time for other work: the salary is still paid. Finance teams usually count capacity at a fraction of its cost, a <strong>realisation rate</strong>, unless you show exactly how the time is used. Three more rules: compare with what would have happened anyway, measured against a matched group if you can; do not count the same saving twice (a call avoided and the pharmacist's six minutes are one saving, not two); and subtract the new work the AI creates, such as handovers and audits.</p>
+<div class="formula">payback months = one-off cost ÷ net value per month &nbsp;·&nbsp; first-year cost = one-off cost + 12 × monthly running cost</div>
+<div class="worked">
+<h4>Worked example · Riverside's case, counted honestly</h4>
+<p>The assistant avoids 5,000 desk enquiries of 4 minutes a month (333 hours) but creates 1,500 handovers of 2 minutes (50 hours): <strong>283 hours</strong> freed. Of these, 60 hours replace casual Saturday staff Riverside would otherwise pay S$30 an hour, so <strong>S$1,800 is cash</strong>. The other 223 hours are capacity; at the council's 30% realisation rate and S$36 an hour they count as <strong>S$2,408</strong>. Value S$4,208 a month, running cost S$2,380 (part 9.2), net <strong>S$1,828 a month</strong>. With S$25,000 one-off, payback is about 14 months.</p>
+<p style="margin:0">Counting all 283 hours at S$36 would have claimed S$10,188 a month, and a payback of under four months. The honest case is weaker but still positive, and it is the one finance will believe.</p>
+</div>
+<p><strong>Fund in stages.</strong> A good recommendation releases money in tranches. Each tranche opens only when a measured figure is reached, and a stop rule closes it (Module 6's metrics tree). That way the business case is tested while it is being spent.</p>
+
+<h3 id="calcs">Three calculators</h3>
+<div class="calcbox">
+  <div><h4>1 · Cost per task</h4>
+    <label for="k-in">Input tokens</label><input type="number" id="k-in" value="2000" min="0">
+    <label for="k-out">Output tokens</label><input type="number" id="k-out" value="200" min="0">
+    <label for="k-pin">Input price, S$ per million</label><input type="number" id="k-pin" value="1" min="0" step="0.1">
+    <label for="k-pout">Output price, S$ per million</label><input type="number" id="k-pout" value="5" min="0" step="0.1">
+    <label for="k-h">Share handed to a person (%)</label><input type="number" id="k-h" value="15" min="0" max="100">
+    <label for="k-min">Minutes per handover</label><input type="number" id="k-min" value="2" min="0" step="0.5">
+    <label for="k-rate">Staff cost, S$ an hour</label><input type="number" id="k-rate" value="36" min="0">
+    <div class="res" id="k-out-res" aria-live="polite"></div>
+  </div>
+  <div><h4>2 · Break-even adoption</h4>
+    <label for="b-fix">Fixed cost a month (S$)</label><input type="number" id="b-fix" value="550" min="0">
+    <label for="b-var">Variable cost per active user (S$)</label><input type="number" id="b-var" value="0.549" min="0" step="0.01">
+    <label for="b-val">Value per active user (S$)</label><input type="number" id="b-val" value="3.60" min="0" step="0.01">
+    <label for="b-pop">People who could use it</label><input type="number" id="b-pop" value="20000" min="1">
+    <div class="res" id="b-res" aria-live="polite"></div>
+  </div>
+  <div><h4>3 · Seat or pay per use?</h4>
+    <label for="p-seat">Seat price a month (S$)</label><input type="number" id="p-seat" value="30" min="0" step="0.5">
+    <label for="p-unit">Price per unit (S$)</label><input type="number" id="p-unit" value="0.05" min="0" step="0.01">
+    <label for="p-use">Units per user a month</label><input type="number" id="p-use" value="400" min="0">
+    <label for="p-n">Users</label><input type="number" id="p-n" value="12" min="1">
+    <label for="p-min">Minimum seats</label><input type="number" id="p-min" value="0" min="0">
+    <div class="res" id="p-res" aria-live="polite"></div>
+  </div>
+</div>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each, with working where numbers are asked for. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: one budget, two rollouts</h2>
+<p>You are still Harbourview's head of digital products. It is Monday 16 March. Read the memo, then open each section of the pack. Section 6 sets out how everyone's model calculates, so that results can be compared. All names, prices and figures are invented or simplified for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Lim Wei Jie, Chief Financial Officer (CFO)<br>CC: Daniel Ong, Chief Information Officer (CIO); Tan Mei Ling, Head Pharmacist; Dr Farah Rahman, clinical lead<br>TO: Head of Digital Products<br>RE: AI budget for the year from 1 April</div>
+<p>The board has set aside <strong>S$450,000</strong> for new AI spending next year, one-off and running costs together. That funds one of your two pilots to all nine clinics: the medicine questions assistant or the consultation note drafter. The other waits for the October review.</p>
+<p>I need <strong>a model I can open and change</strong>, at 10%, 30% and 60% adoption, with model prices half what they are today and half as much again, and <strong>one page telling me which to fund first, at what scale, and what would make us stop</strong>. My counting rules are below. I can defend cash. I cannot defend "time freed" unless you tell me what happens to it.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. The CFO's rules</b><span class="k">Budget, counting and limits</span></summary>
+<div class="in">
+<ol>
+  <li><strong>Budget:</strong> S$450,000 for the year from 1 April, one-off and 12 months of running costs together.</li>
+  <li><strong>Cash savings count in full:</strong> money Harbourview stops spending, such as agency staff hours.</li>
+  <li><strong>Freed staff time counts at 30%</strong> of its cost (the realisation rate), unless the plan shows how the time turns into cash or more patients seen. Then make the case and the CFO will consider it.</li>
+  <li><strong>The medicine assistant's cap stands:</strong> model and database costs no more than S$1,500 a month (agreed in Module 4 for 60,000 questions). Propose a different cap if you can justify it.</li>
+  <li><strong>Price test:</strong> show results with model prices 50% lower and 50% higher. For this test, apply the change to the whole year.</li>
+  <li><strong>New work counts as cost:</strong> handovers, reviews and audits the AI creates are part of running cost or are subtracted from time saved.</li>
+</ol>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. Medicine questions assistant</b><span class="k">Initiative A · live at Clementi and Bedok since October</span></summary>
+<div class="in">
+<h4>The pilot so far (build 1.1)</h4>
+<div class="kpis">
+  <div><b>23%</b><span>of about 27,000 eligible patients used it last month (about 6,200)</span></div>
+  <div><b>1.4</b><span>questions per active user a month (about 8,700)</span></div>
+  <div class="warn"><b>12%</b><span>of questions handed over to a pharmacist</span></div>
+  <div class="good"><b>0.10</b><span>fewer helpline calls per active user a month</span></div>
+</div>
+<ul>
+  <li><strong>Eligible patients</strong> are app users with an active prescription. Across nine clinics: about <strong>120,000</strong>.</li>
+  <li><strong>Calls avoided:</strong> over eight weeks, patients who used the assistant made 0.10 fewer calls a month each to the pharmacy helpline than similar patients at matched clinics. A routine call takes about <strong>6 minutes</strong> of pharmacist time, including notes. This was measured at 23% adoption; whether it holds at higher adoption is an assumption.</li>
+  <li><strong>Handovers:</strong> each written reply to a handed-over question takes about <strong>2.5 minutes</strong>. Engineering's build 1.2, now in testing, aims to bring handovers down to 8%. It has not yet passed the release gate.</li>
+  <li><strong>Helpline:</strong> about 450 calls a day across all clinics; spare capacity for about <strong>180 written messages a day</strong>. Agency pharmacists already cover about <strong>300 hours a month</strong> of overflow at <strong>S$70 an hour</strong>. An employed pharmacist costs about S$60 an hour including overheads.</li>
+  <li><strong>For patients:</strong> 34% of questions arrive between 8 pm and 8 am, when the helpline is closed. Peak call waits at the two pilot clinics fell from 25 to 14 minutes. The emergency test set still shows no misses (Module 6).</li>
+</ul>
+<h4>Costs</h4>
+<div class="scroll"><table>
+<thead><tr><th>Item</th><th class="num">Figure</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>One-off, rollout to nine clinics</td><td class="num">S$90,000</td><td>Finish Malay and Tamil leaflets S$35,000; handover inbox upgrade S$40,000; clinic briefings and posters S$15,000</td></tr>
+<tr><td>Platform, hosting and monitoring</td><td class="num">S$2,500 / month</td><td>Fixed</td></tr>
+<tr><td>Leaflet search database</td><td class="num">S$300 / month</td><td>Fixed; same for two or nine clinics</td></tr>
+<tr><td>Pharmacist safety reviews</td><td class="num">26 hrs / month</td><td>Weekly spot-checks and judge review (Module 6), at S$60 an hour = S$1,560</td></tr>
+<tr><td>Input tokens per question</td><td class="num">3,260</td><td>Instructions 1,100 (identical every time) · prescription summary 400 · question and recent messages 160 · three leaflet passages 1,600</td></tr>
+<tr><td>Output tokens per question</td><td class="num">250</td><td>Answers average about 190 words</td></tr>
+<tr><td>Automated judge</td><td class="num">20% of answers</td><td>Each check: 1,600 input and 60 output tokens on the standard model</td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. Consultation note drafter</b><span class="k">Initiative C · six doctors, ten weeks</span></summary>
+<div class="in">
+<h4>The pilot so far</h4>
+<div class="kpis">
+  <div><b>85%</b><span>of patients agreed to recording</span></div>
+  <div class="good"><b>1.5 min</b><span>saved per drafted note (median 4.6 → 3.1 min with the note open)</span></div>
+  <div><b>58%</b><span>of drafts signed with fewer than 20% of words changed</span></div>
+  <div class="warn"><b>1 in 600</b><span>audited notes had a critical error</span></div>
+</div>
+<ul>
+  <li><strong>Who:</strong> six <em>volunteer</em> doctors at Clementi and Bedok. After-session note-writing fell from 48 to 29 minutes a day. Five of six want to continue. One stopped in week 4: most of her patients speak Hokkien, and fixing drafts took longer than writing notes.</li>
+  <li><strong>Safety:</strong> the critical error was a missed allergy in a mixed English and Hokkien consultation, caught by the audit. That is within the stop rule set in Module 6 (no more than 2 in 1,000).</li>
+  <li><strong>Elsewhere:</strong> the vendor's three reference sites, clinic groups abroad that have used the drafter for a year, report a median of <strong>1.0 minute</strong> saved per drafted note.</li>
+  <li><strong>Across Harbourview:</strong> 260 doctors, many part-time, see about <strong>95,000</strong> patients a month. A doctor costs about <strong>S$150 an hour</strong> including overheads. Doctors are salaried; there is no overtime pay.</li>
+</ul>
+<h4>Costs</h4>
+<div class="scroll"><table>
+<thead><tr><th>Item</th><th class="num">Figure</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>One-off, rollout to all doctors</td><td class="num">S$260,000</td><td>Electronic medical record (EMR) integration S$140,000; set-up and security review S$60,000; training and consent process S$60,000</td></tr>
+<tr><td>Devices support and monitoring</td><td class="num">S$1,500 / month</td><td>Fixed</td></tr>
+<tr><td>Clinical audit</td><td class="num">2% of drafted notes</td><td>A second doctor compares the note with the recording: 5 minutes each</td></tr>
+</tbody></table></div>
+<h4>Tidewater Clinical AI's three price plans</h4>
+<div class="plans">
+  <div><h4>Per note</h4><span class="pr">S$0.38</span><span class="pc">per drafted note</span><p>No minimum. The pilot plan. Price reviewed at each renewal in line with underlying model costs, within ±50%.</p></div>
+  <div><h4>Per seat</h4><span class="pr">S$40</span><span class="pc">per licensed doctor per month</span><p>Minimum 50 seats, 12-month commitment, up to 600 notes per seat a month. Price fixed for 12 months, then reviewed like the per-note plan.</p></div>
+  <div><h4>Per accepted note</h4><span class="pr">S$0.65</span><span class="pc">per note signed with fewer than 20% of words changed</span><p>Nothing for other drafts. Measured by Tidewater's software. Reviewed at renewal.</p></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. Model prices and contracts</b><span class="k">What the provider and the vendor charge</span></summary>
+<div class="in">
+<div class="scroll"><table>
+<thead><tr><th>Model</th><th class="num">Input, per million tokens</th><th class="num">Output, per million tokens</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Standard (used today)</td><td class="num">S$4.00</td><td class="num">S$20.00</td><td>Medicine assistant and judge</td></tr>
+<tr><td>Small</td><td class="num">S$0.80</td><td class="num">S$4.00</td><td>One-fifth of the price. On 200 routine questions ("what is it for", "when do I take it", about half of all questions), it passed the release gate. Not tested on other question types.</td></tr>
+<tr><td>Large</td><td class="num">S$10.00</td><td class="num">S$50.00</td><td>2.5 times the standard price (the option raised in Module 5)</td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Caching:</strong> reading the cached part of a prompt costs 10% of the input price; writing it costs 125%. The cache lasts 5 minutes after its last use. Engineering expects about 90% of daytime questions to reuse the cache at 30% adoption or more.</li>
+  <li><strong>Batching:</strong> requests that can wait up to 24 hours cost half price.</li>
+  <li><strong>Small model router:</strong> a short extra call, about 300 input tokens on the small model, decides which model answers.</li>
+  <li><strong>Price history:</strong> the provider has cut list prices twice in two years. The standard model will be retired within about 18 months; its successor's price is not known.</li>
+  <li><strong>The note drafter:</strong> Tidewater's model costs reach Harbourview only through its plan prices at renewal.</li>
+</ul>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>5. What people want</b><span class="k">Stakeholder voices</span></summary>
+<div class="in">
+<div class="cards">
+  <div class="card"><span class="who">Lim Wei Jie, CFO</span><q>I can defend cash. I cannot defend "time freed" unless you tell me what happens to it.</q></div>
+  <div class="card"><span class="who">Tan Mei Ling, Head Pharmacist</span><q>The assistant saves my team calls and sends us messages. At nine clinics, the handover queue is what keeps me up at night.</q></div>
+  <div class="card"><span class="who">Pharmacy helpline lead</span><q>We already buy about 300 agency hours a month. That is real money we could stop spending.</q></div>
+  <div class="card"><span class="who">Dr Farah Rahman, clinical lead</span><q>My pilot doctors finish on time for the first time in years. But they volunteered. I don't know what the other 254 will do.</q></div>
+  <div class="card"><span class="who">Daniel Ong, CIO</span><q>Don't sign a 12-month commitment for 260 seats when we don't know how many doctors will use it.</q></div>
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>A third of medicine questions come after 8 pm. That isn't a cost line, but it's the point.</q></div>
+  <div class="card"><span class="who">Tidewater sales lead</span><q>With per-accepted-note pricing, you only pay when it works.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet" id="logic">
+<summary><b>6. How the model calculates</b><span class="k">Shared rules for the page tools and the starter workbook</span></summary>
+<div class="in">
+<p>Use these rules so your numbers can be compared with others'. You may change any assumption in your own model if you say why, and show the shared-rule result alongside.</p>
+<h4>Medicine questions assistant</h4>
+<ul>
+  <li>Active users = 120,000 × adoption. Questions = active users × 1.4.</li>
+  <li>Cost per question = (input tokens × input price + output tokens × output price) ÷ 1,000,000, plus the judge: 20% × (1,600 × input price + 60 × output price) ÷ 1,000,000.</li>
+  <li>Running cost a month = questions × cost per question + S$4,360 fixed (S$2,500 + S$300 + S$1,560).</li>
+  <li>Pharmacist hours saved = (active users × 0.10 × 6 − questions × handover rate × 2.5) ÷ 60.</li>
+  <li>Value: the first 300 hours saved are cash at S$70 an hour (agency hours no longer bought). Hours beyond 300 are capacity: S$60 × 30%. If hours saved are negative, the extra hours cost S$70 each.</li>
+  <li>Handovers a day = questions × handover rate ÷ 30.</li>
+</ul>
+<h4>Consultation note drafter</h4>
+<ul>
+  <li>Doctors using it = 260 × adoption, rounded up. Drafted notes = 95,000 × adoption × 85%.</li>
+  <li>Licence a month: per note = notes × S$0.38; per seat = the larger of 50 and doctors using it × S$40; per accepted note = notes × 58% × S$0.65.</li>
+  <li>Audit a month = notes × 2% × 5 ÷ 60 × S$150. Running cost = licence + audit + S$1,500.</li>
+  <li>Value = notes × minutes saved per note ÷ 60 × S$150 × 30%.</li>
+</ul>
+<h4>For both</h4>
+<ul>
+  <li>The price test multiplies model token costs (assistant) or licence fees (note drafter) by 0.5 or 1.5.</li>
+  <li>Net value a month = value − running cost. First-year cost = one-off + 12 × running cost. Payback months = one-off ÷ net value a month (only if net is positive).</li>
+  <li>For simplicity, the adoption level applies from the first month. Say in your recommendation how a slower start would change the first year.</li>
+</ul>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 20 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. A calculator or spreadsheet helps.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 4–5 hours · Graded 60%</span>Spreadsheet model and funding recommendation</h2>
+<div class="note"><p><strong>Your task.</strong> Give the CFO what he asked for: a <strong>spreadsheet model</strong> he can open and change, and a <strong>one-page funding recommendation</strong> (about 500 words). Use the three tools below to explore and check; build the model in your own spreadsheet, starting from the workbook provided.</p></div>
+
+<h3>What your pack must contain</h3>
+<ol>
+  <li><strong>Spreadsheet model</strong>, with every case figure on an inputs sheet and every result calculated by formula from it. It must show, for each initiative: cost per question or per note; the nine scenarios (three adoption levels × three price levels) for net value a month; first-year cost against the S$450,000 budget; payback; and break-even adoption.</li>
+  <li><strong>Levers:</strong> the levers you would use for the medicine assistant, their effect on cost per question and on the S$1,500 cap, and the note drafter price plan you would choose, with the evidence each needs.</li>
+  <li><strong>What swings the answer:</strong> at least three assumptions per initiative varied from low to high, showing which could change your decision.</li>
+  <li><strong>One-page recommendation</strong>: which initiative to fund first, at what scale and on which price plan; how it fits the budget; the conditions that release each stage of money and the stop rule; budget guardrails; what would change your mind; and the benefits that have no price.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>A clear choice of which to fund first, at a scale and on a price plan that fit the budget, released in stages tied to measured figures. The recommendation still holds at both price levels, and says what would reverse it.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>The model uses the case figures and the shared rules, with formulas a reader can follow. Cash and freed time are separated and the realisation rate is applied. Pilot limits are named: volunteer doctors, the vendor's 1.0-minute figure, and the calls-avoided figure measured at 23% adoption.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>Capacity limits (the handover queue), the medicine assistant's cost cap, licence minimums and commitments, and renewal price risk are each handled. Every lever is tied to the release gate, and the note drafter's audit and safety stop rule are kept.</td></tr>
+<tr><td><strong>Communication</strong></td><td>The CFO can find the decision, the cost and the stop rule in two minutes. One page plus the workbook. Inputs are labelled with their source; every acronym is spelled out once.</td></tr>
+</tbody></table></div>
+
+<h3>Starter workbook</h3>
+<p>The workbook has every case figure on an <strong>Inputs</strong> sheet, labelled sheets for each initiative with the cells you need to fill with formulas, an empty scenario grid, and a <strong>Checks</strong> sheet with base-case figures to test your formulas against. It opens in Excel, Google Sheets and Numbers.</p>
+<a class="dl" href="assets/module-09-cost-model-starter.xlsx" download>Download the starter workbook (.xlsx)</a>
+
+<!-- Tool 1 -->
+<h3>Tool 1 · Cost per question, cost per note</h3>
+<h4>Medicine questions assistant · choose your levers</h4>
+<p>Tick a lever to see its effect on the cost of one question, including the judge. The warning under each lever is the evidence it needs before it goes live.</p>
+<div class="levers" id="lev-list"></div>
+<div class="recap" id="lev-res" aria-live="polite"></div>
+<div class="scroll"><table class="g9" aria-label="Model and database cost against the cap">
+<thead><tr><th>Adoption</th><th>Questions a month</th><th>Model + database, today's prices</th><th>Prices 50% higher</th><th>Against the S$1,500 cap</th></tr></thead>
+<tbody id="lev-cap"></tbody>
+</table></div>
+<h4>Note drafter · the three price plans</h4>
+<p>Licence cost a month at each adoption level, at today's prices. The per-seat plan is cheaper when a licensed doctor drafts more than <strong>105 notes a month</strong> (S$40 ÷ S$0.38).</p>
+<div class="scroll"><table class="g9" aria-label="Note drafter plans">
+<thead><tr><th>Adoption</th><th>Doctors · notes a month</th><th>Per note</th><th>Per seat</th><th>Per accepted note</th></tr></thead>
+<tbody id="plan-tab"></tbody>
+</table></div>
+
+<!-- Tool 2 -->
+<h3>Tool 2 · Scenario model</h3>
+<p>Set your assumptions. The defaults are the case figures and the CFO's rules. Change one at a time and watch the grids. Your spreadsheet should give the same results for the same assumptions; if it differs by more than 1%, find out why.</p>
+<div class="stops" id="sc-inputs">
+  <div><label for="a-hand">Assistant: handover rate <span class="hint">· %, case 12; build 1.2 aims for 8</span></label><input type="number" id="a-hand" min="0" max="60" step="0.5"></div>
+  <div><label for="a-calls">Assistant: calls avoided per active user a month <span class="hint">· case 0.10</span></label><input type="number" id="a-calls" min="0" max="1" step="0.01"></div>
+  <div><label for="a-lev">Assistant: apply my levers from Tool 1</label><select id="a-lev"><option value="no">No, today's design</option><option value="yes">Yes</option></select></div>
+  <div><label for="c-plan">Drafter: price plan</label><select id="c-plan"><option value="note">Per note (pilot plan)</option><option value="seat">Per seat</option><option value="outcome">Per accepted note</option></select></div>
+  <div><label for="c-min">Drafter: minutes saved per note <span class="hint">· pilot 1.5; reference sites 1.0</span></label><input type="number" id="c-min" min="0" max="5" step="0.1"></div>
+  <div><label for="s-real">Realisation rate for freed time <span class="hint">· %, CFO rule 30</span></label><input type="number" id="s-real" min="0" max="100" step="5"></div>
+</div>
+<p class="row"><button class="btn" type="button" id="sc-reset">Reset to case figures</button><span id="sc-note" aria-live="polite"></span></p>
+
+<h4>Medicine questions assistant · net value a month (S$)</h4>
+<div class="scroll"><table class="g9"><thead><tr><th>Adoption</th><th>Price −50%</th><th>Today's price</th><th>Price +50%</th></tr></thead><tbody id="ga"></tbody></table></div>
+<div class="scroll"><table class="d9"><thead><tr><th>At today's prices</th><th>10%</th><th>30%</th><th>60%</th></tr></thead><tbody id="da"></tbody></table></div>
+<ul class="warnlist" id="fa" aria-live="polite"></ul>
+
+<h4>Consultation note drafter · net value a month (S$)</h4>
+<div class="scroll"><table class="g9"><thead><tr><th>Adoption</th><th>Price −50%</th><th>Today's price</th><th>Price +50%</th></tr></thead><tbody id="gc"></tbody></table></div>
+<div class="scroll"><table class="d9"><thead><tr><th>At today's prices</th><th>10%</th><th>30%</th><th>60%</th></tr></thead><tbody id="dc"></tbody></table></div>
+<ul class="warnlist" id="fc" aria-live="polite"></ul>
+
+<h4>What swings the answer · at 30% adoption, today's prices</h4>
+<p style="font-size:.9rem">Each bar moves one assumption between the values shown, with everything else as you set it above. The dashed red line is zero: a bar that crosses it can flip the decision.</p>
+<p style="font-weight:600;color:var(--ink);margin:.75rem 0 0">Medicine questions assistant</p>
+<div class="torn" id="torn-a" aria-label="Medicine assistant sensitivity"></div>
+<p style="font-weight:600;color:var(--ink);margin:.75rem 0 0">Consultation note drafter</p>
+<div class="torn" id="torn-c" aria-label="Note drafter sensitivity"></div>
+
+<!-- Tool 3 -->
+<h3>Tool 3 · Your funding recommendation</h3>
+<p>Answer each part in a few sentences. These become the backbone of your one-page recommendation.</p>
+<div class="fields" id="rec-fields">
+  <div><label for="r-pick">Fund first</label><select id="r-pick"><option value="">Choose</option><option value="A">Medicine questions assistant</option><option value="C">Consultation note drafter</option><option value="none">Neither yet</option></select></div>
+  <div><label for="r-scale">Scale, price plan and timing <span class="hint">· which clinics or doctors, when, on which plan, with which levers</span></label><textarea id="r-scale"></textarea></div>
+  <div><label for="r-budget">First-year cost and how it fits S$450,000 <span class="hint">· use your model; say what a slower start would change</span></label><textarea id="r-budget"></textarea></div>
+  <div><label for="r-gates">Stages, conditions and stop rule <span class="hint">· what must be measured, by when, to release each stage of money; what stops it</span></label><textarea id="r-gates"></textarea></div>
+  <div><label for="r-guard">Budget guardrails <span class="hint">· caps, alerts, limits, contract terms</span></label><textarea id="r-guard"></textarea></div>
+  <div><label for="r-mind">What would change your mind <span class="hint">· the swing assumptions, and the value at which you would switch</span></label><textarea id="r-mind"></textarea></div>
+  <div><label for="r-soft">Benefits and risks with no price <span class="hint">· for patients, staff and safety</span></label><textarea id="r-soft"></textarea></div>
+</div>
+<ul class="warnlist" id="r-flags" aria-live="polite"></ul>
+
+<h3>Draft your recommendation</h3>
+<p>You may draft here or in your own document tool. Submit the final version as a document, with your workbook attached.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="adr" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your one-page recommendation</label>
+<textarea id="adr" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. A basic calculator is allowed. No notes, no AI tools.</li>
+  <li><strong>Covers:</strong> everything in the lesson. Expect to work out a cost per task including staff time, compare price plans, find a break-even point, separate cash from freed time, and choose levers for a product you have not seen.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. After emailing your assignment, email the course team to request the test paper and book your viva.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>Without reading, you say which initiative to fund first, what it costs in the first year, and what would make you stop.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your model. Expect "which number in your model are you least sure of?", "why does the model price barely matter here?" and "how much of the time saved is cash?"</td></tr>
+<tr><td class="num">7–10</td><td>The assessor changes one fact: a price, a pilot result or a contract term. You say on the spot what it does to your recommendation.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you can explain the ideas in plain words, how you handle the changed fact, and how clearly you speak. Changing your mind for a good reason scores well.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Spreadsheet model and one-page recommendation (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>Your quiz answers, levers, scenario settings and results, recommendation parts, draft, checklist and any lab results go in the email as plain text. Attach your recommendation and your workbook.</p>
+<div class="submit-box" data-submit="m9" data-subject="Module 9 submission">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Finish your recommendation in your own document tool, and save your workbook.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach both files.</li>
+<li>Once the email is sent, tick the box below. Module 10 opens when it is published, once you have ticked it and reached mastery on both checkpoint quizzes.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 1 hour · not assessed</span>Count real tokens for ten patient questions</h2>
+<p>The case uses an average of 160 tokens for a question and recent messages. Averages hide differences. In this lab you count the tokens in ten short questions, in Singapore's four official languages and Singlish, and see what that means for cost and for fair limits.</p>
+<ol>
+  <li>Open a free tokenizer: a page where you paste text and it shows the token count. OpenAI's <a href="https://platform.openai.com/tokenizer">Tokenizer</a> is one. Different model families split text differently, so use the same tool for all ten, and note which model it counts for.</li>
+  <li>Copy each question below into the tool and type the token count into the table. The page counts characters and words for you.</li>
+  <li>Read the summary under the table and answer the reflection.</li>
+</ol>
+<div class="note warn"><p><strong>Fake data only.</strong> The questions are invented. Never paste real patient messages into a public tool.</p></div>
+<div class="scroll"><table class="tok">
+<thead><tr><th>#</th><th>Question</th><th>Language</th><th class="num">Characters</th><th class="num">Words</th><th>Tokens</th><th class="num">Tokens per character</th></tr></thead>
+<tbody id="tok-body"></tbody>
+</table></div>
+<p class="reqtools" id="tok-sum" aria-live="polite"></p>
+<p><strong>Reflect:</strong> Which language used the most tokens for the same meaning? If the assistant's prompt and passages are also in that language, how much more does one question cost? If you set a daily token limit per patient to protect the budget, who would hit it first? What would you do instead?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+<p style="font-size:.88rem;color:var(--muted);margin-top:.75rem"><strong>Going further:</strong> model providers report exact input and output token counts for every request in their developer consoles, and some offer a token-counting service. If your team has a test account, send the same ten questions and compare.</p>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Reforge, <a href="https://www.reforge.com/blog/how-to-price-your-ai-product">How to price your AI product</a> (October 2025). The four monetisation levers, value metrics, and why AI raises the pricing floor. About 20 minutes.</li>
+  <li>Epoch AI, <a href="https://epoch.ai/data-insights/llm-inference-price-trends">LLM inference price trends</a> (March 2025). How fast prices fall for a fixed level of performance, and the caveats. About 10 minutes.</li>
+  <li>Anthropic, <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Prompt caching</a> documentation. A provider's own explanation of what caching saves and when it does not. Read the pricing section; about 10 minutes.</li>
+  <li>Intercom, <a href="https://www.intercom.com/help/en/articles/8205718-fin-resolutions">Fin resolutions</a>. A real outcome price and its definition. About 5 minutes.</li>
+  <li>Reforge, <a href="https://www.reforge.com/courses/ai-strategy">AI Strategy</a> and <a href="https://www.reforge.com/courses/monetization-pricing-strategy">Monetization and Pricing Strategy</a> course pages, and Marily Nika's <a href="https://maven.com/marily-nika/advanced-ai-product-management/">Advanced AI Product Management</a>. The courses this module draws on.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<ul>
+  <li><strong>Meeting notes for your team:</strong> work out the cost per meeting of an AI note-taker (an hour is about 9,000 words spoken), the time it saves, and how much of that is cash. Compare per seat and per minute pricing for your team's size.</li>
+  <li><strong>An AI feature you would sell:</strong> pick a product you know and add one AI feature. Estimate the cost for an average and a heavy user. Where would you set the price floor? Would you charge per seat, per use or per result?</li>
+  <li><strong>Your own AI bill:</strong> if you use an AI tool at work, find its usage report. Which 10% of users or tasks drive most of the cost? Which lever from Part 9.3 would you try first?</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Adoption</td><td>The share of people who could use a product who actually use it in a period, usually a month</td></tr>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Batch processing</td><td>Sending requests that can wait, usually up to 24 hours, at a lower price</td></tr>
+<tr><td>Break-even</td><td>The level of use at which value equals cost</td></tr>
+<tr><td>Capacity-releasing saving</td><td>Time freed for other work while the cost is still paid</td></tr>
+<tr><td>Cash-releasing saving</td><td>Spending that actually stops, such as agency hours no longer bought</td></tr>
+<tr><td>CFO · CIO</td><td>Chief Financial Officer · Chief Information Officer</td></tr>
+<tr><td>Cost to serve</td><td>Everything it costs to deliver one unit of a product, including staff time it creates</td></tr>
+<tr><td>Crossover point</td><td>The level of use at which two price plans cost the same</td></tr>
+<tr><td>EMR</td><td>Electronic medical record</td></tr>
+<tr><td>Fixed, variable and one-off costs</td><td>Costs that do not change with use in a month; costs that rise with each unit; spending to get started</td></tr>
+<tr><td>LLM</td><td>Large language model</td></tr>
+<tr><td>Outcome pricing</td><td>Paying for each result, such as a resolved conversation or an accepted draft</td></tr>
+<tr><td>Payback</td><td>How many months of net value it takes to recover the one-off cost</td></tr>
+<tr><td>Per-seat pricing</td><td>Paying for each licensed user each month</td></tr>
+<tr><td>PM</td><td>Product manager</td></tr>
+<tr><td>Prompt caching</td><td>A provider storing the fixed start of a prompt so that later requests pay less for it</td></tr>
+<tr><td>Realisation rate</td><td>The share of freed time that a finance team counts as value</td></tr>
+<tr><td>Robust to price</td><td>A decision that stays the same when prices move within the range tested</td></tr>
+<tr><td>Routing</td><td>Sending each request to the cheapest model that can handle it well</td></tr>
+<tr><td>S$</td><td>Singapore dollars</td></tr>
+<tr><td>Step cost</td><td>A cost that jumps at a capacity limit, such as hiring when a queue is full</td></tr>
+<tr><td>Token</td><td>A word-piece; models read and write text in tokens and providers charge per token</td></tr>
+<tr><td>Tornado chart</td><td>A chart of how much a result changes when each assumption moves from low to high, largest first</td></tr>
+<tr><td>Unit economics</td><td>The cost and value of one unit of a product, such as one task or one active user</td></tr>
+<tr><td>Usage pricing</td><td>Paying for each unit used, such as tokens, requests or notes</td></tr>
+<tr><td>Value metric</td><td>The unit that price scales with, chosen because it tracks the value a customer gets</td></tr>
+</tbody></table></div>
+
+<nav class="pn" aria-label="Previous and next">
+  <a href="module-08.html"><small>← Previous</small>Module 8 · Agents and rapid prototyping</a>
+  <span class="next"><small>Next</small>Module 10 · opens in Week 10</span>
+</nav>
+<p class="foot">Module 9 · Version 1.0 · 21 October 2026 · Harbourview Polyclinics, Tidewater Clinical AI, their staff, patients, prices and figures are fictional or simplified for teaching. Real companies' prices are quoted from their public pages as at October 2026. Nothing on this page is financial, medical or legal advice.</p>
+</div>
+<script>
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m9:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m9:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+const num = (v, d) => { const x = parseFloat(v); return isFinite(x) ? x : d; };
+const S$ = (x, d = 0) => (x < 0 ? '−' : '') + 'S$' + Math.abs(x).toLocaleString('en-SG', { minimumFractionDigits: d, maximumFractionDigits: d });
+const N = (x, d = 0) => x.toLocaleString('en-SG', { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
+function copyText(text, msgEl, okMsg){
+  const fb = $('fallback');
+  const fallback = () => { fb.hidden = false; fb.value = text; fb.focus(); fb.select(); if (msgEl) msgEl.textContent = 'Select all the text in the box at the end of the Submit section and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(() => { if (msgEl) msgEl.textContent = okMsg; fb.hidden = true; }, fallback); } catch(e) { fallback(); }
+}
+
+/* ===== Swing (tornado) bars ===== */
+function drawTorn(el, base, items, unit){
+  const vals = [0, base]; items.forEach(i => vals.push(i.lo, i.hi));
+  let mn = Math.min(...vals), mx = Math.max(...vals); const pad = (mx - mn) * 0.24 || 1; mn -= pad; mx += pad;
+  const pos = v => ((v - mn) / (mx - mn) * 100).toFixed(2) + '%';
+  items = items.slice().sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo));
+  el.innerHTML = items.map(i => { const a = Math.min(i.lo, i.hi), b = Math.max(i.lo, i.hi);
+    const leftLab = i.lo <= i.hi ? i.loL : i.hiL, rightLab = i.lo <= i.hi ? i.hiL : i.loL;
+    return `<div class="nm">${esc(i.name)}<small>${esc(leftLab)} → ${esc(rightLab)}</small></div>
+    <div class="tr" role="img" aria-label="${esc(i.name)}: ${unit(a)} to ${unit(b)}"><span class="bar" style="left:${pos(a)};width:calc(${pos(b)} - ${pos(a)})"></span>
+    <span class="zero" style="left:${pos(0)}"></span><span class="base" style="left:${pos(base)}"></span>
+    <span class="lo" style="right:calc(100% - ${pos(a)} + .25rem)">${unit(a)}</span><span class="hi" style="left:calc(${pos(b)} + .25rem)">${unit(b)}</span></div>`; }).join('');
+}
+
+/* ===== Lesson calculators ===== */
+function calcs(){
+  const tin = num($('k-in').value, 0), tout = num($('k-out').value, 0), pin = num($('k-pin').value, 0), pout = num($('k-pout').value, 0);
+  const h = num($('k-h').value, 0) / 100, mins = num($('k-min').value, 0), rate = num($('k-rate').value, 0);
+  const m = (tin * pin + tout * pout) / 1e6, hu = h * mins / 60 * rate, tot = m + hu;
+  $('k-out-res').innerHTML = `${S$(tot, 4)}<small>per task: model ${S$(m, 4)} + staff time ${S$(hu, 4)}${m > 0 && hu > 0 ? ` · staff time is ${N(hu / m, 0)}× the model cost` : ''} · ${S$(tot * 1000, 2)} per 1,000 tasks</small>`;
+  const fix = num($('b-fix').value, 0), v = num($('b-var').value, 0), val = num($('b-val').value, 0), pop = Math.max(1, num($('b-pop').value, 1));
+  if (val <= v) $('b-res').innerHTML = `Never<small>each active user costs more than the value they bring</small>`;
+  else { const be = Math.ceil(fix / (val - v)); const per = a => (fix + pop * a * v) / (pop * a);
+    $('b-res').innerHTML = `${N(be)} users<small>${pct(be / pop, 1)} adoption to break even · cost per active user: ${[0.05, 0.15, 0.3].map(a => `${pct(a)} ${S$(per(a), 2)}`).join(' · ')}</small>`; }
+  const seat = num($('p-seat').value, 0), unitp = num($('p-unit').value, 0), use = num($('p-use').value, 0), n = Math.max(1, num($('p-n').value, 1)), minS = num($('p-min').value, 0);
+  const cs = Math.max(n, minS) * seat, cu = n * use * unitp, cross = unitp > 0 ? seat / unitp : Infinity;
+  $('p-res').innerHTML = `${cs < cu ? 'Per seat' : cu < cs ? 'Pay per use' : 'Either'}<small>per seat ${S$(cs, 2)} a month · pay per use ${S$(cu, 2)} · crossover ${isFinite(cross) ? N(cross, 0) + ' units per seat' : 'none'}</small>`;
+}
+['k-in','k-out','k-pin','k-pout','k-h','k-min','k-rate','b-fix','b-var','b-val','b-pop','p-seat','p-unit','p-use','p-n','p-min'].forEach(id => $(id).addEventListener('input', calcs)); calcs();
+(function(){ /* Riverside example: 3,000 active members, 3 questions each */
+  const mem = 3000, q = 3, model = 0.003, hand = 0.15, handC = 1.20, avoid = 0.5, fix = 550;
+  const net = (o = {}) => { const m = o.mem ?? mem, hr = o.hand ?? hand, av = o.avoid ?? avoid, mp = o.mp ?? 1;
+    return m * q * (av * 2.40 - (model * mp + hr * handC)) - fix; };
+  drawTorn($('riv-torn'), net(), [
+    { name:'Desk enquiries saved per question', loL:'0.3', hiL:'0.7', lo:net({avoid:0.3}), hi:net({avoid:0.7}) },
+    { name:'Adoption', loL:'10%', hiL:'20%', lo:net({mem:2000}), hi:net({mem:4000}) },
+    { name:'Handover rate', loL:'20%', hiL:'10%', lo:net({hand:0.2}), hi:net({hand:0.1}) },
+    { name:'Model price', loL:'+50%', hiL:'−50%', lo:net({mp:1.5}), hi:net({mp:0.5}) }
+  ], v => S$(Math.round(v)));
+})();
+
+/* ===== Case model (shared rules, case section 6) ===== */
+const CA = { elig:120000, qpu:1.4, ins:1100, rx:400, q:160, pass:1600, out:250, pin:4, pout:20, jshare:0.2, jin:1600, jout:60,
+  db:300, platform:2500, safetyH:26, phRate:60, calls:0.10, callMin:6, hand:0.12, handMin:2.5, agency:70, agencyCap:300, oneoff:90000, spare:180, cap:1500 };
+const CC = { cons:95000, consent:0.85, docs:260, saved:1.5, docRate:150, perNote:0.38, seat:40, minSeats:50, outcome:0.65, accept:0.58, auditShare:0.02, auditMin:5, platform:1500, oneoff:260000 };
+const BUDGET = 450000, ADS = [0.1, 0.3, 0.6], PMS = [0.5, 1, 1.5];
+
+/* Levers for the medicine assistant (Tool 1) */
+const LEVERS = [
+ { id:'cache', t:'Cache the instructions', d:'The 1,100-token instructions are the same for every question. Cached reads cost 10% of the input price; a miss costs 125%.', risk:'Needs steady traffic: the cache lasts 5 minutes after last use. Check the hit rate at low adoption and overnight.', extra:{ k:'hit', l:'Questions that reuse the cache (%)', v:90 } },
+ { id:'trim', t:'Two leaflet passages instead of three', d:'About 530 fewer input tokens per question.', risk:'Answers may miss facts or fill gaps. Rerun the unsupported-claims judge and error analysis (Modules 5 and 6) before release.' },
+ { id:'short', t:'Cap answers at 180 tokens instead of 250', d:'Output tokens cost five times as much as input.', risk:'Shorter answers can drop the "ask a pharmacist" line or a key caution. Check completeness, not just length.' },
+ { id:'route', t:'Route routine questions to the small model', d:'The small model costs one-fifth as much. A 300-token router call on the small model decides.', risk:'Passed the gate on 200 routine questions only. The router must never send a non-routine or emergency question to the small model; test the router itself.', extra:{ k:'share', l:'Share of questions routed (%)', v:50 } },
+ { id:'batch', t:'Run the judge as an overnight batch', d:'Half price for the 20% of answers the judge checks.', risk:'Problems are found the next morning, not within the hour. Keep live code checks for emergencies.' },
+ { id:'large', t:'Switch to the large model', d:'Not a saving: 2.5 times the price. The option raised in Module 5.', risk:'Only worth it if the release gate shows a quality gain that cuts handovers or failures enough to pay for itself.' }
+];
+let lev = store.get('lev') || {};
+function aUnit(L, pm = 1){
+  L = L || {};
+  let ins = CA.ins * CA.pin;
+  if (L.cache) { const h = Math.min(100, Math.max(0, num(L.hit, 90))) / 100; ins = CA.ins * CA.pin * (h * 0.1 + (1 - h) * 1.25); }
+  const pass = CA.pass * (L.trim ? 2 / 3 : 1), out = L.short ? 180 : CA.out;
+  let main = (ins + (CA.rx + CA.q + pass) * CA.pin + out * CA.pout) / 1e6;
+  if (L.large) main *= 2.5;
+  if (L.route) { const s = Math.min(100, Math.max(0, num(L.share, 50))) / 100; main = main * (1 - s) + main * s * 0.2 + 300 * 0.8 / 1e6; }
+  let judge = CA.jshare * (CA.jin * CA.pin + CA.jout * CA.pout) / 1e6; if (L.batch) judge *= 0.5;
+  return { total:(main + judge) * pm, main:main * pm, judge:judge * pm };
+}
+function aMonth(ad, pm, o){
+  const h = o.hand, cl = o.calls, users = CA.elig * ad, q = users * CA.qpu, u = aUnit(o.lev, pm);
+  const model = q * u.total, fixed = CA.db + CA.platform + CA.safetyH * CA.phRate, run = model + fixed;
+  const hrs = (users * cl * CA.callMin - q * h * CA.handMin) / 60;
+  const val = hrs >= 0 ? Math.min(hrs, CA.agencyCap) * CA.agency + Math.max(0, hrs - CA.agencyCap) * CA.phRate * o.real : hrs * CA.agency;
+  const net = val - run;
+  return { users, q, cq:u.total, model, run, mdb:model + CA.db, hrs, val, net, handDay:q * h / 30, year:CA.oneoff + 12 * run, pay:net > 0 ? CA.oneoff / net : null, perUser:run / users };
+}
+function cMonth(ad, pm, o){
+  const notes = CC.cons * ad * CC.consent, docs = Math.ceil(CC.docs * ad - 1e-9);
+  let lic = o.plan === 'note' ? notes * CC.perNote : o.plan === 'seat' ? Math.max(CC.minSeats, docs) * CC.seat : notes * CC.accept * CC.outcome;
+  lic *= pm;
+  const audit = notes * CC.auditShare * CC.auditMin / 60 * CC.docRate, run = lic + audit + CC.platform;
+  const hrs = notes * o.mins / 60, val = hrs * CC.docRate * o.real, net = val - run;
+  return { notes, docs, lic, audit, run, perNote:run / notes, hrs, val, net, year:CC.oneoff + 12 * run, pay:net > 0 ? CC.oneoff / net : null };
+}
+function breakEven(fn){ if (fn(1) < 0) return null; let lo = 0.001, hi = 1; if (fn(lo) >= 0) return lo; for (let i = 0; i < 50; i++){ const m = (lo + hi) / 2; if (fn(m) < 0) lo = m; else hi = m; } return hi; }
+
+/* ===== Tool 1 ===== */
+function drawLevers(){
+  $('lev-list').innerHTML = LEVERS.map(L => { const on = !!(lev[L.id] && lev[L.id].on);
+    return `<label class="lv9"><input type="checkbox" data-lev="${L.id}"${on ? ' checked' : ''}><span><b>${esc(L.t)}</b><br><span style="font-size:.85rem">${esc(L.d)}</span>${L.extra ? `<br><span class="inl">${esc(L.extra.l)} <input type="number" data-lx="${L.id}" min="0" max="100" value="${esc(num((lev[L.id] || {})[L.extra.k], L.extra.v))}"></span>` : ''}</span>
+    <span class="sv" data-sv="${L.id}"></span>${on ? `<span class="risk">Evidence needed: ${esc(L.risk)}</span>` : ''}</label>`; }).join('');
+  $('lev-list').querySelectorAll('[data-lev]').forEach(el => el.addEventListener('change', () => { const id = el.dataset.lev; lev[id] = Object.assign(lev[id] || {}, { on: el.checked }); store.set('lev', lev); drawLevers(); }));
+  $('lev-list').querySelectorAll('[data-lx]').forEach(el => { el.addEventListener('click', e => e.stopPropagation()); el.addEventListener('input', () => { const L = LEVERS.find(x => x.id === el.dataset.lx); lev[L.id] = Object.assign(lev[L.id] || {}, { [L.extra.k]: el.value }); store.set('lev', lev); levResults(); }); });
+  levResults();
+}
+function levFlags(){ const L = {}; LEVERS.forEach(x => { if (lev[x.id] && lev[x.id].on) { L[x.id] = 1; if (x.extra) L[x.extra.k] = num(lev[x.id][x.extra.k], x.extra.v); } }); return L; }
+function levResults(){
+  const base = aUnit({}), L = levFlags(), mine = aUnit(L);
+  LEVERS.forEach(x => { const one = {}; one[x.id] = 1; if (x.extra) one[x.extra.k] = num((lev[x.id] || {})[x.extra.k], x.extra.v);
+    const d = base.total - aUnit(one).total, el = document.querySelector(`[data-sv="${x.id}"]`);
+    if (el) { el.textContent = (d >= 0 ? '−' : '+') + S$(Math.abs(d), 4).replace('S$', 'S$'); el.classList.toggle('neg', d < 0); } });
+  const n = Object.keys(L).filter(k => LEVERS.some(x => x.id === k)).length;
+  $('lev-res').innerHTML = `<b>Cost per question</b>, assistant plus judge: today ${S$(base.total, 4)} · with your ${n} lever${n === 1 ? '' : 's'} <b>${S$(mine.total, 4)}</b> (${base.total ? (mine.total <= base.total ? pct(1 - mine.total / base.total) + ' lower' : pct(mine.total / base.total - 1) + ' higher') : ''}). Levers combine; the sum of the single savings above is not the combined saving.`;
+  $('lev-cap').innerHTML = ADS.map(a => { const q = CA.elig * a * CA.qpu, m1 = q * mine.total + CA.db, m15 = q * aUnit(L, 1.5).total + CA.db;
+    return `<tr><td>${pct(a)}</td><td>${N(q)}</td><td class="${m1 > CA.cap ? 'over' : ''}">${S$(m1)}</td><td class="${m15 > CA.cap ? 'over' : ''}">${S$(m15)}</td><td>${m15 <= CA.cap ? 'Within at both' : m1 <= CA.cap ? 'Over if prices rise' : 'Over today'}</td></tr>`; }).join('');
+  progress(); drawScenarios();
+}
+function drawPlans(){
+  $('plan-tab').innerHTML = ADS.map(a => { const o = { mins:CC.saved, real:0.3 }, n = cMonth(a, 1, Object.assign({ plan:'note' }, o)), s = cMonth(a, 1, Object.assign({ plan:'seat' }, o)), x = cMonth(a, 1, Object.assign({ plan:'outcome' }, o));
+    const best = Math.min(n.lic, s.lic, x.lic), cell = v => `<td${v === best ? ' class="pos"' : ''}>${S$(v)}</td>`;
+    return `<tr><td>${pct(a)}</td><td>${n.docs} · ${N(n.notes)}${s.docs < CC.minSeats ? ' <span class="flag">pays for 50 seats</span>' : ''}</td>${cell(n.lic)}${cell(s.lic)}${cell(x.lic)}</tr>`; }).join('');
+}
+
+/* ===== Tool 2 ===== */
+const SC_DEF = { 'a-hand':12, 'a-calls':0.10, 'a-lev':'no', 'c-plan':'note', 'c-min':1.5, 's-real':30 };
+let sc = Object.assign({}, SC_DEF, store.get('sc') || {});
+Object.keys(SC_DEF).forEach(id => { const el = $(id); el.value = sc[id];
+  el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { sc[id] = el.tagName === 'SELECT' ? el.value : el.value; store.set('sc', sc); drawScenarios(); progress(); }); });
+$('sc-reset').addEventListener('click', () => { sc = Object.assign({}, SC_DEF); store.set('sc', sc); Object.keys(SC_DEF).forEach(id => $(id).value = sc[id]); drawScenarios(); progress(); });
+const PLAN = { note:'per note', seat:'per seat', outcome:'per accepted note' };
+function opts(){ return { a:{ hand:num(sc['a-hand'], 12) / 100, calls:num(sc['a-calls'], 0.1), lev:sc['a-lev'] === 'yes' ? levFlags() : {}, real:num(sc['s-real'], 30) / 100 },
+  c:{ plan:sc['c-plan'] || 'note', mins:num(sc['c-min'], 1.5), real:num(sc['s-real'], 30) / 100 } }; }
+const scChanged = () => Object.keys(SC_DEF).some(k => String(sc[k]) !== String(SC_DEF[k]));
+function grid(el, fn){ el.innerHTML = ADS.map(a => `<tr><td>${pct(a)}</td>${PMS.map(p => { const r = fn(a, p); return `<td class="${r.net >= 0 ? 'pos' : 'neg'}">${S$(Math.round(r.net))}</td>`; }).join('')}</tr>`).join(''); }
+function row(label, vals, key){ return `<tr${key ? ' class="key"' : ''}><td>${label}</td>${vals.map(v => `<td>${v}</td>`).join('')}</tr>`; }
+let LAST = {};
+function drawScenarios(){
+  if (!$('ga')) return;
+  const O = opts(), A = ADS.map(a => aMonth(a, 1, O.a)), C = ADS.map(a => cMonth(a, 1, O.c));
+  grid($('ga'), (a, p) => aMonth(a, p, O.a)); grid($('gc'), (a, p) => cMonth(a, p, O.c));
+  $('da').innerHTML = row('Active users', A.map(r => N(r.users))) + row('Questions a month', A.map(r => N(r.q))) + row('Cost per question', A.map(r => S$(r.cq, 4)))
+    + row('Running cost a month', A.map(r => S$(r.run))) + row('Running cost per active user', A.map(r => S$(r.perUser, 3))) + row('Pharmacist hours saved a month', A.map(r => N(r.hrs)))
+    + row('Value a month', A.map(r => S$(r.val))) + row('Net value a month', A.map(r => S$(r.net)), 1) + row('First-year cost', A.map(r => S$(r.year)))
+    + row('Fits S$450,000?', A.map(r => r.year <= BUDGET ? 'Yes' : '<span style="color:var(--bad)">No</span>')) + row('Payback, months', A.map(r => r.pay ? N(r.pay, 1) : 'Never'))
+    + row('Handovers a day (spare capacity 180)', A.map(r => r.handDay > CA.spare ? `<span style="color:var(--bad)">${N(r.handDay)}</span>` : N(r.handDay)))
+    + row('Model + database (cap S$1,500)', A.map(r => r.mdb > CA.cap ? `<span style="color:var(--bad)">${S$(r.mdb)}</span>` : S$(r.mdb)));
+  $('dc').innerHTML = row('Doctors using it', C.map(r => N(r.docs))) + row('Drafted notes a month', C.map(r => N(r.notes))) + row(`Licence a month (${PLAN[O.c.plan]})`, C.map(r => S$(r.lic)))
+    + row('Clinical audit a month', C.map(r => S$(r.audit))) + row('Running cost a month', C.map(r => S$(r.run))) + row('Running cost per note', C.map(r => S$(r.perNote, 3)))
+    + row('Doctor hours freed a month', C.map(r => N(r.hrs))) + row(`Value a month (at ${pct(O.c.real)} realisation)`, C.map(r => S$(r.val))) + row('Net value a month', C.map(r => S$(r.net)), 1)
+    + row('First-year cost', C.map(r => S$(r.year))) + row('Fits S$450,000?', C.map(r => r.year <= BUDGET ? 'Yes' : '<span style="color:var(--bad)">No</span>')) + row('Payback, months', C.map(r => r.pay ? N(r.pay, 1) : 'Never'));
+  const beA = breakEven(a => aMonth(a, 1, O.a).net), beC = breakEven(a => cMonth(a, 1, O.c).net);
+  const FA = [`Break-even adoption at today's prices: ${beA ? pct(beA, 1) : 'not reached even at 100%'}.`];
+  A.forEach((r, i) => { if (r.handDay > CA.spare) FA.push(`At ${pct(ADS[i])} adoption, about ${N(r.handDay)} handovers a day exceed the helpline's spare capacity of 180. Replies will miss the 2-hour target unless the handover rate falls or staff are added.`); });
+  ADS.forEach(a => { const m1 = aMonth(a, 1, O.a).mdb, m15 = aMonth(a, 1.5, O.a).mdb; if (m15 > CA.cap) FA.push(`At ${pct(a)} adoption, model and database cost ${S$(m1)} a month today and ${S$(m15)} if prices rise by half, against the S$1,500 cap.`); });
+  if (O.a.hand < 0.12) FA.push(`You assume ${pct(O.a.hand, 1)} handovers. Build 1.2 has not passed the release gate: make this a condition, not a fact.`);
+  if (O.a.calls !== 0.10) FA.push(`You changed calls avoided from the measured 0.10. Say why.`);
+  if (sc['a-lev'] === 'yes' && Object.keys(O.a.lev).length) FA.push('Your levers are applied. Each needs the evidence listed in Tool 1 before release.');
+  $('fa').innerHTML = FA.map(s => `<li>${esc(s)}</li>`).join('');
+  const FC = [`Break-even adoption at today's prices: ${beC ? pct(beC, 1) : 'not reached even at 100%'}.`];
+  C.forEach((r, i) => { if (r.year > BUDGET) FC.push(`At ${pct(ADS[i])} adoption, first-year cost is ${S$(r.year)}, over the S$450,000 budget.`); });
+  if (O.c.plan === 'seat') { FC.push(`Per seat: Harbourview pays for at least 50 seats for 12 months, whatever the adoption. At 10% (${C[0].docs} doctors) that means paying for unused seats.`); }
+  if (O.c.plan === 'note') FC.push('Per note: the price is reviewed at each renewal, within ±50%. Your grid shows what that would do.');
+  if (O.c.plan === 'outcome') FC.push('Per accepted note: Tidewater earns more when doctors change less. That rewards light checking (automation bias, Module 7), and Tidewater measures it.');
+  if (O.c.mins >= 1.5) FC.push(`${N(O.c.mins, 1)} minutes saved per note ${O.c.mins > 1.5 ? 'is above' : 'is'} the pilot figure from six volunteers. The vendor's reference sites report 1.0.`);
+  if (O.c.real !== 0.3) FC.push(`You use a ${pct(O.c.real)} realisation rate. The CFO counts 30% unless you show how the time becomes cash or more patients seen.`);
+  $('fc').innerHTML = FC.map(s => `<li>${esc(s)}</li>`).join('');
+  /* swing bars at 30%, today's prices */
+  const a0 = aMonth(0.3, 1, O.a).net, ao = (p, ch) => aMonth(0.3, p, Object.assign({}, O.a, ch)).net;
+  drawTorn($('torn-a'), a0, [
+    { name:'Model price', loL:'−50%', hiL:'+50%', lo:ao(0.5, {}), hi:ao(1.5, {}) },
+    { name:'Handover rate', loL:'16%', hiL:'8%', lo:ao(1, { hand:0.16 }), hi:ao(1, { hand:0.08 }) },
+    { name:'Calls avoided per active user', loL:'0.07', hiL:'0.13', lo:ao(1, { calls:0.07 }), hi:ao(1, { calls:0.13 }) },
+    { name:'Minutes per handover reply', loL:'4', hiL:'1.5', lo:(() => { const s = CA.handMin; CA.handMin = 4; const v = ao(1, {}); CA.handMin = s; return v; })(), hi:(() => { const s = CA.handMin; CA.handMin = 1.5; const v = ao(1, {}); CA.handMin = s; return v; })() }
+  ], v => S$(Math.round(v)));
+  const c0 = cMonth(0.3, 1, O.c).net, co = (p, ch) => cMonth(0.3, p, Object.assign({}, O.c, ch)).net;
+  drawTorn($('torn-c'), c0, [
+    { name:'Licence price', loL:'−50%', hiL:'+50%', lo:co(0.5, {}), hi:co(1.5, {}) },
+    { name:'Minutes saved per note', loL:'1.0', hiL:'2.0', lo:co(1, { mins:1.0 }), hi:co(1, { mins:2.0 }) },
+    { name:'Realisation rate', loL:'10%', hiL:'50%', lo:co(1, { real:0.1 }), hi:co(1, { real:0.5 }) },
+    { name:'Price plan', loL:'per note', hiL:'per seat', lo:co(1, { plan:'note' }), hi:co(1, { plan:'seat' }) }
+  ], v => S$(Math.round(v)));
+  LAST = { O, A, C, beA, beC };
+  recFlags();
+}
+
+/* ===== Tool 3 ===== */
+const RF = ['r-pick','r-scale','r-budget','r-gates','r-guard','r-mind','r-soft'];
+let rec = store.get('rec') || {};
+RF.forEach(id => { const el = $(id); el.value = rec[id] || ''; el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { rec[id] = el.value; store.set('rec', rec); recFlags(); progress(); }); });
+const recDone = () => RF.filter(id => id === 'r-pick' ? !!rec[id] : words(rec[id]) >= 8).length;
+function recFlags(){
+  if (!$('r-flags')) return;
+  const F = [], pick = rec['r-pick'], g = rec['r-gates'] || '', gu = rec['r-guard'] || '', all = RF.map(id => rec[id] || '').join(' ');
+  if (!pick) { $('r-flags').innerHTML = ''; return; }
+  if (pick !== 'none' && words(g) >= 8 && !/stop|pause|halt|withdraw/i.test(g)) F.push('Name a stop rule: the measured figure that would stop spending.');
+  if (pick === 'A' && LAST.O && LAST.O.a.hand < 0.12 && !/handover|1\.2|gate/i.test(g)) F.push('Your scenarios assume fewer handovers than today. Make build 1.2 passing the release gate a condition.');
+  if (pick === 'A' && LAST.A && LAST.A.some(r => r.handDay > CA.spare) && !/capacity|queue|180|handover/i.test(all)) F.push('Your model shows the handover queue over capacity at some adoption levels. Say how you will handle it.');
+  if (pick === 'C' && LAST.O && LAST.O.c.plan === 'seat' && !/seat|commit|minimum/i.test(all)) F.push('Per-seat licences carry a 50-seat minimum and a 12-month commitment. Say how many seats and why.');
+  if (pick === 'C' && !/audit|error|safety/i.test(all)) F.push('Keep the clinical audit and the safety stop rule (no more than 2 critical errors in 1,000 notes).');
+  if (pick === 'C' && !/volunteer|1\.0|reference/i.test(all)) F.push('The 1.5-minute saving comes from six volunteers. Say how you will check it holds for other doctors.');
+  if (pick !== 'none' && !/price|renew|±|50%/i.test(all)) F.push('Say how the decision holds if prices move by half, and what happens at renewal.');
+  $('r-flags').innerHTML = F.map(s => `<li>${esc(s)}</li>`).join('');
+}
+
+/* ===== Recommendation draft and checklist ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `FUNDING RECOMMENDATION · AI budget for the year from 1 April
+Harbourview Polyclinics · Version 0.1 · Author: Head of Digital Products · For: Chief Financial Officer
+Attached: cost model workbook
+
+1. Recommendation
+[Three sentences: which initiative first, at what scale and on which price plan; the first-year cost; the condition you will not drop]
+
+2. What it costs and what it returns
+[Cost per question or per note, with and without levers · net value a month at 10%, 30% and 60% · first-year cost against S$450,000 · payback · break-even adoption]
+
+3. Why this one first
+[The comparison with the other initiative, using cash and freed time separately · the CFO's 30% rule]
+
+4. Does it survive price changes?
+[The nine-scenario grid in one sentence · what happens at renewal]
+
+5. What could change the answer
+[Two or three swing assumptions, their range, and the value at which you would switch]
+
+6. Stages and stop rule
+[Stage 1: what, when, how much · the figure that releases stage 2 · the figure that stops spending]
+
+7. Budget guardrails
+[Caps, alerts, limits, contract terms, levers and the evidence each needs]
+
+8. What the numbers leave out
+[Patients after hours, doctor burnout, safety, the other initiative's future]`;
+const adr = $('adr'); adr.value = misc.adr || '';
+function wc(){ const w = words(adr.value); $('wc').textContent = w + ' words' + (w > 650 ? ' · aim for one page, about 500 words' : ''); }
+adr.addEventListener('input', () => { misc.adr = adr.value; store.set('misc', misc); wc(); progress(); });
+$('tmpl').addEventListener('click', () => { if (adr.value.trim() && !confirm('Replace your current draft with the outline?')) return; adr.value = OUTLINE; misc.adr = OUTLINE; store.set('misc', misc); wc(); progress(); adr.focus(); });
+wc();
+const CHECKS = [
+  "Every case figure sits on my Inputs sheet with its source, and every result is a formula from those inputs",
+  "My Checks sheet matches the base-case figures, or I explain each difference",
+  "My model shows all nine scenarios for both initiatives, first-year cost against S$450,000, payback and break-even adoption",
+  "I separated cash savings from freed time and applied the CFO's 30% realisation rate",
+  "I subtracted the new work each AI creates: handovers and clinical audits",
+  "I named the pilot's limits: six volunteer doctors, the vendor's 1.0-minute figure, calls avoided measured at 23% adoption",
+  "I checked the handover queue against its capacity and the assistant's cost against the S$1,500 cap",
+  "My chosen levers and price plan each say what evidence they need, and levers go through the release gate",
+  "My recommendation releases money in stages, with a measured condition for each stage and a stop rule",
+  "The recommendation fits on one page and every acronym is spelled out once"
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c, i) => `<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el => { el.checked = !!ck[el.dataset.i]; el.addEventListener('change', () => { ck[el.dataset.i] = el.checked; store.set('ck', ck); }); });
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Does each extra use of a product built on a language model usually add cost, unlike most traditional software?","Yes","Every request is charged in tokens, and many create staff work such as handovers or reviews. Traditional software costs very little to serve one more user."],
+  ["Are output tokens usually priced lower than input tokens?","No","Output tokens usually cost several times more, often four to five times. That is why capping answer length is a cost lever."],
+  ["If a model provider halves its prices, will a product's monthly AI bill always fall?","No","Use may grow, prompts get longer, agents make more calls, and teams move to newer, larger models. Prices for a fixed level of performance have fallen fast, yet many bills keep rising."],
+  ["Does prompt caching save money mainly on the part of a prompt that is the same across many requests?","Yes","The provider stores the fixed start of the prompt, such as the instructions, and charges much less to reuse it, as long as requests keep arriving before the cache expires."],
+  ["Is a batch interface, with results within 24 hours, a good fit for a patient waiting for an answer in a chat?","No","Batching suits work that can wait, such as overnight judge runs or theme analysis. A live conversation cannot wait hours."],
+  ["Can routing easy requests to a smaller model change answer quality, so it must pass the release gate first?","Yes","Every cost lever changes behaviour. Routing needs evidence on the routed slice and on the router itself, not just overall scores."],
+  ["As adoption rises, does the fixed cost per active user fall?","Yes","The same fixed costs are shared among more users. Watch for step costs, such as a staffed queue reaching capacity, that break the pattern."],
+  ["Under outcome-based pricing, does the definition of the outcome matter as much as the price?","Yes","Who defines and measures the outcome decides what you pay for. Intercom, for example, counts a resolution when a customer leaves without asking for more help, which is an assumption."],
+  ["Should every staff hour an AI product frees be counted as a cash saving?","No","Only spending that actually stops is cash. Freed time is capacity: valuable only if it is used, and usually counted at a realisation rate."],
+  ["If a funding decision is the same whether model prices are 50% lower or 50% higher, is it robust to model price?","Yes","That is the test. A decision that flips within that range is fragile, and the price assumption needs more work."]
+ ], sa: [
+  ["A request uses 2,400 input and 300 output tokens on a model priced S$2 per million input and S$10 per million output tokens. One request in ten is handed to a person who spends 4 minutes on it, at S$48 an hour. Work out the model cost and the staff cost per request, and say what this tells a product manager.",
+   ["Model: (2,400 × 2 + 300 × 10) ÷ 1,000,000 = S$0.0078","Staff: 0.1 × 4 ÷ 60 × 48 = S$0.32 per request","Staff time is about 40 times the model cost","Reducing needless handovers saves far more than token levers; work on the biggest cost line first"]],
+  ["Choose three levers that reduce model cost. For each, say how it saves money, what can go wrong, and what evidence you need before using it.",
+   ["Caching: cheaper reuse of the fixed part of the prompt; little saving with light traffic; evidence on traffic and fixed share","Trimming context or capping output: fewer tokens; missing facts or cut answers; error analysis and judge results","Routing or batching: smaller model or half price for waiting work; quality drop or delays; gate passed on the routed slice, results not needed live","Every lever goes through the release gate before going live"]],
+  ["Compare per-seat, usage and outcome pricing from the buyer's side. When would you choose each, and what is one risk of outcome pricing?",
+   ["Per seat: steady, high use per person and a need for a predictable budget; risk of unused seats, minimums and commitments","Usage: uncertain or variable use, starting small; the bill grows with success","Outcome: clear, agreed, measurable results; pay for value","Outcome risks: who defines and measures the outcome; it can reward the wrong behaviour, such as less checking"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["At 30% adoption and today's prices, is the medicine assistant's model cost (assistant plus judge) larger than its fixed running costs?","No","About 50,400 questions × S$0.0196 ≈ S$986 a month, against S$4,360 of fixed costs. Most of the running cost does not depend on tokens."],
+  ["At 30% adoption, would model prices 50% higher reduce the medicine assistant's net value by more than S$1,000 a month?","No","Model cost rises from about S$986 to about S$1,479: under S$500 a month. Handovers and calls avoided matter far more."],
+  ["At 30% adoption with today's 12% handover rate, would handover messages exceed the helpline's spare capacity of about 180 a day?","Yes","50,400 × 12% ÷ 30 ≈ 202 a day. The queue is a step cost: beyond capacity, replies slip or staff must be added. At 8%, it is about 134 a day."],
+  ["For a doctor who drafts 300 notes a month, is the per-seat plan cheaper per note than the per-note plan?","Yes","S$40 ÷ 300 ≈ S$0.13 a note, against S$0.38. The crossover is about 105 notes a month. The 50-seat minimum and 12-month commitment still apply."],
+  ["Under the CFO's rules, should the doctor time the note drafter saves be counted in full as a cash saving?","No","Doctors are salaried and have no overtime pay, so freed time is capacity. It counts at 30% unless the plan shows how it becomes cash or more patients seen."]
+ ], sa: [
+  ["Work out the medicine assistant's cost per question (assistant plus judge) and its monthly model and database cost at 60% adoption, at today's prices and with prices 50% higher. Does it fit the S$1,500 cap? Which levers would bring it under, and what evidence would each need?",
+   ["Cost per question ≈ S$0.0180 assistant + S$0.0015 judge ≈ S$0.0196","60%: 100,800 questions × S$0.0196 ≈ S$1,972 + S$300 = about S$2,272; about S$3,257 at +50%: over the cap","Caching, two passages, shorter answers, routing and a batched judge together bring it to about S$0.0076: about S$1,069, or S$1,454 at +50%","Each lever must pass the release gate; routing needs evidence beyond the 200 routine questions; or argue for a cap that scales with use"]],
+  ["At 30% adoption, compare the note drafter's three price plans by monthly licence cost. Which would you choose, and why? Name one risk of each plan.",
+   ["About 78 doctors and 24,225 notes a month","Per note ≈ S$9,206; per seat 78 × S$40 = S$3,120; per accepted note 24,225 × 58% × S$0.65 ≈ S$9,133","Per seat is cheapest if at least 50 doctors draft more than about 105 notes a month each; risk: 12-month commitment and the 50-seat minimum","Per note: renewal price risk; per accepted note: rewards light editing, measured by the vendor"]],
+  ["For each initiative, which single assumption most changes the net value, and why does the model price matter less? Use figures at 30% adoption.",
+   ["Assistant: handover rate and calls avoided; 8% handovers gives about S$8,100 a month net, 16% about −S$3,700; 0.07 calls avoided gives about −S$5,300","Drafter: realisation rate and minutes saved; 10% realisation gives about −S$1,600 on the per-seat plan, 1.0 minute about S$7,500","Model price ±50% moves the assistant by about S$500 and the per-seat drafter by about S$1,600","Token costs are a small share; people's time drives both cases, so measure those assumptions first"]]
+ ]}
+};
+const QSTATE = {}, EXPORT = {};
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+/* ===== Lab: token counts ===== */
+const TOKQ = [
+ ['en','English','I forgot my morning blood pressure tablet. Can I take it now?'],
+ ['en','English','Can I drink grapefruit juice with my cholesterol medicine?'],
+ ['en','English','My metformin upsets my stomach. Should I stop taking it?'],
+ ['en','Singlish','Eh the cough syrup can take together with panadol or not ah?'],
+ ['zh','Mandarin','我忘了吃早上的降血压药，现在可以补吃吗？'],
+ ['zh','Mandarin','吃降胆固醇药可以喝葡萄柚汁吗？'],
+ ['ms','Malay','Saya terlupa makan ubat darah tinggi pagi tadi. Boleh saya makan sekarang?'],
+ ['ms','Malay','Bolehkah saya minum jus limau gedang dengan ubat kolesterol saya?'],
+ ['ta','Tamil','காலையில் இரத்த அழுத்த மாத்திரையை எடுக்க மறந்துவிட்டேன். இப்போது எடுக்கலாமா?'],
+ ['ta','Tamil','கொலஸ்ட்ரால் மாத்திரையுடன் கிரேப்ஃப்ரூட் பழச்சாறு குடிக்கலாமா?']
+];
+const PAIRS = { en:[0,1], zh:[4,5], ms:[6,7], ta:[8,9] };
+let tok = store.get('tok') || {};
+$('tok-body').innerHTML = TOKQ.map((q, i) => { const ch = [...q[2]].length, wd = q[0] === 'zh' ? '—' : words(q[2]);
+  return `<tr><td>${i + 1}</td><td class="q"><span lang="${q[0]}">${esc(q[2])}</span></td><td>${q[1]}</td><td class="num">${ch}</td><td class="num">${wd}</td>
+  <td><input type="number" min="0" data-t="${i}" aria-label="Tokens for question ${i + 1}"></td><td class="num" data-r="${i}">—</td></tr>`; }).join('');
+document.querySelectorAll('#tok-body [data-t]').forEach(el => { el.value = tok[el.dataset.t] || ''; el.addEventListener('input', () => { tok[el.dataset.t] = el.value; store.set('tok', tok); tokSum(); }); });
+function tokSum(){
+  TOKQ.forEach((q, i) => { const t = num(tok[i], 0); document.querySelector(`[data-r="${i}"]`).textContent = t ? N(t / [...q[2]].length, 2) : '—'; });
+  const pair = l => { const [a, b] = PAIRS[l], x = num(tok[a], 0), y = num(tok[b], 0); return x && y ? x + y : 0; };
+  const en = pair('en'); if (!en) { $('tok-sum').textContent = 'Enter the token counts for questions 1 and 2 (English) and at least one other pair to compare.'; return; }
+  const out = ['zh','ms','ta'].filter(l => pair(l)).map(l => { const r = pair(l) / en, name = { zh:'Mandarin', ms:'Malay', ta:'Tamil' }[l];
+    return `${name}: ${N(r, 2)}× the English tokens for the same two questions (a fully ${name} question at that ratio would cost about ${S$(aUnit({}).main * r, 4)} instead of ${S$(aUnit({}).main, 4)})`; });
+  $('tok-sum').textContent = out.length ? out.join(' · ') : 'Enter a pair in another language (questions 5–6, 7–8 or 9–10) to compare with English.';
+}
+tokSum();
+$('lab-ref').value = tok.ref || ''; $('lab-ref').addEventListener('input', e => { tok.ref = e.target.value; store.set('tok', tok); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d = $(id); if (!d) return; d.className = 'dot' + (s === 'done' ? ' done' : s === 'prog' ? ' prog' : ''); }
+function progress(){
+  const a = QSTATE.qa, b = QSTATE.qb;
+  const w = typeof adr !== 'undefined' ? words(adr.value) : 0;
+  const nl = typeof lev !== 'undefined' ? LEVERS.filter(x => lev[x.id] && lev[x.id].on).length : 0, touched = typeof lev !== 'undefined' && Object.keys(lev).length > 0;
+  const nr = typeof rec !== 'undefined' ? recDone() : 0, scc = typeof sc !== 'undefined' && scChanged();
+  if (a) { $('st-qa').textContent = qlabel(a); dot('d-qa', a.mast ? 'done' : a.started ? 'prog' : ''); dot('d-lesson', a.started ? 'done' : ''); }
+  if (b) { $('st-qb').textContent = qlabel(b); dot('d-qb', b.mast ? 'done' : b.started ? 'prog' : ''); dot('d-case', b.started ? 'done' : ''); }
+  $('st-lev').textContent = nl ? `${nl} chosen` : touched ? 'None chosen' : 'Not started';
+  $('st-sc').textContent = scc ? 'Your settings' : 'Case defaults';
+  $('st-rec').textContent = `${nr} of 7`;
+  const started = nl || scc || nr || w;
+  dot('d-as', nr === 7 && w > 300 ? 'done' : started ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask the course team for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a && a.mast ? 'done' : 'not yet'} · Quiz B: ${b && b.mast ? 'done' : 'not yet'}.`;
+  const sum = q => q && q.started ? { c: q.c, total: q.total, mast: q.mast } : null;
+  try { localStorage.setItem('progress:m9', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: started ? 'drafting' : 'none' })); } catch(e) {}
+}
+
+/* ===== Step bar highlight ===== */
+const links = [...document.querySelectorAll('.stepbar a')], secs = links.map(l => document.querySelector(l.getAttribute('href')));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('here', l.getAttribute('href') === '#' + e.target.id)); const h = links.find(l => l.classList.contains('here')); if (h && h.scrollIntoView) h.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } }); }, { rootMargin: '-20% 0px -75% 0px' });
+  secs.forEach(s => s && io.observe(s));
+}
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); drawPlans(); drawLevers(); drawScenarios(); progress();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click', () => {
+  const out = ['MODULE 9 SUBMISSION · Unit economics and pricing of AI products', '', 'CHECKPOINT QUIZ A', ...EXPORT.qa(), 'CHECKPOINT QUIZ B', ...EXPORT.qb()];
+  const L = levFlags(), base = aUnit({}), mine = aUnit(L);
+  out.push('TOOL 1 · LEVERS FOR THE MEDICINE ASSISTANT');
+  LEVERS.forEach(x => { const r = lev[x.id] || {}; out.push(`${x.t}: ${r.on ? 'ON' : 'off'}${x.extra && r.on ? ` · ${x.extra.l}: ${num(r[x.extra.k], x.extra.v)}` : ''}`); });
+  out.push(`Cost per question: today ${S$(base.total, 4)} · with levers ${S$(mine.total, 4)}`);
+  ADS.forEach(a => { const q = CA.elig * a * CA.qpu; out.push(`${pct(a)}: model + database ${S$(q * mine.total + CA.db)} today · ${S$(q * aUnit(L, 1.5).total + CA.db)} at +50% (cap S$1,500)`); });
+  const O = opts();
+  out.push('', `TOOL 2 · SCENARIO SETTINGS: handover ${pct(O.a.hand, 1)} · calls avoided ${O.a.calls} · levers applied: ${sc['a-lev'] === 'yes' ? 'yes' : 'no'} · drafter plan: ${PLAN[O.c.plan]} · minutes saved ${O.c.mins} · realisation ${pct(O.c.real)}${scChanged() ? '' : ' (case defaults)'}`);
+  out.push('Medicine assistant · net value a month (rows 10/30/60% adoption; columns prices −50% / today / +50%)');
+  ADS.forEach(a => out.push(`${pct(a)}: ${PMS.map(p => S$(Math.round(aMonth(a, p, O.a).net))).join(' / ')} · first-year cost ${S$(aMonth(a, 1, O.a).year)}`));
+  out.push(`Break-even adoption: ${LAST.beA ? pct(LAST.beA, 1) : 'not reached'}`);
+  out.push('Note drafter · net value a month (same layout)');
+  ADS.forEach(a => out.push(`${pct(a)}: ${PMS.map(p => S$(Math.round(cMonth(a, p, O.c).net))).join(' / ')} · first-year cost ${S$(cMonth(a, 1, O.c).year)}`));
+  out.push(`Break-even adoption: ${LAST.beC ? pct(LAST.beC, 1) : 'not reached'}`);
+  out.push('', 'TOOL 3 · FUNDING RECOMMENDATION', 'Fund first: ' + ({ A:'Medicine questions assistant', C:'Consultation note drafter', none:'Neither yet' }[rec['r-pick']] || '-'));
+  [['r-scale','Scale, plan and timing'],['r-budget','First-year cost and budget'],['r-gates','Stages, conditions and stop rule'],['r-guard','Budget guardrails'],['r-mind','What would change my mind'],['r-soft','Benefits and risks with no price']].forEach(([id, l]) => out.push(`${l}: ${(rec[id] || '').trim() || '-'}`));
+  out.push('', 'RECOMMENDATION DRAFT', (misc.adr || '(blank)').trim(), `Word count: ${words(misc.adr)}`, '', 'CHECKLIST');
+  CHECKS.forEach((c, i) => out.push(`[${ck[i] ? 'x' : ' '}] ${c}`));
+  const tk = TOKQ.map((q, i) => tok[i] ? `${i + 1} (${q[1]}): ${tok[i]} tokens` : '').filter(Boolean);
+  if (tk.length || (tok.ref || '').trim()) out.push('', 'OPTIONAL LAB · TOKEN COUNTS', ...tk, $('tok-sum').textContent || '', 'Reflection: ' + ((tok.ref || '').trim() || '-'));
+  copyText(out.join('\n'), $('copied'), 'Copied. Paste it into your email and attach your recommendation and workbook.');
+});
+</script>
+</body>
+</html>
