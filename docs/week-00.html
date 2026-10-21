@@ -139,6 +139,10 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .cta a.primary { background: var(--accent); color: var(--paper); }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+.emph { margin: .75rem 0 1.25rem; }
+.emph .box { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--cap); border-radius: 4px; padding: .8rem 1rem; font-size: .92rem; }
+.emph ul { margin: .4rem 0 0; }
+.rate .opt-ev { grid-column: 1 / -1; }
 </style>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js"></script>
@@ -149,15 +153,15 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 
 <p class="eyebrow">Week 0 · Before Module 1</p>
 <h1>Orientation and baseline</h1>
-<p class="lede">Three ideas that run through the whole programme, a practice quiz, and a baseline you will sit again in Week 14.</p>
-<ul class="meta"><li>About 2.5 hours</li><li>Formative quiz: 12 Yes/No + 5 short answer</li><li>Baseline: recorded, not graded</li></ul>
+<p class="lede">Three ideas that run through the whole programme, a practice quiz, a short questionnaire that suggests where to put extra effort, and a scenario memo you will write again in Week 14.</p>
+<ul class="meta"><li>About 2.5 hours</li><li>Formative quiz: 12 Yes/No + 5 short answer</li><li>Questionnaire and baseline memo: recorded, not graded</li></ul>
 
 <div class="scroll"><table>
 <thead><tr><th>Part</th><th>Type</th><th>Time</th><th>What you do</th></tr></thead>
 <tbody>
 <tr><td>1. Orientation briefing</td><td>Reading</td><td class="num">30 min</td><td>Read the three core ideas below</td></tr>
 <tr><td>2. Checkpoint quiz 0</td><td><span class="chip c-form">Formative</span></td><td class="num">30 min</td><td>Answer 12 Yes/No and 5 short-answer questions. Yes/No answers are checked instantly; short answers are compared with a model answer</td></tr>
-<tr><td>3. Baseline assessment</td><td><span class="chip c-sum">Summative baseline</span></td><td class="num">75 min</td><td>Self-rating, programme choices, and a timed scenario</td></tr>
+<tr><td>3. Baseline assessment</td><td><span class="chip c-sum">Summative baseline</span></td><td class="num">75 min</td><td>About you, a self-rating against the twelve modules, your plans, and a timed scenario memo</td></tr>
 <tr><td>4. Submit</td><td>—</td><td class="num">5 min</td><td>Email your answers to the course team from the bottom of this page. Module 1 opens once they are sent</td></tr>
 </tbody></table></div>
 
@@ -173,16 +177,16 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <div class="idea">
 <h3>Idea 2. The cost of a wrong answer sets the design</h3>
 <p>Every AI feature will sometimes be wrong. The question is what a wrong answer costs, who pays it, and whether a person can catch it first. A wrong recipe suggestion costs a mildly disappointing dinner. A wrong answer about a medicine dose could harm someone.</p>
-<p>That cost decides how much freedom the system gets. Your Attic agent proposes changes and waits for approval because deleting the wrong email is costly. Quaestio only asks questions because rewriting a student's work would breach academic integrity. Low-cost errors allow automation; high-cost errors call for human review, narrow scope, or no AI at all.</p>
+<p>That cost decides how much freedom the system gets. A tool that drafts a reply for a nurse to check and send can be given more room, because a person reads every draft. A chatbot that answers patients directly about their medicines needs a narrow scope, approved sources and a quick route to a pharmacist. An email assistant that suggests messages to delete should propose changes and wait for approval, because deleting the wrong email is costly. Low-cost errors allow automation; high-cost errors call for human review, narrow scope, or no AI at all.</p>
 </div>
 
 <div class="idea">
 <h3>Idea 3. Evaluation is the specification</h3>
-<p>An evaluation (often shortened to "eval") is a repeatable test of whether outputs are good enough. In AI products, a well-built set of evals is the most precise statement of what the product should do: it turns "must never rewrite student text" into a check that runs on every change.</p>
+<p>An evaluation (often shortened to "eval") is a repeatable test of whether outputs are good enough. In AI products, a well-built set of evals is the most precise statement of what the product should do: it turns "must never give a dose that is not on the approved leaflet" into a check that runs on every change.</p>
 <p>Good practice starts by reading real outputs and sorting the failures you find, before writing automated tests. Generic scores such as "helpfulness out of 10" rarely tell you what to fix.</p>
 </div>
 
-<div class="note"><p><strong>How to use the quiz.</strong> Answer before reading the explanation. The quiz is formative: it does not count toward your grade, and getting questions wrong now is useful because it shows where Module 1 should spend time.</p></div>
+<div class="note"><p><strong>How to use the quiz.</strong> Answer before reading the explanation. The quiz is formative: it does not count toward your grade. It touches ideas from across the programme, so getting questions wrong now is expected and useful: it shows where to spend time.</p></div>
 
 <h2 id="quiz">2. Checkpoint quiz 0 <span class="chip c-form">Formative</span></h2>
 <div class="score" aria-live="polite">
@@ -198,33 +202,60 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <p>Write two to five sentences for each. The model answer opens once you have written at least 20 words. Then mark yourself against its key points. The course team will also review these.</p>
 <div id="saq"></div>
 
-<h2 id="baseline">3. Baseline assessment <span class="chip c-sum">Summative baseline</span></h2>
-<p>This sets your starting point. It is recorded but not graded. Part C is repeated, unchanged, in Week 14, and the two attempts are compared using the handbook rubric.</p>
+<h2 id="baseline">3. Questionnaire and baseline <span class="chip c-sum">Summative baseline</span></h2>
+<p>This sets your starting point. It is recorded but not graded. Parts A to C help you and the course team see where to put extra effort. Part D, the scenario memo, is repeated unchanged in Week 14 at the end of the <a href="module-12.html#w0">capstone</a>, and the two memos are compared using the handbook rubric.</p>
+<div class="note"><p><strong>What is collected.</strong> Only what you type here, and only when you email it. Nothing asks for your name, employer or anything that identifies you. If you write about your own work, leave out names of people, clients and patients.</p></div>
 
-<h3>Part A · Self-rating</h3>
-<p>Rate yourself from 1 (have not done this) to 5 (could teach it), and give one piece of work as evidence.</p>
+<h3>Part A · About you</h3>
+<fieldset><legend>Which background is closest to yours?</legend>
+  <div class="opt"><input type="radio" name="bg" id="bg1" value="ba"><label for="bg1">Business analyst</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg2" value="da"><label for="bg2">Data analyst</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg3" value="se"><label for="bg3">Software engineer</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg4" value="ux"><label for="bg4">Designer or user researcher</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg5" value="dx"><label for="bg5">Domain expert (for example a clinician, consultant, risk or operations lead)</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg6" value="pm"><label for="bg6">Product manager</label></div>
+  <div class="opt"><input type="radio" name="bg" id="bg7" value="other"><label for="bg7">Something else</label></div>
+  <label for="bgo" style="display:block;margin-top:.5rem">In a few words, what you do now <span style="color:var(--muted);font-weight:400">· optional; no employer names needed</span></label>
+  <input type="text" id="bgo" placeholder="For example: requirements for a bank's payments systems">
+</fieldset>
+<fieldset><legend>How have you used AI tools so far?</legend>
+  <div class="opt"><input type="radio" name="ai" id="ai1" value="Rarely or never"><label for="ai1">Rarely or never</label></div>
+  <div class="opt"><input type="radio" name="ai" id="ai2" value="I use AI assistants for my own work"><label for="ai2">I use AI assistants for my own work</label></div>
+  <div class="opt"><input type="radio" name="ai" id="ai3" value="I have helped define or test an AI feature"><label for="ai3">I have helped define or test an AI feature</label></div>
+  <div class="opt"><input type="radio" name="ai" id="ai4" value="I have built or shipped an AI product or prototype"><label for="ai4">I have built or shipped an AI product or prototype</label></div>
+</fieldset>
+
+<h3>Part B · Self-rating against the twelve modules</h3>
+<p>Rate yourself from 1 (have not done this) to 5 (could teach it). For anything you rate 3 or above, give one piece of work as evidence. Be honest: a low rating now is what the programme is for.</p>
 <div id="rates"></div>
+<div class="emph" id="emph" aria-live="polite"></div>
 
-<h3>Part B · Programme choices</h3>
-<fieldset><legend>Your goal for the programme</legend>
-  <div class="opt"><input type="radio" name="goal" id="g1" value="In-house AI product manager role"><label for="g1">An in-house AI product manager role</label></div>
-  <div class="opt"><input type="radio" name="goal" id="g2" value="AI presales or solutions consulting role"><label for="g2">An AI presales or solutions consulting role</label></div>
-  <div class="opt"><input type="radio" name="goal" id="g3" value="Founder of Quaestio"><label for="g3">Founder of Quaestio</label></div>
+<h3>Part C · Your plans</h3>
+<fieldset><legend>Your main goal for the programme</legend>
+  <div class="opt"><input type="radio" name="goal" id="g1" value="Move into an AI product manager role"><label for="g1">Move into an AI product manager role</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g2" value="Do my current role better on AI work"><label for="g2">Do my current role better on AI work (analysis, engineering, design, risk, operations)</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g3" value="Lead or govern AI work in my organisation"><label for="g3">Lead or govern AI work in my organisation</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g4" value="Build my own AI product or start-up"><label for="g4">Build my own AI product or start-up</label></div>
+  <div class="opt"><input type="radio" name="goal" id="g5" value="AI presales or consulting"><label for="g5">AI presales or consulting</label></div>
 </fieldset>
-<fieldset><legend>Capstone product</legend>
-  <div class="opt"><input type="radio" name="cap" id="c1" value="Quaestio"><label for="c1">Quaestio (recommended)</label></div>
-  <div class="opt"><input type="radio" name="cap" id="c2" value="BeatKeeper"><label for="c2">BeatKeeper</label></div>
-  <div class="opt"><input type="radio" name="cap" id="c3" value="MealPartner"><label for="c3">MealPartner</label></div>
-  <div class="opt"><input type="radio" name="cap" id="c4" value="A product from the ideas bank"><label for="c4">A product from the ideas bank</label></div>
+<fieldset><legend>What you plan to use for the assignments and the capstone</legend>
+  <div class="opt"><input type="radio" name="cap" id="c1" value="Harbourview case throughout"><label for="c1">The Harbourview case throughout, choosing one initiative for the capstone in Week 12 (recommended)</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c2" value="Harbourview for modules, my own product for the capstone"><label for="c2">Harbourview for the modules, my own product for the capstone (agreed with the course team by Week 12)</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c3" value="My own product where it fits"><label for="c3">My own product for any assignment where it raises the same questions</label></div>
+  <div class="opt"><input type="radio" name="cap" id="c4" value="Not sure yet"><label for="c4">Not sure yet</label></div>
+  <label for="own" style="display:block;margin-top:.5rem">If you may use your own product: what it does and who uses it, in one or two sentences <span style="color:var(--muted);font-weight:400">· optional</span></label>
+  <input type="text" id="own">
 </fieldset>
-<fieldset><legend>Schedule</legend>
-  <label for="hours">Hours per week you can commit</label>
+<fieldset><legend>Pace</legend>
+  <label for="hours">Hours per week you can commit <span style="color:var(--muted);font-weight:400">· the programme expects 6–8</span></label>
   <input type="text" id="hours" placeholder="For example: 7">
-  <label for="days" style="display:block;margin-top:.6rem">Preferred session days and times</label>
-  <input type="text" id="days" placeholder="For example: Tuesday and Saturday mornings">
+  <label for="days" style="display:block;margin-top:.6rem">When you usually study</label>
+  <input type="text" id="days" placeholder="For example: weekday evenings and Saturday mornings">
+  <label for="hope" style="display:block;margin-top:.6rem">What would make this programme worth it for you?</label>
+  <input type="text" id="hope">
 </fieldset>
 
-<h3>Part C · Timed scenario (45 minutes, 300–450 words)</h3>
+<h3>Part D · Timed scenario memo (45 minutes, 300–450 words)</h3>
 <div class="scenario">
 <p><strong>The brief.</strong> A large public polyclinic group in Singapore wants a chatbot on its patient app that answers questions about the patient's own prescribed medicines: what each one is for, when to take it, common side effects, and what to do after a missed dose. It would draw on the patient's prescription record and the group's approved medicine leaflets. The chief executive wants a launch in six months and has asked you for a recommendation.</p>
 <p><strong>Write a memo that covers:</strong> (1) whether to build it, in full, in part or not at all, and why; (2) the smallest first version you would launch; (3) three things it must never do; (4) how you would know before launch that it is safe and useful; (5) the one risk you are least sure how to handle.</p>
@@ -233,7 +264,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <label for="memo" class="eyebrow" style="display:block;margin-bottom:.3rem">Your memo</label>
 <textarea id="memo" class="long"></textarea>
 <p class="row"><span id="wc">0 words</span></p>
-<h4>How Part C will be scored (0–4 on each)</h4>
+<h4>How Part D will be scored now and in Week 14 (0–4 on each)</h4>
 <ul>
 <li><strong>Decision quality:</strong> a clear recommendation, with the alternatives you rejected</li>
 <li><strong>Evidence:</strong> what you would need to know, and which statements are assumptions</li>
@@ -259,7 +290,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <a href="./"><small>← Previous</small>Syllabus</a>
   <a class="next" href="module-01.html"><small>Next →</small>Module 1 · The AI product role and lifecycle</a>
 </nav>
-<p class="foot">Week 0 · Handbook v1.1 · 20 October 2026</p>
+<p class="foot">Week 0 · Version 2.0 · 21 October 2026 · Revised after all twelve modules were published.</p>
 </div>
 
 <script>
@@ -282,14 +313,16 @@ const SA=[
   ["Same input can give different outputs; quality varies across a range of cases","Model, prompt or data changes shift that range","Requirements must state acceptable failure rates and how they are measured","Include \"must never\" rules, not only desired features"]],
  ["Describe a product problem where AI is the wrong answer, and say what you would use instead.",
   ["The problem has clear, stable rules or needs exact answers","Errors would be costly and hard to catch","A form, rules engine, search or lookup does the job more cheaply and predictably","States the trade-off rather than rejecting AI in general"]],
- ["What is the difference between a guardrail metric and a headline (north-star) metric? Give one example of each for Quaestio.",
-  ["Headline metric: the main measure of value, such as share of students who revise their draft after feedback","Guardrail metric: something that must not get worse, such as the rate of outputs that rewrite student text","Guardrails can block a release even if the headline metric improves"]],
- ["In Attic, the model sees a numbered list instead of raw Gmail message identifiers. Which risk does this remove, and what risk remains?",
-  ["Removes: the model inventing or mistyping an identifier and acting on the wrong email","Remains: the model choosing the wrong item from the list, or misjudging which emails matter","Remaining risk is handled by preview, approval and limits on batch size"]],
+ ["What is the difference between a guardrail metric and a headline (north-star) metric? Give one example of each for a chatbot that answers patients' questions about their own medicines.",
+  ["Headline metric: the main measure of value, such as the share of patients' questions answered correctly without needing a pharmacist","Guardrail metric: something that must not get worse, such as the rate of answers giving dose advice that is not on the leaflet","Guardrails can block a release even if the headline metric improves"]],
+ ["A booking chatbot is shown a numbered list of the patient's upcoming appointments (1, 2, 3) instead of the booking system's long internal appointment codes. Which risk does this remove, and what risk remains?",
+  ["Removes: the model inventing or mistyping a code and changing an appointment that is not the patient's, or does not exist","Remains: the model choosing the wrong item from the list, or misunderstanding which appointment the patient meant","Remaining risk is handled by confirming the change with the patient before it is made, and limits on what it may change"]],
  ["Give two reasons why an AI prototype that works well in testing can still fail as a product.",
   ["Cost to serve exceeds what customers will pay","Real users and inputs differ from test cases","Users do not trust it, or it does not fit their workflow","Buyers block it on privacy, safety or procurement grounds","Competitors or the model provider offer the same thing"]]
 ];
-const RATE=["Framing problems for AI, including when not to use AI","Technical trade-offs (prompting, retrieval, fine-tuning, agents, cost)","User discovery and data readiness","Writing AI product requirements","Error analysis and test sets","Automated evaluation and live metrics","AI user experience and trust","Agent design and prototyping","Unit economics and pricing","Responsible AI and governance","AI strategy and go-to-market"];
+const RATE=["Framing problems for AI, including when not to use AI","Technical trade-offs: prompting, retrieval, fine-tuning, classical machine learning, agents","User discovery and data readiness","Writing requirements for AI behaviour, including what it must never do","Error analysis and test sets","Automated judges, release gates and live metrics","AI user experience, trust and levels of human review","Agents and rapid prototyping","Unit economics and pricing of AI products","Responsible AI, risk and governance","AI strategy, build or buy, and rollout","Making and defending a launch decision"];
+const MODT=["The AI product role and lifecycle","Technical fluency for product decisions","Problem framing, discovery and data readiness","Specifying AI products","Evaluation I: error analysis and test sets","Evaluation II: automated judges and live metrics","Designing AI user experience and human factors","Agents and rapid prototyping","Unit economics and pricing","Responsible AI, risk and governance","AI strategy, defensibility and rollout","Capstone: decide, evaluate and defend"];
+const BG={ba:["Business analyst",[2,5,6,9]],da:["Data analyst",[3,7,11]],se:["Software engineer",[1,3,9,10]],ux:["Designer or user researcher",[2,5,6,8]],dx:["Domain expert",[2,4,6,9]],pm:["Product manager",[2,5,6,10]],other:["Something else",[]]};
 
 const store={get(k){try{return JSON.parse(localStorage.getItem('w0:'+k));}catch(e){return null;}},set(k,v){try{localStorage.setItem('w0:'+k,JSON.stringify(v));}catch(e){}}};
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -347,13 +380,30 @@ const rBox=document.getElementById('rates');
 let rt=store.get('rt')||{};
 rBox.innerHTML=RATE.map((r,i)=>`<div class="rate"><label for="r${i}">${i+1}. ${esc(r)}</label>
 <select id="r${i}" data-k="r${i}" aria-label="Rating for ${esc(r)}"><option value="">Rate</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-<input type="text" id="e${i}" data-k="e${i}" placeholder="Evidence: one piece of work" aria-label="Evidence for ${esc(r)}"></div>`).join('');
-rBox.querySelectorAll('[data-k]').forEach(el=>{el.value=rt[el.dataset.k]||''; el.addEventListener('input',()=>{rt[el.dataset.k]=el.value;store.set('rt',rt);});});
+<input type="text" id="e${i}" data-k="e${i}" placeholder="Evidence: one piece of work (for ratings of 3 or more)" aria-label="Evidence for ${esc(r)}"></div>`).join('');
+rBox.querySelectorAll('[data-k]').forEach(el=>{el.value=rt[el.dataset.k]||''; el.addEventListener(el.tagName==='SELECT'?'change':'input',()=>{rt[el.dataset.k]=el.value;store.set('rt',rt);emph();});});
 
 // Baseline B and C
 let misc=store.get('misc')||{};
-['hours','days','memo'].forEach(id=>{const el=document.getElementById(id); el.value=misc[id]||''; el.addEventListener('input',()=>{misc[id]=el.value;store.set('misc',misc); if(id==='memo')wc();});});
-['goal','cap'].forEach(n=>{document.querySelectorAll(`input[name=${n}]`).forEach(r=>{r.checked=misc[n]===r.value; r.addEventListener('change',()=>{misc[n]=r.value;store.set('misc',misc);});});});
+['hours','days','memo','bgo','own','hope'].forEach(id=>{const el=document.getElementById(id); el.value=misc[id]||''; el.addEventListener('input',()=>{misc[id]=el.value;store.set('misc',misc); if(id==='memo')wc();});});
+['bg','ai','goal','cap'].forEach(n=>{document.querySelectorAll(`input[name=${n}]`).forEach(r=>{r.checked=misc[n]===r.value; r.addEventListener('change',()=>{misc[n]=r.value;store.set('misc',misc);emph();});});});
+
+// Suggested starting emphasis (the handbook's audience table plus your lowest self-ratings)
+function emphList(){
+  const fromBg=(BG[misc.bg]||[null,[]])[1];
+  const rated=RATE.map((_,i)=>({m:i+1,v:+rt['r'+i]||0})).filter(x=>x.v>0);
+  const low=rated.filter(x=>x.v<=2).sort((a,b)=>a.v-b.v).map(x=>x.m);
+  const all=[...new Set([...low,...fromBg])].sort((a,b)=>a-b);
+  return {fromBg,low,all,rated:rated.length};
+}
+function emph(){
+  const e=emphList(), box=document.getElementById('emph');
+  if(!misc.bg && e.rated<6){ box.innerHTML=''; return; }
+  if(!e.all.length){ box.innerHTML='<div class="box"><strong>Suggested starting emphasis.</strong> Nothing stands out yet: no rating of 1 or 2. Plan on the usual 6–8 hours a week and watch your checkpoint quiz scores.</div>'; return; }
+  const why=m=>[e.low.includes(m)?'you rated it low':'',e.fromBg.includes(m)?'often new for your background':''].filter(Boolean).join('; ');
+  box.innerHTML=`<div class="box"><strong>Suggested starting emphasis.</strong> Plan extra time for these modules, about two hours more each:<ul>${e.all.map(m=>`<li>Module ${m} · ${esc(MODT[m-1])} <span style="color:var(--muted)">(${why(m)})</span></li>`).join('')}</ul></div>`;
+}
+emph();
 function wc(){const w=words(document.getElementById('memo').value); document.getElementById('wc').textContent=w+' words'+(w>450?' · over the 450-word limit':'');}
 wc();
 
@@ -363,9 +413,11 @@ document.getElementById('copy').addEventListener('click',()=>{
   let c=0; YN.forEach((q,i)=>{const v=yn[i]||'-'; if(v===q[1])c++; L.push(`A${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`);});
   L.push(`Score: ${c}/12`,'','PART B (Short answer)');
   SA.forEach((q,i)=>{L.push(`B${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${saSelf[i]||'-'} of ${q[1].length} key points`,'');});
-  L.push('BASELINE PART A (Self-rating)');
-  RATE.forEach((r,i)=>L.push(`${i+1}. ${r}: ${rt['r'+i]||'-'} | Evidence: ${rt['e'+i]||'-'}`));
-  L.push('','BASELINE PART B',`Goal: ${misc.goal||'-'}`,`Capstone: ${misc.cap||'-'}`,`Hours per week: ${misc.hours||'-'}`,`Session days: ${misc.days||'-'}`,'','BASELINE PART C (Scenario memo)',(misc.memo||'(blank)').trim(),`Word count: ${words(misc.memo||'')}`);
+  L.push('QUESTIONNAIRE PART A (About you)',`Background: ${(BG[misc.bg]||['-'])[0]}`,`What I do now: ${misc.bgo||'-'}`,`AI tools so far: ${misc.ai||'-'}`,'');
+  L.push('QUESTIONNAIRE PART B (Self-rating against the modules)');
+  RATE.forEach((r,i)=>L.push(`M${i+1}. ${r}: ${rt['r'+i]||'-'} | Evidence: ${rt['e'+i]||'-'}`));
+  const em=emphList(); L.push(`Suggested starting emphasis: ${em.all.length?em.all.map(m=>'Module '+m).join(', '):'-'}`);
+  L.push('','QUESTIONNAIRE PART C (Plans)',`Goal: ${misc.goal||'-'}`,`Assignments and capstone: ${misc.cap||'-'}`,`Own product: ${misc.own||'-'}`,`Hours per week: ${misc.hours||'-'}`,`When I study: ${misc.days||'-'}`,`What would make it worth it: ${misc.hope||'-'}`,'','BASELINE PART D (Scenario memo)',(misc.memo||'(blank)').trim(),`Word count: ${words(misc.memo||'')}`);
   const text=L.join('\n'), out=document.getElementById('copied'), fb=document.getElementById('fallback');
   const fallback=()=>{fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.';};
   try{ navigator.clipboard.writeText(text).then(()=>{out.textContent='Copied. Paste it into your email.'; fb.hidden=true;}, fallback); }catch(e){ fallback(); }
