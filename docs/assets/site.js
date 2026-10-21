@@ -4,8 +4,9 @@
 
    ===== Course owner: edit these settings only. ===== */
 window.SITE = {
-  supabaseUrl: 'https://hidxmrxhqoxyokmtaycw.supabase.co',            // e.g. https://abcdefgh.supabase.co  (empty = preview mode, code 123456)
+  supabaseUrl: 'https://hidxmrxhqoxyokmtaycw.supabase.co',            // e.g. https://abcdefgh.supabase.co
   supabaseAnonKey: 'sb_publishable_aW--0zC6kH5_kaXE2X_TuQ_DrApArPR',        // the "anon" / publishable key. Never the service role key.
+  ownerEmails: ['aipmcourse@aspira.work'],   // course owner(s): only these sign-ins can use ?unlock=all
   submitEmail: 'aipmcourse@aspira.work',   // where learners email summative work
   publishedModules: 12,        // highest module number with a page (module-01.html, module-02.html …)
   whyUrl: 'https://apoorvaaj.github.io/learn-ai-product-management.html',
@@ -27,7 +28,8 @@ window.SITE = {
     del(k) { try { localStorage.removeItem(k); } catch (e) {} }
   };
 
-  /* Course-owner override for reviewing pages: add ?unlock=all to any URL (and ?unlock=none to undo). */
+  /* Owner review mode: ?unlock=all / ?unlock=none. It only takes effect when the signed-in
+     email is listed in ownerEmails; for everyone else the normal self-paced rules apply. */
   try {
     const q = new URLSearchParams(location.search).get('unlock');
     if (q === 'all') ls.set('aipm:unlock-all', true);
@@ -57,7 +59,7 @@ window.SITE = {
     return clientP;
   }
   async function session() {
-    if (!LIVE) { const e = ls.get('aipm:preview-session'); return e ? { email: e } : null; }
+    if (!LIVE) return null;
     try {
       const c = await client(); const { data } = await c.auth.getSession();
       return data && data.session ? { email: data.session.user.email } : null;
@@ -65,22 +67,19 @@ window.SITE = {
   }
   const auth = {
     async sendCode(email) {
-      if (!LIVE) return { error: null };
+      if (!LIVE) return { error: { message: 'not configured' } };
       try { const c = await client(); return await c.auth.signInWithOtp({ email, options: { shouldCreateUser: true } }); }
       catch (e) { return { error: { message: 'network' } }; }
     },
     async verify(email, token) {
-      if (!LIVE) {
-        if (token === '123456') { ls.set('aipm:preview-session', email); return { error: null, email }; }
-        return { error: { message: 'invalid token' } };
-      }
+      if (!LIVE) return { error: { message: 'not configured' } };
       try {
         const c = await client(); const r = await c.auth.verifyOtp({ email, token, type: 'email' });
         return r.error ? { error: r.error } : { error: null, email: (r.data.user && r.data.user.email) || email };
       } catch (e) { return { error: { message: 'network' } }; }
     },
     async signOut() {
-      ls.del('aipm:preview-session');
+      ls.del('aipm:preview-session'); ls.del('aipm:unlock-all');
       if (LIVE) { try { const c = await client(); await c.auth.signOut(); } catch (e) {} }
     }
   };
@@ -92,7 +91,8 @@ window.SITE = {
     const out = p ? Object.assign({}, p) : null;
     return submitted('m' + n) ? Object.assign(out || {}, { deliverable: 'submitted' }) : out;
   }
-  const unlockAll = () => !!ls.get('aipm:unlock-all');
+  const isOwner = () => !!(S.user && (S.ownerEmails || []).map(e => String(e).toLowerCase()).includes(String(S.user.email || '').toLowerCase()));
+  const unlockAll = () => isOwner() && !!ls.get('aipm:unlock-all');
   function requirements(n) {
     if (n <= 0) return [];
     if (n === 1) return [['Week 0 baseline emailed to the course team', submitted('w0')]];
