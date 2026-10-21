@@ -271,6 +271,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <tr><td>PDPA</td><td>Personal Data Protection Act, Singapore</td></tr>
 <tr><td>POC</td><td>Proof of concept: a short, limited trial to show a product works</td></tr>
 <tr><td>PRD</td><td>Product requirements document</td></tr>
+<tr><td>TCO</td><td>Total cost of ownership: everything an option costs over a fixed period, including people's time, price rises and the cost of leaving</td></tr>
 <tr><td>RAG</td><td>Retrieval-augmented generation: the model is given relevant documents found by a search step before it answers</td></tr>
 <tr><td>UX</td><td>User experience</td></tr>
 </tbody></table></div>
@@ -340,12 +341,12 @@ const M = [
   task:'The AI Governance Committee wants a trust pack before the medicine assistant expands and the missed-appointment predictor goes live: classify both products, triage engineering\'s eight red-team findings and plan 30 attacks of your own (run at least 10 against a practice stand-in), write a model card for the assistant, check the predictor by subsidy tier, age and language for both of its uses, and brief the Ministry of Health on one page.',
   del:'Trust pack, eight pages maximum, plus the red-team log as an appendix.',lab:'Run all 30 attacks against the stand-in, and run your five most serious ones three times in two different assistants.',
   read:'MOH and HSA, AI in Healthcare Guidelines 2.0 (2026); NIST AI 600-1 Generative AI Profile; OWASP Top 10 for LLM applications (2025); Mitchell and colleagues, \"Model Cards for Model Reporting\".'},
- {n:11,t:3,wk:'Week 11',title:'AI strategy, defensibility and rollout',src:'Reforge AI Strategy and AI Growth; Nika bootcamp; Kellogg AI and Product Strategy',init:'All five',
-  out:['Decide what to build, buy or partner on when models are widely available.','Plan how a product reaches users and staff, and how adoption is driven.','Write a strategy that survives the next model release.'],
-  quiz:'Build, buy or partner; thin layers over a model; workflow and data advantages; vendor lock-in; proof-of-concept design.',
-  task:'Write Harbourview\'s 18-month AI portfolio strategy on one page: which initiatives to build, buy or drop, in what order, and what you will not do. Add a six-week proof-of-concept (POC) plan for the first initiative with exit criteria the board would sign.',
-  del:'Strategy on a page and POC plan.',lab:'Compare two real vendor products for consultation notes against your requirements.',
-  read:'Reforge AI Strategy public posts; Hamilton Helmer, 7 Powers.'},
+ {n:11,t:3,page:'module-11.html',wk:'Week 11',title:'AI strategy, defensibility and rollout',src:'Reforge AI Strategy and AI Growth; Nika bootcamp; Kellogg AI-Driven Product Strategy; Helmer, 7 Powers; Rumelt, Good Strategy/Bad Strategy',init:'All five',
+  out:['Decide build, buy, partner or drop for each initiative using total cost of ownership, capability, control and the cost of leaving.','Tell a lasting advantage from a thin layer over a model, and write a strategy that holds after the next model release.','Plan a proof of concept with exit criteria set in advance, a phased rollout with gates, and adoption measured by real use.'],
+  quiz:'Strategy kernel; thin layers and the next model release test; seven powers; build, buy or partner; total cost of ownership; lock-in and exit terms; proofs of concept and pilot purgatory; adoption funnels, diffusion and change management.',
+  task:'Write Harbourview\'s 18-month AI portfolio strategy on one page within S$675,000 and 12 builder-months a quarter: which initiatives to build, buy, share or drop, in what order, behind which gates, and what you will not do. Compare three ways to get the note drafter on three-year cost and value, and plan a six-week proof of concept (POC) with exit criteria the board would sign.',
+  del:'Strategy on a page with portfolio table, and POC plan.',lab:'Compare two real AI scribe products against your requirements using public information.',
+  read:'Rumelt, Good Strategy/Bad Strategy, chapters 1–5; Menlo Ventures, 2025 State of Generative AI in the Enterprise; Lukac and colleagues, NEJM AI (2025).'},
  {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend',src:'Nika bootcamp capstone; Duke capstone; Product School',init:'One of A–E',
   out:['Bring every module together into one launch decision.','Defend that decision to an executive panel.'],
   quiz:'No checkpoint quizzes. Week 14 repeats the Week 0 scenario memo.',

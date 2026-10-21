@@ -1,0 +1,1366 @@
+<!doctype html>
+<html lang="en" data-access="learner" data-module="11">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 11 · AI strategy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Modules 1–10 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder li:nth-child(2) { border-left-color: var(--t2); margin-left: .6rem; }
+.ladder li:nth-child(3) { border-left-color: var(--t2); margin-left: 1.2rem; }
+.ladder li:nth-child(4) { border-left-color: var(--t3); margin-left: 1.8rem; }
+.ladder li:nth-child(5) { border-left-color: var(--good); margin-left: 2.4rem; }
+@media (max-width: 480px) { .ladder li { margin-left: 0 !important; } }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+.evidence { border: 1px solid var(--rule); border-top: 3px solid var(--t2); background: var(--surface); border-radius: 4px; padding: .9rem 1rem; margin: 1rem 0 1.25rem; font-size: .93rem; }
+.evidence h4:first-child { margin-top: 0; color: var(--t2); }
+.evidence ul { margin-bottom: 0; }
+.tw { font-family: var(--mono); font-size: .68rem; padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; font-weight: 600; }
+.tw.up { background: var(--good-soft); color: var(--good); } .tw.down { background: var(--bad-soft); color: var(--bad); } .tw.mid { background: var(--t2-soft); color: var(--t2); }
+.funnel { display: grid; gap: .3rem; margin: .5rem 0 .8rem; }
+.funnel div { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0,1fr) 4.5rem; gap: .5rem; align-items: center; font-size: .82rem; }
+.funnel .bar { height: 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.funnel .bar i { display: block; height: 100%; background: var(--accent); }
+.funnel b { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .85rem; font-size: .9rem; min-width: 0; }
+.card .who { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .04em; display: block; margin-bottom: .3rem; }
+.card q { font-family: var(--display); font-size: 1.02rem; font-style: italic; color: var(--ink); }
+.card q::before, .card q::after { content: none; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: .5rem 0 1rem; }
+.kpis div { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 4px; padding: .5rem .7rem; min-width: 0; }
+.kpis b { display: block; font-family: var(--display); font-size: 1.45rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpis span { font-size: .78rem; color: var(--muted); display: block; }
+.kpis .warn { border-top-color: var(--t3); } .kpis .bad { border-top-color: var(--bad); } .kpis .good { border-top-color: var(--good); }
+.tag { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+.wide { min-width: 44rem; }
+
+/* Tools */
+.calcbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+.calcbox > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem .9rem; min-width: 0; }
+.calcbox h4 { margin-top: 0; }
+.calcbox label { display: block; font-size: .8rem; color: var(--muted); margin: .35rem 0 .1rem; }
+.calcbox .res { font-family: var(--display); font-size: 1.35rem; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: .5rem; line-height: 1.3; }
+.calcbox .res small { display: block; font-family: var(--text); font-size: .8rem; color: var(--muted); }
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) 5.6rem 5.6rem; gap: .3rem .5rem; align-items: center; font-size: .8rem; margin: .2rem 0 .4rem; }
+.duo b { font-size: .75rem; color: var(--ink); text-align: right; }
+.duo label { margin: 0 !important; }
+.calcbox .duo input[type=number] { width: 100%; padding: .25rem .35rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calcbox input[type=number] { padding: .3rem .4rem; font-variant-numeric: tabular-nums; }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin: .5rem 0 .9rem; }
+.knobs label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: .15rem; }
+.knobs input[type=number], .knobs select { padding: .35rem .45rem; font-size: .88rem; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: .75rem 0 1.25rem; }
+.panel > h4:first-child { margin-top: 0; }
+.substep { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 .2rem; }
+.fields { display: grid; gap: .65rem; margin: .5rem 0 .9rem; }
+.fields label { display: block; font-size: .82rem; color: var(--ink); font-weight: 600; margin-bottom: .2rem; }
+.fields .hint { font-weight: 400; color: var(--muted); }
+.fields textarea { min-height: 4.6rem; font-size: .9rem; }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem .7rem; }
+.fgrid .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { .fgrid { grid-template-columns: 1fr; } }
+.fgrid label { display: block; font-size: .8rem; color: var(--ink); font-weight: 600; margin-bottom: .15rem; }
+.fgrid .hint { font-weight: 400; color: var(--muted); }
+.fgrid textarea { min-height: 3.6rem; font-size: .9rem; }
+.fgrid select, .fgrid input { font-size: .88rem; padding: .35rem .45rem; }
+.warnlist { margin: .3rem 0 .8rem; padding-left: 1.1rem; font-size: .86rem; color: var(--t3); }
+.sumbar { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .85rem; margin: .75rem 0 1rem; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.sumbar b { color: var(--ink); }
+.sumbar .over { color: var(--bad); }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.copyblock { font-family: var(--mono); font-size: .78rem; white-space: pre-wrap; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .8rem; max-height: 16rem; overflow: auto; color: var(--ink); }
+.reqtools { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .3rem 0 0; font-size: .85rem; color: var(--muted); }
+.d9 td, .d9 th { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.d9 td:first-child, .d9 th:first-child { text-align: left; white-space: normal; }
+.d9 tr.key td { font-weight: 600; color: var(--ink); }
+.d9 td.pos { color: var(--good); font-weight: 600; } .d9 td.neg { color: var(--bad); font-weight: 600; }
+@media (max-width: 560px) { .d9 { font-size: .8rem; } .d9 th, .d9 td { padding: .45rem .5rem; } }
+.cap { display: grid; grid-template-columns: 5.2rem minmax(0,1fr) 4.2rem; gap: .35rem .6rem; align-items: center; font-size: .8rem; margin: .4rem 0 1rem; }
+.cap .tr { position: relative; height: 1.25rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; display: flex; }
+.cap .tr span { display: block; height: 100%; }
+.cap .tr .lim { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--bad); }
+.cap b { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cap b.over { color: var(--bad); }
+.capkey { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .76rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.capkey i { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; vertical-align: -1px; margin-right: .3rem; }
+.ini { border-left: 4px solid var(--rule); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mx td, .mx th { text-align: center; }
+.mx td:first-child, .mx th:first-child { text-align: left; }
+.mx input[type=number] { width: 4rem; padding: .25rem .3rem; text-align: right; }
+.mx select { width: auto; padding: .25rem .3rem; font-size: .82rem; }
+.mx tr.tot td { font-weight: 600; color: var(--ink); background: var(--paper); }
+.lab td input, .lab td select { min-width: 7rem; font-size: .84rem; padding: .3rem .4rem; }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Previous/next links */
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
+
+<p class="eyebrow">Term III · Strategy and leadership · Week 11 · Module 11</p>
+<h1>AI strategy, defensibility and rollout</h1>
+<p class="lede">When anyone can rent the same models, strategy is a set of choices: what to build, buy or share, what you must own whatever happens to the models, what you will not do, and how a product actually reaches the people meant to use it.</p>
+<ul class="meta"><li>About 8 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: strategy on a page and POC plan, test, viva</li><li>No coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>Modules 1 to 10 looked at Harbourview's five artificial intelligence (AI) initiatives one at a time: whether each needs AI, how to specify, test, design, pay for and govern it. This module puts them together. It is early June. The board will spend 26 June on the AI portfolio, and the chief executive officer (CEO) wants to leave that day with an 18-month strategy he can defend to the Ministry of Health and to staff: <strong>which initiatives to build, buy, share with a partner or drop, in what order, within the money and people Harbourview has</strong>, and a six-week <strong>proof of concept (POC)</strong> plan for the first thing it does.</p>
+<p>The module draws on Reforge's <em>AI Strategy</em> and <em>AI Growth</em> courses (defensibility when models are widely available), the strategy and go-to-market units of Marily Nika's <em>AI Product Management Bootcamp</em>, Kellogg Executive Education's <em>AI-Driven Product Strategy</em> programme (vision, portfolio, roadmapping and go-to-market), Hamilton Helmer's <em>7 Powers</em>, Richard Rumelt's <em>Good Strategy/Bad Strategy</em>, and recent public evidence on how organisations buy, build and adopt AI, including the first randomised trials of AI note-taking tools in clinics.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Decide whether to build, buy, partner on or drop each AI initiative, using total cost of ownership, capability, control and the cost of leaving, not the price tag alone.</li>
+  <li>Tell a lasting advantage from a thin layer over someone else's model, and write a strategy that still holds after the next model release.</li>
+  <li>Plan how a product reaches its users: a proof of concept with exit criteria agreed before it starts, a phased rollout with gates, and adoption measured by real use rather than licences sold.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">90 min</span><span class="d">Six short parts with worked examples, real evidence and two calculators. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">The CEO's brief, the money and people available, where each initiative stands, the options on the table, three ways to get the note drafter, adoption so far, and what people want. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">4–5 hrs</span><span class="d">Choose and sequence the portfolio, compare the note drafter options, check what lasts, plan the POC and write the strategy on a page. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your strategy. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Portfolio<b id="st-pf">0 of 5 initiatives</b></div>
+  <div>Note drafter options<b id="st-mx">0 of 3 scored</b></div>
+  <div>POC plan<b id="st-poc">0 of 12 parts</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you work. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. Every acronym is spelled out the first time it appears on this page. The studies and products named in the lesson are real and were checked in October 2026; Harbourview, Tidewater, Queuewise, the cluster platform, their staff, figures and results are invented for teaching. Nothing on this page is investment, procurement or legal advice.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · about 90 minutes</span>Choices, durability and adoption</h2>
+<p>Part 1 says what an AI strategy is and is not. Part 2 asks what lasts when everyone can rent the same models. Part 3 covers build, buy or partner. Part 4 covers lock-in and keeping a way out. Part 5 covers proofs of concept that actually decide something. Part 6 covers rollout and adoption.</p>
+
+<h3 id="l1">11.1 What an AI strategy is, and what it is not</h3>
+<p>Most documents called "AI strategy" are lists of hopes: "use AI to improve patient experience", "become an AI-first organisation". Richard Rumelt calls this <strong>bad strategy</strong>: goals dressed up as a plan. A good strategy has three parts, which he calls the <em>kernel</em>:</p>
+<ol class="ladder">
+  <li><span class="r">1</span><b>Diagnosis</b><span>What is actually going on? The few facts that matter most, such as "doctors spend a quarter of each consultation typing" or "our phone line loses one booking call in five".</span></li>
+  <li><span class="r">2</span><b>Guiding policy</b><span>The overall approach that follows from the diagnosis, including what it rules out. For example: "rent models, own our tests, content and workflow; buy where the job is the same as everyone else's".</span></li>
+  <li><span class="r">3</span><b>Coherent actions</b><span>A short list of things you will do, in an order, with the money and people you have, that reinforce each other.</span></li>
+</ol>
+<p>For an AI portfolio, that turns into five questions. Where will AI make the biggest difference to the people we serve, and where will it not? For each initiative, do we build, buy, partner or drop? What will we own whatever happens to the models? In what order, given our money <em>and our people</em>? How will we know it is working, and what will make us stop?</p>
+<p>Two habits separate a strategy from a wish list. First, a list of <strong>what we will not do</strong>, at least for now: if nothing is dropped or deferred, nothing was decided. Second, <strong>sequencing against capacity</strong>. Money is often not the binding limit; the small number of people who can build, test and run AI products usually is. Every live product keeps using some of them (Modules 5, 6 and 10: evaluations, monitoring, red-teams, model upgrades).</p>
+<dl class="terms">
+  <dt>Portfolio</dt><dd>The set of initiatives taken together, so that you can balance quick wins against bigger bets and see what competes for the same money and people.</dd>
+  <dt>Capacity</dt><dd>How much work your team can actually do in a period, after the products already live have taken their share.</dd>
+  <dt>Total cost of ownership (TCO)</dt><dd>Everything an option costs over a fixed period (usually three years): one-off costs, recurring fees, your own people's time to run it, price rises, and what it would cost to leave.</dd>
+  <dt>Proof of concept (POC)</dt><dd>A short, limited trial that answers one question well enough to make a decision.</dd>
+  <dt>Pilot</dt><dd>A longer trial in real service with a limited group, to see whether value and safety hold in daily use.</dd>
+  <dt>Rollout</dt><dd>Extending a product to everyone it is meant for, usually in waves with checks between them.</dd>
+</dl>
+<div class="note"><p><strong>Strategy for a public provider.</strong> Harbourview does not compete for profit, so "defensibility" means something slightly different. A company asks "can a competitor copy this?". A public provider asks "will this investment still be worth it after the next model release, and can we change supplier without starting again?" The tools are the same; the question is durability and independence.</p></div>
+
+<h3 id="l2">11.2 What lasts when everyone can rent the same model</h3>
+<p>The model layer is widely available and keeps getting cheaper for the same capability (Module 9). A feature that is essentially "a prompt over a model" is a <strong>thin layer</strong>: easy to copy, and often absorbed into the next release of general-purpose assistants. What lasts sits around the model: the data and context only you have, the place the product holds in people's daily work, the trust you have earned, and the tests that let you improve or swap the model safely.</p>
+<p>Hamilton Helmer's <em>7 Powers</em> lists the seven sources of lasting advantage in business. Each has an AI version, and each has a trap.</p>
+<div class="scroll"><table class="wide">
+<thead><tr><th>Power</th><th>Plain meaning</th><th>AI version</th><th>The trap</th></tr></thead>
+<tbody>
+<tr><td><strong>Scale economies</strong></td><td>Unit cost falls as you grow</td><td>Shared platforms, negotiated model prices, one evaluation team serving many products</td><td>Model providers have far more scale than you</td></tr>
+<tr><td><strong>Network economies</strong></td><td>The product gets better as more people use it</td><td>Rare in AI products; more users can mean more feedback, but that is a data loop, not a network</td><td>Calling usage data a "network effect"</td></tr>
+<tr><td><strong>Counter-positioning</strong></td><td>A new approach the incumbent cannot copy without hurting itself</td><td>Pricing per outcome when competitors charge per seat; serving patients a rival would rather avoid</td><td>Works for challengers, rarely for a public provider</td></tr>
+<tr><td><strong>Switching costs</strong></td><td>Leaving is expensive or painful</td><td>Deep integration into daily work: records, permissions, templates, actions written back</td><td>The same thing makes <em>you</em> hard to free from a vendor</td></tr>
+<tr><td><strong>Branding</strong> (here: trust)</td><td>People choose you because of who you are</td><td>Patients and staff trust answers checked by your pharmacists and governed by your committee</td><td>One serious incident can spend years of trust</td></tr>
+<tr><td><strong>Cornered resource</strong></td><td>Something valuable only you have</td><td>Unique data with rights to use it, approved content, regulatory approvals, scarce expertise</td><td>"Decades of data" that is stale, unlabelled or easily bought elsewhere</td></tr>
+<tr><td><strong>Process power</strong></td><td>Ways of working that are hard to copy</td><td>Evaluation, red-teaming and release discipline that let you improve faster and more safely</td><td>Invisible until it is missing</td></tr>
+</tbody></table></div>
+<p><strong>Data is an advantage only if</strong> it is unique, you have the right to use it, it is relevant to the job, it keeps improving with use, and you actually turn it into better behaviour through your tests. Reforge's AI Growth course frames the same idea for companies: growth comes from acquiring, keeping and earning from users, multiplied by defensibility, and the defensibility factors to check are proprietary data, network effects and switching costs.</p>
+
+<h4>The next model release test</h4>
+<p>Imagine a model ships tomorrow that is twice as good at half the price. Go through each part of your product and ask: does it get <span class="tw up">better</span> (the new model is a tailwind) or does it become <span class="tw down">unnecessary</span> (a headwind: someone else now does it for free)? Put your own money and people into the tailwind parts, and rent the rest.</p>
+<div class="worked">
+<h4>Worked example · "Ask Riverside" (fictional, from Modules 2, 4, 9 and 10)</h4>
+<div class="scroll"><table>
+<thead><tr><th>Part of the product</th><th>Next release</th><th>Own or rent?</th></tr></thead>
+<tbody>
+<tr><td>Writing fluent answers about opening hours and general library questions</td><td><span class="tw down">Headwind</span> general assistants already answer these</td><td>Rent</td></tr>
+<tr><td>A model fine-tuned on Riverside's question history</td><td><span class="tw down">Headwind</span> the next general model is likely to match it</td><td>Do not build</td></tr>
+<tr><td>Members' own loans, holds and fines, after login</td><td><span class="tw up">Tailwind</span> a better model uses the same data better</td><td>Own the integration</td></tr>
+<tr><td>Actions: renew a loan, place a hold, book a room</td><td><span class="tw up">Tailwind</span></td><td>Own the integration and its limits (Module 8)</td></tr>
+<tr><td>Test set of 400 questions in three languages, plus 24 red-team attacks</td><td><span class="tw up">Tailwind</span> lets Riverside try a new model in a day</td><td>Own</td></tr>
+<tr><td>Staff handover and members' trust in it</td><td><span class="tw up">Tailwind</span></td><td>Own</td></tr>
+</tbody></table></div>
+<p style="margin:0">Riverside cancelled a planned fine-tuning project and spent the money on loan and booking integrations and a larger test set. When a better model arrived, it switched in four days because the tests already existed.</p>
+</div>
+
+<h3 id="l3">11.3 Build, buy or partner</h3>
+<p>Every initiative has four routes: <strong>build</strong> (your team builds it, usually on a rented model), <strong>buy</strong> (license a vendor's product), <strong>partner</strong> (share or co-develop: a shared platform, a consortium, a vendor you co-design with) or <strong>drop</strong> (not now). Few answers are pure; most products are bought or shared at the core with a thin layer of your own on top.</p>
+<div class="scroll"><table class="wide">
+<thead><tr><th>Question</th><th>Points to build</th><th>Points to buy or partner</th></tr></thead>
+<tbody>
+<tr><td><strong>Is this where we differ?</strong></td><td>It is part of what makes you you, and the job is specific to you</td><td>The job is the same as everyone else's (note-taking, booking, text analysis)</td></tr>
+<tr><td><strong>Does it need data or context only we have?</strong></td><td>Yes, and a vendor could not get it or use it as well</td><td>The vendor can be given the context through integration</td></tr>
+<tr><td><strong>Can we build it and keep running it?</strong></td><td>You have the people for evaluation, monitoring, red-teams and model upgrades (Modules 5–10), every month, for years</td><td>Your few builders are needed elsewhere</td></tr>
+<tr><td><strong>How soon do we need value?</strong></td><td>You can wait for a build</td><td>Months of waiting cost real value</td></tr>
+<tr><td><strong>How mature is the market?</strong></td><td>Nothing good exists for your setting</td><td>Several vendors with independent evidence</td></tr>
+<tr><td><strong>What must we control?</strong></td><td>Safety rules, data, the roadmap or regulatory evidence that a vendor will not let you control</td><td>A contract can give you enough control: audit rights, data terms, change notice</td></tr>
+<tr><td><strong>What would it cost to leave?</strong></td><td>Leaving a vendor later would be very expensive</td><td>You can keep the exit open (Part 11.4)</td></tr>
+</tbody></table></div>
+<h4>Total cost of ownership</h4>
+<p>Compare options over the same period, usually three years, and include: <strong>one-off costs</strong> (integration, templates, data preparation, training, governance work); <strong>recurring costs</strong> (licence or usage fees, hosting, monitoring, human review and audit time); <strong>your own people's time</strong> to run, test and upgrade it, priced at what that time is worth; <strong>change costs</strong> (price rises at renewal, re-testing after model changes); and the <strong>cost to leave</strong>. Then put value on the same timeline: a cheaper option that goes live nine months later can be the expensive one.</p>
+<div class="evidence">
+<h4>What the evidence says (real studies)</h4>
+<ul>
+  <li><strong>Most organisations now buy.</strong> Menlo Ventures' 2025 survey of about 500 United States enterprise decision-makers found the share of AI use cases bought from vendors rose from roughly half in 2024 to about three-quarters in 2025. A widely reported 2025 study from MIT's NANDA initiative found that tools bought from specialised vendors or developed in partnership reached production success far more often than internal builds. Both are United States studies and the MIT report's methods and definition of success have been questioned, so treat them as a signal, not a rule.</li>
+  <li><strong>"AI scribe" is a category, not a result.</strong> A randomised trial at UCLA Health, published in <em>NEJM AI</em> in late 2025, assigned 238 outpatient doctors to one of two commercial AI scribes or to usual practice. One product reduced time spent writing notes by about a tenth compared with usual practice; the other showed no significant change. Both improved measures of burnout, and the authors reported occasional clinically significant errors. Two products, same doctors, same weeks, different results: test the specific product in your setting.</li>
+  <li><strong>Vendors change.</strong> The Permanente Medical Group (part of Kaiser Permanente) reported in <em>NEJM Catalyst</em> that 7,260 of its doctors used an AI scribe in about 2.5 million patient visits between October 2023 and December 2024. It changed vendor between its 10-week pilot and the full rollout, and uptake varied a lot between specialties.</li>
+  <li><strong>Partnering through a shared platform.</strong> In Singapore, SingHealth's own digital team built Note Buddy, an AI scribe that works in English, Mandarin, Malay and Tamil, on Tandem, the secure generative AI platform of Synapxe, the national health technology agency. It launched in 2024 and has since been extended to other public healthcare institutions: one organisation builds, a shared platform lets others use it.</li>
+</ul>
+</div>
+<div class="worked">
+<h4>Worked example · Lumen Eye Clinics (fictional) chooses how to get retina photo screening</h4>
+<p>Lumen weighted its criteria (total 100) and scored each option from 1 (poor) to 5 (strong). It also set two <strong>must-haves</strong>: an option that fails one is out, whatever it scores.</p>
+<div class="scroll"><table class="mx">
+<thead><tr><th>Criterion</th><th>Weight</th><th>Build own model</th><th>Buy a registered product</th><th>Partner with a university research group</th></tr></thead>
+<tbody>
+<tr><td>Must-have: registered with the Health Sciences Authority (HSA) as a medical device</td><td>—</td><td><span class="chip c-bad">Fail</span> years away</td><td><span class="chip c-good">Pass</span></td><td><span class="chip c-bad">Fail</span> research only</td></tr>
+<tr><td>Must-have: results checked on patients like Lumen's</td><td>—</td><td><span class="chip c-good">Pass</span></td><td><span class="chip c-good">Pass</span> local study published</td><td><span class="chip c-good">Pass</span></td></tr>
+<tr><td>Accuracy evidence</td><td class="num">30</td><td>2</td><td>4</td><td>4</td></tr>
+<tr><td>Three-year cost</td><td class="num">20</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td>Time to value</td><td class="num">20</td><td>1</td><td>5</td><td>2</td></tr>
+<tr><td>Control and exit</td><td class="num">15</td><td>5</td><td>3</td><td>3</td></tr>
+<tr><td>Fit with optometrists' workflow</td><td class="num">15</td><td>4</td><td>3</td><td>3</td></tr>
+<tr class="tot"><td>Weighted score out of 5</td><td></td><td>2.45</td><td>3.75</td><td>3.30</td></tr>
+</tbody></table></div>
+<p style="margin:0">Lumen bought. The vendor's registration is a cornered resource Lumen could not match for years. Lumen kept two things for itself: its own test set of 2,000 graded photos, so it can check any update or rival product, and the workflow that routes flagged photos to an optometrist. It also agreed to share de-identified results with the university group: a partnership on research, not on the product.</p>
+</div>
+
+<h3 id="l4">11.4 Lock-in, and keeping the way out open</h3>
+<p>Every route creates dependence. The question is whether you can still leave at a cost you can bear. There are five kinds of lock-in:</p>
+<ul>
+  <li><strong>Model lock-in:</strong> prompts and behaviour tuned to one model, with no tests to show whether another would do.</li>
+  <li><strong>Product lock-in:</strong> staff work inside a vendor's templates and screens.</li>
+  <li><strong>Data lock-in:</strong> transcripts, labels or logs you cannot export in a usable form.</li>
+  <li><strong>Contract lock-in:</strong> multi-year minimums, automatic renewal, price rises at the vendor's discretion.</li>
+  <li><strong>Skills lock-in:</strong> only the vendor understands how the product is set up.</li>
+</ul>
+<p>Habits that keep the exit open:</p>
+<ol>
+  <li><strong>Own your tests.</strong> Your test sets, judges and red-team cases (Modules 5, 6 and 10) let you check a replacement in days instead of months. This is the single best protection.</li>
+  <li><strong>Keep your content and configuration in your own hands</strong>: prompts, approved content, templates, rules.</li>
+  <li><strong>Put a thin layer between your product and the model</strong> (often called a gateway), so that switching model is a configuration change plus a test run.</li>
+  <li><strong>Write the exit into the contract</strong> before you sign: data export in a standard format at no extra fee; no use of your data for training unless you opt in; a cap on price rises at renewal; advance notice of model changes, so your change control (Module 10) can run; audit rights and a model card; help with leaving and a reasonable notice period; termination for safety breaches; service levels with remedies.</li>
+  <li><strong>Be wary of large commitments in exchange for discounts.</strong> A 20% discount for a three-year commitment on every seat is only a saving if the seats are used (Module 9).</li>
+</ol>
+
+<h3 id="l5">11.5 Proofs of concept that decide something</h3>
+<div class="scroll"><table>
+<thead><tr><th></th><th>Proof of concept</th><th>Pilot</th><th>Rollout</th></tr></thead>
+<tbody>
+<tr><td><strong>Answers</strong></td><td>One question: can it do this, here, well enough?</td><td>Does value and safety hold in daily use?</td><td>Can everyone use it, and does the value appear?</td></tr>
+<tr><td><strong>Size</strong></td><td>Small, chosen to be representative</td><td>One or two sites, a real group</td><td>Everyone, in waves</td></tr>
+<tr><td><strong>Length</strong></td><td>Weeks</td><td>Months</td><td>Ongoing</td></tr>
+<tr><td><strong>Ends with</strong></td><td>Go, extend or stop, against criteria set in advance</td><td>A scale-up decision with conditions</td><td>Monitoring and periodic review</td></tr>
+</tbody></table></div>
+<p><strong>Pilot purgatory</strong> is what happens when a trial never ends because nobody agreed what success would look like: it runs on, users lose interest, and the decision is made by default. The cure is to write the decision down before the trial starts.</p>
+<h4>A POC that decides something has</h4>
+<ul>
+  <li><strong>One decision</strong> it informs, and the person who will make it, on a date.</li>
+  <li><strong>A hypothesis</strong> with numbers: "the scribe saves at least one minute per consultation for doctors who did not volunteer".</li>
+  <li><strong>Representative users,</strong> not only volunteers. Volunteers are early adopters; their results overstate what everyone else will see (Module 9).</li>
+  <li><strong>A baseline</strong> measured the same way, before or alongside.</li>
+  <li><strong>Measures with thresholds</strong>: the main benefit, safety, real use, user experience and cost.</li>
+  <li><strong>Exit criteria</strong> for go, extend and stop, signed before the start, plus a <strong>safety stop rule</strong> that ends it at once.</li>
+  <li><strong>Enough time to get past novelty</strong>: first-week enthusiasm is not habit.</li>
+  <li><strong>A cost cap</strong> and an honest list of what the POC cannot tell you.</li>
+</ul>
+<p>When two products compete, run a <strong>head-to-head comparison</strong>: the same kind of users, the same kind of work, the same measures, at the same time. Either split users into matched groups, or give each user both products in a random order.</p>
+<div class="worked">
+<h4>Worked example · Riverside's six-week POC for loan renewals by chat</h4>
+<p><strong>Decision:</strong> whether to let Ask Riverside renew loans for all members (owner: Head of Digital Services, 20 March). <strong>Who:</strong> all members at two branches chosen to differ (one city centre, one with many older members), not volunteers. <strong>Baseline:</strong> four weeks of renewals by phone and counter.</p>
+<div class="scroll"><table>
+<thead><tr><th>Measure</th><th>Go</th><th>Extend 4 weeks</th><th>Stop</th></tr></thead>
+<tbody>
+<tr><td>Renewal requests completed without staff</td><td>70% or more</td><td>50–69%</td><td>Below 50%</td></tr>
+<tr><td>Wrong renewals (wrong item or account)</td><td>At most 1 per 500</td><td>2–3 per 500</td><td>More than 3 per 500</td></tr>
+<tr><td>Members over 65 completing without help</td><td>At least 0.8 of the rate for others</td><td>0.6–0.8</td><td>Below 0.6</td></tr>
+<tr><td>Members' rating</td><td>4 of 5 or higher</td><td>3.5–4</td><td>Below 3.5</td></tr>
+</tbody></table></div>
+<p style="margin:0"><strong>Safety stop rule:</strong> any action on another member's account stops the POC the same day. <strong>Cost cap:</strong> S$12,000. <strong>Cannot tell us:</strong> how branches with a different mix of languages will do. The result was "extend": older members completed at 0.7 of the others' rate. A larger "Renew" button and a call-back offer fixed it in four more weeks.</p>
+</div>
+
+<h3 id="l6">11.6 Rollout and adoption</h3>
+<p><strong>Licences are not adoption.</strong> Value comes from people using the product for most of the work it is meant for, week after week. Follow people down an <strong>adoption funnel</strong>:</p>
+<ol class="ladder">
+  <li><span class="r">1</span><b>Access</b><span>They have it: a licence, an account, the app.</span></li>
+  <li><span class="r">2</span><b>Activation</b><span>They have used it for real at least once.</span></li>
+  <li><span class="r">3</span><b>Regular use</b><span>They use it every week.</span></li>
+  <li><span class="r">4</span><b>Depth</b><span>They use it for most of the tasks it is meant for, not just the easy ones.</span></li>
+  <li><span class="r">5</span><b>Outcome</b><span>The benefit appears: minutes saved, calls avoided, patients helped, and it is turned into something real (Module 9's "realisation").</span></li>
+</ol>
+<p><strong>Who adopts first.</strong> Everett Rogers' <em>Diffusion of Innovations</em> describes adopters in five groups: innovators (about 2.5%), early adopters (13.5%), early majority (34%), late majority (34%) and laggards (16%). The early groups put up with rough edges because they enjoy new tools. The majority adopt when the product fits their work and colleagues they respect use it. A rollout plan has to win the majority, not just delight the volunteers.</p>
+<p><strong>What drives adoption in practice.</strong> Fit with the existing workflow (templates that match the work, fewer clicks, nothing to copy across); a visible benefit in the first week; training at the moment of use, not in a lecture; respected <strong>champions</strong> in each team; a feedback channel that leads to visible fixes; leaders who use it themselves; and keeping the old way available until the new one works. The change-management model ADKAR (Prosci) checks the same things from the person's side: <strong>A</strong>wareness of why, <strong>D</strong>esire to take part, <strong>K</strong>nowledge of how, <strong>A</strong>bility in practice, and <strong>R</strong>einforcement so it sticks.</p>
+<p><strong>Phased rollout.</strong> Roll out in waves (sites, teams or user groups), with a <strong>gate</strong> between waves: quality and safety still within thresholds, adoption at or above target, enough capacity for the work it creates (Module 9's pharmacist queue), governance approval for the next step (Module 10), and a way to roll back. Kaiser's experience above is typical: uptake varies by team, and teams that adapted templates to their own work adopted more.</p>
+<div class="worked">
+<h4>Worked example · Lumen's report-drafting tool, six months after purchase</h4>
+<div class="funnel" aria-label="Lumen adoption funnel">
+  <div><span>Licensed optometrists</span><span class="bar"><i style="width:100%"></i></span><b>120</b></div>
+  <div><span>Activated</span><span class="bar"><i style="width:70%"></i></span><b>84</b></div>
+  <div><span>Weekly users</span><span class="bar"><i style="width:42%"></i></span><b>50</b></div>
+  <div><span>Use on most reports</span><span class="bar"><i style="width:21%"></i></span><b>25</b></div>
+</div>
+<p style="margin:0">Lumen was paying for 120 licences and getting about a quarter of the value it had planned. Interviews found the tool's report template did not match glaucoma follow-ups, which were half of many optometrists' work. A glaucoma template, two champions per clinic and a short "first ten reports" session moved deep users from 25 to 61 in three months. Lumen also cut 30 unused licences at renewal.</p>
+</div>
+
+<h3 id="calcs">Two calculators</h3>
+<div class="calcbox">
+  <div><h4>1 · Three-year cost and value of two options</h4>
+    <p style="font-size:.82rem;color:var(--muted);margin:0 0 .3rem">Defaults: Riverside, building its own chat assistant or buying a library vendor's.</p>
+    <div class="duo">
+      <span></span><b>Build</b><b>Buy</b>
+      <label for="t1-one">One-off cost (S$)</label><input type="number" id="t1-one" value="120000" min="0"><input type="number" id="t2-one" value="25000" min="0" aria-label="Buy one-off cost">
+      <label for="t1-fee">Fees and usage a month (S$)</label><input type="number" id="t1-fee" value="800" min="0"><input type="number" id="t2-fee" value="3500" min="0" aria-label="Buy fees a month">
+      <label for="t1-bm">Own builders' time a month (builder-months)</label><input type="number" id="t1-bm" value="0.5" min="0" step="0.05"><input type="number" id="t2-bm" value="0.1" min="0" step="0.05" aria-label="Buy builder-months a month">
+      <label for="t1-live">Months until live</label><input type="number" id="t1-live" value="6" min="0" max="36"><input type="number" id="t2-live" value="2" min="0" max="36" aria-label="Buy months until live">
+      <label for="t1-val">Value a month once live (S$)</label><input type="number" id="t1-val" value="9000" min="0"><input type="number" id="t2-val" value="8000" min="0" aria-label="Buy value a month">
+    </div>
+    <label for="t-bmc">Cost of one builder-month (S$)</label><input type="number" id="t-bmc" value="12000" min="0" style="max-width:9rem">
+    <div class="res" id="t-res" aria-live="polite"></div>
+  </div>
+  <div><h4>2 · From licences to realised value</h4>
+    <p style="font-size:.82rem;color:var(--muted);margin:0 0 .3rem">Defaults: Lumen's report-drafting tool before the fixes.</p>
+    <label for="a-lic">Licences</label><input type="number" id="a-lic" value="120" min="0">
+    <label for="a-act">Activated (% of licences)</label><input type="number" id="a-act" value="70" min="0" max="100">
+    <label for="a-wk">Weekly users (% of activated)</label><input type="number" id="a-wk" value="60" min="0" max="100">
+    <label for="a-deep">Use on most tasks (% of weekly users)</label><input type="number" id="a-deep" value="50" min="0" max="100">
+    <label for="a-td">Tasks a month: deep user · light user</label>
+    <div style="display:flex;gap:.4rem"><input type="number" id="a-td" value="300" min="0" aria-label="Tasks a month for a deep user"><input type="number" id="a-tl" value="60" min="0" aria-label="Tasks a month for a light user"></div>
+    <label for="a-min">Minutes saved per task</label><input type="number" id="a-min" value="2" min="0" step="0.1">
+    <label for="a-real">Realisation (% of freed time that becomes value)</label><input type="number" id="a-real" value="30" min="0" max="100">
+    <label for="a-hr">Value of an hour (S$)</label><input type="number" id="a-hr" value="90" min="0">
+    <div class="res" id="a-res" aria-live="polite"></div>
+  </div>
+</div>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each, with working where numbers are asked for. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: 18 months, five initiatives</h2>
+<p>You are still Harbourview's head of digital products. It is Monday 1 June. Read the memo, then open each section of the pack. Everything in the case is invented for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Rajan Pillai, Chief Executive Officer (CEO)<br>CC: Chief Financial Officer (CFO); Dr Helen Chia, Chief Medical Officer (CMO); Chief Operating Officer (COO); Daniel Ong, Chief Information Officer (CIO)<br>TO: Head of Digital Products<br>RE: The AI portfolio, July 2026 to December 2027</div>
+<p>On 26 June the board will decide what Harbourview does with AI for the next 18 months. I do not want five business cases. I want one page I can defend to the board, to the Ministry and to our doctors: what we will build, buy, share or stop, in what order, what we will own whatever happens to the technology, and what we will not do.</p>
+<p>The CFO has set the money; you know how many people you have; the AI Governance Committee's gates stand. Alongside the page, give me a six-week <strong>proof of concept plan</strong> for the first thing we start, with exit criteria I would be comfortable signing before it begins. I would rather approve a smaller plan that we finish than a bigger one we do not.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. The brief and the limits</b><span class="k">Period, money, people, governance, aims</span></summary>
+<div class="in">
+<div class="kpis">
+  <div><b>18 months</b><span>July 2026 to December 2027 (six quarters)</span></div>
+  <div class="warn"><b>S$675,000</b><span>external spend for the period (S$450,000 a year, as in Module 9)</span></div>
+  <div class="warn"><b>12</b><span>builder-months available each quarter</span></div>
+  <div><b>S$15,000</b><span>value of one builder-month, for comparing with vendor prices</span></div>
+</div>
+<ul>
+  <li><strong>Money.</strong> The S$675,000 covers licences, model usage, one-off vendor and integration fees, contractors, and audit and review time, counted as in Module 9. It does not cover the in-house team's salaries.</li>
+  <li><strong>People.</strong> The digital products team has a product manager (you), a designer, an evaluation lead and four <strong>builders</strong>: three engineers and a data scientist. Four builders × 3 months = 12 builder-months a quarter. Every live product keeps using some of them, as the options table shows.</li>
+  <li><strong>Governance.</strong> Every product needs the AI Governance Committee's approval before each expansion (Module 10). The committee has ruled that the medicine assistant may not expand until findings F2, F3 and F6 are fixed and retested, and that the missed-appointment predictor may be used for reminder calls but not for overbooking.</li>
+  <li><strong>The board's three aims:</strong> patients can reach care more easily; staff get time back for care; patients and staff can trust what Harbourview's AI does.</li>
+</ul>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. Where each initiative stands</b><span class="k">A to E, as of 1 June</span></summary>
+<div class="in">
+<div class="scroll"><table class="wide">
+<thead><tr><th>Initiative</th><th>Status</th><th>Evidence so far</th><th>Open issues</th></tr></thead>
+<tbody>
+<tr><td><strong>A. Medicine questions assistant</strong><br><span class="tag">built in-house</span></td><td>Live at Clementi and Bedok since October (build 1.1); build 1.2 blocked</td><td>~8,700 questions a month; 23% of eligible app users active at the two clinics; handovers 12%; two near misses, no harm</td><td>Three severity-4 findings (about 6 weeks of work); Malay leaflets 70% and Tamil 40% translated; pharmacist queue overflows at about 30% adoption unless handovers fall (Module 9); committee Tier 3</td></tr>
+<tr><td><strong>B. Booking and symptom-routing assistant</strong><br><span class="tag">prototype</span></td><td>Clickable prototype tested with three people (Module 8)</td><td>Phone line: average wait 14 minutes at peak; 38% of calls are to change or cancel a booking</td><td>The COO wants an agent that reschedules and moves patients between clinics; symptom routing would be a Clinical use with its own risk level (Module 10)</td></tr>
+<tr><td><strong>C. Consultation note drafter</strong><br><span class="tag">vendor pilot</span></td><td>Tidewater Scribe pilot with 20 volunteer doctors at two clinics since March</td><td>Volunteers save about 1.5 minutes per note; critical errors 1.6 per 1,000 audited notes (stop rule: more than 2)</td><td>No data from doctors who did not volunteer; Hokkien and Teochew consultations (see section 4)</td></tr>
+<tr><td><strong>D. Missed-appointment predictor</strong><br><span class="tag">built in-house</span></td><td>Version 2 ready; not live</td><td>Fairness check by group (Module 10)</td><td>Reminder calls approved with monitoring; overbooking not approved; data protection officer's (DPO) review of subsidy data pending; reminder texts in Malay and Tamil from August</td></tr>
+<tr><td><strong>E. Patient feedback analyser</strong><br><span class="tag">idea</span></td><td>Data readiness checked (Module 3)</td><td>About 42,000 free-text comments a year; clinic managers read roughly 1 in 10</td><td>Serious complaints can sit unread for weeks; about 15% of comments are in Malay or Tamil</td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. The options on the table</b><span class="k">Cost, effort and time for each route · used by Tool 1</span></summary>
+<div class="in">
+<p>Engineering, finance and the vendors have priced each route. <strong>Monthly cost</strong> starts when the product goes live and runs to December 2027. <strong>Build effort</strong> is spread over the quarters shown; <strong>run effort</strong> continues every quarter after that. Costs are in thousands of Singapore dollars (S$k).</p>
+<div class="scroll"><table class="d9 wide" aria-label="Options catalogue">
+<thead><tr><th>Option</th><th>One-off (S$k)</th><th>Monthly once live (S$k)</th><th>Months to go live</th><th>Build effort (builder-months, over quarters)</th><th>Run effort (builder-months a quarter)</th></tr></thead>
+<tbody id="opt-table"></tbody>
+</table></div>
+<p style="font-size:.85rem;color:var(--muted)">Notes on the options: <span id="opt-notes"></span></p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. The note drafter: three ways to get it</b><span class="k">Initiative C in detail · used by Tool 2</span></summary>
+<div class="in">
+<div class="scroll"><table class="wide">
+<thead><tr><th></th><th>Buy: Tidewater Scribe</th><th>Partner: the cluster's shared scribe</th><th>Build in-house</th></tr></thead>
+<tbody>
+<tr><td><strong>What it is</strong></td><td>Commercial AI scribe already in the pilot</td><td>An AI scribe built by another hospital in Harbourview's healthcare cluster, offered to cluster members on the cluster's shared AI platform</td><td>Harbourview's team builds speech-to-text plus a note-writing model, on the standard model provider</td></tr>
+<tr><td><strong>Price</strong></td><td>S$40 per doctor a month, minimum 50 seats. Fixed for 12 months; then "prevailing list price"</td><td>Cost share of S$18 per active doctor a month, reviewed yearly by the cluster board</td><td>About S$0.06 per note in speech-to-text and model usage</td></tr>
+<tr><td><strong>One-off</strong></td><td>S$260,000 (connection to the medical record, templates, training)</td><td>S$120,000 (connection to the platform, templates, training)</td><td>20 builder-months, plus S$40,000 of cloud set-up and contractors</td></tr>
+<tr><td><strong>Running it</strong></td><td>0.25 builder-month a month</td><td>0.25 builder-month a month</td><td>1 builder-month a month (evaluation, model upgrades, fixes)</td></tr>
+<tr><td><strong>Live at first clinics</strong></td><td>2 months</td><td>3 months</td><td>About 9 months</td></tr>
+<tr><td><strong>Languages</strong></td><td>English and Mandarin; Malay in testing; common Hokkien phrases in a test version</td><td>English, Mandarin, Malay and Tamil; no Hokkien or Teochew</td><td>Whatever is built; Harbourview has no Hokkien training data</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Harbourview's pilot (volunteers): 1.5 minutes saved; 1.6 critical errors per 1,000. Notes from Hokkien consultations needed about twice as much editing</td><td>Used in hospital outpatient clinics; doctors there edit about 30% of notes; no primary care data yet</td><td>None</td></tr>
+<tr><td><strong>Data</strong></td><td>Processed in Tidewater's Singapore region; may use de-identified data to improve its product unless the customer opts out (opting out adds 10% to the price)</td><td>Stays on the government health platform; no other use</td><td>In Harbourview's own cloud account</td></tr>
+<tr><td><strong>Control of the roadmap</strong></td><td>Feature requests prioritised for large customers; much of the roadmap is driven by its European customers' compliance needs</td><td>Quarterly releases chosen by the cluster's product board; Harbourview has one seat of nine</td><td>Full, at Harbourview's own cost</td></tr>
+<tr><td><strong>Governance documents</strong></td><td>Model card available; audit rights limited to an annual report</td><td>The cluster publishes a model card and runs red-teams; members may audit</td><td>Harbourview writes its own trust pack</td></tr>
+<tr><td><strong>Leaving</strong></td><td>Notes stay in the medical record; templates belong to Tidewater; 90 days' notice; transcripts exported "on request, fees apply". Estimated cost to switch away: S$90,000</td><td>Notes stay; templates shared; may leave at the end of any year. Estimated cost to switch away: S$50,000</td><td>No vendor to leave; the team that built it must stay</td></tr>
+</tbody></table></div>
+<div class="kpis">
+  <div><b>260</b><span>doctors at Harbourview</span></div>
+  <div><b>~310</b><span>notes a month per active doctor</span></div>
+  <div><b>S$0.25</b><span>audit cost per note (2% of notes checked by a doctor, as in Module 9)</span></div>
+  <div class="warn"><b>18%</b><span>of consultations at Jurong and Ang Mo Kio are partly in Hokkien or Teochew</span></div>
+</div>
+<p>Value is counted as in Module 9: minutes saved × doctor time at S$150 an hour × 30% realisation.</p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>5. Adoption so far</b><span class="k">The medicine assistant and the scribe pilot</span></summary>
+<div class="in">
+<h4>Medicine assistant at Clementi and Bedok, since October</h4>
+<div class="funnel" aria-label="Medicine assistant adoption funnel">
+  <div><span>Eligible app users (current prescriptions)</span><span class="bar"><i style="width:100%"></i></span><b>27,000</b></div>
+  <div><span>Tried it at least once</span><span class="bar"><i style="width:34%"></i></span><b>9,100</b></div>
+  <div><span>Used it in the last 30 days</span><span class="bar"><i style="width:23%"></i></span><b>6,200</b></div>
+</div>
+<p>Use is lowest among patients over 70 and among Malay- and Tamil-speaking patients. Most first uses follow a pharmacist mentioning it at the counter.</p>
+<h4>Tidewater Scribe pilot, 20 volunteers, since March</h4>
+<div class="funnel" aria-label="Scribe pilot adoption funnel">
+  <div><span>Licensed (volunteers)</span><span class="bar"><i style="width:100%"></i></span><b>20</b></div>
+  <div><span>Activated</span><span class="bar"><i style="width:95%"></i></span><b>19</b></div>
+  <div><span>Weekly users</span><span class="bar"><i style="width:85%"></i></span><b>17</b></div>
+  <div><span>Use on most consultations</span><span class="bar"><i style="width:70%"></i></span><b>14</b></div>
+</div>
+<p>A survey of 60 doctors who did <em>not</em> volunteer gave these main reasons (more than one allowed): the note template does not fit chronic disease reviews (41%); worry about errors in Hokkien or Teochew consultations (33%); no time to learn it (27%); "happy as I am" (22%).</p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>6. What people want</b><span class="k">Stakeholder voices</span></summary>
+<div class="in">
+<div class="cards">
+  <div class="card"><span class="who">Rajan Pillai, CEO</span><q>Could we offer the medicine assistant to private family doctors as a service? Other clinics have the same questions from patients.</q></div>
+  <div class="card"><span class="who">Chief Financial Officer</span><q>S$675,000 to December 2027. Nothing outside it, and nothing that commits us beyond it without the board knowing.</q></div>
+  <div class="card"><span class="who">Dr Helen Chia, CMO</span><q>No initiative goes faster than the committee's gates. Put the gates in the plan, not in a footnote.</q></div>
+  <div class="card"><span class="who">Chief Operating Officer</span><q>The booking agent is my priority. Patients wait 14 minutes to move an appointment. Build it properly, so it can do everything.</q></div>
+  <div class="card"><span class="who">Daniel Ong, CIO</span><q>Every vendor wants to be our platform. I want to be able to leave any of them within six months without losing our data or our tests.</q></div>
+  <div class="card"><span class="who">Dr Farid Rahman, family physician, Jurong (not a volunteer)</span><q>The pilot doctors love it. They also love new phones. A fifth of my patients speak Hokkien.</q></div>
+  <div class="card"><span class="who">Head of the cluster's AI platform</span><q>We can have you live in ten weeks. Our roadmap is set by the cluster product board; you would have one seat of nine.</q></div>
+  <div class="card"><span class="who">Tidewater account manager</span><q>Sign three years for all 260 doctors this quarter and I will take 20% off the seat price.</q></div>
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>Patients who struggle most with our phone line are the ones least likely to use a chatbot. Don't make the phone worse to make the bot look better.</q></div>
+</div>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 20 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. Keep the case pack open; some questions need a calculation. Tools 1 and 2 in the assignment can check your arithmetic.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 4–5 hours · Graded 60%</span>Strategy on a page and a POC plan</h2>
+<div class="note"><p><strong>Your task.</strong> Give the CEO what he asked for: a <strong>strategy on a page</strong> (one page, about 600 words, plus a portfolio table) and a <strong>six-week POC plan</strong> for the first initiative you start (about two pages). Attach your note drafter comparison as an appendix. Use the five tools below; each one saves as you go and exports with your submission.</p></div>
+
+<h3>What your submission must contain</h3>
+<ol>
+  <li><strong>Portfolio and sequence</strong>: for each of the five initiatives, a route (build, buy, partner, hold or drop), a start quarter and a reason; within S$675,000 and 12 builder-months a quarter; with the committee's gates shown.</li>
+  <li><strong>The note drafter decision</strong>: three options compared on three-year cost and value, and scored on weighted criteria with must-haves, with what is still unknown.</li>
+  <li><strong>What lasts</strong>: for each initiative, what Harbourview will own whatever it chooses, what the next model release does to it, and how the exit stays open. Answer the CEO's question about offering the medicine assistant to private family doctors.</li>
+  <li><strong>A six-week POC plan</strong> with exit criteria set before it starts.</li>
+  <li><strong>The strategy on a page</strong>, including what Harbourview will not do.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>A route for every initiative, including at least one hold or drop, tied to the diagnosis. The sequence fits the money, the people and the committee's gates. The POC informs a named decision, and its go, extend and stop criteria are set in advance.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Costs and capacity come from the case figures and are added up correctly. The note drafter comparison uses three-year cost and value, not price alone, and says what the pilot cannot show (volunteers, Hokkien). Real-world evidence is used where it helps and its limits are stated.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>Lock-in is handled for every bought or shared option (tests owned, exit terms, data, renewal price). Adoption risks are named and planned for, including doctors who did not volunteer and patients who will not use a chatbot. The POC has a safety stop rule and representative users.</td></tr>
+<tr><td><strong>Communication</strong></td><td>The board can find each decision, its cost, its order and its gate in two minutes. One page plus the table; POC about two pages; every acronym spelled out once.</td></tr>
+</tbody></table></div>
+
+<!-- Tool 1 -->
+<h3>Tool 1 · Portfolio and sequence</h3>
+<p>Choose a route and a start quarter for each initiative, and give a reason. The bars show builder-months used each quarter against the 12 available; the total shows external spend against S$675,000. Prompts appear when a choice conflicts with the case; they do not mark your choice.</p>
+<div id="pf-rows"></div>
+<div class="sumbar" id="pf-sum" aria-live="polite"></div>
+<div class="cap" id="pf-cap" aria-label="Builder-months by quarter"></div>
+<div class="capkey"><span><i style="background:var(--t2)"></i>Build effort</span><span><i style="background:var(--accent)"></i>Run effort</span><span><i style="border-left:2px dashed var(--bad);width:0;height:.8rem"></i>12 available</span></div>
+<ul class="warnlist" id="pf-flags" aria-live="polite"></ul>
+
+<!-- Tool 2 -->
+<h3>Tool 2 · The note drafter: three options compared</h3>
+<div class="substep">Part 1 · Three-year cost and value</div>
+<p>Defaults are the case figures. Change the adoption level, the minutes each option saves and the renewal rise to see what the answer depends on. Costs and value start when each option goes live.</p>
+<div class="knobs">
+  <div><label for="c-ad">Adoption (share of 260 doctors)</label><select id="c-ad"><option value="0.1">10%</option><option value="0.3" selected>30%</option><option value="0.6">60%</option></select></div>
+  <div><label for="c-m1">Minutes saved · Tidewater</label><input type="number" id="c-m1" value="1.5" min="0" step="0.1"></div>
+  <div><label for="c-m2">Minutes saved · cluster scribe</label><input type="number" id="c-m2" value="1.5" min="0" step="0.1"></div>
+  <div><label for="c-m3">Minutes saved · in-house build</label><input type="number" id="c-m3" value="1.5" min="0" step="0.1"></div>
+  <div><label for="c-rise">Tidewater price rise after year 1 (%)</label><input type="number" id="c-rise" value="20" min="0" step="5"></div>
+  <div><label for="c-real">Realisation (%)</label><input type="number" id="c-real" value="30" min="0" max="100"></div>
+</div>
+<div class="scroll"><table class="d9" aria-label="Three-year cost and value"><thead><tr><th>Over 36 months</th><th>Buy: Tidewater</th><th>Partner: cluster</th><th>Build</th></tr></thead><tbody id="c-body"></tbody></table></div>
+<ul class="warnlist" id="c-flags" aria-live="polite"></ul>
+
+<div class="substep">Part 2 · Weighted criteria and must-haves</div>
+<p>Set your weights (they must total 100), score each option from 1 (poor) to 5 (strong), and mark each must-have pass or fail. Change or add a must-have if you think the CEO's or CMO's needs require it.</p>
+<div class="scroll"><table class="mx" id="mx" aria-label="Scoring matrix"></table></div>
+<ul class="warnlist" id="mx-flags" aria-live="polite"></ul>
+<div class="fields">
+  <div><label for="mx-why">Your recommendation for the note drafter, and what the POC must find out before you commit</label><textarea id="mx-why"></textarea></div>
+</div>
+
+<!-- Tool 3 -->
+<h3>Tool 3 · What lasts, and keeping the exit open</h3>
+<p>For each initiative: what Harbourview will own whatever route it takes, what the next model release (twice as good, half the price) does to it, and how the exit stays open. Then answer the CEO's question.</p>
+<div id="du-rows"></div>
+<div class="fields">
+  <div><label for="du-gp">Should Harbourview offer the medicine assistant to private family doctors? <span class="hint">· apply the next model release test and the seven powers; say what would have to be true</span></label><textarea id="du-gp"></textarea></div>
+</div>
+<ul class="warnlist" id="du-flags" aria-live="polite"></ul>
+
+<!-- Tool 4 -->
+<h3>Tool 4 · Six-week POC plan</h3>
+<p>Plan the POC for the first initiative you start. Write the exit criteria now, as the CEO asked, so that nobody can move them after seeing the results.</p>
+<div class="fields" id="poc-fields"></div>
+<ul class="warnlist" id="poc-flags" aria-live="polite"></ul>
+<p class="row"><button class="btn" type="button" id="poc-copy">Copy the POC plan</button><span id="poc-msg" aria-live="polite"></span></p>
+
+<!-- Tool 5 -->
+<h3>Tool 5 · Strategy on a page</h3>
+<p>Draft the page the CEO will take to the board. Use Rumelt's kernel: diagnosis, guiding policy, coherent actions. The portfolio table from Tool 1 is added to your submission automatically.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="adr" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your strategy on a page</label>
+<textarea id="adr" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+<ul class="warnlist" id="sp-flags" aria-live="polite"></ul>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. A basic calculator is allowed. No notes, no AI tools.</li>
+  <li><strong>Covers:</strong> everything in the lesson. Expect to apply the next model release test to a product you have not seen, compare two options on three-year cost and value, choose build, buy or partner with reasons, name contract terms that keep the exit open, write exit criteria for a POC, and read an adoption funnel.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. After emailing your assignment, email the course team to request the test paper and book your viva.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>Without reading, you give the board your strategy in a few sentences: what first, what not at all, and why.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your strategy. Expect "what will Harbourview own whatever happens?", "why that route for the note drafter?" and "what would make you stop the POC?"</td></tr>
+<tr><td class="num">7–10</td><td>The assessor changes one fact: a vendor's price, a new model, a failed gate, a budget cut. You say on the spot what it does to your plan.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you can explain the ideas in plain words, how you handle the changed fact, and how clearly you speak. Changing your mind for a good reason scores well.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Strategy on a page and POC plan (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>Your quiz answers, portfolio, note drafter comparison, durability notes, POC plan, strategy draft, checklist and any lab results go in the email as plain text. Attach your strategy on a page and POC plan as a document.</p>
+<div class="submit-box" data-submit="m11" data-subject="Module 11 submission">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Assemble your strategy on a page, portfolio table and POC plan in your own document tool, with the note drafter comparison as an appendix.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach your document.</li>
+<li>Once the email is sent, tick the box below. The capstone opens when it is published, once you have ticked it and reached mastery on both checkpoint quizzes.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 1–2 hours · not assessed</span>Compare two real AI scribes against your requirements</h2>
+<p>Choose two AI scribe products that are on sale today. Using only what each vendor publishes (website, documentation, trust or security pages, published studies), check them against the requirements below. The gaps you cannot fill are your questions for the vendor, and they are what a POC or a contract would have to settle.</p>
+<div class="note warn"><p><strong>Public information only.</strong> Do not sign up for trials with real patient data, and do not contact vendors as if you were buying on behalf of an organisation unless you are. Record where you found each answer.</p></div>
+<div class="fgrid" style="margin-bottom:.75rem">
+  <div><label for="lab-v1">Product 1</label><input type="text" id="lab-v1"></div>
+  <div><label for="lab-v2">Product 2</label><input type="text" id="lab-v2"></div>
+</div>
+<div class="scroll"><table class="lab" aria-label="Vendor comparison">
+<thead><tr><th>Requirement</th><th>Product 1</th><th>Product 2</th></tr></thead>
+<tbody id="lab-body"></tbody>
+</table></div>
+<p class="reqtools" id="lab-sum" aria-live="polite"></p>
+<p><strong>Reflect:</strong> Which requirements could you not check from public information? Which would you put in a POC, which in a contract, and which would rule a product out? Did either vendor publish independent evidence from a setting like Harbourview's?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Richard Rumelt, <em>Good Strategy/Bad Strategy</em> (2011), chapters 1–5: the kernel, and how to recognise bad strategy. About 90 minutes.</li>
+  <li>Hamilton Helmer, <a href="https://7powers.com/"><em>7 Powers: The Foundations of Business Strategy</em></a> (2016). Read the introduction and the chapters on switching costs, cornered resource and process power.</li>
+  <li>Menlo Ventures, <a href="https://menlovc.com/2025-the-state-of-generative-ai/">2025: The State of Generative AI in the Enterprise</a> (December 2025). The build-versus-buy section; about 15 minutes.</li>
+  <li>Fortune, <a href="https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/">MIT report: 95% of generative AI pilots at companies are failing</a> (August 2025). Read it alongside its critics; ask what "failing" was measured against.</li>
+  <li>UCLA Health, <a href="https://www.uclahealth.org/news/release/ucla-study-finds-ai-scribes-may-reduce-documentation-time">UCLA study finds AI scribes may reduce documentation time</a>, summarising Lukac and colleagues, "Ambient AI Scribes in Clinical Practice: A Randomized Trial", <em>NEJM AI</em> (2025).</li>
+  <li>Kaiser Permanente Division of Research, <a href="https://divisionofresearch.kaiserpermanente.org/ai-assisted-notetaking-gains-steady-support-from-kaiser-permanente-physicians/">AI-assisted notetaking gains steady support from Kaiser Permanente physicians</a>, summarising the one-year review in <em>NEJM Catalyst</em> (2025).</li>
+  <li>SingHealth, <a href="https://www.singhealth.com.sg/news/innovation/singhealth-implements-note-buddy-a-microsoft-ai-documentation-system-to-transform-clinical-documentation-and-enhance-quality-of-doctor-patient-interactions">SingHealth implements Note Buddy</a> (September 2024). A Singapore example of building on a shared public platform.</li>
+  <li>Brian Balfour, <a href="https://blog.brianbalfour.com/p/ai-growth-course">AI Growth</a> (Reforge course outline): defensibility factors in AI markets.</li>
+  <li>Kellogg Executive Education, <a href="https://kellogg.northwestern.edu/executive-education/individual-programs/online-programs/psai/">AI-Driven Product Strategy</a>: the programme outline is a useful map of portfolio, roadmapping and go-to-market topics.</li>
+  <li>Prosci, <a href="https://www.prosci.com/methodology/adkar">the ADKAR model</a>, for planning adoption from the individual's side.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<ul>
+  <li><strong>Run the next model release test</strong> on a product you work on or use every day. Which parts get better with a stronger model, and which disappear?</li>
+  <li><strong>Read one contract or terms of service</strong> for an AI tool your organisation uses. Can you export your data? Who decides when the model changes? What happens to the price at renewal?</li>
+  <li><strong>Find a stalled pilot</strong> in your organisation. Write the exit criteria it should have started with, and decide what they say now.</li>
+  <li><strong>Product idea:</strong> a simple "adoption funnel" dashboard for any internal tool, fed by its usage logs: licences, activation, weekly use, depth. Most organisations do not have one.</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Activation</td><td>A user's first real use of a product, after they have access</td></tr>
+<tr><td>ADKAR</td><td>A change-management model from Prosci: Awareness, Desire, Knowledge, Ability, Reinforcement</td></tr>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Builder-month</td><td>One month of one engineer's or data scientist's time</td></tr>
+<tr><td>Build, buy, partner</td><td>Make it with your own team; license a vendor's product; share or co-develop with another organisation or platform</td></tr>
+<tr><td>CEO · CFO · CIO · CMO · COO</td><td>Chief Executive Officer · Chief Financial Officer · Chief Information Officer · Chief Medical Officer · Chief Operating Officer</td></tr>
+<tr><td>Champion</td><td>A respected colleague in a team who helps others adopt a new tool</td></tr>
+<tr><td>Cornered resource</td><td>Something valuable that only you have, such as unique data with the right to use it, or a regulatory approval</td></tr>
+<tr><td>Defensibility</td><td>How hard it is for others to copy or replace what you have built; for a public provider, how durable an investment is</td></tr>
+<tr><td>DPO</td><td>Data protection officer</td></tr>
+<tr><td>Exit criteria</td><td>Conditions, set before a trial starts, that decide whether it goes ahead, is extended or stops</td></tr>
+<tr><td>Gate</td><td>A check between rollout waves: quality, safety, adoption, capacity and approval</td></tr>
+<tr><td>Gateway</td><td>A thin software layer between a product and the model it uses, so the model can be swapped</td></tr>
+<tr><td>Head-to-head comparison</td><td>Testing two products with the same kind of users, work and measures at the same time</td></tr>
+<tr><td>HSA</td><td>Health Sciences Authority, Singapore's regulator of health products including medical devices</td></tr>
+<tr><td>Lock-in</td><td>Dependence on a supplier, model, product or contract that makes leaving expensive</td></tr>
+<tr><td>Must-have</td><td>A requirement an option must meet to be considered at all, whatever it scores elsewhere</td></tr>
+<tr><td>Next model release test</td><td>Asking which parts of a product get better, and which become unnecessary, if a much better and cheaper model appears</td></tr>
+<tr><td>Pilot · pilot purgatory</td><td>A longer trial in real service · a trial that never ends because nobody agreed what success would look like</td></tr>
+<tr><td>POC</td><td>Proof of concept: a short, limited trial that answers one question well enough to make a decision</td></tr>
+<tr><td>Portfolio</td><td>A set of initiatives considered together</td></tr>
+<tr><td>Realisation</td><td>The share of freed time that turns into real value (Module 9)</td></tr>
+<tr><td>Rollout</td><td>Extending a product to everyone it is for, usually in waves</td></tr>
+<tr><td>Thin layer</td><td>A product that is little more than a prompt over someone else's model, and so easy to copy or replace</td></tr>
+<tr><td>TCO</td><td>Total cost of ownership: everything an option costs over a fixed period, including people's time, price rises and the cost of leaving</td></tr>
+</tbody></table></div>
+
+<nav class="pn" aria-label="Previous and next">
+  <a href="module-10.html"><small>← Previous</small>Module 10 · Responsible AI, risk and governance</a>
+  <span class="next"><small>Next</small>Module 12 · Capstone · opens in Week 12</span>
+</nav>
+<p class="foot">Module 11 · Version 1.0 · 21 October 2026 · Harbourview Polyclinics, Riverside Public Library, Lumen Eye Clinics, Tidewater, Queuewise, the cluster platform, their staff, figures and results are fictional. Real studies and products named in the lesson were checked on 21 October 2026. Nothing on this page is investment, procurement or legal advice.</p>
+</div>
+
+<script>
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m11:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m11:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+const num = (v, d) => { const x = parseFloat(v); return isFinite(x) ? x : d; };
+const N = (x, d = 0) => x.toLocaleString('en-SG', { minimumFractionDigits: d, maximumFractionDigits: d });
+const S = x => (x < 0 ? '−S$' : 'S$') + N(Math.abs(Math.round(x)));
+const pct = (x, d = 0) => isFinite(x) ? (x * 100).toFixed(d) + '%' : '—';
+function copyText(text, msgEl, okMsg){
+  const fb = $('fallback');
+  const fallback = () => { fb.hidden = false; fb.value = text; fb.focus(); fb.select(); if (msgEl) msgEl.textContent = 'Select all the text in the box at the end of the Submit section and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(() => { if (msgEl) msgEl.textContent = okMsg; fb.hidden = true; }, fallback); } catch(e) { fallback(); }
+}
+function opts(list, val){ return list.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? ' selected' : ''}>${esc(l)}</option>`).join(''); }
+
+/* ===== Lesson calculator 1: three-year cost and value ===== */
+function tco3(o, bmc){
+  let cost = o.one, value = 0, cum = -o.one, be = null;
+  for (let m = 1; m <= 36; m++) {
+    if (m > o.live) { const c = o.fee + o.bm * bmc; cost += c; value += o.val; cum += o.val - c; }
+    if (be === null && cum >= 0) be = m;
+  }
+  return { cost, value, net: value - cost, be };
+}
+function tCalc(){
+  const g = k => ({ one: num($('t'+k+'-one').value, 0), fee: num($('t'+k+'-fee').value, 0), bm: num($('t'+k+'-bm').value, 0), live: Math.min(36, num($('t'+k+'-live').value, 0)), val: num($('t'+k+'-val').value, 0) });
+  const bmc = num($('t-bmc').value, 0), a = tco3(g(1), bmc), b = tco3(g(2), bmc);
+  const better = a.net >= b.net ? 'Build' : 'Buy';
+  const line = (n, r) => `<small>${n}: cost ${S(r.cost)}, value ${S(r.value)}, net ${S(r.net)} · ${r.be ? 'pays back in month ' + r.be : 'does not pay back in 36 months'}</small>`;
+  $('t-res').innerHTML = `${better} is ahead by ${S(Math.abs(a.net - b.net))}<small>over three years, after counting your own people's time</small>` + line('Build', a) + line('Buy', b);
+}
+['t1-one','t1-fee','t1-bm','t1-live','t1-val','t2-one','t2-fee','t2-bm','t2-live','t2-val','t-bmc'].forEach(id => $(id).addEventListener('input', tCalc)); tCalc();
+
+/* ===== Lesson calculator 2: licences to realised value ===== */
+function aCalc(){
+  const v = id => num($(id).value, 0);
+  const lic = v('a-lic'), act = lic * v('a-act') / 100, wk = act * v('a-wk') / 100, deep = wk * v('a-deep') / 100, light = wk - deep;
+  const tasks = deep * v('a-td') + light * v('a-tl'), hrs = tasks * v('a-min') / 60, val = hrs * v('a-hr') * v('a-real') / 100;
+  const plan = lic * v('a-td') * v('a-min') / 60 * v('a-hr') * v('a-real') / 100;
+  $('a-res').innerHTML = `${S(val)} a month<small>${N(deep, 1)} deep and ${N(light, 1)} light users · ${N(tasks)} tasks · ${N(hrs, 1)} hours freed</small><small>If every licence were a deep user: ${S(plan)} a month. You are getting ${pct(plan ? val / plan : NaN)} of that.</small>`;
+}
+['a-lic','a-act','a-wk','a-deep','a-td','a-tl','a-min','a-real','a-hr'].forEach(id => $(id).addEventListener('input', aCalc)); aCalc();
+
+/* ===== Case data: options catalogue (S$ thousands; months; builder-months) ===== */
+const INI = [
+ { id:'A', n:'A · Medicine questions assistant', must:true },
+ { id:'B', n:'B · Booking and symptom-routing assistant' },
+ { id:'C', n:'C · Consultation note drafter' },
+ { id:'D', n:'D · Missed-appointment predictor' },
+ { id:'E', n:'E · Patient feedback analyser' }
+];
+const OPT = {
+ A1:{ i:'A', r:'build', n:'Fix build 1.2, then expand clinic by clinic', one:40, mo:6.5, live:0, bm:6, bq:1, run:3, note:'Includes the severity-4 fixes, retests, Malay and Tamil leaflets, and rising use. Expansion waits for the committee.' },
+ A2:{ i:'A', r:'hold', n:'Fix only; hold at Clementi and Bedok', one:30, mo:4.7, live:0, bm:4, bq:1, run:2, note:'Keeps the two clinics safe; no expansion in this plan.' },
+ A3:{ i:'A', r:'drop', n:'Withdraw the assistant', one:5, mo:0, live:0, bm:1, bq:1, run:0, note:'Patients at two clinics lose a service they use.' },
+ B1:{ i:'B', r:'build', n:'Build the booking agent in-house', one:60, mo:4, live:12, bm:24, bq:4, run:3, note:'Reschedules, cancels and moves patients between clinics (Module 8). Symptom routing would need its own committee approval.' },
+ B2:{ i:'B', r:'buy', n:'Buy Queuewise booking assistant (fixed steps, no agent)', one:50, mo:9, live:3, bm:3, bq:1, run:0.75, note:'From the supplier of Harbourview\'s appointment system. Reschedule, cancel and book only; English and Mandarin; no symptom routing.' },
+ C1:{ i:'C', r:'buy', n:'Buy Tidewater Scribe (per-seat plan)', one:260, mo:9.2, live:2, bm:3, bq:1, run:0.75, note:'Monthly cost at 30% adoption: licences plus audit.' },
+ C2:{ i:'C', r:'partner', n:'Partner: the cluster\'s shared scribe', one:120, mo:7.5, live:3, bm:2, bq:1, run:0.75, note:'Monthly cost at 30% adoption: cost share plus audit.' },
+ C3:{ i:'C', r:'build', n:'Build a scribe in-house', one:40, mo:7.5, live:9, bm:20, bq:3, run:3, note:'Monthly cost at 30% adoption: usage plus audit. No Hokkien training data.' },
+ D1:{ i:'D', r:'build', n:'Reminder calls only, with reminders in four languages', one:25, mo:3, live:1, bm:2, bq:1, run:1.5, note:'As approved by the committee, with monitoring by group.' },
+ D2:{ i:'D', r:'build', n:'Reminder calls and overbooking', one:25, mo:3, live:1, bm:2, bq:1, run:1.5, note:'Overbooking is not approved by the committee.' },
+ E1:{ i:'E', r:'buy', n:'Buy the survey platform\'s text-analysis add-on', one:10, mo:2.5, live:1, bm:1, bq:1, run:0.25, note:'English and Mandarin only.' },
+ E2:{ i:'E', r:'build', n:'Build on the standard model', one:5, mo:0.8, live:6, bm:6, bq:2, run:1, note:'All four official languages possible.' }
+};
+const QN = ['Q3 2026','Q4 2026','Q1 2027','Q2 2027','Q3 2027','Q4 2027'];
+const BUDGET = 675, CAP = 12;
+const RLABEL = { build:'Build', buy:'Buy', partner:'Partner', hold:'Hold', drop:'Drop' };
+$('opt-table').innerHTML = INI.map(ini => `<tr><td colspan="6" style="background:var(--paper);font-weight:600;color:var(--ink);text-align:left">${esc(ini.n)}</td></tr>` +
+  Object.entries(OPT).filter(([, o]) => o.i === ini.id).map(([k, o]) => `<tr><td>${k} · ${esc(o.n)} <span class="tag">${RLABEL[o.r]}</span></td><td>${N(o.one)}</td><td>${N(o.mo, 1)}</td><td>${o.live}</td><td>${N(o.bm)} over ${o.bq} quarter${o.bq > 1 ? 's' : ''}</td><td>${N(o.run, 2)}</td></tr>`).join('') +
+  (ini.must ? '' : `<tr><td>Not in this plan</td><td>0</td><td>0</td><td>—</td><td>0</td><td>0</td></tr>`)).join('');
+$('opt-notes').innerHTML = Object.entries(OPT).map(([k, o]) => `<strong>${k}</strong> ${esc(o.note)}`).join(' · ');
+
+/* Cost and load of one choice */
+function optCost(k, s){ const o = OPT[k]; if (!o || !s) return 0; const m0 = (s - 1) * 3 + 1, live = Math.max(0, 19 - m0 - o.live); return o.one + o.mo * live; }
+function optLoad(k, s){ const L = [0,0,0,0,0,0].map(() => ({ b:0, r:0 })); const o = OPT[k]; if (!o || !s) return L;
+  for (let q = s; q <= 6; q++) { if (q < s + o.bq) L[q - 1].b += o.bm / o.bq; else L[q - 1].r += o.run; } return L; }
+
+/* ===== Tool 1 · Portfolio ===== */
+let pf = store.get('pf') || {};
+$('pf-rows').innerHTML = INI.map(ini => { const p = pf[ini.id] || {};
+  const choices = [['', 'Choose a route']].concat(Object.entries(OPT).filter(([, o]) => o.i === ini.id).map(([k, o]) => [k, `${k} · ${RLABEL[o.r]}: ${o.n}`])).concat(ini.must ? [] : [['none', 'Not in this plan (drop or defer)']]);
+  return `<div class="panel ini" style="margin:.5rem 0"><h4 style="margin-top:0;color:var(--ink)">${esc(ini.n)}</h4><div class="fgrid">
+  <div class="full"><label for="pf-${ini.id}-o">Route</label><select id="pf-${ini.id}-o" data-i="${ini.id}" data-k="o">${opts(choices, p.o || '')}</select></div>
+  <div><label for="pf-${ini.id}-s">Start quarter</label><select id="pf-${ini.id}-s" data-i="${ini.id}" data-k="s">${opts([['', 'Choose']].concat(QN.map((q, i) => [String(i + 1), q])), p.s || '')}</select></div>
+  <div><label for="pf-${ini.id}-g">Gate before it starts or expands <span class="hint">· optional</span></label><input type="text" id="pf-${ini.id}-g" data-i="${ini.id}" data-k="g" value="${esc(p.g || '')}"></div>
+  <div class="full"><label for="pf-${ini.id}-w">Reason <span class="hint">· tie it to the diagnosis and the evidence</span></label><textarea id="pf-${ini.id}-w" data-i="${ini.id}" data-k="w">${esc(p.w || '')}</textarea></div></div></div>`; }).join('');
+$('pf-rows').querySelectorAll('[data-i]').forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { const i = el.dataset.i; pf[i] = Object.assign(pf[i] || {}, { [el.dataset.k]: el.value }); store.set('pf', pf); pfDraw(); progress(); }));
+function pfStats(){
+  let cost = 0; const load = [0,0,0,0,0,0].map(() => ({ b:0, r:0 }));
+  INI.forEach(ini => { const p = pf[ini.id] || {}; if (!p.o || p.o === 'none') return; const s = +p.s || 0; cost += optCost(p.o, s); optLoad(p.o, s).forEach((l, q) => { load[q].b += l.b; load[q].r += l.r; }); });
+  const chosen = INI.filter(ini => { const p = pf[ini.id] || {}; return p.o && (p.o === 'none' || p.s); }).length;
+  return { cost, load, chosen };
+}
+function pfDraw(){
+  const s = pfStats(), maxLoad = Math.max(CAP, ...s.load.map(l => l.b + l.r)), scale = 100 / (maxLoad * 1.05);
+  const over = s.cost > BUDGET, peak = Math.max(...s.load.map(l => l.b + l.r));
+  $('pf-sum').innerHTML = `<span>Initiatives decided: <b>${s.chosen}</b> / 5</span><span>External spend to Dec 2027: <b class="${over ? 'over' : ''}">S$${N(s.cost, 1)}k</b> of S$${BUDGET}k</span><span>Headroom: <b class="${over ? 'over' : ''}">${over ? '−' : ''}S$${N(Math.abs(BUDGET - s.cost), 1)}k</b></span><span>Busiest quarter: <b class="${peak > CAP ? 'over' : ''}">${N(peak, 1)}</b> of ${CAP} builder-months</span>`;
+  $('pf-cap').innerHTML = s.load.map((l, q) => { const t = l.b + l.r; return `<span>${QN[q]}</span><span class="tr"><span style="width:${l.b * scale}%;background:var(--t2)"></span><span style="width:${l.r * scale}%;background:var(--accent)"></span><span class="lim" style="left:${CAP * scale}%"></span></span><b class="${t > CAP ? 'over' : ''}">${N(t, 1)}</b>`; }).join('');
+  const F = [], P = id => pf[id] || {};
+  if (over) F.push(`Over budget by S$${N(s.cost - BUDGET, 1)}k. Defer, drop or choose a cheaper route.`);
+  s.load.forEach((l, q) => { if (l.b + l.r > CAP) F.push(`${QN[q]} needs ${N(l.b + l.r, 1)} builder-months; 12 are available. Move a start later or choose a route that needs fewer of your builders.`); });
+  if (s.chosen === 5 && !INI.some(ini => ['none','A2','A3'].includes(P(ini.id).o))) F.push('Everything is in, at full scope. What will Harbourview not do? A strategy with no hold or drop has not chosen.');
+  if (P('D').o === 'D2') F.push('The committee has not approved overbooking (Module 10). Plan a new approval with conditions, or choose D1.');
+  if (P('A').o === 'A1' && words(P('A').w) >= 8 && !/F2|F3|F6|fix|retest|committee|gate/i.test(P('A').w + ' ' + (P('A').g || ''))) F.push('A1 expands the assistant: say that expansion waits until F2, F3 and F6 are fixed, retested and approved.');
+  if (P('B').o === 'B1') F.push('B1 ties up 6 builder-months a quarter for a year before anything goes live, and symptom routing is a Clinical use needing its own approval. Is it the best use of your builders?');
+  if (P('B').o === 'B2' && words(P('B').w) >= 8 && !/phone|call|elder|older|Grace|struggl/i.test(P('B').w)) F.push('Grace Teo\'s point: patients who struggle most with the phone line are least likely to use a chatbot. How does the plan protect them?');
+  if (P('C').o === 'C3') F.push('Building the scribe: about 9 months before value, 3 builder-months a quarter for ever after, no Hokkien data, and a market with several products. What makes it Harbourview\'s to build?');
+  if (P('C').o === 'C1' && words(P('C').w) >= 8 && !/exit|renew|price|lock|90|templat|export/i.test(P('C').w)) F.push('Tidewater: price after year 1 is "prevailing list", templates belong to them and export has fees. Say how the exit stays open.');
+  if (P('E').o === 'E1' && words(P('E').w) >= 8 && !/Malay|Tamil|language/i.test(P('E').w)) F.push('The add-on reads English and Mandarin only; about 15% of comments are in Malay or Tamil. Who reads those?');
+  $('pf-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join('');
+}
+pfDraw();
+function pfText(){
+  return INI.map(ini => { const p = pf[ini.id] || {}, o = OPT[p.o];
+    const route = p.o === 'none' ? 'Not in this plan' : o ? `${p.o} · ${RLABEL[o.r]}: ${o.n}` : '-';
+    const cost = o && p.s ? `S$${N(optCost(p.o, +p.s), 1)}k` : (p.o === 'none' ? 'S$0k' : '-');
+    return `${ini.n} | ${route} | start ${p.s ? QN[+p.s - 1] : '-'} | ${cost} | gate: ${(p.g || '').trim() || '-'} | reason: ${(p.w || '').trim() || '-'}`; }).join('\n');
+}
+
+/* ===== Tool 2 · Note drafter options ===== */
+const CO = [
+ { k:'t', n:'Buy: Tidewater', one:260000, inh:0.25, live:2, exit:90000 },
+ { k:'c', n:'Partner: cluster', one:120000, inh:0.25, live:3, exit:50000 },
+ { k:'b', n:'Build', one:340000, inh:1, live:9, exit:0 }
+];
+const DOCS = 260, NOTES = 310, AUDIT = 0.25, BMC = 15000, HOUR = 150;
+let cx = Object.assign({ ad:'0.3', m1:'1.5', m2:'1.5', m3:'1.5', rise:'20', real:'30' }, store.get('cx') || {});
+[['c-ad','ad'],['c-m1','m1'],['c-m2','m2'],['c-m3','m3'],['c-rise','rise'],['c-real','real']].forEach(([id, k]) => { $(id).value = cx[k]; $(id).addEventListener(id === 'c-ad' ? 'change' : 'input', () => { cx[k] = $(id).value; store.set('cx', cx); cDraw(); }); });
+function cModel(){
+  const ad = num(cx.ad, 0.3), docs = Math.round(DOCS * ad), notes = docs * NOTES, rise = num(cx.rise, 0) / 100, real = num(cx.real, 30) / 100;
+  const mins = [num(cx.m1, 0), num(cx.m2, 0), num(cx.m3, 0)];
+  return CO.map((o, i) => {
+    let fee = 0, audit = 0, inh = 0, value = 0, live = 0;
+    for (let m = 1; m <= 36; m++) { if (m <= o.live) continue; live++;
+      const f = o.k === 't' ? Math.max(50, docs) * 40 * (m > 12 ? 1 + rise : 1) : o.k === 'c' ? docs * 18 : notes * 0.06;
+      fee += f; audit += notes * AUDIT; inh += o.inh * BMC; value += notes * mins[i] / 60 * HOUR * real; }
+    const cost = o.one + fee + audit + inh;
+    return { o, docs, live, fee, audit, inh, cost, value, net: value - cost };
+  });
+}
+function cDraw(){
+  const R = cModel(), best = R.reduce((a, b) => b.net > a.net ? b : a);
+  const row = (l, f, key) => `<tr${key ? ' class="key"' : ''}><td>${l}</td>${R.map(r => f(r)).join('')}</tr>`;
+  $('c-body').innerHTML = row('Doctors using it', r => `<td>${r.docs}</td>`) + row('Months live', r => `<td>${r.live}</td>`) +
+    row('One-off', r => `<td>${S(r.o.one)}</td>`) + row('Licence, cost share or usage', r => `<td>${S(r.fee)}</td>`) + row('Audit (2% of notes)', r => `<td>${S(r.audit)}</td>`) +
+    row('Your builders\' time', r => `<td>${S(r.inh)}</td>`) + row('Three-year cost', r => `<td>${S(r.cost)}</td>`, true) + row('Three-year value', r => `<td>${S(r.value)}</td>`) +
+    row('Net value', r => `<td class="${r.net >= 0 ? 'pos' : 'neg'}">${S(r.net)}</td>`, true) + row('Cost to switch away at year 3', r => `<td>${r.o.exit ? S(r.o.exit) : 'Team must stay'}</td>`);
+  const F = [`Highest net value with these assumptions: ${best.o.n}.`];
+  if (num(cx.m1, 0) === num(cx.m2, 0)) F.push('You are assuming the cluster scribe saves as much time as Tidewater. Nobody has measured it in primary care. That is what a head-to-head POC would find out.');
+  if (num(cx.m1, 0) >= 1.5) F.push('1.5 minutes comes from volunteers. Try 1.0 for both bought options: does the ranking change?');
+  F.push('None of these figures includes Hokkien and Teochew consultations, 18% of the work at two clinics.');
+  $('c-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join('');
+}
+cDraw();
+
+const CRIT_DEF = [
+ { id:'time', n:'Minutes saved and note quality, with evidence', w:20 },
+ { id:'lang', n:'Covers patients\' languages, including Hokkien', w:15 },
+ { id:'safe', n:'Safety and governance: model card, audit rights, red-teams', w:15 },
+ { id:'cost', n:'Three-year net value', w:15 },
+ { id:'speed', n:'Time to value', w:10 },
+ { id:'ctrl', n:'Control of the roadmap', w:10 },
+ { id:'exit', n:'Exit and lock-in', w:10 },
+ { id:'data', n:'Data protection', w:5 }
+];
+const MUST_DEF = ['Critical errors no more than 2 per 1,000 audited notes', 'Patient data processed in Singapore and not used for training without opt-in', 'Notes stay in Harbourview\'s medical record'];
+let mx = store.get('mx') || {}; mx.w = mx.w || {}; mx.s = mx.s || {}; mx.m = mx.m || {}; mx.mn = mx.mn || MUST_DEF.slice();
+const OPTS3 = ['t','c','b'], ONAME = { t:'Tidewater', c:'Cluster', b:'Build' };
+function mxDraw(){
+  const sc = [['', '–'], ['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']], pf2 = [['', '–'], ['pass','Pass'], ['fail','Fail'], ['unk','Unknown']];
+  $('mx').innerHTML = `<thead><tr><th>Criterion</th><th>Weight</th>${OPTS3.map(o => `<th>${ONAME[o]}</th>`).join('')}</tr></thead><tbody>` +
+    mx.mn.map((m, j) => `<tr><td><label class="sr" for="mm-${j}">Must-have ${j + 1}</label><input type="text" id="mm-${j}" data-mm="${j}" value="${esc(m)}" style="font-size:.84rem"></td><td>must</td>${OPTS3.map(o => `<td><select data-mp="${o}-${j}" aria-label="${ONAME[o]}, must-have ${j + 1}">${opts(pf2, (mx.m[o + '-' + j]) || '')}</select></td>`).join('')}</tr>`).join('') +
+    CRIT_DEF.map(c => `<tr><td>${esc(c.n)}</td><td><input type="number" min="0" max="100" data-w="${c.id}" value="${esc(mx.w[c.id] != null ? mx.w[c.id] : c.w)}" aria-label="Weight: ${esc(c.n)}"></td>${OPTS3.map(o => `<td><select data-s="${o}-${c.id}" aria-label="${ONAME[o]}: ${esc(c.n)}">${opts(sc, mx.s[o + '-' + c.id] || '')}</select></td>`).join('')}</tr>`).join('') +
+    `<tr class="tot"><td>Weighted score out of 5</td><td id="mx-wt"></td>${OPTS3.map(o => `<td id="mx-t-${o}"></td>`).join('')}</tr></tbody>`;
+  $('mx').querySelectorAll('[data-w]').forEach(el => el.addEventListener('input', () => { mx.w[el.dataset.w] = el.value; store.set('mx', mx); mxTot(); }));
+  $('mx').querySelectorAll('[data-s]').forEach(el => el.addEventListener('change', () => { mx.s[el.dataset.s] = el.value; store.set('mx', mx); mxTot(); progress(); }));
+  $('mx').querySelectorAll('[data-mp]').forEach(el => el.addEventListener('change', () => { mx.m[el.dataset.mp] = el.value; store.set('mx', mx); mxTot(); }));
+  $('mx').querySelectorAll('[data-mm]').forEach(el => el.addEventListener('input', () => { mx.mn[+el.dataset.mm] = el.value; store.set('mx', mx); }));
+  mxTot();
+}
+function mxCalc(){
+  const W = CRIT_DEF.map(c => num(mx.w[c.id] != null ? mx.w[c.id] : c.w, 0)), wt = W.reduce((a, b) => a + b, 0);
+  const T = {}; OPTS3.forEach(o => { const full = CRIT_DEF.every(c => mx.s[o + '-' + c.id]); T[o] = full && wt ? CRIT_DEF.reduce((a, c, i) => a + W[i] * +mx.s[o + '-' + c.id], 0) / wt : null; });
+  const fails = {}; OPTS3.forEach(o => fails[o] = mx.mn.some((_, j) => mx.m[o + '-' + j] === 'fail'));
+  const unk = {}; OPTS3.forEach(o => unk[o] = mx.mn.some((_, j) => mx.m[o + '-' + j] === 'unk'));
+  return { wt, T, fails, unk };
+}
+function mxTot(){
+  const r = mxCalc();
+  $('mx-wt').textContent = r.wt; $('mx-wt').style.color = r.wt === 100 ? '' : 'var(--bad)';
+  OPTS3.forEach(o => { $('mx-t-' + o).innerHTML = r.T[o] == null ? '—' : N(r.T[o], 2) + (r.fails[o] ? ' <span class="chip c-bad">Out</span>' : ''); });
+  const F = [];
+  if (r.wt !== 100) F.push(`Weights add up to ${r.wt}, not 100.`);
+  const scored = OPTS3.filter(o => r.T[o] != null);
+  if (scored.length === 3) { const top = scored.reduce((a, b) => r.T[b] > r.T[a] ? b : a);
+    if (r.fails[top]) F.push(`${ONAME[top]} scores highest but fails a must-have, so it is out. Say what would have to change for it to pass.`);
+    if (r.unk[top]) F.push(`${ONAME[top]} scores highest, but at least one must-have is unknown. That is a question for the POC or the contract.`);
+    const R = cModel(), netRank = R.slice().sort((a, b) => b.net - a.net).map(x => x.o.k);
+    const costScore = o => +mx.s[o + '-cost'];
+    if (costScore(netRank[0]) < costScore(netRank[2])) F.push('Your "three-year net value" scores do not match the ranking in Part 1. Check them against the table.'); }
+  if (mx.s['c-lang'] && +mx.s['c-lang'] >= 4) F.push('The cluster scribe has no Hokkien or Teochew. Is a 4 or 5 on languages fair?');
+  if (mx.s['t-time'] && +mx.s['t-time'] >= 5) F.push('Tidewater\'s evidence comes from volunteers only. Does it deserve a 5?');
+  $('mx-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join('');
+}
+mxDraw();
+$('mx-why').value = mx.why || ''; $('mx-why').addEventListener('input', e => { mx.why = e.target.value; store.set('mx', mx); progress(); });
+const mxDone = () => { const r = mxCalc(); return OPTS3.filter(o => r.T[o] != null).length; };
+
+/* ===== Tool 3 · Durability and exit ===== */
+const DU = [['own','What Harbourview will own, whatever the route','tests, content, workflow, data, trust'],['next','What the next model release does to it','which parts get better, which disappear'],['exit','How the exit stays open','contract terms, data, tests, the gateway']];
+let du = store.get('du') || {};
+$('du-rows').innerHTML = INI.map(ini => { const d = du[ini.id] || {};
+  return `<div class="panel ini" style="margin:.5rem 0"><h4 style="margin-top:0;color:var(--ink)">${esc(ini.n)}</h4><div class="fgrid">
+  <div class="full"><label for="du-${ini.id}-tw">Overall, the next model release is</label><select id="du-${ini.id}-tw" data-i="${ini.id}" data-k="tw">${opts([['', 'Choose'],['up','Mostly a tailwind: it gets better'],['mix','Mixed: some parts get better, some disappear'],['down','Mostly a headwind: it becomes unnecessary']], d.tw || '')}</select></div>` +
+  DU.map(([k, l, h]) => `<div class="full"><label for="du-${ini.id}-${k}">${esc(l)} <span class="hint">· ${esc(h)}</span></label><textarea id="du-${ini.id}-${k}" data-i="${ini.id}" data-k="${k}">${esc(d[k] || '')}</textarea></div>`).join('') + '</div></div>'; }).join('');
+$('du-rows').querySelectorAll('[data-i]').forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { const i = el.dataset.i; du[i] = Object.assign(du[i] || {}, { [el.dataset.k]: el.value }); store.set('du', du); duFlags(); progress(); }));
+$('du-gp').value = du.gp || ''; $('du-gp').addEventListener('input', e => { du.gp = e.target.value; store.set('du', du); duFlags(); progress(); });
+function duFlags(){
+  const F = [], all = INI.map(i => ['own','next','exit'].map(k => (du[i.id] || {})[k] || '').join(' ')).join(' ');
+  if (words(all) >= 60 && !/test|eval|judge|red.?team/i.test(all)) F.push('Your tests (Modules 5, 6 and 10) are the best protection against lock-in and the main thing that lets you take a better model. Are they on your "own" lists?');
+  const c = du.C || {};
+  if (words(c.exit) >= 6 && /tidewater/i.test(c.exit + ' ' + ((pf.C || {}).w || '')) && !/renew|price|cap/i.test(c.exit)) F.push('Note drafter: Tidewater\'s price after year 1 is "prevailing list". Cap it in the contract, or plan for it.');
+  if (words(du.gp) >= 15 && !/leaflet|content|national|harmon|general|assistant|thin|liab|core|copy/i.test(du.gp)) F.push('On the CEO\'s question: what would a private clinic get from Harbourview that it could not get from a general assistant, or from a vendor using the same medicine information?');
+  if (words(du.gp) >= 15 && !/capacit|pharmac|focus|people|builder|team/i.test(du.gp)) F.push('Who would answer private clinics\' handovers, and which builders would support them?');
+  $('du-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join('');
+}
+duFlags();
+const duDone = () => INI.filter(i => { const d = du[i.id] || {}; return d.tw && words(d.own) >= 5; }).length;
+
+/* ===== Tool 4 · POC plan ===== */
+const POC = [
+ { k:'p-ini', l:'Initiative, and the option or options being tested', h:'' },
+ { k:'p-dec', l:'The decision it informs, who makes it and when', h:'one decision, a named owner, a date' },
+ { k:'p-hyp', l:'Hypothesis', h:'with numbers' },
+ { k:'p-scope', l:'Scope', h:'clinics, kinds of consultation or task, languages, what is excluded' },
+ { k:'p-who', l:'Who takes part, and how they are chosen', h:'representative, not only volunteers' },
+ { k:'p-base', l:'Baseline', h:'what you measure without the product, and how' },
+ { k:'p-meas', l:'Measures and thresholds', h:'benefit, safety, real use, experience, cost' },
+ { k:'p-exit', l:'Exit criteria: go, extend, stop', h:'set now, before the start' },
+ { k:'p-stop', l:'Safety stop rule', h:'what ends it at once, and who can call it' },
+ { k:'p-plan', l:'Week-by-week plan', h:'weeks 0 to 6, including set-up and the decision meeting' },
+ { k:'p-cost', l:'Cost cap, people needed, and approvals', h:'builders, clinicians, committee' },
+ { k:'p-lim', l:'What this POC cannot tell us', h:'and how you will find out later' }
+];
+let poc = store.get('poc') || {};
+$('poc-fields').innerHTML = POC.map((p, i) => `<div><label for="${p.k}">${i + 1}. ${esc(p.l)}${p.h ? ` <span class="hint">· ${esc(p.h)}</span>` : ''}</label><textarea id="${p.k}">${esc(poc[p.k] || '')}</textarea></div>`).join('');
+POC.forEach(p => $(p.k).addEventListener('input', e => { poc[p.k] = e.target.value; store.set('poc', poc); pocFlags(); progress(); }));
+function pocFlags(){
+  const F = [], t = k => poc[k] || '', all = POC.map(p => t(p.k)).join(' ');
+  if (words(t('p-who')) >= 6 && !/random|representative|non-?volunteer|not volunteer|did not volunteer|all doctors|matched|every/i.test(t('p-who'))) F.push('How are participants chosen? Volunteers alone will overstate the result.');
+  if (words(t('p-meas')) >= 6 && !/\d/.test(t('p-meas'))) F.push('Give each measure a number to beat.');
+  if (words(t('p-exit')) >= 6 && !(/go/i.test(t('p-exit')) && /extend/i.test(t('p-exit')) && /stop/i.test(t('p-exit')))) F.push('Set criteria for all three outcomes: go, extend and stop.');
+  if (words(t('p-dec')) >= 4 && !/\d|june|july|aug|sep|oct|nov|dec|week/i.test(t('p-dec'))) F.push('Give the decision a date.');
+  if (words(t('p-stop')) >= 4 && !/\d|any|immediate|same day/i.test(t('p-stop'))) F.push('Make the safety stop rule specific enough that anyone can tell when it is triggered.');
+  if (/scribe|note|drafter|tidewater|cluster/i.test(t('p-ini')) && words(all) >= 60 && !/hokkien|teochew|dialect/i.test(all)) F.push('Note drafter: 18% of consultations at Jurong and Ang Mo Kio are partly in Hokkien or Teochew. Is that in or out of scope, and why?');
+  if (/tidewater/i.test(t('p-ini')) && /cluster/i.test(t('p-ini')) && words(t('p-who')) >= 6 && !/match|random|order|both|same/i.test(t('p-who'))) F.push('A head-to-head needs comparable groups: matched groups or both products in random order.');
+  if (words(t('p-base')) >= 4 && /pilot/i.test(t('p-base')) && !/before|without|usual|control/i.test(t('p-base'))) F.push('The baseline should be measured without the product, for the same people or matched ones.');
+  if (words(all) >= 120 && !/week|novelty|habit/i.test(t('p-plan') + ' ' + t('p-lim'))) F.push('Six weeks is short. How will you tell first-week enthusiasm from habit?');
+  $('poc-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join('');
+}
+pocFlags();
+const pocDone = () => POC.filter(p => words(poc[p.k]) >= 5).length;
+function pocText(){ return ['SIX-WEEK POC PLAN'].concat(POC.map((p, i) => `${i + 1}. ${p.l}\n${(poc[p.k] || '').trim() || '-'}`)).join('\n\n'); }
+$('poc-copy').addEventListener('click', () => copyText(pocText(), $('poc-msg'), 'Copied. Paste it into your document.'));
+
+/* ===== Tool 5 · Strategy on a page ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `HARBOURVIEW POLYCLINICS · AI STRATEGY, JULY 2026 TO DECEMBER 2027
+For the board, 26 June · Head of Digital Products
+
+1. Diagnosis
+[Three or four facts that matter most: where patients and staff lose most, what the evidence so far shows, and what limits us: money, builders, governance]
+
+2. Guiding policy
+[The approach in two or three sentences, including what it rules out. For example, where we build, buy or share, and what we will always own]
+
+3. What we will do, in order
+[See the portfolio table. One line per initiative: route, start, gate]
+
+4. What we will not do
+[Initiatives held, dropped or deferred, and the ideas we are saying no to, with the reason]
+
+5. What we will own whatever happens to the models
+[Tests, content, workflow, data, trust; how we keep every exit open]
+
+6. How we will know it is working, and when we will stop
+[Adoption and outcome measures by initiative; the committee's gates; stop rules]
+
+7. First move
+[The six-week POC: what it decides, by when]
+
+8. What we ask of the board
+[Decisions, money, and anything that commits Harbourview beyond December 2027]`;
+const adr = $('adr'); adr.value = misc.adr || '';
+function wc(){ const w = words(adr.value); $('wc').textContent = w + ' words' + (w > 750 ? ' · aim for one page, about 600 words' : ''); }
+function spFlags(){ const t = adr.value, F = [];
+  if (words(t) >= 200) {
+    if (!/not do|will not|won't|hold|drop|defer|stop/i.test(t)) F.push('Say what Harbourview will not do.');
+    if (!/gate|committee/i.test(t)) F.push('Put the committee\'s gates in the plan, as the CMO asked.');
+    if (!/\d/.test(t)) F.push('The board will look for the cost and the dates.');
+    if (/AI-first|transform|world-class|leverage AI|cutting-edge/i.test(t)) F.push('Phrases such as "AI-first" or "transform" are the fluff Rumelt warns about. Replace them with a choice.');
+  }
+  $('sp-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join(''); }
+adr.addEventListener('input', () => { misc.adr = adr.value; store.set('misc', misc); wc(); spFlags(); progress(); });
+$('tmpl').addEventListener('click', () => { if (adr.value.trim() && !confirm('Replace your current draft with the outline?')) return; adr.value = OUTLINE; misc.adr = OUTLINE; store.set('misc', misc); wc(); spFlags(); progress(); adr.focus(); });
+wc(); spFlags();
+
+const CHECKS = [
+  'Every initiative has a route, a start quarter and a reason tied to the diagnosis',
+  'At least one initiative is held, dropped or deferred, and the page says why',
+  'The portfolio fits within S$675,000 and 12 builder-months in every quarter',
+  'The committee\'s gates appear in the plan, including the medicine assistant\'s fixes and the predictor\'s limits',
+  'The note drafter comparison uses three-year cost and value, not price alone, and says what the pilot cannot show',
+  'For every bought or shared option, I have said how the exit stays open',
+  'I have answered the CEO\'s question about private family doctors',
+  'My POC informs one named decision, with go, extend and stop criteria set before it starts',
+  'My POC uses representative participants, a baseline and a safety stop rule',
+  'One page plus the table; POC about two pages; every acronym spelled out once'
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c, i) => `<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el => { el.checked = !!ck[el.dataset.i]; el.addEventListener('change', () => { ck[el.dataset.i] = el.checked; store.set('ck', ck); }); });
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Is a list of ambitious goals for AI, such as \"use AI to transform patient experience\", a strategy?","No","Goals are not choices. A strategy diagnoses the situation, sets a guiding policy that rules some things out, and commits to a short set of coherent actions within real limits."],
+  ["If the next general-purpose model can do your product's main feature for free, was that feature a thin layer?","Yes","A feature that is little more than a prompt over someone else's model is easily copied or absorbed. What lasts is what the model cannot bring by itself: your data and context, your place in people's work, your tests and the trust you have earned."],
+  ["Does owning a large amount of historical data automatically give an organisation a lasting advantage?","No","Data helps only if it is unique, usable by right, relevant to the job, keeps improving with use, and is actually turned into better behaviour. Stale or unlabelled data that others can buy is not an advantage."],
+  ["Can deep integration into people's daily work make a product hard to replace, even if its model is not unique?","Yes","That is switching cost and process power. It cuts both ways: deep integration with a vendor's product also makes you hard to free from that vendor."],
+  ["Should an organisation usually build in-house when the job is the same as everyone else's, several vendors offer it, and it is not where the organisation differs?","No","Those are the conditions that point to buying or partnering. Build where you differ, where you have context others lack, and where you can keep running it."],
+  ["Is your own team's time to run, test and upgrade a product part of its total cost of ownership?","Yes","In-house builds often look cheap because people's time is left out. Evaluation, monitoring, red-teams and model upgrades continue every month after launch."],
+  ["Should the exit criteria for a proof of concept be agreed before it starts?","Yes","Criteria set after seeing the results tend to fit the result. Writing go, extend and stop criteria in advance is the main defence against pilot purgatory."],
+  ["Is the number of licences bought a good measure of adoption?","No","Licences measure access. Adoption is activation, regular use and depth: using the product for most of the work it is meant for. Value comes from depth."],
+  ["Do results from volunteer early users usually predict what the rest of the users will see?","No","Volunteers are early adopters: more tolerant and more motivated. A POC needs representative participants, and a rollout plan has to win the majority."],
+  ["In the UCLA randomised trial, did two commercial AI scribes show different effects on time spent writing notes?","Yes","One reduced time in notes by about a tenth compared with usual practice; the other showed no significant change. A product category does not guarantee a result; test the specific product in your setting."]
+ ], sa: [
+  ["Explain the next model release test in your own words, and apply it to one product you know (not Harbourview's). Which parts would you own and which would you rent?",
+   ["The test: a model twice as good at half the price appears; which parts get better (tailwind) and which become unnecessary (headwind)?","A concrete product with at least two parts classified with reasons","Own the tailwind parts: data and context, integrations and actions, tests, workflow, trust","Rent or avoid the headwind parts: generic answering, custom models a general model will match"]],
+  ["Option X (build): S$200,000 one-off, S$10,000 a month to run including your own people, live after 8 months. Option Y (buy): S$50,000 one-off, S$6,000 a month in fees plus S$1,000 a month of your people's time, live after 2 months. Each produces S$15,000 of value a month once live. Work out the three-year cost, value and net value of each. Which do you choose, and what could reverse it?",
+   ["X: cost 200,000 + 28 × 10,000 = S$480,000; value 28 × 15,000 = S$420,000; net −S$60,000","Y: cost 50,000 + 34 × 7,000 = S$288,000; value 34 × 15,000 = S$510,000; net +S$222,000","Choose Y on these figures; most of the gap comes from going live six months earlier and lower running effort","Could reverse: steep renewal price rises, lock-in or exit cost, the vendor not meeting a must-have (safety, data, languages), the product being where you differ"]],
+  ["A hospital will run a six-week POC of an AI tool that drafts discharge summaries. Write its exit criteria: go, extend and stop, with thresholds, plus a safety stop rule, and say who should take part.",
+   ["Measures with numbers: time saved per summary, error rate on audited summaries, share of summaries using the tool, clinician rating","Go, extend and stop each defined, set before the start","Safety stop rule: for example any error that reaches a patient or a set number of critical errors per 1,000 stops it at once","Representative participants (wards and clinicians chosen, not only volunteers), a baseline, a decision owner and date"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["Is turning a consultation into a draft note a job where Harbourview differs from other healthcare providers?","No","Every clinic does the same job, several products exist, and a shared public platform already offers one. Harbourview's own contribution lies in templates for its kinds of visit, its audit, its languages and how doctors use it."],
+  ["Over three years at 30% adoption, with every option saving 1.5 minutes and Tidewater's price rising 20% after a year, does building in-house give the lowest net value of the three?","Yes","Using Tool 2's figures: Tidewater about +S$210,800, the cluster scribe about +S$408,100, the in-house build about −S$212,900. The build goes live seven months later and needs a builder every month."],
+  ["If the cluster scribe saved 1.0 minute per note and Tidewater 1.5, would the cluster scribe still give the higher three-year net value at 30% adoption?","No","The cluster scribe's value falls to about S$598,500 and its net to about +S$108,900, below Tidewater's +S$210,800. The ranking depends on minutes saved, which nobody has measured for the cluster scribe in primary care: that is the point of a head-to-head POC."],
+  ["A plan starts A1, C1 and D1 in Q3 2026 and E1 in Q4 2026. Does it stay within the S$675,000 envelope?","No","A1 S$157k + C1 S$407.2k + D1 S$76k + E1 S$45k = S$685.2k, about S$10k over. Something has to move, be cheaper or go."],
+  ["Under the committee's decision in Module 10, may the plan use the missed-appointment predictor for overbooking without a new approval?","No","The committee approved reminder calls with monitoring and declined overbooking until the fairness gap is fixed. A plan that includes overbooking needs a new approval with conditions."]
+ ], sa: [
+  ["Give a route (build, buy, partner, hold or drop) for each of the five initiatives, with a one-line reason each, and say which you would start first.",
+   ["A: fix and expand behind the committee's gates, or hold; it is Harbourview's own context (prescriptions, pharmacists), already built","B: buy fixed-step booking or defer; building an agent ties up builders for a year and symptom routing is Clinical","C: buy or partner, decided by a head-to-head POC; not build","D: reminder calls only (cheap, approved); E: buy, build small or defer, with a plan for Malay and Tamil comments","A named first start that fits capacity and money"]],
+  ["Using the case figures at 30% adoption and 1.5 minutes saved, work out the three-year cost and net value of Tidewater and of the cluster scribe. Show your working. What must the POC find out before you commit?",
+   ["78 doctors, about 24,180 notes a month; audit about S$6,045 a month; builders' time S$3,750 a month for both","Tidewater: 260,000 + licences (10 × 3,120 + 24 × 3,744) + 34 × (6,045 + 3,750) ≈ S$714,100; value 34 × ≈27,200 ≈ S$924,900; net ≈ +S$210,800","Cluster: 120,000 + 33 × (1,404 + 6,045 + 3,750) ≈ S$489,600; value 33 × ≈27,200 ≈ S$897,700; net ≈ +S$408,100","The POC must measure minutes saved and errors for non-volunteers with both products, in the consultations that matter (chronic disease reviews, Hokkien)"]],
+  ["The CEO asks whether Harbourview should offer the medicine assistant to private family doctors. Apply the next model release test and say what you recommend.",
+   ["Headwind parts: answering general medicine questions, which general assistants and vendors using shared medicine information can do","Tailwind parts are Harbourview-specific: its prescription records, its pharmacists' handover, its trust; these do not transfer to another clinic","Selling it would add liability, support and pharmacist capacity Harbourview does not have, and take builders from patients","Recommend no for now; possibly share tests and lessons with the cluster instead; say what would have to be true to revisit it"]]
+ ]}
+};
+const QSTATE = {}, EXPORT = {};
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+/* ===== Lab: vendor comparison ===== */
+const LABREQ = ['Languages: English, Mandarin, Malay, Tamil; any Hokkien or other dialects','Where patient data is processed and stored','Whether customer data is used to train or improve the product, and how to opt out','A model card or equivalent description of limits','Independent evidence (trial or peer-reviewed study) and in what setting','Clinician reviews the note before it is saved','Audit logs or reports available to the customer','Export of templates, transcripts and logs, and at what cost','Published pricing, and terms for price changes at renewal','Notice of model changes, and incident reporting','Integration with medical record systems','Notice period and help with leaving'];
+const LABST = [['', '—'], ['yes','Found: meets it'], ['part','Found: partly'], ['no','Found: does not'], ['nf','Not published']];
+let lab = store.get('lab') || {};
+$('lab-v1').value = lab.v1 || ''; $('lab-v2').value = lab.v2 || '';
+['v1','v2'].forEach(k => $('lab-' + k).addEventListener('input', e => { lab[k] = e.target.value; store.set('lab', lab); }));
+$('lab-body').innerHTML = LABREQ.map((r, i) => `<tr><td style="min-width:14rem">${esc(r)}</td>${[1,2].map(v => `<td><select data-l="${v}-${i}" aria-label="Product ${v}: ${esc(r)}">${opts(LABST, lab[v + '-' + i] || '')}</select><input type="text" data-ln="${v}-${i}" aria-label="Product ${v} note: ${esc(r)}" placeholder="Where found" value="${esc(lab['n' + v + '-' + i] || '')}" style="margin-top:.25rem"></td>`).join('')}</tr>`).join('');
+document.querySelectorAll('#lab-body [data-l]').forEach(el => el.addEventListener('change', () => { lab[el.dataset.l] = el.value; store.set('lab', lab); labSum(); }));
+document.querySelectorAll('#lab-body [data-ln]').forEach(el => el.addEventListener('input', () => { lab['n' + el.dataset.ln] = el.value; store.set('lab', lab); }));
+function labSum(){ const c = v => { const s = LABREQ.map((_, i) => lab[v + '-' + i]); return { done: s.filter(Boolean).length, nf: s.filter(x => x === 'nf').length, no: s.filter(x => x === 'no').length }; };
+  const a = c(1), b = c(2); if (!a.done && !b.done) { $('lab-sum').textContent = 'Check at least a few requirements for each product.'; return; }
+  $('lab-sum').textContent = `Product 1: ${a.done} of ${LABREQ.length} checked, ${a.nf} not published, ${a.no} not met · Product 2: ${b.done} checked, ${b.nf} not published, ${b.no} not met. Every "not published" is a question for the vendor, the POC or the contract.`; }
+labSum();
+$('lab-ref').value = lab.ref || ''; $('lab-ref').addEventListener('input', e => { lab.ref = e.target.value; store.set('lab', lab); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d = $(id); if (!d) return; d.className = 'dot' + (s === 'done' ? ' done' : s === 'prog' ? ' prog' : ''); }
+function progress(){
+  const a = QSTATE.qa, b = QSTATE.qb;
+  const npf = (typeof pf !== 'undefined') ? pfStats().chosen : 0;
+  const nmx = (typeof mx !== 'undefined' && $('mx-wt')) ? mxDone() : 0;
+  const npoc = (typeof poc !== 'undefined') ? pocDone() : 0;
+  const ndu = (typeof du !== 'undefined') ? duDone() : 0;
+  const w = (typeof adr !== 'undefined') ? words(adr.value) : 0;
+  if (a) { $('st-qa').textContent = qlabel(a); dot('d-qa', a.mast ? 'done' : a.started ? 'prog' : ''); dot('d-lesson', a.started ? 'done' : ''); }
+  if (b) { $('st-qb').textContent = qlabel(b); dot('d-qb', b.mast ? 'done' : b.started ? 'prog' : ''); dot('d-case', b.started ? 'done' : ''); }
+  $('st-pf').textContent = `${npf} of 5 initiatives`;
+  $('st-mx').textContent = `${nmx} of 3 scored`;
+  $('st-poc').textContent = `${npoc} of 12 parts`;
+  const started = npf || nmx || npoc || ndu || w;
+  dot('d-as', npf === 5 && nmx === 3 && npoc === 12 && ndu === 5 && w > 300 ? 'done' : started ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask the course team for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a && a.mast ? 'done' : 'not yet'} · Quiz B: ${b && b.mast ? 'done' : 'not yet'}.`;
+  const sum = q => q && q.started ? { c: q.c, total: q.total, mast: q.mast } : null;
+  try { localStorage.setItem('progress:m11', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: started ? 'drafting' : 'none' })); } catch(e) {}
+}
+
+/* ===== Step bar highlight ===== */
+const links = [...document.querySelectorAll('.stepbar a')], secs = links.map(l => document.querySelector(l.getAttribute('href')));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('here', l.getAttribute('href') === '#' + e.target.id)); const h = links.find(l => l.classList.contains('here')); if (h && h.scrollIntoView) h.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } }); }, { rootMargin: '-20% 0px -75% 0px' });
+  secs.forEach(s => s && io.observe(s));
+}
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); progress();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click', () => {
+  const out = ['MODULE 11 SUBMISSION · AI strategy, defensibility and rollout', '', 'CHECKPOINT QUIZ A', ...EXPORT.qa(), 'CHECKPOINT QUIZ B', ...EXPORT.qb()];
+  const s = pfStats();
+  out.push('TOOL 1 · PORTFOLIO AND SEQUENCE', pfText(), `External spend: S$${N(s.cost, 1)}k of S$${BUDGET}k · builder-months by quarter: ${s.load.map((l, q) => QN[q] + ' ' + N(l.b + l.r, 1)).join(', ')}`);
+  const R = cModel(), r = mxCalc();
+  out.push('', 'TOOL 2 · NOTE DRAFTER OPTIONS', `Assumptions: adoption ${pct(num(cx.ad, 0.3))}, minutes saved Tidewater ${cx.m1} / cluster ${cx.m2} / build ${cx.m3}, Tidewater rise ${cx.rise}%, realisation ${cx.real}%`);
+  R.forEach(x => out.push(`${x.o.n}: 3-year cost ${S(x.cost)}, value ${S(x.value)}, net ${S(x.net)}, switch-away cost ${x.o.exit ? S(x.o.exit) : 'team must stay'}`));
+  out.push('Scoring (weights total ' + r.wt + '):');
+  CRIT_DEF.forEach(c => out.push(`${c.n} (weight ${mx.w[c.id] != null ? mx.w[c.id] : c.w}): ${OPTS3.map(o => ONAME[o] + ' ' + (mx.s[o + '-' + c.id] || '-')).join(', ')}`));
+  mx.mn.forEach((m, j) => out.push(`Must-have: ${m}: ${OPTS3.map(o => ONAME[o] + ' ' + (mx.m[o + '-' + j] || '-')).join(', ')}`));
+  out.push(`Weighted totals: ${OPTS3.map(o => ONAME[o] + ' ' + (r.T[o] == null ? '-' : N(r.T[o], 2)) + (r.fails[o] ? ' (fails a must-have)' : '')).join(', ')}`, 'Recommendation: ' + ((mx.why || '').trim() || '-'));
+  out.push('', 'TOOL 3 · WHAT LASTS AND KEEPING THE EXIT OPEN');
+  const TW = { up:'mostly tailwind', mix:'mixed', down:'mostly headwind' };
+  INI.forEach(i => { const d = du[i.id] || {}; out.push(`${i.n} · next release: ${TW[d.tw] || '-'}`, `  Own: ${(d.own || '').trim() || '-'}`, `  Next release: ${(d.next || '').trim() || '-'}`, `  Exit: ${(d.exit || '').trim() || '-'}`); });
+  out.push('Private family doctors: ' + ((du.gp || '').trim() || '-'));
+  out.push('', 'TOOL 4 · ' + pocText());
+  out.push('', 'TOOL 5 · STRATEGY ON A PAGE', (misc.adr || '(blank)').trim(), `Word count: ${words(misc.adr)}`, '', 'CHECKLIST');
+  CHECKS.forEach((c, i) => out.push(`[${ck[i] ? 'x' : ' '}] ${c}`));
+  const lr = LABREQ.map((q, i) => [lab['1-' + i], lab['2-' + i]].some(Boolean) ? `${q}: ${lab['1-' + i] || '-'} / ${lab['2-' + i] || '-'}` : null).filter(Boolean);
+  if (lr.length || (lab.ref || '').trim()) out.push('', `OPTIONAL LAB · ${lab.v1 || 'Product 1'} vs ${lab.v2 || 'Product 2'}`, ...lr, 'Reflection: ' + ((lab.ref || '').trim() || '-'));
+  copyText(out.join('\n'), $('copied'), 'Copied. Paste it into your email and attach your strategy and POC plan.');
+});
+</script>
+</body>
+</html>
