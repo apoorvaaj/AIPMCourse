@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="en" data-access="learner" data-module="3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 3 · Discovery and Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Modules 1–2 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-t1 { background: var(--t1-soft); color: var(--t1); } .c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--accent); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 1rem 0 1.25rem; }
+.compare > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; min-width: 0; }
+.compare h4 { margin-top: 0; }
+.msg { font-family: var(--mono); font-size: .8rem; background: var(--paper); border-radius: 3px; padding: .5rem .6rem; margin: .5rem 0; color: var(--ink); overflow-wrap: anywhere; }
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.formula { font-family: var(--mono); font-size: .85rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: .6rem .75rem; margin: .5rem 0 1rem; color: var(--ink); overflow-x: auto; white-space: nowrap; }
+
+/* Ladder */
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; counter-reset: rung; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder li:nth-child(2) { border-left-color: var(--t2); margin-left: .6rem; }
+.ladder li:nth-child(3) { border-left-color: var(--t2); margin-left: 1.2rem; }
+.ladder li:nth-child(4) { border-left-color: var(--t3); margin-left: 1.8rem; }
+.ladder li:nth-child(5) { border-left-color: var(--bad); margin-left: 2.4rem; }
+@media (max-width: 480px) { .ladder li { margin-left: 0 !important; } }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+
+/* Flow (system diagram as an ordered list) */
+.flow { list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+.flow li { position: relative; margin: 0 0 1.35rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem .6rem 3rem; font-size: .9rem; }
+.flow li:last-child { margin-bottom: 0; }
+.flow li::after { content: "↓"; position: absolute; left: 50%; bottom: -1.3rem; transform: translateX(-50%); color: var(--muted); font-size: .9rem; }
+.flow li:last-child::after { content: none; }
+.flow .k { position: absolute; left: .7rem; top: .55rem; font-family: var(--mono); font-size: .75rem; color: var(--paper); background: var(--ink); border-radius: 3px; padding: .05rem .4rem; }
+.flow b { color: var(--ink); }
+.flow .kind { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-left: .35rem; white-space: nowrap; }
+.flow .ai { border-left: 4px solid var(--t2); }
+.flow .rule { border-left: 4px solid var(--accent); }
+.flow .person { border-left: 4px solid var(--t3); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .78rem; color: var(--muted); margin: -.5rem 0 1rem; }
+.legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 2px; vertical-align: -2px; margin-right: .3rem; }
+
+/* Confusion grid */
+.cm { display: grid; grid-template-columns: 7.5rem repeat(2, minmax(0,1fr)); gap: .4rem; margin: 1rem 0 1.25rem; font-size: .86rem; }
+.cm .h { font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); align-self: end; padding: .2rem .3rem; }
+.cm .cell { border-radius: 4px; padding: .55rem .7rem; min-width: 0; }
+.cm .cell b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.cm .ok { background: var(--good-soft); } .cm .fa { background: var(--t3-soft); } .cm .miss { background: var(--bad-soft); } .cm .tn { background: var(--paper); border: 1px solid var(--rule); }
+@media (max-width: 480px) { .cm { grid-template-columns: 5rem repeat(2, minmax(0,1fr)); font-size: .8rem; } }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+blockquote { margin: .75rem 0 0; padding: .5rem .9rem; border-left: 3px solid var(--rule); font-family: var(--display); font-style: italic; font-size: 1.02rem; color: var(--body); }
+blockquote cite { display: block; font-family: var(--text); font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* Calculators */
+.calc { min-width: 46rem; }
+.calc td { vertical-align: middle; }
+.calc input[type=number] { width: 5.6rem; padding: .3rem .35rem; font-size: .85rem; text-align: right; font-variant-numeric: tabular-nums; }
+.calc .out { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--ink); }
+.calc .out.big { font-weight: 600; }
+.calc .neg { color: var(--bad); } .calc .pos { color: var(--good); }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin: .5rem 0 .9rem; }
+.knobs label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: .15rem; }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.lab td input { min-width: 7rem; }
+.leaf { font-size: .88rem; }
+.leaf .tag { font-family: var(--mono); font-size: .7rem; color: var(--bad); }
+#copied { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>/* Shared navigation and previous/next links (added for consistent flow) */
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+.pn span { color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.cta a { display: inline-block; text-decoration: none; font-weight: 600; padding: .6rem 1.1rem; border-radius: 4px; border: 1px solid var(--accent); color: var(--accent); }
+.cta a.primary { background: var(--accent); color: var(--paper); }
+.open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
+<style>/* Module 3 additions: opportunity solution tree, readiness scorecard, interview cards */
+.ost, .ost ul { list-style: none; margin: 0; padding: 0; }
+.ost { margin: 1rem 0 1.25rem; font-size: .88rem; }
+.ost ul { margin-left: 1.1rem; padding-left: .9rem; border-left: 2px solid var(--rule); }
+.ost li { margin: .45rem 0 0; position: relative; }
+.ost ul > li::before { content: ""; position: absolute; left: -.9rem; top: 1.05rem; width: .7rem; border-top: 2px solid var(--rule); }
+.ost .node { display: inline-block; max-width: 100%; background: var(--surface); border: 1px solid var(--rule); border-left-width: 4px; border-radius: 4px; padding: .4rem .65rem; overflow-wrap: anywhere; }
+.ost .node small { display: block; font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ost .lv-o { border-left-color: var(--ink); background: var(--paper); }
+.ost .lv-p { border-left-color: var(--t2); }
+.ost .lv-s { border-left-color: var(--accent); }
+.ost .lv-t { border-left-color: var(--t3); font-size: .84rem; }
+.ost .ai { font-family: var(--mono); font-size: .64rem; padding: 0 .35rem; border-radius: 3px; margin-left: .3rem; background: var(--t2-soft); color: var(--t2); white-space: nowrap; }
+.ost .nonai { font-family: var(--mono); font-size: .64rem; padding: 0 .35rem; border-radius: 3px; margin-left: .3rem; background: var(--good-soft); color: var(--good); white-space: nowrap; }
+.ost .empty { color: var(--muted); font-style: italic; }
+.builder { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: .75rem 0 1rem; }
+.builder fieldset { border: 0; border-top: 1px solid var(--rule); margin: .9rem 0 0; padding: .7rem 0 0; min-width: 0; }
+.builder legend { font-weight: 600; color: var(--ink); font-size: .92rem; padding: 0; }
+.builder label { display: block; font-size: .8rem; color: var(--muted); margin: .45rem 0 .15rem; }
+.sol { display: grid; grid-template-columns: minmax(0,1fr) 7.5rem; gap: .35rem .5rem; margin-top: .35rem; }
+.sol input[type=text] { grid-column: 1; }
+.sol select { grid-column: 2; }
+.sol .tst { grid-column: 1 / -1; }
+@media (max-width: 520px) { .sol { grid-template-columns: 1fr; } .sol select { grid-column: 1; } }
+.score-row { display: grid; grid-template-columns: minmax(0, 1fr) 9.5rem; gap: .4rem .75rem; align-items: start; border-top: 1px solid var(--rule); padding: .75rem 0; }
+.score-row:first-child { border-top: 0; }
+.score-row .dim b { color: var(--ink); display: block; }
+.score-row .dim span { font-size: .84rem; color: var(--muted); }
+.score-row textarea { grid-column: 1 / -1; min-height: 3.2rem; font-size: .9rem; }
+@media (max-width: 520px) { .score-row { grid-template-columns: 1fr; } }
+.verdict { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: baseline; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; margin: .5rem 0 1rem; font-variant-numeric: tabular-nums; }
+.verdict b { color: var(--ink); font-size: 1.05rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .85rem; font-size: .9rem; min-width: 0; }
+.card .who { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .04em; display: block; margin-bottom: .3rem; }
+.card q { font-family: var(--display); font-size: 1.02rem; font-style: italic; color: var(--ink); }
+.card q::before, .card q::after { content: none; }
+.card p { margin: .35rem 0 0; font-size: .85rem; color: var(--muted); }
+.bar { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0,1fr) 3.2rem; gap: .4rem .6rem; align-items: center; font-size: .86rem; margin: .3rem 0; }
+.bar .track { height: .7rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+.bar .track i { display: block; height: 100%; background: var(--t2); }
+.bar .track i.hi { background: var(--t3); }
+.bar .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+@media (max-width: 520px) { .bar { grid-template-columns: minmax(0,1fr) 3rem; } .bar .track { grid-column: 1 / -1; grid-row: 2; } }
+.hyp { font-family: var(--display); font-size: 1.05rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--t3); border-radius: 0 4px 4px 0; padding: .75rem 1rem; margin: .75rem 0 1rem; color: var(--ink); }
+.hyp em { color: var(--t3); font-style: normal; font-family: var(--mono); font-size: .8rem; }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
+
+<p class="eyebrow">Term I · Foundations · Week 3 · Module 3</p>
+<h1>Problem framing, discovery and data readiness</h1>
+<p class="lede">Most products built on artificial intelligence (AI) fail before anyone trains a model: they solve the wrong problem, or the data was never fit for the job.</p>
+<ul class="meta"><li>About 7 hours</li><li>4 steps</li><li>2 checkpoint quizzes</li><li>Graded: discovery report, test, viva</li><li>No coding</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Assignment</a></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>Module 1 asked <em>whether</em> a problem needs AI. Module 2 asked <em>how</em> to build it. This module steps back to the question both of those assumed: <em>is this the right problem, and do we have the data to solve it?</em> Boards and executives often arrive with a solution already in mind ("build us a chatbot"). Your job is to find the problem underneath, test it cheaply, and check that the data can support an AI answer before anyone spends a build budget.</p>
+
+<h3 style="margin-top:1.25rem">By the end of this module you will be able to</h3>
+<ol>
+  <li>Run discovery that tests the problem, not the AI solution, and turn what you learn into an opportunity solution tree.</li>
+  <li>Assess whether data is ready for an AI product: whether it exists, whether you may use it, its quality, its labels, who it leaves out, and its privacy risks.</li>
+  <li>Write a testable hypothesis with a stop condition, choose a cheap test, and make a go, pivot or stop decision.</li>
+</ol>
+
+<h3>Your path through the module</h3>
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">90 min</span><span class="d">Six short parts with worked examples. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">45 min</span><span class="d">The Harbourview discovery pack: call data and interviews for the booking chatbot, and the feedback data behind the feedback analyser. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Assignment</b><span class="t">3–4 hrs</span><span class="d">Write a discovery report with an opportunity solution tree, a data readiness scorecard and two decisions, using the three tools on this page. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">60 min</span><span class="d">Closed-book test and a 10-minute viva on your report. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Discovery report draft<b id="st-adr">0 words</b></div>
+  <div>End-of-module test<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you type. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. Every acronym is spelled out the first time it appears on this page, even if earlier modules already did so. All names, people and figures in the case are invented for teaching.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson"><span class="step">Step 1 · Lesson · about 90 minutes</span>Find the right problem, then check the data</h2>
+<p>Parts 1 to 4 cover discovery: separating problems from solutions, interviewing well, building an opportunity solution tree and testing assumptions cheaply. Part 5 covers data readiness. Part 6 shows how to turn all of it into a go, pivot or stop decision.</p>
+
+<h3 id="l1">3.1 Problems, solutions and outcomes</h3>
+<p>Requests usually arrive as solutions: "an AI chatbot for bookings", "a model to read our feedback". A solution is one possible answer. Before you judge it, you need three things it leaves out.</p>
+<dl class="terms">
+  <dt>Outcome</dt><dd>The measurable change the organisation wants, such as "fewer callers give up waiting" or "serious complaints are answered within three days". An outcome says nothing about how.</dd>
+  <dt>Opportunity</dt><dd>A need, pain point or wish of a real user, in their words: "I can't change an appointment the clinic chose for me." Opportunities are what discovery finds. A missing feature ("there is no chatbot") is not an opportunity.</dd>
+  <dt>Solution</dt><dd>Something you could build or change to address an opportunity. AI is one kind of solution. Better forms, clearer letters, a new rule or a staff process are others.</dd>
+</dl>
+<p>A useful test: if you cannot name the outcome and the opportunity a request serves, you are not yet ready to judge the solution. This is the core idea behind Teresa Torres's work on continuous discovery, which the reading for this module covers.</p>
+<div class="note warn"><p><strong>Why AI makes this harder.</strong> AI is exciting and well funded, so teams are tempted to start from "where can we use AI?" rather than "what problem matters most?". Leading AI product courses warn against this directly: validate the opportunity first, then ask whether AI is the best way to address it.</p></div>
+
+<h3 id="l2">3.2 Discovery interviews that tell you the truth</h3>
+<p>People are poor at predicting what they will do, and kind enough to say they like your idea. Good discovery interviews avoid both traps by asking about real, recent events.</p>
+<div class="compare">
+  <div><h4>Weak question</h4><div class="msg">Would you use a chatbot to book appointments?</div><div class="msg">Is it hard to book with us?</div><div class="msg">What features would you like?</div><p style="margin:.5rem 0 0;font-size:.88rem">Asks for a prediction or an opinion, suggests the answer, or hands design to the user.</p></div>
+  <div><h4>Better question</h4><div class="msg">Tell me about the last time you needed to see a doctor here. What did you do first?</div><div class="msg">What happened next? Where did you get stuck?</div><div class="msg">What did you do instead?</div><p style="margin:.5rem 0 0;font-size:.88rem">Asks for a specific story. You hear real behaviour, real words and workarounds.</p></div>
+</div>
+<dl class="terms">
+  <dt>Story-based interview</dt><dd>Ask about one specific past occasion, then keep asking "what happened next?". Workarounds (calling three times, borrowing a relative's login) are strong signals of a real problem.</dd>
+  <dt>Jobs to be done (JTBD)</dt><dd>A way of describing what someone is trying to get done in their life, independent of any product: "make sure my father's diabetes review happens without taking leave". It keeps you focused on the goal, not the tool.</dd>
+  <dt>Synthesis</dt><dd>Turning notes into findings. Write one observation per note, group similar notes (often called affinity mapping), name each group as an opportunity, and count how many people and records support it.</dd>
+</dl>
+<h4>How strong is your evidence?</h4>
+<div class="scroll"><table>
+<thead><tr><th>Weaker</th><th>Stronger</th></tr></thead>
+<tbody>
+<tr><td>What people say they would do</td><td>What people did last time, or what records show they did</td></tr>
+<tr><td>One vivid interview</td><td>A pattern across several interviews and confirmed in data</td></tr>
+<tr><td>Staff opinion about users</td><td>Users' own words and behaviour</td></tr>
+<tr><td>Only people who were easy to reach</td><td>Including people who are hard to reach: older users, other languages, carers</td></tr>
+</tbody></table></div>
+<p>Interviews and data work together. Interviews tell you <em>why</em>; records (call logs, booking data, complaints) tell you <em>how often</em>. Strong discovery uses both.</p>
+
+<h3 id="l3">3.3 The opportunity solution tree</h3>
+<p>An opportunity solution tree (OST) is a one-page picture of discovery, described by Teresa Torres. It has four levels. Read it from the top down.</p>
+<ol>
+  <li><strong>Desired outcome</strong> at the top: one measurable outcome.</li>
+  <li><strong>Opportunities</strong> below it: the user needs and pain points that, if addressed, would move the outcome. Big opportunities can split into smaller ones.</li>
+  <li><strong>Solutions</strong> under each opportunity: several, so you compare rather than fall in love with one. At least one should be a non-AI option.</li>
+  <li><strong>Assumption tests</strong> under each solution: the quickest way to find out whether it would work.</li>
+</ol>
+<div class="worked">
+<h4>Worked example · Riverside Public Library (fictional)</h4>
+<p>You met Riverside in Module 2. Its board now asks for "an AI chatbot so members can ask if their reserved book is ready". Twelve member interviews and a year of reservation records tell a different story: 28% of reserved books are never collected, mostly because members miss the email saying the book is waiting, or cannot get to the branch within the seven-day collection window.</p>
+<ul class="ost" aria-label="Riverside library opportunity solution tree">
+  <li><span class="node lv-o"><small>Outcome</small>Reserved books collected rises from 72% to 85% within six months</span>
+  <ul>
+    <li><span class="node lv-p"><small>Opportunity</small>"I don't notice when my book is ready"</span>
+      <ul>
+        <li><span class="node lv-s"><small>Solution</small>Text message alert, sent by SMS (Short Message Service), as well as email<span class="nonai">non-AI</span></span><ul><li><span class="node lv-t"><small>Test</small>Send texts for half of reservations for four weeks; compare collection rates</span></li></ul></li>
+        <li><span class="node lv-s"><small>Solution</small>Chatbot answering "is my book ready?"<span class="ai">AI</span></span><ul><li><span class="node lv-t"><small>Test</small>Count how often members ask this today: only 40 enquiries a month</span></li></ul></li>
+      </ul>
+    </li>
+    <li><span class="node lv-p"><small>Opportunity</small>"I can't get there within seven days"</span>
+      <ul>
+        <li><span class="node lv-s"><small>Solution</small>Locker collection open until 10 pm<span class="nonai">non-AI</span></span></li>
+        <li><span class="node lv-s"><small>Solution</small>Predict who will miss the window and extend it for them<span class="ai">AI</span></span><ul><li><span class="node lv-t"><small>Test</small>First try a simple rule: extend for anyone who missed one before</span></li></ul></li>
+      </ul>
+    </li>
+  </ul></li>
+</ul>
+<p style="margin:0">The board's chatbot sits on the tree, but discovery shows it addresses a small opportunity. A text alert, which needs no AI, is tested first. The prediction model from Module 2 survives as a later option, to be tried only if the simple rule leaves a gap.</p>
+</div>
+<h4>Common mistakes on a tree</h4>
+<ul>
+  <li>An outcome that is really a solution ("launch a chatbot") or cannot be measured ("better experience").</li>
+  <li>Opportunities written as missing features ("no AI assistant") instead of user needs.</li>
+  <li>Only one solution per opportunity, so nothing is compared.</li>
+  <li>Opportunities with no evidence behind them. Each should trace back to interviews or data.</li>
+</ul>
+
+<h3 id="l4">3.4 Assumptions, hypotheses and cheap tests</h3>
+<p>Every solution rests on assumptions. Before building, list them and test the riskiest ones first. Five kinds of assumption are worth checking for any AI product.</p>
+<div class="scroll"><table>
+<thead><tr><th>Kind</th><th>The question</th><th>Example for a booking chatbot</th></tr></thead>
+<tbody>
+<tr><td><strong>Desirability</strong></td><td>Will people want it and use it?</td><td>Older patients will message a bot rather than phone</td></tr>
+<tr><td><strong>Usability</strong></td><td>Can people use it without help?</td><td>Patients can describe what they need in their own words</td></tr>
+<tr><td><strong>Feasibility</strong></td><td>Can we build it, including the data?</td><td>The booking system lets software change clinic-booked appointments</td></tr>
+<tr><td><strong>Viability</strong></td><td>Is it worth it for the organisation?</td><td>Enough calls move to the bot to free staff time</td></tr>
+<tr><td><strong>Ethics and safety</strong></td><td>Could it harm anyone?</td><td>The bot never delays someone describing an emergency</td></tr>
+</tbody></table></div>
+
+<h4>Cheap ways to test an AI idea before building it</h4>
+<dl class="terms">
+  <dt>Wizard of Oz test</dt><dd>Users interact with what looks like the AI product, but a person secretly writes the replies. You learn what people ask, in what words, and whether they finish the task, before building anything. The optional lab on this page is a Wizard of Oz test.</dd>
+  <dt>Concierge test</dt><dd>Like Wizard of Oz, but users know a person is helping. Useful for learning the job in detail.</dd>
+  <dt>Fake door test</dt><dd>Add a button or link for a feature that does not exist yet ("Change this appointment") and count clicks, then explain it is coming. Measures demand honestly if you tell people afterwards.</dd>
+  <dt>Data spike</dt><dd>Pull a small sample of real records (for example, 200 comments) and look at them by hand. Fast, and often decisive for data readiness.</dd>
+  <dt>A/B test</dt><dd>Show version A to some users and version B to others, then compare. Best once you have something real to compare.</dd>
+</dl>
+
+<h4>Writing a testable hypothesis</h4>
+<p>A hypothesis turns an assumption into something a test can prove wrong. Use this pattern:</p>
+<div class="hyp">We believe <em>[users]</em> have <em>[problem]</em> because <em>[evidence]</em>. If we <em>[solution or test]</em>, then <em>[measurable change]</em> within <em>[time]</em>. We will stop or change course if <em>[stop condition]</em>.</div>
+<div class="worked">
+<h4>Worked example · Riverside text alerts</h4>
+<p class="hyp" style="margin-top:0">We believe members miss reserved books because the "ready" email goes unread (9 of 12 interviewees said so; email open rate is 31%). If we also send a text message for half of all reservations for four weeks, collection for that half will rise by at least 6 percentage points. We will stop if the rise is under 3 points, or if more than 2% of members ask to stop the texts.</p>
+<p style="margin:0">Notice the stop condition is written <strong>before</strong> the test starts. If you decide what counts as failure after seeing the results, almost any result can be called a success.</p>
+</div>
+
+<h3 id="l5">3.5 Data readiness: six questions before you build</h3>
+<p>An AI product is only as good as the data it learns from, is tested on, or reads from. "We have lots of data" is not the same as "we have data ready for this job". Check six dimensions.</p>
+<div class="scroll"><table>
+<thead><tr><th>Dimension</th><th>Questions to ask</th><th>Typical warning sign</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Availability and access</strong></td><td>Does the data exist? Enough of it? Can we get it out, and how fresh is it?</td><td>"It's in the vendor's system; we've never exported it."</td></tr>
+<tr><td><strong>2. Rights and permission</strong></td><td>Was it collected for a purpose that covers this use? Do contracts and consent allow it? What does the data protection officer (DPO) say?</td><td>Data collected for billing being reused for marketing predictions</td></tr>
+<tr><td><strong>3. Quality</strong></td><td>Is it complete, accurate, consistent and up to date?</td><td>Fields that changed meaning when a system was replaced</td></tr>
+<tr><td><strong>4. Labels (ground truth)</strong></td><td>Do we know the right answer for enough examples to train or test? Who decides, and do they agree?</td><td>Two experts label the same items and disagree a third of the time</td></tr>
+<tr><td><strong>5. Coverage and fairness</strong></td><td>Does it represent everyone the product will serve: ages, languages, sites, channels? Are the rare but important cases there?</td><td>A survey that older patients rarely answer</td></tr>
+<tr><td><strong>6. Privacy and security</strong></td><td>Does it contain personal data we do not need? Can we remove it? Where will it be processed and for how long?</td><td>Free text containing identity numbers and diagnoses</td></tr>
+</tbody></table></div>
+
+<h4>Scoring each dimension</h4>
+<div class="scroll"><table>
+<thead><tr><th class="num">Score</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td class="num">3</td><td><strong>Ready.</strong> No significant gaps.</td></tr>
+<tr><td class="num">2</td><td><strong>Usable with known gaps.</strong> Fix alongside building.</td></tr>
+<tr><td class="num">1</td><td><strong>Major gaps.</strong> Fix before building; weeks to months of work.</td></tr>
+<tr><td class="num">0</td><td><strong>Blocker.</strong> Missing or not allowed, and no fix in sight.</td></tr>
+</tbody></table></div>
+<p>A single 0 stops the project however high the other scores are. You cannot build on data you are not allowed to use, however clean it is.</p>
+
+<h4>Three ideas about labels that catch teams out</h4>
+<ol>
+  <li><strong>If people cannot agree, the model cannot be judged.</strong> Ask two trained people to label the same sample. The share of items they label the same way is called <em>agreement between labellers</em> (inter-rater agreement). If it is low, fix the categories and instructions (the codebook) before you automate anything.</li>
+  <li><strong>Rare cases need deliberate searching.</strong> If 1 in 100 records is the case you care about, a random sample of 500 contains about 5. To test a model on 100 examples you would need to read about 10,000 records at random. Instead, look for likely examples on purpose, for instance with keyword searches or from cases already escalated.</li>
+  <li><strong>Labelling has a real cost.</strong> Estimate it before you promise a date.</li>
+</ol>
+<div class="formula">labelling cost = items × (1 + share double-labelled) × minutes per item ÷ 60 × hourly cost</div>
+<div class="worked">
+<h4>Worked example · Riverside reservation records</h4>
+<p>Before building the prediction model from Module 2, the library runs a readiness check on three years of reservation records.</p>
+<div class="scroll"><table>
+<thead><tr><th>Dimension</th><th class="num">Score</th><th>Evidence and fix</th></tr></thead>
+<tbody>
+<tr><td>Availability</td><td class="num">3</td><td>98,000 reservations, exported nightly from the library system</td></tr>
+<tr><td>Rights</td><td class="num">2</td><td>Membership terms allow use "to improve services"; DPO asks for a short notice to members</td></tr>
+<tr><td>Quality</td><td class="num">1</td><td>Collection times missing before the 2024 system change: use only the last 20 months</td></tr>
+<tr><td>Labels</td><td class="num">3</td><td>"Collected or not" is recorded automatically; no human labelling needed</td></tr>
+<tr><td>Coverage</td><td class="num">2</td><td>E-book reservations are in a different system and are excluded; fine for this use</td></tr>
+<tr><td>Privacy</td><td class="num">2</td><td>Borrowing history is sensitive: drop book titles, keep only dates and branch</td></tr>
+</tbody></table></div>
+<p>Total 13 of 18, no blocker: <strong>ready with conditions</strong>. If labels had needed staff to read records, the cost would be, for 2,000 items at 1 minute each with 20% double-labelled and staff costing S$36 (Singapore dollars) an hour:</p>
+<div class="formula">2,000 × 1.2 × 1 ÷ 60 × 36 = 40 hours × S$36 = S$1,440</div>
+</div>
+<div class="note"><p><strong>Personal data in Singapore.</strong> Singapore's Personal Data Protection Act (PDPA) limits how organisations collect, use and share personal data. Using existing data to build or test AI raises questions about purpose, consent and the exceptions the Act allows. The Personal Data Protection Commission (PDPC) published advisory guidelines in 2024 on using personal data in AI recommendation and decision systems, listed in the reading. As a product manager you do not decide the legal answer; you make sure the data protection officer is asked early, with a clear description of the data and the use. Module 10 covers governance in depth. Nothing on this page is legal advice.</p></div>
+
+<h3 id="l6">3.6 The decision: go, pivot or stop</h3>
+<p>Discovery ends in a decision, not a slide of findings.</p>
+<div class="scroll"><table>
+<thead><tr><th>Decision</th><th>When</th><th>What you say next</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-good">Go</span></td><td>A real, frequent opportunity; the solution's riskiest assumptions survived a test; data is ready or the gaps are fixable</td><td>What you will build first, what it must prove and by when</td></tr>
+<tr><td><span class="chip c-mid">Pivot</span></td><td>The outcome still matters, but the evidence points to a different opportunity, user group, solution or data source</td><td>What changes, what stays, and the next test</td></tr>
+<tr><td><span class="chip c-bad">Stop</span></td><td>The opportunity is small, an assumption failed, or a data blocker cannot be fixed</td><td>Why, what was learned, and what would reopen it</td></tr>
+</tbody></table></div>
+<p>A pivot is not a failure. Keeping the outcome while changing the route to it is the most common, and often the most valuable, result of good discovery. "Go with conditions" is also a fair answer, as long as the conditions are specific and someone owns them.</p>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Step 2 · Case study · 45 minutes</span>Harbourview Polyclinics: the discovery pack</h2>
+<p>You are still Harbourview's head of digital products. The board has approved your technical recommendations from Module 2. It now wants two more initiatives looked at, and it has already decided what one of them should be. Read the memo, then open each section of the pack. All names and figures are invented for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Grace Teo, Chief Operating Officer (COO)<br>TO: Head of Digital Products<br>RE: Booking chatbot and feedback analyser: discovery before budget</div>
+<p>The board wants a <strong>symptom-routing chatbot</strong> in the app by next year. Board members see long phone queues every morning and believe a chatbot that tells patients whether to come in, and books them, would fix it. Before I release build money, I want evidence that it addresses the problem that actually matters.</p>
+<p>Separately, clinic managers want an AI tool to read our <strong>patient feedback</strong> and tell them what to fix. Our service quality team says the data is a mess. I need to know whether it is ready.</p>
+<p>The contact-centre team and the service quality team have gathered what they have. Please come back with a discovery report: what the real problems are, what you would test first, whether the feedback data is fit for purpose, and a go, pivot or stop decision for each.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. Contact-centre facts</b><span class="k">Initiative B · booking and symptom-routing chatbot</span></summary>
+<div class="in">
+<div class="scroll"><table>
+<thead><tr><th>Measure</th><th class="num">Figure</th></tr></thead>
+<tbody>
+<tr><td>Calls per weekday</td><td class="num">3,200</td></tr>
+<tr><td>Share arriving between 8 am and 11 am</td><td class="num">62%</td></tr>
+<tr><td>Average wait in that peak</td><td class="num">11 min</td></tr>
+<tr><td>Callers who hang up before being answered, in the peak</td><td class="num">19%</td></tr>
+<tr><td>Staff cost per call answered</td><td class="num">S$4.20</td></tr>
+<tr><td>Calls made by someone on behalf of another person (usually a carer or adult child)</td><td class="num">31%</td></tr>
+<tr><td>New bookings made in the app rather than by phone</td><td class="num">41%</td></tr>
+<tr><td>App store rating</td><td class="num">3.1 of 5</td></tr>
+</tbody></table></div>
+<h4>Why people call: 600 calls coded by the contact-centre team, August 2026</h4>
+<div role="list" aria-label="Call reasons">
+  <div class="bar" role="listitem"><span>Change or cancel an existing appointment</span><span class="track"><i class="hi" style="width:100%"></i></span><span class="v">27%</span></div>
+  <div class="bar" role="listitem"><span>Book a new appointment</span><span class="track"><i style="width:92.6%"></i></span><span class="v">25%</span></div>
+  <div class="bar" role="listitem"><span>Queue status, opening hours, directions</span><span class="track"><i style="width:51.9%"></i></span><span class="v">14%</span></div>
+  <div class="bar" role="listitem"><span>"Which service do I need?"</span><span class="track"><i style="width:33.3%"></i></span><span class="v">9%</span></div>
+  <div class="bar" role="listitem"><span>Medicine refill or medicine question</span><span class="track"><i style="width:29.6%"></i></span><span class="v">8%</span></div>
+  <div class="bar" role="listitem"><span>Symptoms: "should I come in? is it urgent?"</span><span class="track"><i style="width:25.9%"></i></span><span class="v">7%</span></div>
+  <div class="bar" role="listitem"><span>Bills and subsidies</span><span class="track"><i style="width:22.2%"></i></span><span class="v">6%</span></div>
+  <div class="bar" role="listitem"><span>Other</span><span class="track"><i style="width:14.8%"></i></span><span class="v">4%</span></div>
+</div>
+<p style="margin-top:.75rem">Counts: 162, 150, 84, 54, 48, 42, 36 and 24 calls respectively.</p>
+<ul>
+  <li><strong>Changing appointments:</strong> 70% of these calls are about appointments the clinic booked, such as chronic disease reviews. The app only lets patients change appointments they booked themselves.</li>
+  <li><strong>Symptom calls</strong> go to the nurse line. Nurses judge about 1 in 6 to need same-day care. Two calls in the sample were emergencies and were told to call 995, Singapore's ambulance number.</li>
+  <li><strong>Phone menu:</strong> a press-1-for-bookings menu was added in 2023. 60% of callers press 0 to reach a person.</li>
+  <li><strong>Top complaint in app reviews:</strong> "I can't change my appointment."</li>
+</ul>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. Interview notes</b><span class="k">8 interviews: 4 patients and carers, 2 nurses, 2 front-line staff</span></summary>
+<div class="in">
+<div class="cards">
+  <div class="card"><span class="who">P1 · Mdm Lim, 72, diabetes</span><q>The app is for my son. I call. At eight o'clock the line is always busy, so I try three, four times.</q><p>Calls to move her review when it clashes with her grandchild's school pickup.</p></div>
+  <div class="card"><span class="who">P2 · Mr Raj, 45, carer for his father</span><q>I book for Dad by logging in as him on my phone. Changing his review means calling in office hours, when I'm at work.</q><p>Uses his father's Singpass (Singapore's national digital identity login) because the app has no carer access.</p></div>
+  <div class="card"><span class="who">P3 · Ms Chen, 29</span><q>Booking took two minutes. I just didn't know "Chronic Disease Management" meant my thyroid check.</q><p>Booked the wrong service first and had to call to fix it.</p></div>
+  <div class="card"><span class="who">P4 · Mr Ahmad, 58, speaks Malay at home</span><q>I'd rather send a WhatsApp. I don't want a robot that doesn't understand me.</q><p>Messages a pharmacy on WhatsApp already. Wary of automated phone menus.</p></div>
+  <div class="card"><span class="who">N1 · Nurse Siti, nurse line</span><q>Half the symptom calls want reassurance. The dangerous ones don't always sound dangerous. A man said he felt "a bit tired". It was a heart attack.</q><p>Follows a written triage protocol of about 40 questions.</p></div>
+  <div class="card"><span class="who">N2 · Nurse manager</span><q>If a chatbot sends more people to us "just in case", my line drowns.</q><p>Nurse line is already at capacity most mornings.</p></div>
+  <div class="card"><span class="who">F1 · Kumar, front desk</span><q>Most of my phone time is moving review appointments. Patients get a letter with a date they can't make.</q><p>Review dates are set by the clinic and posted by letter three weeks ahead.</p></div>
+  <div class="card"><span class="who">F2 · Contact-centre lead</span><q>People don't hate the phone. They hate waiting. If they could fix the simple things themselves, we'd have time for the hard calls.</q><p>Estimates simple reschedules take about 4 minutes each.</p></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. What data exists for the chatbot</b><span class="k">Initiative B</span></summary>
+<div class="in">
+<div class="scroll"><table>
+<thead><tr><th>Source</th><th>What it holds</th><th>Limits</th></tr></thead>
+<tbody>
+<tr><td>Call recordings</td><td>All calls</td><td>Kept 90 days, then deleted; not transcribed; patients told recordings are "for quality and training"</td></tr>
+<tr><td>Booking system</td><td>Every booking, change and cancellation, and whether the patient or clinic made it</td><td>No record of <em>why</em> an appointment was changed</td></tr>
+<tr><td>Nurse triage protocol</td><td>Written rules nurses follow for symptom calls</td><td>Paper and PDF (Portable Document Format) files only; last revised 2024</td></tr>
+<tr><td>App search and click logs</td><td>What patients tap and search for in the app</td><td>Only for app users, who skew younger</td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. Feedback facts and data</b><span class="k">Initiative E · patient feedback analyser</span></summary>
+<div class="in">
+<h4>Where feedback comes from</h4>
+<div class="scroll"><table>
+<thead><tr><th>Source</th><th class="num">Volume</th><th>Who reads it today</th></tr></thead>
+<tbody>
+<tr><td>Post-visit text message survey (score plus optional comment)</td><td class="num">About 6,500 comments a month</td><td>Nobody routinely. A monthly report is built from 300 comments chosen at random, read by hand (about 2 days of an officer's time)</td></tr>
+<tr><td>Feedback portal (complaints and compliments)</td><td class="num">About 420 a month</td><td>All read by the service quality team (3 officers)</td></tr>
+<tr><td>App store reviews</td><td class="num">About 150 a month</td><td>Nobody</td></tr>
+</tbody></table></div>
+<p>The survey goes to every patient after a visit. 9% respond, and 62% of responses include a comment. The survey vendor's platform holds about <strong>190,000 comments</strong> from the last 30 months.</p>
+
+<h4>The service quality team's data check</h4>
+<div class="scroll"><table>
+<thead><tr><th>Topic</th><th>Finding</th></tr></thead>
+<tbody>
+<tr><td><strong>Themes</strong></td><td>An 11-theme codebook: waiting time, staff attitude, doctor communication, pharmacy, billing, facilities, booking, app, clinical concern, compliment, other. In March 2026 "booking" and "app" were merged, so older labels do not match newer ones.</td></tr>
+<tr><td><strong>Labelled comments</strong></td><td>1,200 comments labelled in 2025, all by one officer.</td></tr>
+<tr><td><strong>Agreement check</strong></td><td>Two officers labelled the same 200 comments. They agreed on 142 (71%). On the "clinical concern" theme they agreed on 9 of 16 (56%).</td></tr>
+<tr><td><strong>Serious complaints</strong></td><td>Allegations of clinical harm, abuse, discrimination or a privacy breach. About 0.8% of comments. Policy: acknowledge within 3 working days. Last month's 300-comment sample contained 2, both found over a week late.</td></tr>
+<tr><td><strong>Languages</strong></td><td>English 79%, Chinese 11%, Malay 5%, Tamil 2%, mixed-language 3%.</td></tr>
+<tr><td><strong>Personal data in comments</strong></td><td>9% name a staff member. 3% contain a phone number or NRIC number (National Registration Identity Card number). Some mention diagnoses.</td></tr>
+<tr><td><strong>Who responds</strong></td><td>Patients 65 and over respond at 4%; under 65, at 11%. Clinic 7 has no survey data for 5 months in 2025 after a vendor switch.</td></tr>
+<tr><td><strong>Labelling cost</strong></td><td>A quality officer costs about S$45 an hour including overheads and takes about 1.2 minutes to label one comment with the codebook.</td></tr>
+</tbody></table></div>
+
+<h4>Rights and privacy: note from the data protection officer</h4>
+<div class="memo" style="font-size:.98rem">
+<div class="hdr">FROM: Data Protection Officer (DPO)<br>RE: Using survey comments for an AI theme analyser</div>
+<p>The survey invitation tells patients their feedback "will be used to improve our services". An internal tool that groups comments into themes for managers is consistent with that purpose. Our contract with the survey vendor says Harbourview owns the data and can export it as a CSV (comma-separated values) file. My conditions for any AI model: data is processed in Singapore; NRIC and phone numbers are removed before comments reach the model; model inputs are kept no longer than 30 days. Please do not use comments to judge individual staff members without a separate review with Human Resources.</p>
+</div>
+
+<h4>Interview notes</h4>
+<div class="cards">
+  <div class="card"><span class="who">Clinic manager, Clinic 3</span><q>I don't need a dashboard of eleven themes. Tell me the three things to fix at my clinic this month.</q></div>
+  <div class="card"><span class="who">Head of service quality</span><q>My nightmare is a serious complaint sitting in a survey nobody reads. Themes are nice. Missing a safety complaint is a headline.</q></div>
+  <div class="card"><span class="who">Quality officer</span><q>Half of "clinical concern" is people unhappy their doctor didn't give antibiotics. The other half is real. We never agreed where the line is.</q></div>
+</div>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B before starting the assignment.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 15 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. Keep the discovery pack open as you answer; some questions need a quick calculation.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment"><span class="step">Step 3 · Assignment · 3–4 hours · Graded 60%</span>The discovery report</h2>
+<div class="note"><p><strong>Your task.</strong> Write one discovery report for the Chief Operating Officer, no more than three pages of text (about 1,400 words) plus two one-page appendices: your opportunity solution tree for the booking chatbot, and your data readiness scorecard for the feedback analyser. End each part with a clear go, pivot or stop decision.</p></div>
+
+<h3>What your report must contain</h3>
+<h4>Summary · a few lines at the top</h4>
+<p>Your two decisions, stated first, so the Chief Operating Officer can act on them without reading further.</p>
+<h4>Part 1 · Booking and symptom-routing chatbot (Initiative B)</h4>
+<ol>
+  <li><strong>What we learned:</strong> three to five findings. For each, the evidence (interview, data or both) and how strong it is.</li>
+  <li><strong>Opportunity solution tree</strong> (Appendix A): one measurable outcome; at least three opportunities in users' terms; at least two solutions under each of your top two opportunities, including at least one non-AI solution; an assumption test under each solution you would pursue. Use the tree builder below.</li>
+  <li><strong>Where the board's symptom-routing chatbot fits</strong> on your tree, and what you advise doing about it.</li>
+  <li><strong>Riskiest assumption and first test:</strong> name it, say which kind it is, and write one testable hypothesis using the pattern from Lesson 3.4, with a stop condition.</li>
+  <li><strong>Decision:</strong> go, pivot or stop, with what happens next.</li>
+</ol>
+<h4>Part 2 · Patient feedback analyser (Initiative E)</h4>
+<ol>
+  <li><strong>The job:</strong> what the tool must actually do for clinic managers and for the service quality team, in two or three sentences. Are these the same job?</li>
+  <li><strong>Data readiness scorecard</strong> (Appendix B): score all six dimensions 0–3 with the evidence and the fix for each. Use the scorecard below.</li>
+  <li><strong>Labels and labelling cost:</strong> how many comments you would label, how you would find enough serious complaints, what you would do about agreement between labellers, and the cost. Use the labelling cost calculator below.</li>
+  <li><strong>Decision:</strong> go, go with conditions, pivot or stop. If there are conditions, each has an owner and a date.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in this assignment</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>Each decision is specific and follows from the evidence. The outcome is measurable. Non-AI solutions are weighed fairly against AI ones. The board's request is addressed honestly, not ignored or simply accepted.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>Findings cite both interviews and data, with their strength. Figures from the pack are used and calculated correctly. Labelling cost is shown. Assumptions are labelled.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>The riskiest assumption is identified and tested first. The stop condition is set in advance and measurable. Data gaps, the people the data leaves out, privacy conditions and the serious-complaint risk each have a concrete fix.</td></tr>
+<tr><td><strong>Communication</strong></td><td>The Chief Operating Officer could act on it after five minutes. Decisions up front, three pages of text plus two appendices, plain language, every acronym spelled out once.</td></tr>
+</tbody></table></div>
+
+<h3>Tool 1 · Opportunity solution tree builder</h3>
+<p>Fill in what you have. The tree draws itself below as you type, and is included when you copy your work. You can also redraw it in any tool you like for your appendix.</p>
+<div class="builder" id="ost-form">
+  <label for="ost-outcome">Desired outcome (measurable, with a time frame)</label>
+  <input type="text" id="ost-outcome" data-k="outcome" placeholder="e.g. Peak-hour callers who hang up falls from … to … by …">
+  <div id="ost-opps"></div>
+</div>
+<h4>Your tree</h4>
+<div id="ost-view"></div>
+
+<h3>Tool 2 · Data readiness scorecard</h3>
+<p>Score each dimension for the feedback analyser and note the evidence and the fix. The verdict follows the rules in Lesson 3.5: any 0 is a blocker.</p>
+<div class="builder" id="rd-form"></div>
+<div class="verdict" aria-live="polite"><span>Total <b id="rd-total">0</b> of 18</span><span>Verdict: <b id="rd-verdict">Not yet scored</b></span></div>
+
+<h3>Tool 3 · Labelling cost calculator</h3>
+<p>Filled in with the pack's figures. Change them to plan your own labelling.</p>
+<div class="knobs">
+  <div><label for="lb-n">Comments to label</label><input type="number" id="lb-n" min="0" step="100" value="3000"></div>
+  <div><label for="lb-d">Share double-labelled (%)</label><input type="number" id="lb-d" min="0" max="100" step="5" value="20"></div>
+  <div><label for="lb-m">Minutes per comment</label><input type="number" id="lb-m" min="0" step="0.1" value="1.2"></div>
+  <div><label for="lb-r">Cost per hour (S$)</label><input type="number" id="lb-r" min="0" step="1" value="45"></div>
+  <div><label for="lb-b">How common the rare case is (%)</label><input type="number" id="lb-b" min="0" max="100" step="0.1" value="0.8"></div>
+  <div><label for="lb-t">Rare examples you need</label><input type="number" id="lb-t" min="0" step="10" value="100"></div>
+  <div style="align-self:end"><button class="btn" type="button" id="lb-reset">Reset to pack figures</button></div>
+</div>
+<div class="scroll"><table>
+<thead><tr><th>Result</th><th class="num">Value</th></tr></thead>
+<tbody>
+<tr><td>Labels to make, counting double-labelling</td><td class="num" id="lb-o-labels"></td></tr>
+<tr><td>Hours of labelling</td><td class="num" id="lb-o-hours"></td></tr>
+<tr><td>Working days (7.5 hours each)</td><td class="num" id="lb-o-days"></td></tr>
+<tr><td><strong>Labelling cost</strong></td><td class="num"><strong id="lb-o-cost"></strong></td></tr>
+<tr><td>Rare cases you can expect in a random sample this size</td><td class="num" id="lb-o-rare"></td></tr>
+<tr><td>Comments you would need to read at random to find the rare examples you need</td><td class="num" id="lb-o-need"></td></tr>
+</tbody></table></div>
+<p style="font-size:.85rem;color:var(--muted)">Labels = comments × (1 + share double-labelled). Hours = labels × minutes ÷ 60. Rare cases expected = comments × how common they are. This covers labelling time only, not writing the codebook or training labellers.</p>
+
+<h3>Draft your discovery report</h3>
+<p>You may draft here or in your own document tool. Submit the final version as a document.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="adr" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your discovery report</label>
+<textarea id="adr" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+
+<h3>Before you submit</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close"><span class="step">Step 4 · Close · about 60 minutes · Graded 40%</span>Test and viva</h2>
+
+<h3>End-of-module test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. No notes, no AI tools. A basic calculator is allowed.</li>
+  <li><strong>Covers:</strong> everything in the lesson. Expect to turn a solution-first request into an outcome and opportunities, write a hypothesis with a stop condition, judge data readiness and calculate a labelling cost, on a short new scenario you have not seen.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. After emailing your assignment, email the course team to request the test paper and book your viva.</li>
+</ul>
+
+<h3>Viva · 15%</h3>
+<p>A viva (short for viva voce, Latin for "with the living voice") is a short spoken examination. Yours lasts 10 minutes, with an assessor or a trained peer.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>You explain both decisions in your own words, without reading.</td></tr>
+<tr><td class="num">2–7</td><td>Questions on your choices. Expect "why not just build what the board asked for?", "what is your evidence for that opportunity?" and "how will you find enough serious complaints to test on?"</td></tr>
+<tr><td class="num">7–10</td><td>A new fact you have not seen, such as a test result, a delay or a new instruction. You say whether it changes either decision, and why.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you can defend your choices with evidence, whether you can explain the ideas in plain words, how you handle the new fact, and how clearly you speak. Changing your mind for a good reason scores well.</p>
+
+<h3>Your module mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Discovery report (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>End-of-module test</td><td class="num">25%</td></tr>
+<tr><td>Viva</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
+
+<h3>Submit your work</h3>
+<p>Your quiz answers, tree, scorecard, labelling figures, draft and checklist go in the email as plain text, alongside your final discovery report as an attachment.</p>
+<div class="submit-box" data-submit="m3" data-subject="Module 3 submission">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Finish your discovery report in your own document tool, such as Word or Google Docs.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach your report.</li>
+<li>Once the email is sent, tick the box below. Module 4 opens when it is published, once you have ticked it and reached mastery on both checkpoint quizzes.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 1–2 hours · not assessed</span>Run a Wizard of Oz test</h2>
+<p>Play Harbourview's booking assistant yourself, by chat, with two volunteers who think they might be talking to an automated assistant or know you are role-playing one. You will learn what people actually type, where they get stuck, and how much of the job needs AI at all.</p>
+<div class="note warn"><p><strong>Keep it fictional.</strong> Volunteers play the patients on the cards below. Ask them not to share real health details. If you tell volunteers afterwards that a person was replying, say so plainly; the test is about learning, not deceiving.</p></div>
+<ol>
+  <li>Open a chat with each volunteer on any messaging app. Send: <em>"Hi, I'm the Harbourview booking assistant. How can I help?"</em></li>
+  <li>Give the volunteer one scenario card at a time, without showing them the others.</li>
+  <li>Reply only as the assistant, following the rulebook. Keep replies short. Record what happens.</li>
+</ol>
+<details class="sheet">
+<summary><b>Your rulebook as the assistant</b><span class="k">Follow it strictly</span></summary>
+<div class="in">
+<ul>
+  <li>You can: book, change or cancel appointments; explain what each service is in plain words; give opening hours.</li>
+  <li>You cannot: give medical advice, or say whether a symptom is serious.</li>
+  <li>If anyone mentions chest pain, difficulty breathing, severe bleeding or confusion, reply only: <em>"This could be an emergency. Please call 995 now."</em></li>
+  <li>For any other symptom, reply: <em>"I can't advise on symptoms. I can connect you to a nurse, or book you an appointment."</em></li>
+  <li>If you are unsure what they want, ask one short question. Never guess.</li>
+</ul>
+</div>
+</details>
+<details class="sheet">
+<summary><b>Four scenario cards for volunteers</b><span class="k">Give one at a time</span></summary>
+<div class="in leaf">
+<p><strong>Card 1.</strong> You are 70. You got a letter saying your diabetes review is next Tuesday at 9 am, but you have a family event. You want a later day.</p>
+<p><strong>Card 2.</strong> You look after your mother. You want to book her flu vaccination at the clinic near her flat, on a Saturday.</p>
+<p><strong>Card 3.</strong> You have had a cough for a week and feel a bit breathless when climbing stairs. You want to know if you should come in today.</p>
+<p><strong>Card 4.</strong> You want "the blood test for cholesterol" but don't know what the clinic calls it.</p>
+</div>
+</details>
+<div class="scroll"><table class="lab">
+<thead><tr><th class="num">#</th><th>Scenario</th><th>First thing they typed</th><th>Finished? Where stuck?</th><th>Did it need AI, or a simple rule or form?</th></tr></thead>
+<tbody id="lab-body"></tbody>
+</table></div>
+<p><strong>Reflect:</strong> Which scenarios could a simple form or rule have handled? What words did volunteers use that a menu would not have offered? Did card 3 trigger your emergency rule, and should it have? What does this tell you about the board's symptom-routing chatbot?</p>
+<label for="lab-ref" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your reflection</label>
+<textarea id="lab-ref"></textarea>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Teresa Torres, <em>Continuous Discovery Habits</em> (2021), chapters 4–6 on outcomes, interviewing and mapping the opportunity space. For a short version, read her <a href="https://www.producttalk.org/glossary-discovery-opportunity-solution-tree/">opportunity solution tree overview</a> on Product Talk. About 15 minutes.</li>
+  <li>Google People + AI Research (PAIR), <a href="https://pair.withgoogle.com/guidebook-v2/">People + AI Guidebook</a>, the chapters on user needs and on data collection and evaluation. About 40 minutes.</li>
+  <li>Timnit Gebru and colleagues, <a href="https://arxiv.org/abs/1803.09010">Datasheets for Datasets</a>. A widely used set of questions to ask about any dataset. Skim the questions in section 3. About 20 minutes.</li>
+  <li>Personal Data Protection Commission, <a href="https://pdpc.gov.sg/guidelines-and-consultation/2024/02/advisory-guidelines-on-use-of-personal-data-in-ai-recommendation-and-decision-systems">Advisory Guidelines on use of Personal Data in AI Recommendation and Decision Systems</a> (2024). Read the parts on developing and testing AI systems. About 30 minutes.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<p>Try an outcome, a three-opportunity tree and a six-dimension readiness check on one of these product ideas, or on a request from your own workplace, and bring it to your viva if you like.</p>
+<ul>
+  <li><strong>"AI to answer staff information technology (IT) tickets":</strong> before building, which ticket types are most common, and how many are password resets a self-service form would fix?</li>
+  <li><strong>Contract clause finder for a legal team:</strong> are past contracts labelled? Who would label them, and would two lawyers agree?</li>
+  <li><strong>Trade document checker for a bank:</strong> checks shipping and invoice documents against a letter of credit. How rare are real discrepancies, and how would you find enough examples to test on?</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for this module</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>A/B test</td><td>Showing version A to some users and version B to others, then comparing results</td></tr>
+<tr><td>Affinity mapping</td><td>Grouping similar observations from research to find patterns</td></tr>
+<tr><td>Agreement between labellers (inter-rater agreement)</td><td>The share of items two people label the same way</td></tr>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>Assumption test</td><td>The quickest way to find out whether something a solution depends on is true</td></tr>
+<tr><td>Codebook</td><td>The list of categories and instructions labellers follow</td></tr>
+<tr><td>Concierge test</td><td>Delivering a service by hand, openly, to learn the job before automating it</td></tr>
+<tr><td>COO</td><td>Chief Operating Officer</td></tr>
+<tr><td>CSV</td><td>Comma-separated values: a simple file format for tables of data</td></tr>
+<tr><td>Data readiness</td><td>Whether data is available, permitted, good enough, labelled, representative and safe for a specific AI use</td></tr>
+<tr><td>Data spike</td><td>A quick look at a small sample of real records to check what the data is really like</td></tr>
+<tr><td>Desired outcome</td><td>The measurable change an organisation wants, at the top of an opportunity solution tree</td></tr>
+<tr><td>DPO</td><td>Data protection officer</td></tr>
+<tr><td>Fake door test</td><td>Offering a feature that does not exist yet to measure interest, then telling people it is coming</td></tr>
+<tr><td>Hypothesis</td><td>A statement a test can prove wrong, with a measurable result and a stop condition</td></tr>
+<tr><td>JTBD</td><td>Jobs to be done: what a person is trying to get done, independent of any product</td></tr>
+<tr><td>Label (ground truth)</td><td>The correct answer for an example, used to train or test a model</td></tr>
+<tr><td>NRIC</td><td>National Registration Identity Card (Singapore)</td></tr>
+<tr><td>Opportunity</td><td>A user need, pain point or wish that, if addressed, would move the outcome</td></tr>
+<tr><td>OST</td><td>Opportunity solution tree: outcome, opportunities, solutions and assumption tests on one page</td></tr>
+<tr><td>PDPA</td><td>Personal Data Protection Act (Singapore)</td></tr>
+<tr><td>PDPC</td><td>Personal Data Protection Commission (Singapore)</td></tr>
+<tr><td>Pivot</td><td>Keeping the outcome but changing the opportunity, user group, solution or data source</td></tr>
+<tr><td>S$</td><td>Singapore dollars</td></tr>
+<tr><td>Singpass</td><td>Singapore's national digital identity login</td></tr>
+<tr><td>SMS</td><td>Short Message Service: a text message</td></tr>
+<tr><td>Stop condition</td><td>A result, decided before a test, that means you stop or change course</td></tr>
+<tr><td>Wizard of Oz test</td><td>Users interact with what seems like an automated product while a person secretly does the work</td></tr>
+</tbody></table></div>
+
+<nav class="pn" aria-label="Previous and next">
+  <a href="module-02.html"><small>← Previous</small>Module 2 · Technical fluency for product decisions</a>
+  <span class="next"><small>Next</small>Module 4 · opens in Week 4</span>
+</nav>
+<p class="foot">Module 3 · Version 1.0 · 21 October 2026 · Harbourview Polyclinics, its staff, patients and figures are fictional; all figures are invented for teaching. Nothing on this page is legal or medical advice.</p>
+</div>
+
+<script>
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m3:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m3:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+const money = (v, d=0) => (v<0?'−':'') + 'S$' + Math.abs(v).toLocaleString('en-SG', {minimumFractionDigits:d, maximumFractionDigits:d});
+const num = (v, d=0) => isFinite(v) ? v.toLocaleString('en-SG', {minimumFractionDigits:d, maximumFractionDigits:d}) : '—';
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Is \"We need an AI chatbot for bookings\" a problem statement?","No","It is a solution. A problem statement names the user's need and the outcome that matters, without assuming how to address it."],
+  ["Is asking \"Would you use an app that did this?\" a reliable way to predict what people will do?","No","People are poor at predicting their own behaviour and tend to be polite about ideas. Ask about the last time they faced the problem and what they actually did."],
+  ["Should the desired outcome at the top of an opportunity solution tree be measurable?","Yes","An outcome you cannot measure cannot tell you whether a solution worked. Name the measure, the target and the time frame."],
+  ["Should opportunities be written from the user's point of view, rather than as missing features?","Yes","\"I can't change an appointment the clinic chose\" is an opportunity. \"There is no chatbot\" is a solution in disguise."],
+  ["In a Wizard of Oz test, does a person secretly do the work the AI would do?","Yes","Users interact with what looks like the product while a person writes the replies, so you learn what people ask and whether they finish, before building anything."],
+  ["Is it fine to decide the stop condition after you see the test results?","No","Decide it in advance. Otherwise almost any result can be explained away as a success."],
+  ["If two trained labellers agree on only about 70% of items, can a model's accuracy be judged reliably against those labels?","No","If people disagree on the right answer for nearly a third of items, you cannot tell whether a model's \"errors\" are errors. Fix the codebook first."],
+  ["Can data be easy to get hold of but still not usable, because of the purpose it was collected for?","Yes","Availability and permission are separate dimensions. A single blocker on rights stops the project however clean the data is."],
+  ["If 1 in 100 records is the case you care about, will a random sample of 500 labelled records give you plenty of examples to test on?","No","You would expect about 5. Rare cases have to be searched for deliberately, for example with keyword searches or from cases already escalated."],
+  ["Does a pivot mean giving up on the outcome?","No","A pivot keeps the outcome and changes the route to it: a different opportunity, user group, solution or data source."]
+ ], sa: [
+  ["A manager asks you to \"build an AI chatbot so customers stop calling\". Rewrite this as a desired outcome and two possible opportunities, and explain why that helps.",
+   ["A measurable outcome with a target and time, for example fewer calls or fewer people giving up, by a date","Opportunities phrased as customer needs or pain points, not features","Explains that this opens up other solutions, including non-AI ones, to compare","Notes that discovery evidence is needed to know which opportunity matters most"]],
+  ["Why does a good discovery interview ask about the last time something happened, rather than what the person would do in future?",
+   ["People predict their own behaviour poorly and are polite about ideas","A specific past story shows real behaviour, real words and workarounds","Workarounds and effort reveal how painful the problem really is","Avoids leading the person toward your solution"]],
+  ["A team has 50,000 customer emails and wants an AI to sort them by topic. List four questions you would ask before saying the data is ready.",
+   ["Rights: were the emails collected for a purpose that covers this use; what does the DPO say?","Labels: are any emails already tagged with a topic, by whom, and would two people agree?","Quality and coverage: are all channels, languages, products and time periods included; did categories change over time?","Privacy: what personal data do the emails contain, can it be removed, and where would it be processed?"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["In the call sample, are symptom questions the most common reason people phone?","No","They are 7% (42 of 600 calls). Changing or cancelling an existing appointment is the largest reason at 27%."],
+  ["Could a change that needs no AI address most of the calls about changing appointments?","Yes","70% of those calls concern appointments the clinic booked, which the app cannot change. Letting patients change them in the app, or by replying to a text, needs no AI."],
+  ["Is the existing set of 1,200 labelled comments enough to test how well a model finds serious complaints?","No","At 0.8%, 1,200 comments contain about 10 serious complaints, far too few to test on. And they were labelled by one officer, so agreement is unknown."],
+  ["Does 71% agreement between two officers suggest the codebook needs work before anything is automated?","Yes","If trained officers disagree on nearly a third of comments (and on almost half of clinical concerns), the categories and instructions are not clear enough to train or test a model."],
+  ["Could survey comments go to an AI model processed overseas, as long as staff names are removed first?","No","The data protection officer's conditions are processing in Singapore and removal of NRIC and phone numbers. Removing names alone meets neither."]
+ ], sa: [
+  ["The board asked for a symptom-routing chatbot. Your discovery suggests that is not the biggest opportunity. How would you tell the board, and what would you propose instead?",
+   ["Leads with the outcome the board cares about (morning queues, callers giving up), not with \"you are wrong\"","Uses evidence: changing appointments 27% vs symptoms 7%; carers 31% of calls; app cannot change clinic-booked appointments","Proposes testing the larger opportunity first, often with a non-AI or simple solution","Keeps symptom routing on the tree but notes the safety risk and nurse capacity concern, and what would reopen it"]],
+  ["Write one testable hypothesis, with a stop condition, for an opportunity in the booking chatbot case.",
+   ["Names the user group and the problem, with evidence from the pack","Names a specific solution or test","States a measurable result and a time frame","States a stop condition decided in advance"]],
+  ["For the feedback analyser, why do serious complaints need a different approach from counting themes?",
+   ["Serious complaints are rare (about 0.8%, around 52 a month) but have a 3-day deadline and real harm if missed","Missing one is far worse than miscounting a theme, so finding them all (recall) matters most","Not enough examples in a random sample: they must be searched for deliberately to build a test set","A model should not be the only safeguard: add rules, human review of flagged comments, or read every low-scoring comment"]]
+ ]}
+};
+
+/* ===== Quiz engine ===== */
+const QSTATE = {}, EXPORT = {};
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+
+/* ===== Tool 1: opportunity solution tree builder ===== */
+const NOPP = 4, NSOL = 3;
+let ost = store.get('ost') || {};
+const ov = k => (ost[k] || '').trim();
+(function buildOstForm(){
+  let h = '';
+  for (let p = 0; p < NOPP; p++) {
+    h += `<fieldset><legend>Opportunity ${p+1}${p<3?'':' (optional)'}</legend>
+      <label for="ost-p${p}">In the user's words</label><input type="text" id="ost-p${p}" data-k="p${p}" placeholder="${p===0?'e.g. “I can’t change a review date the clinic chose for me”':''}">
+      <label for="ost-e${p}">Evidence (interviews, data)</label><input type="text" id="ost-e${p}" data-k="e${p}">`;
+    for (let s = 0; s < NSOL; s++) {
+      h += `<div class="sol"><input type="text" id="ost-s${p}${s}" data-k="s${p}${s}" aria-label="Opportunity ${p+1}, solution ${s+1}" placeholder="Solution ${s+1}">
+        <select id="ost-a${p}${s}" data-k="a${p}${s}" aria-label="Opportunity ${p+1}, solution ${s+1}: AI or not"><option value="">AI or not?</option><option value="ai">AI</option><option value="non">Non-AI</option></select>
+        <input type="text" class="tst" id="ost-t${p}${s}" data-k="t${p}${s}" aria-label="Opportunity ${p+1}, solution ${s+1}: assumption test" placeholder="Assumption test for solution ${s+1}"></div>`;
+    }
+    h += '</fieldset>';
+  }
+  $('ost-opps').innerHTML = h;
+  document.querySelectorAll('#ost-form [data-k]').forEach(el => {
+    el.value = ost[el.dataset.k] || '';
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { ost[el.dataset.k] = el.value; store.set('ost', ost); drawOst(); });
+  });
+})();
+function drawOst(){
+  const opps = [];
+  for (let p = 0; p < NOPP; p++) {
+    const sols = [];
+    for (let s = 0; s < NSOL; s++) if (ov('s'+p+s)) sols.push({ t: ov('s'+p+s), a: ost['a'+p+s], test: ov('t'+p+s) });
+    if (ov('p'+p) || sols.length) opps.push({ t: ov('p'+p), e: ov('e'+p), sols });
+  }
+  if (!ov('outcome') && !opps.length) { $('ost-view').innerHTML = '<p class="empty" style="color:var(--muted)">Your tree appears here as you fill in the builder.</p>'; return; }
+  const tag = a => a === 'ai' ? '<span class="ai">AI</span>' : a === 'non' ? '<span class="nonai">non-AI</span>' : '';
+  $('ost-view').innerHTML = `<ul class="ost" aria-label="Your opportunity solution tree"><li><span class="node lv-o"><small>Outcome</small>${ov('outcome') ? esc(ov('outcome')) : '<span class="empty">Outcome not yet written</span>'}</span>
+    ${opps.length ? '<ul>' + opps.map(o => `<li><span class="node lv-p"><small>Opportunity</small>${o.t ? esc(o.t) : '<span class="empty">Not yet written</span>'}${o.e ? `<br><span style="font-size:.8rem;color:var(--muted)">Evidence: ${esc(o.e)}</span>` : ''}</span>
+      ${o.sols.length ? '<ul>' + o.sols.map(s => `<li><span class="node lv-s"><small>Solution</small>${esc(s.t)}${tag(s.a)}</span>${s.test ? `<ul><li><span class="node lv-t"><small>Test</small>${esc(s.test)}</span></li></ul>` : ''}</li>`).join('') + '</ul>' : ''}</li>`).join('') + '</ul>' : ''}</li></ul>`;
+}
+function ostText(){
+  const L = ['Outcome: ' + (ov('outcome') || '-')];
+  for (let p = 0; p < NOPP; p++) {
+    if (!ov('p'+p) && ![0,1,2].some(s => ov('s'+p+s))) continue;
+    L.push(`  Opportunity ${p+1}: ${ov('p'+p) || '-'}${ov('e'+p) ? ' [evidence: ' + ov('e'+p) + ']' : ''}`);
+    for (let s = 0; s < NSOL; s++) if (ov('s'+p+s)) L.push(`    Solution: ${ov('s'+p+s)} (${ost['a'+p+s] === 'ai' ? 'AI' : ost['a'+p+s] === 'non' ? 'non-AI' : '?'})${ov('t'+p+s) ? ' → test: ' + ov('t'+p+s) : ''}`);
+  }
+  return L;
+}
+
+/* ===== Tool 2: data readiness scorecard ===== */
+const DIMS = [
+  ['Availability and access','Does it exist, is there enough, can we get it out, how fresh is it?'],
+  ['Rights and permission','Does the purpose it was collected for cover this use? Contracts, consent, the data protection officer’s view'],
+  ['Quality','Complete, accurate, consistent over time, up to date?'],
+  ['Labels (ground truth)','Do we know the right answer for enough examples? Do labellers agree? Cost?'],
+  ['Coverage and fairness','Ages, languages, clinics and channels all represented? Rare but important cases present?'],
+  ['Privacy and security','Personal data removed or minimised? Where processed? How long kept?']
+];
+let rd = store.get('rd') || {};
+$('rd-form').innerHTML = DIMS.map((d,i) => `<div class="score-row"><div class="dim"><b>${i+1}. ${esc(d[0])}</b><span>${esc(d[1])}</span></div>
+  <select id="rd-s${i}" data-i="${i}" aria-label="${esc(d[0])} score"><option value="">Score</option><option value="3">3 · Ready</option><option value="2">2 · Usable, gaps</option><option value="1">1 · Major gaps</option><option value="0">0 · Blocker</option></select>
+  <textarea id="rd-t${i}" data-i="${i}" aria-label="${esc(d[0])}: evidence and fix" placeholder="Evidence from the pack, and the fix"></textarea></div>`).join('');
+DIMS.forEach((d,i) => {
+  const s = $('rd-s'+i), t = $('rd-t'+i);
+  s.value = rd['s'+i] != null ? rd['s'+i] : ''; t.value = rd['t'+i] || '';
+  s.addEventListener('change', () => { rd['s'+i] = s.value; store.set('rd', rd); drawRd(); });
+  t.addEventListener('input', () => { rd['t'+i] = t.value; store.set('rd', rd); });
+});
+function rdVerdict(){
+  const sc = DIMS.map((d,i) => rd['s'+i] === '' || rd['s'+i] == null ? null : +rd['s'+i]);
+  const done = sc.filter(v => v != null), total = done.reduce((a,b) => a+b, 0);
+  let v = 'Not yet scored';
+  if (sc.includes(0)) v = 'Not ready: blocker on ' + DIMS.filter((d,i) => sc[i] === 0).map(d => d[0].toLowerCase()).join(', ');
+  else if (done.length < DIMS.length) v = done.length ? `${DIMS.length - done.length} dimension${DIMS.length - done.length > 1 ? 's' : ''} still to score` : v;
+  else if (total >= 15 && !sc.includes(1)) v = 'Ready';
+  else if (total >= 11) v = 'Ready with conditions: fix every 1 before building';
+  else v = 'Not ready: too many major gaps';
+  return { total, v };
+}
+function drawRd(){ const r = rdVerdict(); $('rd-total').textContent = r.total; $('rd-verdict').textContent = r.v; }
+
+/* ===== Tool 3: labelling cost ===== */
+const LB = { 'lb-n':3000, 'lb-d':20, 'lb-m':1.2, 'lb-r':45, 'lb-b':0.8, 'lb-t':100 };
+let lb = store.get('lb') || {};
+Object.keys(LB).forEach(id => { $(id).value = lb[id] != null && lb[id] !== '' ? lb[id] : LB[id]; $(id).addEventListener('input', () => { lb[id] = $(id).value; store.set('lb', lb); drawLb(); }); });
+$('lb-reset').addEventListener('click', () => { lb = {}; store.set('lb', lb); Object.keys(LB).forEach(id => $(id).value = LB[id]); drawLb(); });
+function drawLb(){
+  const g = id => Math.max(0, +$(id).value || 0);
+  const n = g('lb-n'), d = g('lb-d')/100, m = g('lb-m'), r = g('lb-r'), b = g('lb-b')/100, t = g('lb-t');
+  const labels = n * (1 + d), hours = labels * m / 60;
+  $('lb-o-labels').textContent = num(labels);
+  $('lb-o-hours').textContent = num(hours, 1);
+  $('lb-o-days').textContent = num(hours / 7.5, 1);
+  $('lb-o-cost').textContent = money(hours * r);
+  $('lb-o-rare').textContent = b ? 'about ' + num(n * b) : '—';
+  $('lb-o-need').textContent = b ? num(Math.ceil(t / b)) : '—';
+}
+
+/* ===== Discovery report draft, checklist, lab ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `DISCOVERY REPORT · Harbourview Polyclinics
+To: Grace Teo, Chief Operating Officer (COO)
+From: Head of Digital Products
+
+Summary
+[Two decisions, one line each: booking chatbot — go / pivot / stop … ; feedback analyser — go / go with conditions / pivot / stop …]
+
+PART 1 · Booking and symptom-routing chatbot
+1. What we learned [3–5 findings · evidence (interview / data / both) · strength]
+2. Opportunity solution tree [see Appendix A: outcome · ≥3 opportunities · ≥2 solutions under top two, incl. non-AI · tests]
+3. Where the board's symptom-routing chatbot fits [and what we advise]
+4. Riskiest assumption and first test [kind of assumption · hypothesis:
+   We believe … have … because … . If we … , then … within … . We will stop or change course if … .]
+5. Decision [go / pivot / stop · what happens next]
+
+PART 2 · Patient feedback analyser
+1. The job [what clinic managers need · what the service quality team needs · same job?]
+2. Data readiness [see Appendix B: six dimensions, score 0–3, evidence and fix]
+3. Labels and labelling cost [how many · how we find serious complaints · fixing agreement · cost]
+4. Decision [go / go with conditions / pivot / stop · each condition has an owner and a date]
+
+Assumptions
+[Label anything not taken from the discovery pack]
+
+Appendix A · Opportunity solution tree
+Appendix B · Data readiness scorecard`;
+const adr = $('adr'); adr.value = misc.adr || '';
+function wc(){ const w = words(adr.value); $('wc').textContent = w + ' words' + (w > 1600 ? ' · the main text should be about 1,400 words; appendices are extra' : ''); }
+adr.addEventListener('input', () => { misc.adr = adr.value; store.set('misc', misc); wc(); progress(); });
+$('tmpl').addEventListener('click', () => { if (adr.value.trim() && !confirm('Replace your current draft with the outline?')) return; adr.value = OUTLINE; misc.adr = OUTLINE; store.set('misc', misc); wc(); progress(); adr.focus(); });
+wc();
+
+const CHECKS = [
+  "Both decisions are stated in the first few lines",
+  "The outcome is measurable, with a target and a time frame",
+  "Opportunities are written as user needs, each with evidence from interviews, data or both",
+  "At least two solutions under each top opportunity, including a non-AI one",
+  "The board's symptom-routing chatbot is placed on the tree and addressed honestly",
+  "One hypothesis names the riskiest assumption and has a stop condition set in advance",
+  "All six readiness dimensions are scored with evidence and a fix",
+  "Labelling cost is calculated, and the plan says how enough serious complaints will be found",
+  "The data protection officer's conditions and the under-represented groups are addressed",
+  "Three pages of text plus two appendices, and every acronym is spelled out the first time"
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c,i) => `<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el => { el.checked = !!ck[el.dataset.i]; el.addEventListener('change', () => { ck[el.dataset.i] = el.checked; store.set('ck', ck); }); });
+
+const LABQ = [
+  "Card 1 · move a diabetes review",
+  "Card 2 · book mother's flu vaccination",
+  "Card 3 · cough and breathless on stairs",
+  "Card 4 · \"the blood test for cholesterol\""
+];
+let lab = store.get('lab') || {};
+const LABROWS = [];
+LABQ.forEach((q,i) => [1,2].forEach(v => LABROWS.push({ id: i + '-' + v, label: `${q} · volunteer ${v}` })));
+$('lab-body').innerHTML = LABROWS.map((r,i) => `<tr><td class="num">${i+1}</td><td style="min-width:13rem">${esc(r.label)}</td>${['a','b','c'].map(k => `<td><input type="text" data-k="${r.id}${k}" aria-label="${esc(r.label)}, column ${k}"></td>`).join('')}</tr>`).join('');
+document.querySelectorAll('#lab-body input').forEach(el => { el.value = lab[el.dataset.k] || ''; el.addEventListener('input', () => { lab[el.dataset.k] = el.value; store.set('lab', lab); }); });
+$('lab-ref').value = lab.ref || ''; $('lab-ref').addEventListener('input', e => { lab.ref = e.target.value; store.set('lab', lab); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d = $(id); if (!d) return; d.className = 'dot' + (s === 'done' ? ' done' : s === 'prog' ? ' prog' : ''); }
+function progress(){
+  const a = QSTATE.qa, b = QSTATE.qb, w = words(adr ? adr.value : '');
+  if (a) { $('st-qa').textContent = qlabel(a); dot('d-qa', a.mast ? 'done' : a.started ? 'prog' : ''); dot('d-lesson', a.started ? 'done' : ''); }
+  if (b) { $('st-qb').textContent = qlabel(b); dot('d-qb', b.mast ? 'done' : b.started ? 'prog' : ''); dot('d-case', b.started ? 'done' : ''); }
+  $('st-adr').textContent = w + ' words';
+  dot('d-as', w > 600 ? 'done' : w > 0 ? 'prog' : '');
+  const open = a && b && a.mast && b.mast;
+  $('st-test').textContent = open ? 'Ready to request' : 'Locked';
+  dot('d-close', open ? 'prog' : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask the course team for the test paper when you are ready.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a && a.mast ? 'done' : 'not yet'} · Quiz B: ${b && b.mast ? 'done' : 'not yet'}.`;
+  /* Summary for the My course dashboard and for unlocking Module 4 */
+  const sum = q => q && q.started ? { c: q.c, total: q.total, mast: q.mast } : null;
+  try { localStorage.setItem('progress:m3', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: w > 0 ? 'drafting' : 'none' })); } catch(e) {}
+}
+
+/* ===== Step bar highlight ===== */
+const links = [...document.querySelectorAll('.stepbar a')], secs = links.map(l => document.querySelector(l.getAttribute('href')));
+const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('here', l.getAttribute('href') === '#' + e.target.id)); const h = links.find(l => l.classList.contains('here')); if (h) h.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } }); }, { rootMargin: '-20% 0px -75% 0px' });
+secs.forEach(s => s && io.observe(s));
+
+/* ===== Start ===== */
+quiz('qa'); quiz('qb'); drawOst(); drawRd(); drawLb(); progress();
+
+/* ===== Copy all ===== */
+$('copy').addEventListener('click', () => {
+  const L = ['MODULE 3 SUBMISSION · Problem framing, discovery and data readiness', '', 'CHECKPOINT QUIZ A', ...EXPORT.qa(), 'CHECKPOINT QUIZ B', ...EXPORT.qb(), 'OPPORTUNITY SOLUTION TREE', ...ostText(), '', 'DATA READINESS SCORECARD'];
+  DIMS.forEach((d,i) => L.push(`${d[0]}: ${rd['s'+i] !== undefined && rd['s'+i] !== '' ? rd['s'+i] : '-'} · ${(rd['t'+i] || '-').trim()}`));
+  const r = rdVerdict(); L.push(`Total ${r.total}/18 · ${r.v}`, '', 'LABELLING COST');
+  L.push(`${$('lb-n').value} comments · ${$('lb-d').value}% double-labelled · ${$('lb-m').value} min each · S$${$('lb-r').value}/hour → ${$('lb-o-hours').textContent} hours · ${$('lb-o-cost').textContent}`);
+  L.push(`Rare case ${$('lb-b').value}% · expected in sample ${$('lb-o-rare').textContent} · comments to read at random for ${$('lb-t').value}: ${$('lb-o-need').textContent}`);
+  L.push('', 'DISCOVERY REPORT DRAFT', (misc.adr || '(blank)').trim(), `Word count: ${words(misc.adr)}`, '', 'CHECKLIST');
+  CHECKS.forEach((c,i) => L.push(`[${ck[i] ? 'x' : ' '}] ${c}`));
+  const labRows = LABROWS.map(rw => [rw.label, lab[rw.id+'a'], lab[rw.id+'b'], lab[rw.id+'c']]).filter(x => x.slice(1).some(Boolean));
+  if (labRows.length || lab.ref) { L.push('', 'OPTIONAL LAB'); labRows.forEach(x => L.push(`${x[0]} → ${x.slice(1).map(v => v || '-').join(' | ')}`)); L.push('Reflection: ' + (lab.ref || '-')); }
+  const text = L.join('\n'), out = $('copied'), fb = $('fallback');
+  const fallback = () => { fb.hidden = false; fb.value = text; fb.focus(); fb.select(); out.textContent = 'Select all the text in the box below and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(() => { out.textContent = 'Copied. Paste it into your email and attach your document.'; fb.hidden = true; }, fallback); } catch(e) { fallback(); }
+});
+</script>
+</body>
+</html>
