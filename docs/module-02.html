@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-access="learner" data-module="2">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -214,18 +214,12 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
 </style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 </head>
 <body>
 <div class="wrap">
-<nav class="top" aria-label="Course pages">
-  <a href="./">Programme handbook</a>
-  <a href="dashboard.html">My course</a>
-  <a href="week-00.html">Week 0</a>
-  <a href="module-01.html">Module 1</a>
-  <a href="module-02.html" aria-current="page">Module 2</a>
-  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
-  <a href="login.html">Sign in</a>
-</nav>
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
 
 <p class="eyebrow">Term I · Foundations · Week 2 · Module 2</p>
 <h1>Technical fluency for product decisions</h1>
@@ -273,7 +267,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <div>End-of-module test<b id="st-test">Locked</b></div>
 </div>
 
-<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you type. Nobody else can see them until you press <strong>Copy all my work</strong> at the end and send it. Every acronym is spelled out the first time it appears on this page, even if Module 1 already did so. All prices on this page are invented for teaching; real prices change often, so always check a vendor's current price list.</p></div>
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you type. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. Every acronym is spelled out the first time it appears on this page, even if Module 1 already did so. All prices on this page are invented for teaching; real prices change often, so always check a vendor's current price list.</p></div>
 </section>
 
 <!-- ================= LESSON ================= -->
@@ -674,7 +668,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each). Total 25 marks.</li>
   <li><strong>Rules:</strong> closed book, 30 minutes, taken once. No notes, no AI tools. A basic calculator is allowed.</li>
   <li><strong>Covers:</strong> everything in the lesson. Expect to calculate a cost per 1,000 requests and a precision and recall, and to apply the ideas to a short new scenario you have not seen.</li>
-  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. Your assessor sends the test paper.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery. After emailing your assignment, email the course team to request the test paper and book your viva.</li>
 </ul>
 
 <h3>Viva · 15%</h3>
@@ -699,8 +693,19 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission, capped at Pass).</p>
 
 <h3>Submit your work</h3>
-<p>This copies your quiz answers, calculator settings, decision record draft and checklist as plain text. Send it with your final document.</p>
-<p class="row"><button class="btn primary" id="copy" type="button">Copy all my work</button><span id="copied" aria-live="polite"></span></p>
+<p>Your quiz answers, calculator settings, draft and checklist go in the email as plain text, alongside your final decision record as an attachment.</p>
+<div class="submit-box" data-submit="m2" data-subject="Module 2 submission">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Finish your decision record in your own document tool, such as Word or Google Docs.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach your decision record.</li>
+<li>Once the email is sent, tick the box below. Module 3 opens when it is published, once you have ticked it and reached mastery on both checkpoint quizzes.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
 <textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
 
 <!-- ================= LAB ================= -->
@@ -790,15 +795,6 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 </div>
 
 <script>
-/* ===== Optional sign-in gate. Fill in the same values as login.html to require sign-in. Empty = open preview. ===== */
-const AUTH = { supabaseUrl: '', supabaseAnonKey: '', loginPage: 'login.html' };
-if (AUTH.supabaseUrl && AUTH.supabaseAnonKey) {
-  const s = document.createElement('script');
-  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
-  s.onload = async () => { try { const c = window.supabase.createClient(AUTH.supabaseUrl, AUTH.supabaseAnonKey); const { data } = await c.auth.getSession(); if (!data || !data.session) location.href = AUTH.loginPage; } catch (e) {} };
-  document.head.appendChild(s);
-}
-
 /* ===== Storage (this browser only) ===== */
 const store = { get(k){ try { return JSON.parse(localStorage.getItem('m2:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m2:'+k, JSON.stringify(v)); } catch(e){} } };
 const $ = id => document.getElementById(id);
@@ -1021,7 +1017,7 @@ function progress(){
   $('st-test').textContent = open ? 'Ready to request' : 'Locked';
   dot('d-close', open ? 'prog' : '');
   $('gate').querySelector('p').innerHTML = open
-    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Ask your assessor for the test paper when you are ready.'
+    ? `<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery. Once you have emailed your assignment, <a href="mailto:${SITE.submitEmail}?subject=${encodeURIComponent('AIPM · Module 2 test and viva request · ' + (SITE.user ? SITE.user.email : ''))}">email the course team</a> to request the test paper and book your viva.`
     : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes first. Quiz A: ${a&&a.mast?'done':'not yet'} · Quiz B: ${b&&b.mast?'done':'not yet'}.`;
   /* Summary for the My course dashboard (same browser in preview; the database when live) */
   const sum = q => q && q.started ? { c:q.c, total:q.total, mast:q.mast } : null;
@@ -1049,7 +1045,7 @@ $('copy').addEventListener('click',()=>{
   if(labRows.length||lab.ref){ L.push('','OPTIONAL LAB'); labRows.forEach(r=>L.push(`${r[0]} → ${r.slice(1).map(x=>x||'-').join(' | ')}`)); L.push('Reflection: '+(lab.ref||'-')); }
   const text=L.join('\n'), out=$('copied'), fb=$('fallback');
   const fallback=()=>{ fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.'; };
-  try { navigator.clipboard.writeText(text).then(()=>{ out.textContent='Copied. Send it with your final document.'; fb.hidden=true; }, fallback); } catch(e) { fallback(); }
+  try { navigator.clipboard.writeText(text).then(()=>{ out.textContent='Copied. Paste it into your email and attach your document.'; fb.hidden=true; }, fallback); } catch(e) { fallback(); }
 });
 </script>
 </body>

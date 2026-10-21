@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-access="learner" data-module="0">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -140,18 +140,12 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
 </style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 </head>
 <body>
 <div class="wrap">
-<nav class="top" aria-label="Course pages">
-  <a href="./">Programme handbook</a>
-  <a href="dashboard.html">My course</a>
-  <a href="week-00.html" aria-current="page">Week 0</a>
-  <a href="module-01.html">Module 1</a>
-  <a href="module-02.html">Module 2</a>
-  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
-  <a href="login.html">Sign in</a>
-</nav>
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
 
 <p class="eyebrow">Week 0 · Before Module 1</p>
 <h1>Orientation and baseline</h1>
@@ -164,7 +158,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <tr><td>1. Orientation briefing</td><td>Reading</td><td class="num">30 min</td><td>Read the three core ideas below</td></tr>
 <tr><td>2. Checkpoint quiz 0</td><td><span class="chip c-form">Formative</span></td><td class="num">30 min</td><td>Answer 12 Yes/No and 5 short-answer questions. Yes/No answers are checked instantly; short answers are compared with a model answer</td></tr>
 <tr><td>3. Baseline assessment</td><td><span class="chip c-sum">Summative baseline</span></td><td class="num">75 min</td><td>Self-rating, programme choices, and a timed scenario</td></tr>
-<tr><td>4. Submit</td><td>—</td><td class="num">5 min</td><td>Press "Copy all answers" and paste them into the chat for review</td></tr>
+<tr><td>4. Submit</td><td>—</td><td class="num">5 min</td><td>Email your answers to the course team from the bottom of this page. Module 1 opens once they are sent</td></tr>
 </tbody></table></div>
 
 <h2>1. Orientation briefing</h2>
@@ -201,7 +195,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <p class="row"><button class="btn" id="resetYN" type="button">Clear Yes/No answers</button></p>
 
 <h3>Part B · Short answer</h3>
-<p>Write two to five sentences for each. The model answer opens once you have written at least 20 words. Then mark yourself against its key points. The coach will also review these.</p>
+<p>Write two to five sentences for each. The model answer opens once you have written at least 20 words. Then mark yourself against its key points. The course team will also review these.</p>
 <div id="saq"></div>
 
 <h2 id="baseline">3. Baseline assessment <span class="chip c-sum">Summative baseline</span></h2>
@@ -248,11 +242,21 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 </ul>
 
 <h2 id="submit">4. Submit</h2>
-<p>Copy everything you entered on this page, then paste it into the chat. Your answers are kept in this browser as you type, but nobody else, including the coach, can see them until you paste them.</p>
-<p class="row"><button class="btn primary" id="copy" type="button">Copy all answers</button><span id="copied" aria-live="polite"></span></p>
+<p>Your answers are kept in this browser as you type. Nobody else, including the course team, can see them until you send them.</p>
+<div class="submit-box" data-submit="w0" data-subject="Week 0 baseline">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Press <strong>Email my answers</strong>. It copies everything you entered on this page and opens an email to the course team. Paste your answers into the email and send it.</li>
+<li>Once the email is sent, tick the box below. Module 1 opens as soon as you tick it.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my answers</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my submission to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
 <textarea id="fallback" hidden readonly aria-label="Your answers as text"></textarea>
 <nav class="pn" aria-label="Previous and next">
-  <a href="./"><small>← Previous</small>Programme handbook</a>
+  <a href="./"><small>← Previous</small>Syllabus</a>
   <a class="next" href="module-01.html"><small>Next →</small>Module 1 · The AI product role and lifecycle</a>
 </nav>
 <p class="foot">Week 0 · Handbook v1.1 · 20 October 2026</p>
@@ -364,7 +368,7 @@ document.getElementById('copy').addEventListener('click',()=>{
   L.push('','BASELINE PART B',`Goal: ${misc.goal||'-'}`,`Capstone: ${misc.cap||'-'}`,`Hours per week: ${misc.hours||'-'}`,`Session days: ${misc.days||'-'}`,'','BASELINE PART C (Scenario memo)',(misc.memo||'(blank)').trim(),`Word count: ${words(misc.memo||'')}`);
   const text=L.join('\n'), out=document.getElementById('copied'), fb=document.getElementById('fallback');
   const fallback=()=>{fb.hidden=false; fb.value=text; fb.focus(); fb.select(); out.textContent='Select all the text in the box below and copy it.';};
-  try{ navigator.clipboard.writeText(text).then(()=>{out.textContent='Copied. Paste it into the chat.'; fb.hidden=true;}, fallback); }catch(e){ fallback(); }
+  try{ navigator.clipboard.writeText(text).then(()=>{out.textContent='Copied. Paste it into your email.'; fb.hidden=true;}, fallback); }catch(e){ fallback(); }
 });
 </script>
 

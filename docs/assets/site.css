@@ -1,0 +1,38 @@
+/* Shared styles for navigation, access states, locked pages and submission. Uses each page's colour tokens. */
+nav.top { align-items: center; }
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+nav.top a.signin { color: var(--accent); font-weight: 600; }
+nav.top .navwho { margin-left: auto; display: inline-flex; gap: .7rem; align-items: center; color: var(--muted); min-width: 0; }
+nav.top .navwho > span { max-width: 15rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+nav.top .navout { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; font: inherit; font-size: .85rem; cursor: pointer; }
+@media (max-width: 560px) { nav.top .navwho { margin-left: 0; width: 100%; } }
+
+/* Content that depends on sign-in state */
+html:not(.signed-in) [data-when="in"], html.signed-in [data-when="out"] { display: none !important; }
+
+/* Links to parts that are not open yet */
+a.is-locked::after { content: " · locked"; font-family: var(--mono); font-size: .72em; color: var(--muted); letter-spacing: .04em; }
+nav.pn a.is-locked { opacity: .75; }
+
+/* Locked page */
+.lockpanel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin-top: 1rem; }
+.lockpanel h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); }
+.reqs { list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+.reqs li { display: flex; gap: .7rem; align-items: baseline; padding: .6rem 0; border-top: 1px solid var(--rule); margin: 0; }
+.reqs .mark { font-weight: 600; width: 1rem; flex: none; }
+.reqs li.ok .mark { color: var(--good); }
+.reqs li.todo .mark { color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Email submission */
+.submit-box { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: 1rem 1.15rem; margin: 1rem 0 1.25rem; }
+.submit-box ol { margin: .4rem 0 .8rem; }
+.submit-box .row { margin-top: 0; }
+.submit-box label.sent { display: flex; gap: .55rem; align-items: flex-start; margin: .9rem 0 0; font-size: .93rem; color: var(--ink); font-weight: 600; }
+.submit-box label.sent input { margin-top: .3rem; flex: none; }
+.submit-box .small { font-size: .85rem; color: var(--muted); margin: .7rem 0 0; }
+#sent-msg { color: var(--good); font-size: .9rem; margin: .4rem 0 0; min-height: 1.2em; }
+
+/* Public syllabus: sign-in prompts on module cards */
+.gated { margin: .7rem 0 0; }
+.gated .open { margin-top: 0; }

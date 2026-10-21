@@ -8,7 +8,9 @@ Version: handbook v2.0 · 20 October 2026
 
 ```
 docs/                  Learner website (static HTML, no build step)
-  index.html           Programme handbook and module map
+  assets/site.js       Shared settings, sign-in, navigation, unlocking, email submission
+  assets/site.css      Shared styles for the above
+  index.html           Public syllabus (programme handbook and module map)
   login.html           Email one-time-code sign-in (preview mode until connected)
   dashboard.html       "My course" progress and marks page
   week-00.html         Week 0 orientation and baseline
@@ -48,15 +50,40 @@ Only the `docs/` folder is published. The `course-owner/` folder is not served b
 
 Bands: Distinction 75%+ · Merit 60–74% · Pass 50–59% · Resubmit below 50%.
 
+## How access works (level 1)
+
+**Public pages:** the syllabus (`index.html`) and sign-in (`login.html`). The navigation shows *Why this course · Syllabus · Sign in*. Module cards show outcomes and a "Sign in to start" button, but no links into the course.
+
+**Learner pages:** My course (`dashboard.html`), Week 0 and every module. A visitor who is not signed in is sent to sign-in and returned to the page afterwards. After sign-in the navigation shows *My course · Syllabus · Why this course*, plus the learner's email and *Sign out*.
+
+**Self-paced unlocking:**
+
+| Part | Opens when |
+|---|---|
+| Week 0 | Signed in |
+| Module 1 | Week 0 answers emailed and the box ticked |
+| Module N | Module N−1: both checkpoint quizzes at mastery, and the assignment emailed and the box ticked |
+
+A locked page shows what is still needed, with a link back. The dashboard shows locked modules with the reason.
+
+**Submission:** each Week 0 and module page ends with *Email my submission*. It copies the learner's work and opens an email to the course address with the subject `AIPM · <part> · <learner email>`; the learner attaches their document and ticks "I have emailed my submission". The address is set in `docs/assets/site.js` (`submitEmail`, currently `testingattic@gmail.com`). The course team replies to arrange the end-of-module test and viva.
+
+**Course-owner tools:**
+- Add `?unlock=all` to any page address to open every page in your browser for reviewing; `?unlock=none` turns it off.
+- In preview mode (no Supabase details yet), sign in with any email and the code `123456`.
+- When you publish Module 3, set `publishedModules: 3` in `site.js` and add `page:'module-03.html'` to Module 3 in `dashboard.html`.
+
+**Limits of level 1:** this is a cosmetic gate. Anyone who knows a page address can bypass it by viewing the source, and progress and unlock state live in each learner's browser (clearing it, or switching device, resets them). Real protection needs level 2: a host that checks sign-in before serving pages (Cloudflare Pages or Netlify) and a private repository.
+
 ## Learner flow
 
-Handbook → Sign in → My course → Week 0 → Module 1 → Module 2. Every learner page shares one navigation bar, and Week 0 and each module end with Previous / Next links.
+Your main site → Syllabus → Start the course → Sign in → My course → Week 0 → email → Module 1 → quizzes + email → Module 2.
 
 ## Status
 
 | Item | Status |
 |---|---|
-| Handbook, sign-in, dashboard | Done (preview mode) |
+| Syllabus, sign-in, dashboard, level 1 access | Done (preview mode) |
 | Week 0 | Live (pilot version); rewrite for a general audience later |
 | Modules 1–2 | Done |
 | Module 1 assessor pack | To do |
@@ -66,9 +93,9 @@ Handbook → Sign in → My course → Week 0 → Module 1 → Module 2. Every l
 
 - "Why this course" links to the page on the main site: `https://apoorvaaj.github.io/learn-ai-product-management.html`. That page should carry a "Start the course" button pointing to `/AIPMCourse/`.
 - `week-00.html` is linked and live, but it is a pilot version that still refers to the original learner's own products (Attic, Quaestio, BeatKeeper, MealPartner). Rewrite it for a general audience.
-- Sign-in and the dashboard run in preview mode until Supabase details are added (see `course-owner/login-setup.html`).
-- Static hosting does not stop someone reading course pages directly; see section 2 of the sign-in setup guide.
-- Learner progress is saved in each learner's own browser until the database step is done.
+- Sign-in runs in preview mode until Supabase details are added to `docs/assets/site.js` (see `course-owner/login-setup.html`).
+- Access control is cosmetic (level 1); see "Limits of level 1" above.
+- Learner progress and unlock state are saved in each learner's own browser until the database step is done.
 
 ## Credits
 

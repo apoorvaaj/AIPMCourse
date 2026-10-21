@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-access="public">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -136,18 +136,12 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
 </style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 </head>
 <body>
 <div class="wrap login">
-<nav class="top" aria-label="Course pages">
-  <a href="./">Programme handbook</a>
-  <a href="dashboard.html">My course</a>
-  <a href="week-00.html">Week 0</a>
-  <a href="module-01.html">Module 1</a>
-  <a href="module-02.html">Module 2</a>
-  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
-  <a href="login.html" aria-current="page">Sign in</a>
-</nav>
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
 
 <div class="split">
 <section class="intro">
@@ -163,6 +157,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 
 <section class="panel" aria-labelledby="ptitle">
   <div class="demo" id="demo" hidden><strong>Preview mode.</strong> No sign-in service is connected yet, so no email is sent. Use the code <b>123456</b> to try the flow.</div>
+  <p class="msg info" id="gateNote" hidden style="margin:0 0 1rem">Sign in to open that page. You will go straight there afterwards.</p>
   <div class="steps" aria-hidden="true"><span id="st1" class="on">1 · Email</span><span id="st2">2 · Code</span><span id="st3">3 · Done</span></div>
 
   <form id="emailForm" novalidate>
@@ -192,7 +187,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <div id="done" hidden>
     <h2>You are signed in</h2>
     <p class="sub">Signed in as <b id="who"></b>.</p>
-    <a class="go" id="continue" href="dashboard.html" style="display:block;text-align:center;text-decoration:none">Go to the course</a>
+    <a class="go" id="continue" href="dashboard.html" style="display:block;text-align:center;text-decoration:none">Continue</a>
     <div class="row2"><button class="link" type="button" id="signOut">Sign out</button></div>
   </div>
 
@@ -202,23 +197,15 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <p class="foot">AI Product Management Programme · Sign-in by email code · Privacy notice to be published before launch</p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-/* ===== Configuration: fill these in from your Supabase project (Settings → API). =====
-   The anonymous (publishable) key is designed to be public; protect data with row-level security. */
-const CONFIG = {
-  supabaseUrl: '',          // e.g. https://abcdefgh.supabase.co
-  supabaseAnonKey: '',      // the "anon" / publishable key
-  afterSignIn: 'dashboard.html', // where to send learners once signed in
-  resendSeconds: 60         // matches Supabase's default limit of one code per 60 seconds
-};
-
-const DEMO = !(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey) || !window.supabase;
-let client = null;
-if (!DEMO) client = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+const RESEND_SECONDS = 60; // matches Supabase's default limit of one code per 60 seconds
+const DEMO = !Site.live;
 const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const NEXT = (() => { const n = params.get('next') || SITE.homePage; return /^[a-z0-9-]+\.html(#[a-z0-9-]*)?$/i.test(n) ? n : SITE.homePage; })();
 $('demo').hidden = !DEMO;
-$('continue').href = CONFIG.afterSignIn;
+$('continue').href = NEXT;
+if (params.get('next') && NEXT !== SITE.homePage) $('gateNote').hidden = false;
 
 let email = '', timer = null;
 const show = step => {
@@ -236,17 +223,11 @@ function friendly(e) {
   if (m.includes('fetch') || m.includes('network')) return 'We could not reach the sign-in service. Check your connection and try again.';
   return 'Something went wrong. Try again in a moment.';
 }
-
 function startResendTimer() {
-  let left = CONFIG.resendSeconds; const b = $('resend');
+  let left = RESEND_SECONDS; const b = $('resend');
   b.disabled = true; clearInterval(timer);
   const tick = () => { b.textContent = left > 0 ? `Resend code in ${left}s` : 'Resend code'; if (left-- <= 0) { b.disabled = false; clearInterval(timer); } };
   tick(); timer = setInterval(tick, 1000);
-}
-
-async function sendCode() {
-  if (DEMO) return { error: null };
-  return client.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
 }
 
 $('emailForm').addEventListener('submit', async e => {
@@ -255,7 +236,7 @@ $('emailForm').addEventListener('submit', async e => {
   if (!validEmail(v)) return err('emailErr', 'Enter a full email address, such as name@example.com.');
   if (!$('consent').checked) return err('emailErr', 'Tick the box to agree to the privacy terms before continuing.');
   email = v; const b = $('sendBtn'); b.disabled = true; b.textContent = 'Sending…';
-  const { error } = await sendCode();
+  const { error } = await Site.auth.sendCode(email);
   b.disabled = false; b.textContent = 'Send code';
   if (error) return err('emailErr', friendly(error));
   $('sentTo').textContent = email; $('code').value = ''; $('verifyBtn').disabled = true;
@@ -273,30 +254,24 @@ $('codeForm').addEventListener('submit', async e => {
   e.preventDefault(); err('codeErr'); $('codeInfo').hidden = true;
   const token = $('code').value; if (token.length !== 6) return;
   const b = $('verifyBtn'); b.disabled = true; b.textContent = 'Checking…';
-  let res;
-  if (DEMO) res = token === '123456' ? { data: { user: { email } }, error: null } : { error: { message: 'invalid token' } };
-  else res = await client.auth.verifyOtp({ email, token, type: 'email' });
+  const res = await Site.auth.verify(email, token);
   b.textContent = 'Sign in';
   if (res.error) { b.disabled = false; $('code').select(); return err('codeErr', friendly(res.error)); }
-  $('who').textContent = (res.data.user && res.data.user.email) || email;
+  $('who').textContent = res.email;
   clearInterval(timer); show(3);
-  if (!DEMO) setTimeout(() => { location.href = CONFIG.afterSignIn; }, 1200);
+  setTimeout(() => { location.href = NEXT; }, 900);
 });
 
 $('resend').addEventListener('click', async () => {
-  err('codeErr'); const { error } = await sendCode();
+  err('codeErr'); const { error } = await Site.auth.sendCode(email);
   if (error) return err('codeErr', friendly(error));
   $('codeInfo').textContent = 'A new code is on its way. Use the code in the latest email.'; $('codeInfo').hidden = false;
   startResendTimer();
 });
 $('changeEmail').addEventListener('click', () => { clearInterval(timer); show(1); $('email').focus(); });
-$('signOut').addEventListener('click', async () => { if (!DEMO) await client.auth.signOut(); email = ''; $('email').value = ''; show(1); });
+$('signOut').addEventListener('click', async () => { await Site.auth.signOut(); location.href = SITE.loginPage; });
 
-(async () => {
-  if (DEMO) return;
-  const { data } = await client.auth.getSession();
-  if (data && data.session) { $('who').textContent = data.session.user.email; show(3); }
-})();
+Site.ready.then(u => { if (u) { $('who').textContent = u.email; show(3); } });
 </script>
 
 </body>

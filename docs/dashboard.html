@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-access="learner">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -160,25 +160,18 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
 </style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 </head>
 <body>
 <div class="wrap dash">
-<nav class="top" aria-label="Course pages">
-  <a href="./">Programme handbook</a>
-  <a href="dashboard.html" aria-current="page">My course</a>
-  <a href="week-00.html">Week 0</a>
-  <a href="module-01.html">Module 1</a>
-  <a href="module-02.html">Module 2</a>
-  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
-  <a href="login.html">Sign in</a>
-</nav>
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
 
-<div class="who"><span>Signed in as <b id="who">—</b></span><button class="link" type="button" id="signOut">Sign out</button></div>
 <p class="eyebrow">AI Product Management Programme</p>
 <h1>My course</h1>
 
 <div class="preview" id="preview" hidden>
-  <span><strong>Preview mode.</strong> No sign-in service is connected, so this page shows</span>
+  <span><strong>Preview mode.</strong> No sign-in service is connected. Progress is kept in this browser. Showing</span>
   <span class="seg" role="group" aria-label="Preview data">
     <button type="button" id="pvLocal" aria-pressed="true">My work in this browser</button>
     <button type="button" id="pvSample" aria-pressed="false">Sample learner</button>
@@ -205,22 +198,22 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <span>Steps: Quiz A · Quiz B · Deliverable · Test and viva</span>
 </div>
 
+<div class="note"><p><strong>Submitting work.</strong> At the end of Week 0 and each module, use <strong>Email my submission</strong> to send your work to <a data-submit-email href="#">the course team</a>, then tick the box to confirm. The next module opens once you have done this and reached mastery on both checkpoint quizzes. The course team replies to arrange your test and viva.</p></div>
+
 <h2 id="marks">Marks</h2>
-<p>Your cohort lead marks the deliverable, the end-of-module test and the viva. Marks appear here once they are entered. Checkpoint quizzes are practice and are never graded.</p>
+<p>The course team marks the deliverable, the end-of-module test and the viva. Marks appear here once they are entered. Checkpoint quizzes are practice and are never graded.</p>
 <div class="scroll"><table>
-<thead><tr><th>Module</th><th class="num">Deliverable<br>60%</th><th class="num">Test<br>25%</th><th class="num">Viva<br>15%</th><th class="num">Module</th><th>Band</th><th>Cohort lead's note</th></tr></thead>
+<thead><tr><th>Module</th><th class="num">Deliverable<br>60%</th><th class="num">Test<br>25%</th><th class="num">Viva<br>15%</th><th class="num">Module</th><th>Band</th><th>Course team's note</th></tr></thead>
 <tbody id="markRows"></tbody></table></div>
 <p style="font-size:.85rem;color:var(--muted)">Bands: Distinction 75% and above · Merit 60–74% · Pass 50–59% · Resubmit below 50%. One resubmission is allowed per module, capped at Pass. To complete the programme you need Merit or better on 9 of the 11 taught modules and a passed capstone defence.</p>
 
 <h2 id="data">Your data</h2>
-<p>This page shows only your email address, your progress through each module and the marks your cohort lead enters. You can ask for your account and all your progress to be deleted at any time.</p>
+<p>This page shows only your email address, your progress through each module and the marks the course team enters. You can ask for your account and all your progress to be deleted at any time.</p>
 <p class="foot">My course · AI Product Management Programme</p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-/* ===== Configuration: same values as login.html. Empty = preview mode. ===== */
-const CONFIG = { supabaseUrl: '', supabaseAnonKey: '', loginPage: 'login.html' };
+/* Sign-in, unlocking and settings come from assets/site.js (window.Site and window.SITE). */
 
 /* ===== Programme structure ===== */
 const MODS = [
@@ -261,17 +254,17 @@ const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } ca
 /* Each module page writes a 'progress:mN' summary in this browser (Module 2 onwards). Module 1 is read from its own keys. */
 function localProgress() {
   const out = {};
-  MODS.forEach(m => { const p = lsGet('progress:m' + m.n); if (p) out[m.n] = p; });
+  MODS.forEach(m => { const p = Site.progress(m.n); if (p && (p.qa || p.qb || (p.deliverable && p.deliverable !== 'none'))) out[m.n] = p; });
   if (!out[1]) {
     const KEY = { qa: ['No','No','Yes','No','Yes','No','Yes','Yes','No','No'], qb: ['Yes','No','No','Yes','No'] }, NEED = { qa: 8, qb: 4 };
     const q = k => { const a = lsGet('m1:' + k + ':yn') || {}; const answered = Object.keys(a).length; const c = KEY[k].filter((v, i) => a[i] === v).length; return answered ? { c, total: KEY[k].length, mast: answered === KEY[k].length && c >= NEED[k] } : null; };
     const qa = q('qa'), qb = q('qb'), misc = lsGet('m1:misc') || {}, dt = lsGet('m1:dt') || {};
     const draft = (misc.memo || '').trim().length > 0 || Object.keys(dt).length > 0;
-    if (qa || qb || draft) out[1] = { qa, qb, deliverable: draft ? 'drafting' : 'none' };
+    if (qa || qb || draft) out[1] = { qa, qb, deliverable: Site.submitted('m1') ? 'submitted' : draft ? 'drafting' : 'none' };
   }
   const w0 = lsGet('w0:yn') || {}, w0m = lsGet('w0:misc') || {};
-  const week0 = (Object.keys(w0).length || (w0m.memo || '').trim()) ? 'started' : null;
-  return { email: 'you (this browser only)', progress: out, week0 };
+  const week0 = Site.submitted('w0') ? 'done' : (Object.keys(w0).length || (w0m.memo || '').trim()) ? 'started' : null;
+  return { email: (SITE.user && SITE.user.email) || 'you', progress: out, week0 };
 }
 
 /* ===== Calculations ===== */
@@ -294,43 +287,50 @@ function steps(p) {
   const close = !open ? 'lock' : graded ? 'done' : (mk.test != null || mk.viva != null) ? 'half' : '';
   return [qs(p.qa), qs(p.qb), del, close];
 }
-function status(m, p) {
+function isOpen(data, n) {
+  if (Site.unlockAll()) return true;
+  if (n === 1) return data.week0 === 'done';
+  const p = data.progress[n - 1] || {};
+  return !!(p.qa && p.qa.mast && p.qb && p.qb.mast && p.deliverable === 'submitted');
+}
+const lockReason = n => n === 1 ? 'opens after you email your Week 0 baseline' : `opens after Module ${n - 1}: both quizzes at mastery and assignment emailed`;
+function status(m, p, open) {
   const pct = p ? moduleMark(p.marks) : null;
   if (pct != null) return { chip: bandChip(band(pct)), mk: `${pct}%` };
-  if (!p) return { chip: `<span class="chip c-none">${m.page ? 'Not started' : 'Opens ' + m.wk}</span>`, mk: '' };
+  if (!p) return { chip: `<span class="chip c-none">${!m.page ? 'Opens ' + m.wk : open ? 'Not started' : 'Locked'}</span>`, mk: '' };
   const s = steps(p);
-  if (s[2] === 'done') return { chip: '<span class="chip c-mid">Awaiting marks</span>', mk: 'Deliverable submitted' };
+  if (s[2] === 'done') return { chip: '<span class="chip c-mid">Awaiting marks</span>', mk: 'Assignment emailed' };
   if (s[3] !== 'lock') return { chip: '<span class="chip c-mid">Test unlocked</span>', mk: 'Both quizzes mastered' };
   return { chip: '<span class="chip c-form">In progress</span>', mk: p.qa ? `Quiz A ${p.qa.c}/${p.qa.total}` + (p.qb ? ` · Quiz B ${p.qb.c}/${p.qb.total}` : '') : '' };
 }
 const W0 = { n:0, wk:'Week 0', title:'Orientation and baseline', page:'week-00.html' };
 function nextStep(data) {
-  if (data.week0 !== 'done' && !data.progress[1]) return { m: W0, label: data.week0 === 'started' ? 'Continue Week 0' : 'Start with Week 0', sub: 'Read the briefing, take the practice quiz and write your baseline memo.', anchor: '' };
+  if (data.week0 !== 'done') return { m: W0, go: data.week0 === 'started' ? 'Continue' : 'Start', label: data.week0 === 'started' ? 'Finish and email Week 0' : 'Start with Week 0', sub: 'Read the briefing, take the practice quiz, write your baseline memo and email it. Module 1 opens once it is sent.', anchor: '' };
   for (const m of MODS) {
-    const p = data.progress[m.n];
-    const s = steps(p);
-    const pct = p ? moduleMark(p.marks) : null;
-    if (pct != null && band(pct) === 'Resubmit' && !(p.marks && p.marks.resubmission)) return { m, label: 'Resubmit your deliverable', sub: `Module ${m.n} scored ${pct}%. Read your cohort lead's note, revise and resubmit. The mark is capped at Pass.`, anchor: '#assignment' };
-    if (s.every(x => x === 'done')) continue;
-    const i = s.findIndex(x => x !== 'done');
-    const anchors = ['#quiz-a', '#quiz-b', '#assignment', '#close'];
-    if (s[i] === 'lock' && i === 3) return { m, label: STEPNAMES[3], sub: 'Locked until both checkpoint quizzes reach mastery.', anchor: '#close' };
-    const verbs = { '': 'Start', half: 'Continue' };
-    const extra = i === 0 && !p ? 'Begin with the lesson, then take Checkpoint quiz A.' : i === 1 && s[1] === 'half' ? `You have ${p.qb.c} of ${p.qb.total}. Mastery needs ${p.qb.total - 1}.` : i === 2 ? 'Draft and submit the module deliverable.' : i === 3 ? 'Ask your cohort lead for the test paper and book your viva.' : '';
-    return { m, label: `${verbs[s[i]] || 'Continue'} ${STEPNAMES[i].charAt(0).toLowerCase() + STEPNAMES[i].slice(1)}`, sub: extra, anchor: i === 0 && !p ? '#lesson' : anchors[i] };
+    const p = data.progress[m.n] || {};
+    const pct = moduleMark(p.marks);
+    if (pct != null && band(pct) === 'Resubmit' && !(p.marks && p.marks.resubmission)) return { m, label: 'Resubmit your assignment', sub: `Module ${m.n} scored ${pct}%. Read the course team's note, revise and email it again. The mark is capped at Pass.`, anchor: '#assignment' };
+    const qa = p.qa && p.qa.mast, qb = p.qb && p.qb.mast, sent = p.deliverable === 'submitted';
+    if (qa && qb && sent) continue;
+    if (!m.page) return { m, label: `Module ${m.n} opens soon`, sub: 'You have finished every module published so far. The next one will appear here when it is released.', anchor: '' };
+    const need = q => q.total >= 10 ? q.total - 2 : q.total - 1;
+    if (!p.qa) return { m, go: 'Start', label: 'Start the lesson', sub: 'Work through the lesson, then take Checkpoint quiz A.', anchor: '#lesson' };
+    if (!qa) return { m, label: 'Continue checkpoint quiz A', sub: `You have ${p.qa.c} of ${p.qa.total}. Mastery needs ${need(p.qa)}.`, anchor: '#quiz-a' };
+    if (!p.qb) return { m, label: 'Read the case study', sub: 'Then take Checkpoint quiz B.', anchor: '#case' };
+    if (!qb) return { m, label: 'Continue checkpoint quiz B', sub: `You have ${p.qb.c} of ${p.qb.total}. Mastery needs ${need(p.qb)}.`, anchor: '#quiz-b' };
+    return { m, label: 'Finish and email your assignment', sub: 'Email your deliverable to the course team from the module page, then tick the box. The next module opens straight after.', anchor: '#assignment' };
   }
   return null;
 }
 
 /* ===== Render ===== */
 function render(data) {
-  $('who').textContent = data.email;
   const taught = MODS.filter(m => m.n <= 11);
   const graded = taught.map(m => moduleMark((data.progress[m.n] || {}).marks)).filter(x => x != null);
   const meritPlus = graded.filter(p => p >= 60).length;
   const finished = taught.filter(m => { const p = data.progress[m.n]; const pct = p ? moduleMark(p.marks) : null; return steps(p).every(s => s === 'done') && pct != null && pct >= 50; }).length;
   const avg = graded.length ? Math.round(graded.reduce((a, b) => a + b, 0) / graded.length) : null;
-  const w0 = data.week0 === 'done' ? 'Recorded' : data.week0 === 'started' ? 'In progress' : 'Not started';
+  const w0 = data.week0 === 'done' ? 'Submitted' : data.week0 === 'started' ? 'In progress' : 'Not started';
   $('stats').innerHTML = [
     ['Modules completed', `${finished}<small> of 11</small>`, finished / 11],
     ['Merit or better', `${meritPlus}<small> of 9 needed</small>`, Math.min(meritPlus / 9, 1)],
@@ -343,22 +343,22 @@ function render(data) {
     $('nextEyebrow').textContent = nx.m.n ? `Module ${nx.m.n} · ${nx.m.wk}` : 'Start here · Week 0';
     $('nextTitle').textContent = nx.label;
     $('nextSub').textContent = `${nx.m.title}. ${nx.sub}`;
-    $('nextGo').textContent = nx.m.page ? 'Continue' : 'Not yet published';
+    $('nextGo').textContent = nx.m.page ? (nx.go || 'Continue') : 'Not yet published';
     $('nextGo').href = nx.m.page ? nx.m.page + nx.anchor : '#';
     $('nextGo').setAttribute('aria-disabled', nx.m.page ? 'false' : 'true');
   } else {
     $('nextEyebrow').textContent = 'Programme complete'; $('nextTitle').textContent = 'All modules finished'; $('nextSub').textContent = 'Well done.'; $('nextGo').hidden = true;
   }
 
-  const w0chip = data.week0 === 'done' ? '<span class="chip c-good">Recorded</span>' : data.week0 === 'started' ? '<span class="chip c-form">In progress</span>' : '<span class="chip c-none">Not started</span>';
+  const w0chip = data.week0 === 'done' ? '<span class="chip c-good">Submitted</span>' : data.week0 === 'started' ? '<span class="chip c-form">In progress</span>' : '<span class="chip c-none">Not started</span>';
   let html = `<section class="term"><h3 style="color:var(--accent)">Start here</h3><div class="mods"><div class="mrow"><span class="n">00</span><div class="t"><a href="week-00.html">Orientation and baseline</a><span class="sub">Week 0 · not graded</span></div><div class="bar" style="font-size:.8rem;color:var(--muted)">Practice quiz and baseline memo</div><div class="st">${w0chip}</div></div></div></section>`, lastT = 0;
   MODS.forEach(m => {
     if (m.t !== lastT) { if (lastT) html += '</div></section>'; html += `<section class="term"><h3 style="color:${TERMS[m.t][1]}">${TERMS[m.t][0]}</h3><div class="mods">`; lastT = m.t; }
-    const p = data.progress[m.n], s = steps(p), st = status(m, p);
-    const title = m.page ? `<a href="${m.page}">${esc(m.title)}</a>` : `<span class="ttl">${esc(m.title)}</span>`;
+    const p = data.progress[m.n], s = steps(p), open = !!m.page && isOpen(data, m.n), st = status(m, p, open);
+    const title = open ? `<a href="${m.page}">${esc(m.title)}</a>` : `<span class="ttl">${esc(m.title)}</span>`;
     const bar = m.n === 12 ? `<div class="bar" style="font-size:.8rem;color:var(--muted)">Pack and 20-minute defence</div>` :
       `<div class="bar"><div class="steps4" role="img" aria-label="${STEPNAMES.map((n, i) => n + ': ' + ({ done: 'done', half: 'in progress', lock: 'locked', '': 'not started' }[s[i]])).join('; ')}">${s.map(x => `<span class="${x}"></span>`).join('')}</div><div class="steps4l" aria-hidden="true"><span>QA</span><span>QB</span><span>DEL</span><span>TEST</span></div></div>`;
-    html += `<div class="mrow"><span class="n">${String(m.n).padStart(2, '0')}</span><div class="t">${title}<span class="sub">${m.wk}${m.page ? '' : ' · page not yet published'}</span></div>${bar}<div class="st">${st.chip}<span class="mk">${esc(st.mk)}</span></div></div>`;
+    html += `<div class="mrow"><span class="n">${String(m.n).padStart(2, '0')}</span><div class="t">${title}<span class="sub">${m.wk}${!m.page ? ' · page not yet published' : open ? '' : ' · ' + lockReason(m.n)}</span></div>${bar}<div class="st">${st.chip}<span class="mk">${esc(st.mk)}</span></div></div>`;
   });
   $('terms').innerHTML = html + '</div></section>';
 
@@ -367,36 +367,30 @@ function render(data) {
     const f = v => v == null ? '—' : v + '%';
     return `<tr><td style="min-width:12rem">M${m.n}. ${esc(m.title)}</td><td class="num">${f(mk.deliverable)}</td><td class="num">${f(mk.test)}</td><td class="num">${f(mk.viva)}</td><td class="num"><strong>${f(pct)}</strong></td><td>${bandChip(band(pct))}${mk.resubmission ? ' <span class="chip c-none">Resubmission</span>' : ''}</td><td style="min-width:14rem">${esc(mk.note || '')}</td></tr>`;
   });
-  $('markRows').innerHTML = rows.length ? rows.join('') : '<tr><td colspan="7" class="empty">No marks yet. They appear here once your cohort lead enters them.</td></tr>';
+  $('markRows').innerHTML = rows.length ? rows.join('') : '<tr><td colspan="7" class="empty">No marks yet. They appear here once your course team enters them.</td></tr>';
 }
 
 /* ===== Start ===== */
-const LIVE = !!(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey && window.supabase);
-let client = null;
 (async () => {
-  if (!LIVE) {
+  const user = await Site.ready;
+  if (!user) return;
+  if (!Site.live) {
     $('preview').hidden = false;
     let mode = lsGet('dash:preview') || 'local';
     const set = md => { mode = md; lsSet('dash:preview', md); $('pvSample').setAttribute('aria-pressed', md === 'sample'); $('pvLocal').setAttribute('aria-pressed', md === 'local'); render(md === 'sample' ? SAMPLE : localProgress()); };
     $('pvSample').addEventListener('click', () => set('sample'));
     $('pvLocal').addEventListener('click', () => set('local'));
-    $('signOut').addEventListener('click', () => { location.href = CONFIG.loginPage; });
     set(mode);
     return;
   }
-  client = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
-  const { data: s } = await client.auth.getSession();
-  if (!s || !s.session) { location.href = CONFIG.loginPage; return; }
-  $('signOut').addEventListener('click', async () => { await client.auth.signOut(); location.href = CONFIG.loginPage; });
-  /* Row-level security returns only this learner's rows. See the course author's dashboard data guide. */
-  const [{ data: prog }, { data: marks }] = await Promise.all([
-    client.from('progress').select('module, data'),
-    client.from('marks').select('module, deliverable, test, viva, note, resubmission')
-  ]);
-  const progress = {};
-  (prog || []).forEach(r => { progress[r.module] = Object.assign({}, r.data); });
-  (marks || []).forEach(r => { progress[r.module] = progress[r.module] || {}; progress[r.module].marks = r; });
-  render({ email: s.session.user.email, progress, week0: progress[0] ? 'done' : null });
+  /* Live: progress is still kept in this browser; marks come from the database (row-level security returns only this learner's rows). */
+  const data = localProgress();
+  try {
+    const c = await Site.client();
+    const { data: marks } = await c.from('marks').select('module, deliverable, test, viva, note, resubmission');
+    (marks || []).forEach(r => { data.progress[r.module] = Object.assign({}, data.progress[r.module], { marks: r }); });
+  } catch (e) {}
+  render(data);
 })();
 </script>
 

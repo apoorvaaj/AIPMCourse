@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-access="public">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -110,18 +110,12 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 .open { display: inline-block; margin-top: .6rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
 </style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 </head>
 <body>
 <div class="wrap">
-<nav class="top" aria-label="Course pages">
-  <a href="./" aria-current="page">Programme handbook</a>
-  <a href="dashboard.html">My course</a>
-  <a href="week-00.html">Week 0</a>
-  <a href="module-01.html">Module 1</a>
-  <a href="module-02.html">Module 2</a>
-  <a href="https://apoorvaaj.github.io/learn-ai-product-management.html" class="ext" target="_top">Why this course</a>
-  <a href="login.html">Sign in</a>
-</nav>
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
 
 <p class="eyebrow">Formal training programme · Handbook v2.0</p>
 <h1>AI Product Management Programme</h1>
@@ -131,7 +125,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 </ul>
 <p>This programme teaches the decisions that make or break products built on artificial intelligence (AI): whether to use AI at all, how to specify behaviour that varies, how to test it, how to pay for it, how to govern it, and how to defend a launch decision. It follows the structure of leading public courses and runs every assignment on one case company, a fictional Singapore polyclinic group, so that learners from any background work on the same realistic problems.</p>
 
-<div class="cta"><a class="primary" href="week-00.html">Start with Week 0 →</a><a href="login.html">Sign in to track your progress</a></div>
+<div class="cta"><a class="primary" data-when="out" href="login.html?next=dashboard.html">Start the course →</a><a data-when="out" href="#map">See the programme map</a><a class="primary" data-when="in" href="dashboard.html">Go to My course →</a></div>
 
 <div class="note"><p><strong>Conventions.</strong> Every acronym is written out in full the first time it appears on a page, with the short form in brackets. The glossary at the end lists them all.</p></div>
 
@@ -199,6 +193,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
   <li>The end-of-module test opens only after both checkpoint quizzes have reached mastery.</li>
   <li>Module mark bands: <strong>Distinction</strong> 75% and above, <strong>Merit</strong> 60–74%, <strong>Pass</strong> 50–59%, <strong>Resubmit</strong> below 50%. One resubmission is allowed per module, capped at Pass.</li>
   <li>To complete the programme: Merit or better on at least 9 of the 11 taught modules, and a passed capstone defence.</li>
+  <li>The programme is self-paced. You email your Week 0 baseline and each module's deliverable to the course team (<a data-submit-email href="#">course email</a>) from the module page. The next module opens once you have done this and reached mastery on both checkpoint quizzes. The course team replies to arrange your end-of-module test and viva.</li>
   <li>Answers and marking guides for end-of-module tests are kept in a separate assessor pack and never appear in learner pages.</li>
 </ul>
 
@@ -218,10 +213,10 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <div class="scroll"><table>
 <thead><tr><th>Week</th><th>Module</th><th>Harbourview initiative</th><th>Summative deliverable</th></tr></thead>
 <tbody>
-<tr><td class="num"><span class="chip c-form">Week 0</span></td><td><a href="week-00.html">Orientation, self-assessment and pre-test</a></td><td>A</td><td>Baseline memo, recorded but not graded</td></tr>
+<tr><td class="num"><span class="chip c-form">Week 0</span></td><td>Orientation, self-assessment and pre-test <span class="chip c-form">Available</span></td><td>A</td><td>Baseline memo, recorded but not graded</td></tr>
 </tbody>
 <tbody id="maprows"></tbody></table></div>
-<div class="note"><p><strong>Start with Week 0.</strong> It sets your baseline: a short briefing, a practice quiz and a timed memo on Harbourview's medicine questions assistant. The same memo is repeated unchanged in Week 14 to show how much you have learned. The current Week 0 is a pilot version and will be updated once Modules 1–12 are complete. Modules with a link below are open now; the rest open in sequence.</p></div>
+<div class="note"><p><strong>How to start.</strong> Sign in with your email address; there is no password. Your course page then takes you through Week 0 and each module in order. The programme is self-paced: each module opens once you have reached mastery on the previous module's checkpoint quizzes and emailed its assignment. The current Week 0 is a pilot version and will be updated once Modules 1–12 are complete.</p></div>
 
 <div id="modules"></div>
 
@@ -362,7 +357,7 @@ const names={1:'Foundations',2:'Mastery',3:'Strategy and leadership',4:''};
 let lastT=0, html='<h2 id="detail">5. Module detail</h2>';
 M.forEach(m=>{
   const [c,label]=T[m.t];
-  rows.insertAdjacentHTML('beforeend',`<tr><td class="num"><span class="chip ${c}">${m.wk}</span></td><td><a href="${m.page||'#m'+m.n}">M${m.n}. ${m.title}</a>${m.page?' <span class="chip c-form">Open</span>':''}</td><td>${m.init}</td><td>${m.del}</td></tr>`);
+  rows.insertAdjacentHTML('beforeend',`<tr><td class="num"><span class="chip ${c}">${m.wk}</span></td><td><a href="#m${m.n}">M${m.n}. ${m.title}</a>${m.page?' <span class="chip c-form">Available</span>':''}</td><td>${m.init}</td><td>${m.del}</td></tr>`);
   if(m.t!==lastT){ html+=`<h3 style="margin-top:2.25rem"><span class="chip ${c}">${label}${names[m.t]?' · '+names[m.t]:''}</span></h3>`; lastT=m.t; }
   html+=`<section class="mod" id="m${m.n}"><span class="chip ${c}">${m.wk} · Module ${m.n}</span><h3>${m.title}</h3><p class="src">Draws on: ${m.src}</p>
   <h4>Learning outcomes</h4><ul>${m.out.map(o=>`<li>${o}</li>`).join('')}</ul>
@@ -370,7 +365,7 @@ M.forEach(m=>{
   <dt>Reading</dt><dd>${m.read}</dd>
   <dt>Harbourview assignment</dt><dd>${m.task}</dd>
   <dt>Summative</dt><dd><span class="chip c-sum">Graded</span> ${m.del}${m.n<12?' Plus the end-of-module test and viva.':''}</dd>
-  <dt>Optional lab</dt><dd>${m.lab}</dd></dl>${m.page?`<a class="open" href="${m.page}">Open Module ${m.n} →</a>`:'<p class="src" style="margin-top:.6rem">Page opens later in the programme.</p>'}</section>`;
+  <dt>Optional lab</dt><dd>${m.lab}</dd></dl>${m.page?`<p class="gated"><a class="open" data-when="out" href="login.html?next=dashboard.html">Sign in to start →</a><a class="open" data-when="in" href="dashboard.html">Continue in My course →</a></p>`:'<p class="src" style="margin-top:.6rem">Page opens later in the programme.</p>'}</section>`;
 });
 box.innerHTML=html;
 </script>
