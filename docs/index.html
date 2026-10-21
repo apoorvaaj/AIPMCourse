@@ -192,7 +192,8 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <ul>
   <li>The end-of-module test opens only after both checkpoint quizzes have reached mastery.</li>
   <li>Module mark bands: <strong>Distinction</strong> 75% and above, <strong>Merit</strong> 60–74%, <strong>Pass</strong> 50–59%, <strong>Resubmit</strong> below 50%. One resubmission is allowed per module, capped at Pass.</li>
-  <li>To complete the programme: Merit or better on at least 9 of the 11 taught modules, and a passed capstone defence.</li>
+  <li>To complete the programme: Merit or better on at least 9 of the 11 taught modules; a capstone mark of at least 50%, including at least 50% on the panel defence; and the Week 0 memo repeated in Week 14.</li>
+  <li>In the capstone, the end-of-module test covers the whole programme and the viva is a 40-minute panel defence.</li>
   <li>The programme is self-paced. You email your Week 0 baseline and each module's deliverable to the course team (<a data-submit-email href="#">course email</a>) from the module page. The next module opens once you have done this and reached mastery on both checkpoint quizzes. The course team replies to arrange your end-of-module test and viva.</li>
   <li>Answers and marking guides for end-of-module tests are kept in a separate assessor pack and never appear in learner pages.</li>
 </ul>
@@ -347,12 +348,12 @@ const M = [
   task:'Write Harbourview\'s 18-month AI portfolio strategy on one page within S$675,000 and 12 builder-months a quarter: which initiatives to build, buy, share or drop, in what order, behind which gates, and what you will not do. Compare three ways to get the note drafter on three-year cost and value, and plan a six-week proof of concept (POC) with exit criteria the board would sign.',
   del:'Strategy on a page with portfolio table, and POC plan.',lab:'Compare two real AI scribe products against your requirements using public information.',
   read:'Rumelt, Good Strategy/Bad Strategy, chapters 1–5; Menlo Ventures, 2025 State of Generative AI in the Enterprise; Lukac and colleagues, NEJM AI (2025).'},
- {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend',src:'Nika bootcamp capstone; Duke capstone; Product School',init:'One of A–E',
-  out:['Bring every module together into one launch decision.','Defend that decision to an executive panel.'],
-  quiz:'No checkpoint quizzes. Week 14 repeats the Week 0 scenario memo.',
-  task:'Choose one Harbourview initiative (or your own product) and assemble a capstone pack from your module deliverables, ending in a launch, limited launch or do-not-launch recommendation.',
-  del:'Capstone pack and a 20-minute defence, with 20 minutes of questions from three roles: chief financial officer (cost), chief medical officer (patient safety) and chief information officer (reliability and data).',lab:'Optional: build and demonstrate a working version.',
-  read:'Your own module deliverables.'}
+ {n:12,t:4,page:'module-12.html',wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend',src:'Nika bootcamp capstone and Demo Day; Amazon working backwards; Minto, The Pyramid Principle; Klein, pre-mortem',init:'One of A–E, or your own product',
+  out:['Make a launch decision (launch, limited launch, not yet or do not launch) with conditions, stop rules and monitoring.','Assemble evidence from every module into one consistent argument, labelling its strength and what is assumed.','Defend the decision to a panel with different concerns, and handle challenges you did not prepare for.'],
+  quiz:'Four launch answers; one-way and two-way doors; answer first; consistency audits and change logs; the six-dimension evidence bar; launch criteria, stop rules and rollback; pre-mortems; answering a panel.',
+  task:'Choose one Harbourview initiative (or your own product) at its September decision point. Build a capstone pack: a two-page recommendation, an evidence map, a change log, launch criteria with stop rules and a pre-mortem, and ten slides. Defend it to the chief financial officer, chief medical officer and chief information officer. Then rewrite your Week 0 memo.',
+  del:'Capstone pack (60%), cumulative closed-book test (25%) and a 40-minute panel defence as the capstone viva (15%).',lab:'Build a thin working slice that tests your riskiest assumption, and show it in the defence.',
+  read:'Klein, \"Performing a project premortem\" (HBR, 2007); Wong and colleagues, JAMA Internal Medicine (2021); Beede and colleagues (CHI, 2020).'}
 ];
 const rows=document.getElementById('maprows'), box=document.getElementById('modules');
 const names={1:'Foundations',2:'Mastery',3:'Strategy and leadership',4:''};

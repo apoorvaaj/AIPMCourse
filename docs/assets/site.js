@@ -7,7 +7,7 @@ window.SITE = {
   supabaseUrl: '',            // e.g. https://abcdefgh.supabase.co  (empty = preview mode, code 123456)
   supabaseAnonKey: '',        // the "anon" / publishable key. Never the service role key.
   submitEmail: 'aipmcourse@aspira.work',   // where learners email summative work
-  publishedModules: 11,        // highest module number with a page (module-01.html, module-02.html …)
+  publishedModules: 12,        // highest module number with a page (module-01.html, module-02.html …)
   whyUrl: 'https://apoorvaaj.github.io/learn-ai-product-management.html',
   loginPage: 'login.html',
   homePage: 'dashboard.html'

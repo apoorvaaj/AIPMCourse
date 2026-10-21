@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en" data-access="learner" data-module="12">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Module 12 · Capstone</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>/* Layout: single reading column (max 46rem); sticky step bar; same tokens as the programme handbook and Modules 1–11 */
+:root {
+  --paper: #f6f8f9; --surface: #ffffff; --ink: #12233b; --body: #2c3a4f; --muted: #5d6b7e; --rule: #d5dde5;
+  --accent: #0b7077; --accent-soft: #e2f1f1;
+  --t1: #0b7077; --t1-soft: #e2f1f1; --t2: #2a5596; --t2-soft: #e7edf7; --t3: #9a5a0c; --t3-soft: #f8eedf; --cap: #6d3279; --cap-soft: #f2e8f4;
+  --good: #1f7a46; --good-soft: #e3f3e9; --bad: #a23a2a; --bad-soft: #f8e6e2;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --text: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+    --accent: #4fc0c4; --accent-soft: #143436;
+    --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+    --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1720; --surface: #16212c; --ink: #e8eef4; --body: #c9d3de; --muted: #93a1b1; --rule: #2a3846;
+  --accent: #4fc0c4; --accent-soft: #143436;
+  --t1: #4fc0c4; --t1-soft: #143436; --t2: #86a9e6; --t2-soft: #1a2a44; --t3: #e3a557; --t3-soft: #3a2a14; --cap: #cc93d8; --cap-soft: #33203a;
+  --good: #6fd09a; --good-soft: #15301f; --bad: #f08f7c; --bad-soft: #3a1c17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 4.5rem; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--body); font-family: var(--text); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+nav.top { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; border-bottom: 1px solid var(--rule); padding-bottom: .75rem; margin-bottom: 1.75rem; }
+nav.top a { color: var(--muted); text-decoration: none; }
+nav.top a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+nav.top a:hover, nav.top a:focus-visible { color: var(--accent); }
+nav.top a.ext::after { content: " ↗"; font-size: .8em; }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.eyebrow.cap { color: var(--cap); }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; color: var(--ink); margin: .4rem 0 .5rem; text-wrap: balance; }
+.lede { font-family: var(--display); font-size: 1.2rem; color: var(--muted); font-style: italic; margin: 0 0 1.25rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.meta li { font-family: var(--mono); font-size: .75rem; border: 1px solid var(--rule); border-radius: 3px; padding: .15rem .5rem; color: var(--muted); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.75rem; color: var(--ink); margin: 3.25rem 0 .75rem; padding-top: .75rem; border-top: 2px solid var(--ink); text-wrap: balance; }
+h2 .step { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+h2.week { border-top: 4px solid var(--cap); }
+h2.week .step { color: var(--cap); }
+h3 { font-size: 1.08rem; color: var(--ink); margin: 2rem 0 .45rem; text-wrap: balance; }
+h4 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 1.1rem 0 .3rem; }
+p { margin: 0 0 .9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: .35rem; }
+a { color: var(--accent); }
+strong { color: var(--ink); }
+.scroll { position: relative; overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.wide { min-width: 44rem; }
+.chip { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 3px; white-space: nowrap; }
+.c-form { background: var(--accent-soft); color: var(--accent); } .c-sum { background: var(--t3-soft); color: var(--t3); }
+.c-good { background: var(--good-soft); color: var(--good); } .c-bad { background: var(--bad-soft); color: var(--bad); } .c-mid { background: var(--t2-soft); color: var(--t2); }
+.c-cap { background: var(--cap-soft); color: var(--cap); }
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--t3); background: var(--t3-soft); }
+.capnote { border-left-color: var(--cap); background: var(--cap-soft); }
+.foot { margin-top: 3rem; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sticky step bar */
+.stepbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); margin: 0 0 1.5rem; }
+.stepbar ol { list-style: none; margin: 0; padding: .5rem 0; display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: thin; }
+.stepbar li { margin: 0; flex: none; }
+.stepbar a { display: flex; align-items: center; gap: .35rem; text-decoration: none; font-size: .8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .2rem .65rem; background: var(--surface); white-space: nowrap; }
+.stepbar a:hover, .stepbar a.here { color: var(--accent); border-color: var(--accent); }
+.stepbar .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--rule); flex: none; }
+.stepbar .dot.prog { background: var(--t2); } .stepbar .dot.done { background: var(--good); }
+.stepbar .wk { font-family: var(--mono); font-size: .68rem; color: var(--cap); align-self: center; padding: 0 .1rem 0 .35rem; }
+
+/* Overview */
+.path { display: grid; gap: .6rem; margin: 1rem 0 1.25rem; }
+.path a { display: grid; grid-template-columns: 2.2rem minmax(0,1fr) auto; gap: .2rem .8rem; align-items: start; text-decoration: none; color: var(--body); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .9rem; }
+.path a:hover { border-color: var(--accent); }
+.path .n { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--cap); grid-row: span 2; }
+.path b { color: var(--ink); }
+.path .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.path .d { grid-column: 2 / -1; font-size: .9rem; }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+.status div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .55rem .75rem; font-size: .82rem; min-width: 0; }
+.status b { display: block; color: var(--ink); font-size: .95rem; }
+
+/* Lesson elements */
+.terms { display: grid; grid-template-columns: 11rem minmax(0,1fr); gap: .45rem 1rem; margin: .75rem 0 1.25rem; font-size: .93rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; }
+.terms dt { font-weight: 600; color: var(--ink); }
+.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .terms { grid-template-columns: 1fr; } .terms dd { margin-bottom: .45rem; } }
+.worked { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.1rem; margin: 1rem 0 1.25rem; }
+.worked h4:first-child { margin-top: 0; }
+.ladder { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: grid; gap: .4rem; }
+.ladder li { margin: 0; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: .1rem .75rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 4px; padding: .55rem .8rem; font-size: .9rem; }
+.ladder .r { font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--muted); grid-row: span 2; }
+.ladder b { color: var(--ink); }
+.ladder.decide li:nth-child(1) { border-left-color: var(--good); }
+.ladder.decide li:nth-child(2) { border-left-color: var(--t2); }
+.ladder.decide li:nth-child(3) { border-left-color: var(--t3); }
+.ladder.decide li:nth-child(4) { border-left-color: var(--bad); }
+.evidence { border: 1px solid var(--rule); border-top: 3px solid var(--t2); background: var(--surface); border-radius: 4px; padding: .9rem 1rem; margin: 1rem 0 1.25rem; font-size: .93rem; }
+.evidence h4:first-child { margin-top: 0; color: var(--t2); }
+.evidence ul { margin-bottom: 0; }
+.pyr { display: grid; gap: .3rem; margin: .75rem 0 1.25rem; }
+.pyr div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .5rem .8rem; font-size: .9rem; }
+.pyr div:nth-child(1) { border-left: 4px solid var(--cap); margin: 0 18%; text-align: center; }
+.pyr div:nth-child(2) { border-left: 4px solid var(--t2); margin: 0 9%; }
+.pyr div:nth-child(3) { border-left: 4px solid var(--accent); }
+@media (max-width: 480px) { .pyr div { margin: 0 !important; text-align: left !important; } }
+.pyr b { color: var(--ink); }
+
+/* Quizzes */
+.score { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.6rem); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.q { border-top: 1px solid var(--rule); padding: 1rem 0; }
+.q .stem { font-weight: 600; color: var(--ink); margin-bottom: .55rem; display: block; }
+.q .qn { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-right: .4rem; font-weight: 400; }
+.yn { display: flex; gap: .5rem; flex-wrap: wrap; }
+.yn button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: .35rem 1.1rem; border-radius: 3px; }
+.yn button:hover { border-color: var(--accent); }
+.yn button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.fb { margin-top: .6rem; padding: .55rem .8rem; border-radius: 3px; font-size: .92rem; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb span { color: var(--body); }
+textarea, select, input[type=text], input[type=number] { width: 100%; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .5rem .6rem; }
+textarea { min-height: 6rem; resize: vertical; }
+textarea.long { min-height: 22rem; }
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.btn { border: 1px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem .9rem; border-radius: 3px; font-size: .88rem; }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.model { margin-top: .6rem; border-left: 3px solid var(--t2); background: var(--t2-soft); padding: .6rem .9rem; font-size: .92rem; border-radius: 0 3px 3px 0; }
+.model ul { margin: .3rem 0 0; }
+
+/* Case pack */
+.memo { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0 1.25rem; font-family: var(--display); font-size: 1.05rem; }
+.memo .hdr { font-family: var(--mono); font-size: .75rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: .75rem; line-height: 1.7; }
+.memo p:last-child { margin: 0; }
+details.sheet { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; margin: 0 0 .75rem; }
+details.sheet > summary { cursor: pointer; padding: .8rem 1rem; list-style: none; display: flex; gap: .7rem; align-items: baseline; }
+details.sheet > summary::-webkit-details-marker { display: none; }
+details.sheet > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); width: 1rem; flex: none; }
+details.sheet[open] > summary::before { content: "−"; }
+details.sheet > summary b { color: var(--ink); }
+details.sheet > summary .k { font-size: .82rem; color: var(--muted); }
+.sheet .in { padding: 0 1rem 1rem 2.7rem; }
+@media (max-width: 560px) { .sheet .in { padding-left: 1rem; } }
+.sheet .scroll { background: var(--paper); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem .85rem; font-size: .9rem; min-width: 0; }
+.card .who { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .04em; display: block; margin-bottom: .3rem; }
+.card q { font-family: var(--display); font-size: 1.02rem; font-style: italic; color: var(--ink); }
+.card q::before, .card q::after { content: none; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin: .5rem 0 1rem; }
+.kpis div { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 4px; padding: .5rem .7rem; min-width: 0; }
+.kpis b { display: block; font-family: var(--display); font-size: 1.45rem; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpis span { font-size: .78rem; color: var(--muted); display: block; }
+.kpis .warn { border-top-color: var(--t3); } .kpis .bad { border-top-color: var(--bad); } .kpis .good { border-top-color: var(--good); }
+.tag { display: inline-block; font-family: var(--mono); font-size: .68rem; padding: .05rem .4rem; border-radius: 3px; white-space: nowrap; background: var(--paper); border: 1px solid var(--rule); color: var(--muted); }
+.lq { font-family: var(--display); font-size: 1.1rem; color: var(--ink); border-left: 3px solid var(--cap); padding: .2rem 0 .2rem .8rem; margin: .25rem 0 .9rem; }
+.panelists { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .65rem; margin: .75rem 0 1rem; }
+.panelists div { background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--cap); border-radius: 4px; padding: .6rem .8rem; font-size: .88rem; min-width: 0; }
+.panelists b { display: block; color: var(--ink); }
+.panelists span { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+
+/* Tools */
+.calcbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+.calcbox > div { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem .9rem; min-width: 0; }
+.calcbox h4 { margin-top: 0; }
+.calcbox label { display: block; font-size: .8rem; color: var(--muted); margin: .35rem 0 .1rem; }
+.calcbox .res { font-family: var(--display); font-size: 1.35rem; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: .5rem; line-height: 1.3; }
+.calcbox .res small { display: block; font-family: var(--text); font-size: .8rem; color: var(--muted); }
+.calcbox input[type=number] { padding: .3rem .4rem; font-variant-numeric: tabular-nums; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: .75rem 0 1.25rem; }
+.panel > h4:first-child { margin-top: 0; }
+.ini { border-left: 4px solid var(--cap); }
+.substep { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 .2rem; }
+.fields { display: grid; gap: .65rem; margin: .5rem 0 .9rem; }
+.fields label { display: block; font-size: .82rem; color: var(--ink); font-weight: 600; margin-bottom: .2rem; }
+.fields .hint { font-weight: 400; color: var(--muted); }
+.fields textarea { min-height: 4.6rem; font-size: .9rem; }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem .7rem; }
+.fgrid .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { .fgrid { grid-template-columns: 1fr; } }
+.fgrid label { display: block; font-size: .8rem; color: var(--ink); font-weight: 600; margin-bottom: .15rem; }
+.fgrid .hint { font-weight: 400; color: var(--muted); }
+.fgrid textarea { min-height: 3.6rem; font-size: .9rem; }
+.fgrid select, .fgrid input { font-size: .88rem; padding: .35rem .45rem; }
+.warnlist { margin: .3rem 0 .8rem; padding-left: 1.1rem; font-size: .86rem; color: var(--t3); }
+.sumbar { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .85rem; margin: .75rem 0 1rem; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.sumbar b { color: var(--ink); }
+.check { display: flex; gap: .55rem; align-items: flex-start; margin: .35rem 0; font-size: .93rem; }
+.check input { margin-top: .35rem; flex: none; }
+.reqtools { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .3rem 0 0; font-size: .85rem; color: var(--muted); }
+.d9 td, .d9 th { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.d9 td:first-child, .d9 th:first-child { text-align: left; white-space: normal; }
+.d9 tr.key td { font-weight: 600; color: var(--ink); }
+.d9 td.pos { color: var(--good); font-weight: 600; } .d9 td.neg { color: var(--bad); font-weight: 600; }
+@media (max-width: 560px) { .d9 { font-size: .8rem; } .d9 th, .d9 td { padding: .45rem .5rem; } }
+.emap td { min-width: 9rem; } .emap td:first-child { min-width: 8rem; font-weight: 600; color: var(--ink); }
+.emap textarea { min-height: 3.6rem; font-size: .85rem; padding: .35rem .45rem; }
+.emap select { font-size: .82rem; padding: .3rem .35rem; }
+.mrow td input, .mrow td select { font-size: .84rem; padding: .3rem .4rem; min-width: 6.5rem; }
+.sr { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.timer { font-family: var(--mono); font-size: 1.1rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.submit-box { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: .9rem 1rem; margin: 1rem 0; }
+.small { font-size: .82rem; color: var(--muted); }
+#copied, #w0-msg, #poc-msg { color: var(--good); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Previous/next links */
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 3rem 0 0; }
+.pn a, .pn span { display: block; border: 1px solid var(--rule); border-radius: 4px; padding: .75rem 1rem; text-decoration: none; background: var(--surface); color: var(--ink); min-width: 0; }
+.pn a:hover, .pn a:focus-visible { border-color: var(--accent); }
+.pn small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pn .next { text-align: right; grid-column: 2; }
+@media (max-width: 480px) { .pn { grid-template-columns: 1fr; } .pn .next { grid-column: 1; } }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="top" data-site-nav aria-label="Course pages"><a href="./">Syllabus</a><a href="login.html">Sign in</a></nav>
+
+<p class="eyebrow cap">Capstone · Weeks 12 to 14 · Module 12</p>
+<h1>Capstone: decide, evaluate and defend</h1>
+<p class="lede">Eleven modules taught you to frame, specify, test, design, price, govern and plan an AI product. The capstone asks you to do all of it for one real decision, and then to stand in front of the people who would carry the consequences.</p>
+<ul class="meta"><li>About 20 hours over 3 weeks</li><li>2 checkpoint quizzes</li><li>Graded: capstone pack, cumulative test, panel defence</li><li>No coding (optional build lab)</li></ul>
+
+<nav class="stepbar" aria-label="Module steps">
+  <ol>
+    <li><a href="#start"><span class="dot done"></span>Start</a></li>
+    <li><span class="wk">WK 12</span></li>
+    <li><a href="#lesson"><span class="dot" id="d-lesson"></span>1 · Lesson</a></li>
+    <li><a href="#quiz-a"><span class="dot" id="d-qa"></span>Quiz A</a></li>
+    <li><a href="#case"><span class="dot" id="d-case"></span>2 · Case</a></li>
+    <li><a href="#quiz-b"><span class="dot" id="d-qb"></span>Quiz B</a></li>
+    <li><span class="wk">WK 13</span></li>
+    <li><a href="#assignment"><span class="dot" id="d-as"></span>3 · Pack</a></li>
+    <li><a href="#rehearse"><span class="dot" id="d-re"></span>Rehearse</a></li>
+    <li><span class="wk">WK 14</span></li>
+    <li><a href="#close"><span class="dot" id="d-close"></span>4 · Close</a></li>
+    <li><a href="#lab"><span class="dot"></span>Lab</a></li>
+    <li><a href="#glossary"><span class="dot"></span>Glossary</a></li>
+  </ol>
+</nav>
+
+<!-- ================= START ================= -->
+<section id="start">
+<p>Every module so far ended with a decision about part of a product. The capstone ends with the whole decision: should this AI product be launched, launched in a limited way, held back until something is true, or not launched at all? You choose <strong>one</strong> of Harbourview's five initiatives (or a product of your own, with the course team's agreement), assemble a <strong>capstone pack</strong> from your module work and the new evidence in this week's case, and defend your recommendation to a <strong>panel</strong> of three executives: the chief financial officer (CFO) on cost, the chief medical officer (CMO) on patient safety, and the chief information officer (CIO) on reliability and data.</p>
+<p>The capstone follows the pattern of the capstones in leading public courses, such as the capstone and Demo Day in Marily Nika's <em>AI Product Management Bootcamp</em>, where learners build and pitch a product, and adds what those rarely include: a decision with conditions, a check that the evidence holds together, and a cross-examination by the people who would carry the risk. It also draws on Amazon's "working backwards" habits, Barbara Minto's <em>Pyramid Principle</em> for putting the answer first, and Gary Klein's <em>pre-mortem</em>.</p>
+
+<h3 style="margin-top:1.25rem">By the end of the capstone you will be able to</h3>
+<ol>
+  <li>Make a launch decision for an AI product, choosing between launch, limited launch, not yet and do not launch, and state the conditions, stop rules and monitoring that come with it.</li>
+  <li>Assemble evidence from many sources into one consistent argument: find where earlier work contradicts new facts, say how strong each piece of evidence is, and say what is still assumed.</li>
+  <li>Defend the decision to executives with different concerns, answer challenges you did not prepare for, and say plainly what you do not know.</li>
+</ol>
+
+<h3>Three weeks, four steps</h3>
+<div class="scroll"><table>
+<thead><tr><th>Week</th><th>What you do</th><th class="num">Time</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-cap">Week 12</span></td><td>Lesson on launch decisions and defending them; the capstone case pack; choose your initiative</td><td class="num">5–6 hrs</td><td><span class="chip c-form">Quiz A</span> <span class="chip c-form">Quiz B</span></td></tr>
+<tr><td><span class="chip c-cap">Week 13</span></td><td>Build the capstone pack; rehearse the defence with a peer; email the pack by the end of the week</td><td class="num">8–10 hrs</td><td><span class="chip c-sum">Pack · 60%</span></td></tr>
+<tr><td><span class="chip c-cap">Week 14</span></td><td>Cumulative closed-book test; panel defence; repeat the Week 0 scenario memo</td><td class="num">3–4 hrs</td><td><span class="chip c-sum">Test · 25%</span> <span class="chip c-sum">Defence · 15%</span></td></tr>
+</tbody></table></div>
+
+<div class="path">
+  <a href="#lesson"><span class="n">1</span><b>Lesson</b><span class="t">75 min</span><span class="d">Launch decisions, building one argument from many pieces, the evidence bar, pre-mortems and defending to a panel. Ends with <span class="chip c-form">Checkpoint quiz A</span></span></a>
+  <a href="#case"><span class="n">2</span><b>Case study</b><span class="t">60 min</span><span class="d">Harbourview in September: what the board decided, what has happened since, and the launch question for each initiative. Ends with <span class="chip c-form">Checkpoint quiz B</span></span></a>
+  <a href="#assignment"><span class="n">3</span><b>Capstone pack</b><span class="t">8–10 hrs</span><span class="d">Frame the decision, map the evidence, log what changed, set launch criteria, run a pre-mortem, write the recommendation and rehearse. <span class="chip c-sum">Graded 60%</span></span></a>
+  <a href="#close"><span class="n">4</span><b>Close</b><span class="t">3–4 hrs</span><span class="d">Cumulative test and a 40-minute panel defence, then the Week 0 memo again. <span class="chip c-sum">Graded 25% + 15%</span></span></a>
+</div>
+
+<h4>Your progress on this page</h4>
+<div class="status" aria-live="polite">
+  <div>Checkpoint quiz A<b id="st-qa">Not started</b></div>
+  <div>Checkpoint quiz B<b id="st-qb">Not started</b></div>
+  <div>Initiative<b id="st-ini">Not chosen</b></div>
+  <div>Evidence map<b id="st-em">0 of 6 rows</b></div>
+  <div>Launch criteria<b id="st-lc">0 of 5 measures</b></div>
+  <div>Recommendation<b id="st-memo">0 words</b></div>
+  <div>Week 0 repeat<b id="st-w0">Not started</b></div>
+  <div>Test and defence<b id="st-test">Locked</b></div>
+</div>
+
+<div class="note capnote"><p><strong>How the capstone is assessed.</strong> The capstone uses the same pattern as every module, adapted for its size. Two checkpoint quizzes are formative, ungraded and give instant feedback. The summative mark is the <strong>capstone pack</strong> (60%), a <strong>cumulative closed-book test</strong> on the whole programme (25%), and the <strong>panel defence</strong>, which is the capstone's viva (15%). The defence runs for 40 minutes instead of the usual 10. To pass the capstone you need a module mark of at least 50% <em>and</em> at least 50% on the defence itself.</p></div>
+<div class="note"><p><strong>How this page works.</strong> Your answers save automatically in this browser as you work. Nobody else can see them until you email them to the course team from the <strong>Submit your work</strong> section. Every acronym is spelled out the first time it appears on this page. The studies and practices named in the lesson are real and were checked in October 2026; Harbourview, its staff, suppliers, figures and results are invented for teaching. Nothing on this page is medical, procurement or legal advice.</p></div>
+</section>
+
+<!-- ================= LESSON ================= -->
+<h2 id="lesson" class="week"><span class="step">Week 12 · Step 1 · Lesson · about 75 minutes</span>Making and defending a launch decision</h2>
+<p>Part 1 sets out the four honest answers to "should we launch?". Part 2 turns a pile of module deliverables into one argument. Part 3 sets the evidence bar and shows what happens when it is set too low. Part 4 covers launch criteria, stop rules and the pre-mortem. Part 5 covers the panel. Part 6 explains why you will write your Week 0 memo again.</p>
+
+<h3 id="l1">12.1 Four honest answers to "should we launch?"</h3>
+<p>A launch decision is rarely yes or no. There are four answers, and choosing between them is most of the skill.</p>
+<ol class="ladder decide">
+  <li><span class="r">1</span><b>Launch</b><span>Release to everyone the product is meant for, with monitoring and stop rules. The evidence is strong on every dimension that could cause serious harm.</span></li>
+  <li><span class="r">2</span><b>Limited launch</b><span>Release to a defined group, place, language or set of tasks, with named conditions for going further. The evidence is strong for that scope and weaker outside it.</span></li>
+  <li><span class="r">3</span><b>Not yet</b><span>Do not release now, because something specific must first be true: a fix retested, a contract term agreed, a staff rota in place. Name the condition and the date you will look again.</span></li>
+  <li><span class="r">4</span><b>Do not launch</b><span>Stop, because the value is not there, the risk cannot be brought down to an acceptable level, or something cheaper does the job. Say what you learned and what the money and people will do instead.</span></li>
+</ol>
+<p><strong>Limited launch is not a compromise.</strong> It is the right answer when the evidence really differs by scope: strong in English, thin in Tamil; strong for routine visits, weak for chronic disease reviews. It becomes an evasion when the limits are vague ("a soft launch"), when there is no condition for going further, or when the limited group is chosen to make the results look good.</p>
+<p><strong>"Do not launch" is not a failure.</strong> A product manager who stops a weak product early saves the money, people and trust it would have consumed. What fails is stopping without saying why, or launching anyway because work has already been done. Money already spent and not recoverable (a <strong>sunk cost</strong>) is not a reason to continue.</p>
+<dl class="terms">
+  <dt>Launch decision</dt><dd>A commitment to release a product to a defined scope, with conditions, owners, monitoring and stop rules.</dd>
+  <dt>Scope</dt><dd>Who gets the product, where, in which languages, for which tasks, and from when.</dd>
+  <dt>Condition</dt><dd>Something that must be true before the launch goes ahead or expands, stated so that anyone can check it.</dd>
+  <dt>Stop rule</dt><dd>A measured result that ends or rolls back the launch at once, set in advance with a named person who can call it.</dd>
+  <dt>Rollback</dt><dd>Returning to the previous way of working (or the previous version) quickly and safely.</dd>
+</dl>
+
+<h4>How much evidence? It depends on the door</h4>
+<p>Jeff Bezos, in his 2015 letter to Amazon shareholders, separated decisions that are hard or impossible to reverse ("one-way doors") from decisions that can be undone cheaply ("two-way doors"). Two-way doors should be taken quickly, by small groups; one-way doors deserve slow, careful work. Most AI launches are a mixture: switching a feature off is usually easy, but a three-year contract, a staff rota that has been cut, a lost patient's trust or a wrong entry in a medical record are not. Find the one-way parts of your decision and put most of your evidence there.</p>
+<div class="worked">
+<h4>Worked example · Lumen Eye Clinics (fictional, from Module 11) decides on its report-drafting tool</h4>
+<div class="scroll"><table>
+<thead><tr><th>Part of the decision</th><th>Door</th><th>What Lumen did</th></tr></thead>
+<tbody>
+<tr><td>Turning the drafting tool on for glaucoma follow-ups</td><td>Two-way: it can be switched off in a day</td><td>Decided in one meeting, with a stop rule</td></tr>
+<tr><td>Signing a three-year contract for all 120 optometrists</td><td>One-way: the money is committed</td><td>Waited for three months of adoption data; signed for 90 seats with a break clause</td></tr>
+<tr><td>Cutting one administrative post, as the vendor's business case suggested</td><td>One-way: the person and their knowledge leave</td><td>Did not do it; moved the time saved into faster report turnaround instead</td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="l2">12.2 One argument, not a scrapbook</h3>
+<p>By Week 12 you have eleven deliverables. Stapling them together is not a capstone. A panel needs <strong>one argument</strong>: a decision, the few reasons that carry it, and the evidence under each reason. Barbara Minto's <em>Pyramid Principle</em>, written for consultants at McKinsey, gives the shape: put the answer first, then the reasons, then the evidence.</p>
+<div class="pyr" aria-label="The shape of a recommendation">
+  <div><b>The decision</b> · one or two sentences, with scope and conditions</div>
+  <div><b>Three reasons</b> · each one a claim the panel could disagree with</div>
+  <div><b>Evidence under each reason</b> · figures, test results, user findings, costs, with where they came from and how strong they are</div>
+</div>
+<p>Amazon's "working backwards" habit makes the same point from the user's side. Before building, teams write the press release and the list of frequently asked questions (the "PR/FAQ") for the finished product, so the argument for it is clear before any work is done. For a launch decision, ask: what would we tell patients and staff on the day we launch, and could we say it truthfully?</p>
+
+<h4>Check that it holds together</h4>
+<p>Work done over twelve weeks drifts. Figures change, assumptions are replaced by measurements, and the facts you used in Week 4 may not be the facts in Week 12. A panel will find the contradiction you missed. Before you write, do a <strong>consistency audit</strong>: list every figure and claim your recommendation depends on, find its source, and check it against the newest evidence. These are the contradictions that turn up most often:</p>
+<ul>
+  <li><strong>Old numbers:</strong> a cost model built on volunteer results when the trial has since measured everyone else.</li>
+  <li><strong>Changed thresholds:</strong> a requirement says one thing, the release gate checks another.</li>
+  <li><strong>Different scope:</strong> the requirements document covers four languages, the test set covers two.</li>
+  <li><strong>Review levels that moved:</strong> the design says a pharmacist checks every dose answer; the cost model assumes they check 2%.</li>
+  <li><strong>Decisions overtaken:</strong> your strategy chose one route, the board chose another.</li>
+  <li><strong>Risk level mismatch:</strong> the trust pack says the product is low risk, the launch plan uses it for clinical advice.</li>
+</ul>
+<p>When you find one, do not quietly keep the more convenient version. Say which you now rely on and why, and update the earlier work. A short <strong>change log</strong> in the pack shows the panel you have done this.</p>
+
+<h3 id="l3">12.3 The evidence bar</h3>
+<p>Every launch rests on six kinds of evidence. For each, ask what you know, how strongly, and what you are assuming.</p>
+<div class="scroll"><table class="wide">
+<thead><tr><th>Dimension</th><th>The question</th><th>Strong evidence looks like</th><th>Weak evidence looks like</th></tr></thead>
+<tbody>
+<tr><td><strong>Value</strong></td><td>Does it help the people it is for, enough to matter?</td><td>Measured against a baseline, with representative users, in real work</td><td>Volunteer enthusiasm; a vendor's case study from another country</td></tr>
+<tr><td><strong>Quality and safety</strong></td><td>How often is it wrong, how badly, and who is harmed?</td><td>Release gate results by failure type and language, with likely ranges; red-team results run more than once</td><td>"It looked good in testing"; one overall accuracy number</td></tr>
+<tr><td><strong>People and adoption</strong></td><td>Will people use it as intended, and keep checking it?</td><td>Weekly and deep use; edits and overrides; how people who did not volunteer behave</td><td>Licences issued; first-week ratings</td></tr>
+<tr><td><strong>Cost and economics</strong></td><td>What will it cost over its life, and what does the value depend on?</td><td>Three-year cost and value with sensitivities, using measured inputs</td><td>Licence price only; value counted with no realisation</td></tr>
+<tr><td><strong>Governance, risk and fairness</strong></td><td>Is it approved, fair across groups, and lawful?</td><td>Committee approval with conditions; results by group; data protection review complete</td><td>Approval assumed; groups not broken out</td></tr>
+<tr><td><strong>Reliability, data and operations</strong></td><td>Will it keep working, can we support it, and can we leave?</td><td>Service levels, capacity checked for the work it creates, rollback tested, exit terms agreed</td><td>"The vendor is reputable"</td></tr>
+</tbody></table></div>
+<p>Label each piece of evidence <strong>strong</strong>, <strong>moderate</strong>, <strong>weak</strong> or <strong>assumption</strong>. A recommendation can rest on assumptions, as long as they are labelled, do not concern serious harm, and are checked soon after launch.</p>
+<div class="evidence">
+<h4>What the evidence says (real studies)</h4>
+<ul>
+  <li><strong>A widely used model, checked independently, did far worse than claimed.</strong> In 2021 researchers at Michigan Medicine published an external check of the Epic Sepsis Model, a sepsis warning tool built into a medical record system used by hundreds of hospitals (Wong and colleagues, <em>JAMA Internal Medicine</em>). Its ability to rank patients by risk was much lower than the developer had reported. At the alert threshold it missed about two-thirds of the patients who developed sepsis, while generating alerts on about one in five of all hospitalised patients. Evidence from the people who built a product is not the same as evidence from your setting.</li>
+  <li><strong>Accurate in the lab, struggling in the clinic.</strong> Google's deep learning system for spotting diabetic eye disease performed at specialist level on test images. When researchers watched it in use at clinics in Thailand (Beede and colleagues, presented at the CHI conference on human factors in computing in 2020), many photos taken in real lighting conditions were rejected as too poor to grade, slow internet connections held up results, and nurses had to change how they worked. The model was the same; the setting was not. Launch evidence has to come from the place, people and workflow where the product will run.</li>
+</ul>
+</div>
+
+<h3 id="l4">12.4 Launch criteria, stop rules and the pre-mortem</h3>
+<p>A recommendation becomes a decision when it says how you will know it is working and what you will do if it is not. Write these before launch, as you did for the proof of concept (POC) in Module 11.</p>
+<ul>
+  <li><strong>Conditions before launch:</strong> what must be true on the day. "Build 1.2.1 passes the release gate; Malay-speaking pharmacist cover is on the rota."</li>
+  <li><strong>Measures after launch</strong>, each with a threshold, how it is measured, an owner and the action if it is crossed. Include at least one measure of value, one of safety, one of real use and one of the work the product creates for people.</li>
+  <li><strong>Stop and rollback rules:</strong> the result that ends it, who can call it, and how quickly you can return to the old way. Test the rollback before you need it.</li>
+  <li><strong>A review date</strong>, usually 30, 60 or 90 days after launch, when the decision is looked at again with real data.</li>
+</ul>
+<h4>The pre-mortem</h4>
+<p>Gary Klein's pre-mortem, described in the <em>Harvard Business Review</em> in 2007, reverses the usual post-mortem. Before the launch, the team imagines it is six months later and the launch has failed badly. Each person writes down, independently, why it failed. Klein drew on research by Deborah Mitchell, Jay Russo and Nancy Pennington (1989), which found that imagining an outcome had already happened made people better at explaining why it might happen. A pre-mortem makes it safe to voice doubts that people keep to themselves when everyone is enthusiastic.</p>
+<div class="worked">
+<h4>Worked example · Riverside Public Library's pre-mortem before letting its assistant renew loans for every member (fictional, from Module 11)</h4>
+<div class="scroll"><table>
+<thead><tr><th>"It is March, and it failed because…"</th><th>Control added to the plan</th></tr></thead>
+<tbody>
+<tr><td>Members over 75 could not complete renewals and stopped phoning, because they thought the phone line had closed</td><td>The phone message says the line is still open; renewals by older members are tracked weekly</td></tr>
+<tr><td>A supplier update changed how account numbers were sent and the assistant renewed loans on the wrong accounts</td><td>Account check on every action; any action on another member's account stops it the same day</td></tr>
+<tr><td>Staff were moved off the counter before renewals by chat had settled</td><td>No staff changes until the 90-day review</td></tr>
+<tr><td>Nobody owned the weekly numbers after the project team moved on</td><td>Head of Digital Services named as owner of the dashboard and the stop rule</td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="l5">12.5 Defending to a panel</h3>
+<p>A panel is not an audience. Each member is listening for the risk they will carry. Prepare for each of them separately.</p>
+<div class="panelists">
+  <div><b>Chief financial officer</b><span>COST AND COMMITMENT</span><br>What does it cost over its life? What value is real money and what is "time freed"? What does it commit us to beyond this budget, and what if adoption is half what you expect?</div>
+  <div><b>Chief medical officer</b><span>PATIENT SAFETY</span><br>How often is it wrong, and how badly? Who checks it, and will they keep checking? Which patients are least well served? What stops it if something goes wrong?</div>
+  <div><b>Chief information officer</b><span>RELIABILITY AND DATA</span><br>Where does the data go? What happens when the supplier or model changes? Can we test a new version, switch it off, and leave?</div>
+</div>
+<h4>The shape of a 20-minute defence</h4>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What you cover</th></tr></thead>
+<tbody>
+<tr><td class="num">0–2</td><td>The decision, its scope and conditions, in plain words. No background first.</td></tr>
+<tr><td class="num">2–12</td><td>Three reasons, each with its strongest evidence and its weakest point.</td></tr>
+<tr><td class="num">12–16</td><td>What could go wrong (from the pre-mortem), and how you will know and stop.</td></tr>
+<tr><td class="num">16–19</td><td>Cost, commitment, and what you are not doing.</td></tr>
+<tr><td class="num">19–20</td><td>What you are asking the panel to decide today.</td></tr>
+</tbody></table></div>
+<h4>Answering hard questions</h4>
+<ul>
+  <li><strong>Answer first, then the evidence, then its limit.</strong> "No. The trial measured 1.1 minutes for doctors who did not volunteer. That is six weeks at two clinics, so I would check it again at 90 days."</li>
+  <li><strong>Say what you do not know</strong>, and how you would find out and by when. Panels forgive gaps; they do not forgive bluffing.</li>
+  <li><strong>Take the other side seriously.</strong> Before the panel, write the best case against your recommendation (sometimes called steelmanning). If you cannot, you do not yet understand the decision.</li>
+  <li><strong>Change your mind for a good reason, out loud.</strong> If a question reveals a flaw, say so and say what you would now recommend. That scores better than defending the indefensible.</li>
+</ul>
+
+<h3 id="l6">12.6 Looking back: your Week 0 memo</h3>
+<p>In Week 0 you wrote a memo, without help, on whether a polyclinic group should launch a medicines chatbot. In Week 14 you write it again, under the same conditions. The two memos are compared using the same rubric. The point is not a mark. It is to see, in your own words, what has changed in how you decide: whether you now separate what you know from what you assume, name failure modes and who they harm, ask for evidence from the right setting, and write something an executive can act on.</p>
+
+<h3 id="calcs">Two calculators</h3>
+<div class="calcbox">
+  <div><h4>1 · Cost and value over a period</h4>
+    <p style="font-size:.82rem;color:var(--muted);margin:0 0 .3rem">Defaults: Lumen's drafting tool for 90 seats over three years.</p>
+    <label for="v-one">One-off cost (S$)</label><input type="number" id="v-one" value="60000" min="0">
+    <label for="v-run">Running cost a month once live (S$), including your own people's time</label><input type="number" id="v-run" value="7500" min="0">
+    <label for="v-val">Value a month once live (S$)</label><input type="number" id="v-val" value="11000" min="0">
+    <div class="two"><div><label for="v-live">Months until live</label><input type="number" id="v-live" value="2" min="0" max="120"></div><div><label for="v-hor">Period (months)</label><input type="number" id="v-hor" value="36" min="1" max="120"></div></div>
+    <div class="res" id="v-res" aria-live="polite"></div>
+  </div>
+  <div><h4>2 · Likely range of a measured rate</h4>
+    <p style="font-size:.82rem;color:var(--muted);margin:0 0 .3rem">The 95% Wilson interval used in Modules 5 and 6. Defaults: 3 critical errors in 2,000 audited notes.</p>
+    <div class="two"><div><label for="w-x">Events counted</label><input type="number" id="w-x" value="3" min="0"></div><div><label for="w-n">Out of</label><input type="number" id="w-n" value="2000" min="1"></div></div>
+    <label for="w-per">Show the rate per</label><select id="w-per"><option value="100">100 (a percentage)</option><option value="1000" selected>1,000</option></select>
+    <label for="w-lim">Compare with a limit (same units, optional)</label><input type="number" id="w-lim" value="2" min="0" step="0.1">
+    <div class="res" id="w-res" aria-live="polite"></div>
+  </div>
+</div>
+<p>You have finished the lesson. Take Checkpoint quiz A before moving on.</p>
+
+<!-- ================= QUIZ A ================= -->
+<h2 id="quiz-a"><span class="step">Checkpoint quiz A · Formative · about 20 minutes</span>Check your understanding of the lesson</h2>
+<p>This quiz is not graded. Answer each question before reading the explanation. Mastery is <strong>8 out of 10</strong> Yes/No questions correct. You can clear and retake it as often as you like.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qa-sc">0</b> / 10 correct · <b id="qa-an">0</b> answered</span>
+  <span>Short answers: <b id="qa-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qa-m">8 of 10 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qa-yn"></div>
+<p class="row"><button class="btn" type="button" id="qa-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<p>Write two to five sentences for each. The key points open once you have written at least 20 words. Then mark yourself honestly against them.</p>
+<div id="qa-saq"></div>
+</section>
+
+<!-- ================= CASE ================= -->
+<h2 id="case"><span class="step">Week 12 · Step 2 · Case study · 60 minutes</span>Harbourview Polyclinics: the Launch Review</h2>
+<p>You are still Harbourview's head of digital products. It is Monday 7 September 2026. Read the memo, then open each section. Choose your initiative by the end of Week 12. Everything in the case is invented for teaching.</p>
+
+<div class="memo">
+<div class="hdr">FROM: Rajan Pillai, Chief Executive Officer (CEO)<br>CC: Lim Wei Jie, Chief Financial Officer (CFO); Dr Helen Chia, Chief Medical Officer (CMO); Daniel Ong, Chief Information Officer (CIO); Chief Operating Officer (COO)<br>TO: Head of Digital Products<br>RE: Launch Review, Thursday 1 October</div>
+<p>The board approved the AI portfolio on 26 June. Three months on, every initiative has reached a decision point, and from now on each launch or expansion comes through a Launch Review before it goes to the AI Governance Committee.</p>
+<p>On 1 October, bring me <strong>one</strong> of them. I want a clear recommendation: launch, a limited launch, not yet, or stop. Tell me what it is based on, what has to be true first, how we will know it is working, and what will make us stop. Lim, Helen and Daniel will each question you for as long as they need. If you think the board got something wrong in June, say so once, with your reasons.</p>
+</div>
+
+<details class="sheet">
+<summary><b>1. The Launch Review and its rules</b><span class="k">Who decides, what they need, what happens next</span></summary>
+<div class="in">
+<div class="panelists">
+  <div><b>Lim Wei Jie</b><span>CFO · COST</span><br>Counts cash and commitments. Accepts "time freed" only if you say what happens to it (Module 9). Will ask what the decision commits Harbourview to after December 2027.</div>
+  <div><b>Dr Helen Chia</b><span>CMO · PATIENT SAFETY</span><br>Chairs the AI Governance Committee. Will not let any product move faster than the committee's conditions. Wants the stop rules in the plan, not in an appendix.</div>
+  <div><b>Daniel Ong</b><span>CIO · RELIABILITY AND DATA</span><br>Wants to be able to test any new model or version with Harbourview's own tests, switch any product off in a day, and leave any supplier within six months.</div>
+</div>
+<ul>
+  <li><strong>Format:</strong> a 20-minute presentation, then 20 minutes of questions. The CEO chairs and decides.</li>
+  <li><strong>Papers:</strong> the capstone pack, circulated a week before.</li>
+  <li><strong>What happens next:</strong> a recommendation to launch or expand goes to the AI Governance Committee on 22 October. The committee's conditions from Module 10 still apply.</li>
+  <li><strong>Money:</strong> the board approved S$619,000 of external spend for July 2026 to December 2027, out of the S$675,000 envelope. Anything that would take total spend above S$675,000, or commit Harbourview beyond December 2027, needs the board.</li>
+</ul>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>2. What the board decided on 26 June</b><span class="k">The approved portfolio · it may differ from your Module 11 strategy</span></summary>
+<div class="in">
+<div class="scroll"><table class="wide">
+<thead><tr><th>Initiative</th><th>Board decision</th><th>Approved spend to Dec 2027</th></tr></thead>
+<tbody>
+<tr><td><strong>A</strong> Medicine questions assistant</td><td>Fix build 1.2 (Module 10 findings F2, F3 and F6), then expand clinic by clinic once the committee is satisfied</td><td class="num">S$157,000</td></tr>
+<tr><td><strong>B</strong> Booking assistant</td><td>Buy Queuewise's fixed-step booking assistant (rescheduling and cancelling only), set up from Q4 2026, live in Q1 2027. No agent; no symptom routing</td><td class="num">S$131,000</td></tr>
+<tr><td><strong>C</strong> Consultation note drafter</td><td>Six-week head-to-head trial of Tidewater Scribe and the cluster's shared scribe in July and August; choose one and sign by December</td><td class="num">S$210,000</td></tr>
+<tr><td><strong>D</strong> Missed-appointment predictor</td><td>Reminder calls only, from August, at three clinics, with a comparison group. No overbooking</td><td class="num">S$76,000</td></tr>
+<tr><td><strong>E</strong> Patient feedback analyser</td><td>Buy the survey platform's text-analysis add-on from August, with a named bilingual reader for comments in Malay and Tamil</td><td class="num">S$45,000</td></tr>
+<tr><td colspan="2"><strong>Not in this plan:</strong> a booking agent that moves patients between clinics; overbooking; building a scribe in-house; offering the medicine assistant to private clinics</td><td class="num"><strong>S$619,000</strong></td></tr>
+</tbody></table></div>
+<p style="font-size:.88rem;color:var(--muted)">Where this differs from your own Module 11 strategy, work from the board's decision. You may say once, in your recommendation, where you still disagree and why.</p>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>3. Initiative A · Medicine questions assistant</b><span class="k">Expand to two more clinics?</span></summary>
+<div class="in">
+<p class="lq">Should build 1.2.1 expand from Clementi and Bedok to Jurong and Ang Mo Kio from 2 November, and in which languages?</p>
+<h4>What has happened since June</h4>
+<ul>
+  <li>Build 1.2.1 fixes the three severity-4 findings from Module 10: dose instructions now come only from structured leaflet fields, and every leaflet change is checked by a second person (F2); distress and emergency messages are detected in all four languages and Singlish (F3); Tamil medicine names are matched in Tamil script and in transliteration (F6).</li>
+  <li>Malay leaflets are 92% translated; Tamil leaflets 55%. The committee's Module 10 condition stands: Malay when its leaflets are complete and the emergency set passes in Malay; Tamil after F6 is fixed and its leaflets are complete.</li>
+  <li>In August, 2.1% of conversations involved a medicine stopped in the last 30 days that still appeared in the patient's app list. The records team's fix is due in December.</li>
+</ul>
+<h4>Release gate results for build 1.2.1 (28 August)</h4>
+<div class="scroll"><table>
+<thead><tr><th>Check</th><th>Result</th><th>Gate rule</th></tr></thead>
+<tbody>
+<tr><td>Emergency and distress set, 1,240 cases (at least 200 per language and Singlish), each run 3 times</td><td>0 misses</td><td>Zero misses <span class="chip c-good">Pass</span></td></tr>
+<tr><td>Hidden instructions in leaflets, 12 variants, each run 3 times</td><td>0 followed</td><td>Zero <span class="chip c-good">Pass</span></td></tr>
+<tr><td>Tamil medicine names, 186 names, 3 runs</td><td>All matched</td><td>All <span class="chip c-good">Pass</span></td></tr>
+<tr><td>Unsupported claims, judge-corrected rate on the regression set</td><td>0.8% (likely range 0.4%–1.6%); no confirmed dose, timing or stopping advice</td><td>At or below 1% <span class="chip c-good">Pass</span></td></tr>
+<tr><td>Malay emergency set, 310 cases, 3 runs</td><td>0 misses</td><td>Zero <span class="chip c-good">Pass</span></td></tr>
+</tbody></table></div>
+<div class="kpis">
+  <div><b>9,400</b><span>questions in August at two clinics</span></div>
+  <div><b>9%</b><span>handed over to a pharmacist (was 12%)</span></div>
+  <div><b>25%</b><span>of eligible app users active in the last 30 days</span></div>
+  <div class="warn"><b>~60 a day</b><span>projected handovers at four clinics, against capacity of about 180</span></div>
+  <div class="warn"><b>18%</b><span>of consultations at Jurong and Ang Mo Kio partly in Hokkien or Teochew</span></div>
+</div>
+<div class="cards">
+  <div class="card"><span class="who">Tan Mei Ling, Head Pharmacist</span><q>I can cover four clinics. I cannot yet cover Malay handovers after 6 pm; that needs a second Malay-speaking pharmacist, and the earliest start is January.</q></div>
+  <div class="card"><span class="who">Engineering lead</span><q>The gate passed. Malay is at 92% and the missing 8% are rarely prescribed. Let's launch Malay too and finish the leaflets as we go.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>4. Initiative B · Booking assistant (Queuewise)</b><span class="k">Sign and start set-up?</span></summary>
+<div class="in">
+<p class="lq">Should Harbourview sign Queuewise now and launch rescheduling and cancelling by chat at three clinics from January 2027?</p>
+<h4>What has happened since June</h4>
+<ul>
+  <li>Queuewise ran Harbourview's 200 scripted booking tasks in a test copy of the appointment system, each three times. Success every time: rescheduling 91%, cancelling 97%. No double-bookings. Two failures sent patients to the wrong clinic when they asked for "the one near my house".</li>
+  <li>The contract offered: S$50,000 one-off, S$9,000 a month, <strong>two-year minimum term</strong> from go-live (to December 2028). Data stays in Harbourview's appointment system, which Queuewise already supplies. English and Mandarin only; Malay planned "in 2027".</li>
+  <li>A reference customer, a private clinic group in Malaysia, moved 31% of rescheduling requests off its phone line within six months.</li>
+</ul>
+<div class="kpis">
+  <div class="warn"><b>14 min</b><span>average phone wait at peak</span></div>
+  <div><b>38%</b><span>of calls are to change or cancel a booking</span></div>
+  <div class="warn"><b>44%</b><span>of rescheduling calls come from patients aged 65 and over</span></div>
+  <div><b>91%</b><span>rescheduling tasks passed on every one of 3 runs</span></div>
+</div>
+<div class="cards">
+  <div class="card"><span class="who">Chief Operating Officer</span><q>Sign it. And put moving patients between clinics on the roadmap for next year; that is where the real savings are.</q></div>
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>Keep a way to reach a person in every chat. And no cuts to phone staff until we see what actually moves.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>5. Initiative C · Consultation note drafter</b><span class="k">Which scribe, for whom, on what terms?</span></summary>
+<div class="in">
+<p class="lq">Which scribe should Harbourview choose, for how many doctors, from when, and on what contract terms?</p>
+<h4>The head-to-head trial, 13 July to 21 August</h4>
+<p>32 doctors at Jurong and Clementi in two matched groups of 16, one per product; in each group 10 had not volunteered. Baseline: two weeks of time spent in notes from the record system's audit log, before the trial. Go criteria signed in July: at least 1.0 minute saved per note for doctors who had not volunteered; no more than 2 critical errors per 1,000 audited notes; at least 60% of participants using it weekly by week 6.</p>
+<div class="scroll"><table>
+<thead><tr><th></th><th>Tidewater Scribe</th><th>Cluster scribe</th></tr></thead>
+<tbody>
+<tr><td>Minutes saved per note, all participants</td><td>1.4</td><td>1.2</td></tr>
+<tr><td>Minutes saved, doctors who had not volunteered</td><td>1.1</td><td>1.0</td></tr>
+<tr><td>Critical errors in audited notes</td><td>3 in 2,000 (1.5 per 1,000)</td><td>4 in 2,200 (1.8 per 1,000)</td></tr>
+<tr><td>Weekly use in week 6</td><td>12 of 16 (75%)</td><td>14 of 16 (88%)</td></tr>
+<tr><td>Use on most consultations in week 6</td><td>8 of 16</td><td>11 of 16</td></tr>
+<tr><td>Chronic disease review notes heavily edited (more than 30% of words)</td><td>38%</td><td>21% (has a chronic disease template)</td></tr>
+<tr><td>Hokkien or Teochew consultations (14% at Jurong)</td><td>Test version used; notes needed about twice as much editing</td><td>Not supported; doctors switched it off for these consultations</td></tr>
+<tr><td>Doctors' rating, 1 to 5</td><td>3.9</td><td>4.1</td></tr>
+</tbody></table></div>
+<h4>Contract position since the trial</h4>
+<ul>
+  <li><strong>Tidewater</strong> now offers a cap of 8% a year on price rises and export of transcripts and templates at no fee, if Harbourview signs for three years. Still S$40 a seat, 50-seat minimum. Opting out of Tidewater using de-identified data to improve its product, which Harbourview's data protection must-have requires, adds 10%.</li>
+  <li><strong>The cluster scribe</strong> is unchanged: S$18 per active doctor a month, reviewed yearly by the cluster board, leave at the end of any year. Hokkien support is "under consideration for 2027", with no commitment.</li>
+</ul>
+<h4>Three years at 30% adoption (78 doctors), counted as in Modules 9 and 11</h4>
+<div class="scroll"><table class="d9">
+<thead><tr><th>Over 36 months</th><th>Tidewater</th><th>Cluster</th></tr></thead>
+<tbody>
+<tr><td>Three-year cost (includes the 10% opt-out and 8% rises)</td><td>S$716,307</td><td>S$489,567</td></tr>
+<tr><td>Value using all participants' minutes (1.4 · 1.2)</td><td>S$863,226</td><td>S$718,146</td></tr>
+<tr class="key"><td>Net value, all participants</td><td class="pos">+S$146,919</td><td class="pos">+S$228,579</td></tr>
+<tr><td>Value using non-volunteers' minutes (1.1 · 1.0)</td><td>S$678,249</td><td>S$598,455</td></tr>
+<tr class="key"><td>Net value, non-volunteers</td><td class="neg">−S$38,058</td><td class="pos">+S$108,888</td></tr>
+<tr><td>Minutes needed to break even</td><td>about 1.16</td><td>about 0.82</td></tr>
+</tbody></table></div>
+<div class="cards">
+  <div class="card"><span class="who">Dr Farid Rahman, family physician, Jurong (did not volunteer)</span><q>Tidewater handled my Hokkien patients badly, but it handled them. The other one I had to switch off for one patient in seven.</q></div>
+  <div class="card"><span class="who">Tidewater account manager</span><q>Sign for 120 seats by 30 September and the 8% cap applies from day one.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>6. Initiative D · Missed-appointment predictor</b><span class="k">Extend reminder calls to all nine clinics?</span></summary>
+<div class="in">
+<p class="lq">Should reminder calls for patients the predictor flags extend from three clinics to all nine from 1 November? And what should the panel say to the COO about overbooking?</p>
+<h4>The reminder-call trial, 3 to 28 August, at Bedok, Jurong and Woodlands</h4>
+<p>The predictor flagged about 13% of appointments. On each day, flagged patients were randomly assigned to a call or no call.</p>
+<div class="scroll"><table>
+<thead><tr><th></th><th>Called</th><th>Not called</th></tr></thead>
+<tbody>
+<tr><td>Flagged appointments</td><td>1,840</td><td>1,790</td></tr>
+<tr><td>Missed</td><td>21.0%</td><td>29.5%</td></tr>
+<tr><td>Calls answered</td><td>64% overall: English and Mandarin speakers 71%, Malay 48%, Tamil 41%, aged 65 and over 58%</td><td>—</td></tr>
+</tbody></table></div>
+<ul>
+  <li>Calls are made in English and Mandarin only. Reminder texts in Malay and Tamil started on 17 August.</li>
+  <li>The fall in missed appointments was larger for subsidised patients (9.8 percentage points) than for others (7.1).</li>
+  <li>The data protection officer (DPO) decided on 24 August that subsidy tier may be used for reminder calls, with an updated notice to patients, but not for overbooking.</li>
+  <li>Running cost at nine clinics: S$3,000 a month plus call-centre time of about 1.5 staff, which the COO has found within existing rotas.</li>
+</ul>
+<div class="cards">
+  <div class="card"><span class="who">Chief Operating Officer</span><q>The predictor works. We waste about 400 slots a week across the group. Let's overbook at Woodlands from November and prove it.</q></div>
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>Half our Malay and Tamil patients never hear the call. That's not a prediction problem.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>7. Initiative E · Patient feedback analyser</b><span class="k">Make it the way serious complaints are found?</span></summary>
+<div class="in">
+<p class="lq">Should the analyser become the official way serious complaints are found and routed, replacing clinic managers' reading of one comment in ten, from November?</p>
+<h4>Five weeks of use, 3 August to 4 September</h4>
+<ul>
+  <li>About 3,900 comments analysed. Seven of nine clinic managers rated the themes useful.</li>
+  <li>The Patient Experience team read a random sample of 600 comments in full. They found 31 serious complaints (about safety, dignity or a possible clinical error). The analyser had flagged 26 of them (84%; likely range 67%–93%) and also flagged 18 comments that were not serious.</li>
+  <li>Of the 5 serious complaints it missed, 3 were sarcastic or indirect in English and 2 mixed Mandarin with Hokkien.</li>
+  <li>About 15% of comments are in Malay or Tamil and go to the named bilingual reader. Her median backlog is 6 working days.</li>
+  <li>Under the current practice, managers read about 1 comment in 10, so roughly 9 in 10 serious complaints are never read by anyone.</li>
+</ul>
+<div class="cards">
+  <div class="card"><span class="who">Clinic manager, Woodlands</span><q>If the tool finds the serious ones, I can stop the random reading and spend the time phoning those patients back.</q></div>
+  <div class="card"><span class="who">Grace Teo, Head of Patient Experience</span><q>Six days for a Malay complaint about a wrong medicine is too long, however good the English side is.</q></div>
+</div>
+</div>
+</details>
+
+<details class="sheet">
+<summary><b>8. Using your own product instead</b><span class="k">Allowed, with agreement by the end of Week 12</span></summary>
+<div class="in">
+<p>You may use an AI product you work on, or one you are building, if it raises the same questions as the Harbourview initiatives. Email the course team by the end of Week 12 with one paragraph: what the product does, who uses it, the launch decision you face, and what evidence you have or can collect.</p>
+<ul>
+  <li>You need at least the equivalent of five of your module deliverables applied to it (for example requirements, an error analysis, a cost model, a risk review and a strategy).</li>
+  <li>Real data stays protected: use only data you are allowed to share, removing anything that identifies people, or use realistic invented figures and label them as such.</li>
+  <li>The panel will play the equivalent roles for your setting: whoever carries the cost, whoever carries the risk of harm, and whoever runs the systems and data.</li>
+</ul>
+</div>
+</details>
+
+<p>You have read the case. Take Checkpoint quiz B, then choose your initiative.</p>
+
+<!-- ================= QUIZ B ================= -->
+<h2 id="quiz-b"><span class="step">Checkpoint quiz B · Formative · about 25 minutes</span>Apply the ideas to Harbourview</h2>
+<p>Not graded. Mastery is <strong>4 out of 5</strong> Yes/No questions correct. Keep the case pack open; the calculators in the lesson can check your arithmetic.</p>
+<section class="quiz">
+<div class="score" aria-live="polite">
+  <span>Yes/No: <b id="qb-sc">0</b> / 5 correct · <b id="qb-an">0</b> answered</span>
+  <span>Short answers: <b id="qb-sa">0</b> / 3</span>
+  <span>Mastery: <b id="qb-m">4 of 5 needed</b></span>
+</div>
+<h3>Part 1 · Yes or No</h3>
+<div id="qb-yn"></div>
+<p class="row"><button class="btn" type="button" id="qb-reset">Clear and retake</button></p>
+<h3>Part 2 · Short answer</h3>
+<div id="qb-saq"></div>
+</section>
+
+<!-- ================= ASSIGNMENT ================= -->
+<h2 id="assignment" class="week"><span class="step">Week 13 · Step 3 · Capstone pack · 8–10 hours · Graded 60%</span>The capstone pack</h2>
+<div class="note capnote"><p><strong>Your task.</strong> Prepare the papers for the Launch Review on one initiative: a <strong>recommendation</strong> of about two pages, supported by an evidence map, a change log, launch criteria with stop rules, and a pre-mortem, plus the slides for your defence. The six tools below save as you go and export with your submission. Email the pack by the end of Week 13.</p></div>
+
+<h3>What your pack must contain</h3>
+<ol>
+  <li><strong>Recommendation</strong> (about 900 words, two pages): the decision first, with scope and conditions; three reasons with evidence; what you are not doing; risks accepted and who owns them; cost and commitment; what you ask the panel to decide.</li>
+  <li><strong>Evidence map</strong> (Tool 2): six dimensions, each with the claim, the evidence and its source, its strength, and what is missing.</li>
+  <li><strong>Change log</strong> (Tool 3): at least three places where new facts changed or contradicted your earlier work, and what you did about each.</li>
+  <li><strong>Launch criteria, stop rules and monitoring</strong> (Tool 4), with a <strong>pre-mortem</strong> of at least five reasons and the control for each.</li>
+  <li><strong>Defence slides</strong>: no more than ten (Tool 6 gives the outline).</li>
+  <li><strong>Appendices:</strong> the earlier module deliverables you rely on, revised where the change log says so.</li>
+</ol>
+
+<h3>How it is marked</h3>
+<p>Each criterion is scored 0–4 using the programme rubric. A 0 or 1 on any criterion means a rewrite before grading.</p>
+<div class="scroll"><table>
+<thead><tr><th>Criterion</th><th>For a Distinction in the capstone</th></tr></thead>
+<tbody>
+<tr><td><strong>Decision quality</strong></td><td>A clear launch, limited launch, not yet or do not launch, with scope, conditions, owners and a review date. Alternatives considered and the reasons they lost. One-way parts of the decision identified and treated more carefully. Fits the board's decision and the committee's conditions, or says where and why it differs.</td></tr>
+<tr><td><strong>Evidence</strong></td><td>All six dimensions covered, each labelled by strength, with sources from the modules and the September case. Figures recomputed from the newest evidence, with likely ranges where counts are small. The change log shows earlier work was checked and corrected. Assumptions are labelled and none concern serious harm without a control.</td></tr>
+<tr><td><strong>Risk handling</strong></td><td>Launch criteria with thresholds, owners and actions; a stop rule someone can call; a rollback that is planned. The pre-mortem finds the risks the panel would raise, including the people least well served, and each has a control. Commitments beyond the budget period are named.</td></tr>
+<tr><td><strong>Communication</strong></td><td>The decision is in the first two sentences. The CFO, CMO and CIO can each find what they care about in two minutes. About two pages plus the map, log and criteria; ten slides or fewer; every acronym spelled out once.</td></tr>
+</tbody></table></div>
+
+<!-- Tool 1 -->
+<h3>Tool 1 · Choose and frame the decision</h3>
+<div class="panel ini">
+<div class="fgrid">
+  <div class="full"><label for="f-ini">Initiative</label><select id="f-ini"></select></div>
+  <div class="full"><label for="f-q">The launch question <span class="hint">· edit it if you are framing it differently</span></label><textarea id="f-q"></textarea></div>
+  <div><label for="f-rec">Your recommendation</label><select id="f-rec"><option value="">Choose</option><option value="launch">Launch</option><option value="limited">Limited launch</option><option value="notyet">Not yet</option><option value="stop">Do not launch</option></select></div>
+  <div><label for="f-door">Hardest part to reverse <span class="hint">· the one-way door</span></label><input type="text" id="f-door"></div>
+  <div class="full"><label for="f-scope">Scope <span class="hint">· who, where, which languages and tasks, from when</span></label><textarea id="f-scope"></textarea></div>
+  <div class="full"><label for="f-alt">Alternatives you considered, and why each lost</label><textarea id="f-alt"></textarea></div>
+  <div class="full"><label for="f-board">Where you differ from the board's June decision <span class="hint">· optional, once</span></label><textarea id="f-board"></textarea></div>
+</div>
+</div>
+<ul class="warnlist" id="f-flags" aria-live="polite"></ul>
+
+<!-- Tool 2 -->
+<h3>Tool 2 · Evidence map</h3>
+<p>One row per dimension. Say what you claim, what supports it and where it comes from (module, case section or study), how strong it is, and what is missing. Prompts appear when the map and your recommendation do not fit together; they do not mark your choice.</p>
+<div class="scroll"><table class="emap wide" aria-label="Evidence map">
+<thead><tr><th>Dimension</th><th>Your claim</th><th>Evidence and source</th><th>Strength</th><th>What is missing</th></tr></thead>
+<tbody id="em-body"></tbody>
+</table></div>
+<ul class="warnlist" id="em-flags" aria-live="polite"></ul>
+
+<!-- Tool 3 -->
+<h3>Tool 3 · Change log</h3>
+<p>Go through your earlier deliverables for this initiative and the September case. Record each place where an earlier figure, assumption or decision no longer holds. Use the checklist to look for the common ones.</p>
+<div id="cl-check" style="margin-bottom:.6rem"></div>
+<div class="scroll"><table class="mrow wide" aria-label="Change log">
+<thead><tr><th>Earlier work</th><th>What it said</th><th>What is now true, and the source</th><th>What you changed</th></tr></thead>
+<tbody id="cl-body"></tbody>
+</table></div>
+<p class="reqtools"><button class="btn" type="button" id="cl-add">Add a row</button><span id="cl-sum" aria-live="polite"></span></p>
+
+<!-- Tool 4 -->
+<h3>Tool 4 · Launch criteria, stop rules and pre-mortem</h3>
+<div class="substep">Part 1 · Conditions before launch</div>
+<div class="fields"><div><label for="lc-pre">What must be true on the day <span class="hint">· one per line, each checkable by someone else</span></label><textarea id="lc-pre"></textarea></div></div>
+<div class="substep">Part 2 · Measures after launch</div>
+<p>At least one measure of value, one of safety, one of real use and one of the work the product creates for people.</p>
+<div class="scroll"><table class="mrow wide" aria-label="Launch measures">
+<thead><tr><th>Measure</th><th>Kind</th><th>Threshold</th><th>How measured, how often</th><th>Owner</th><th>Action if crossed</th></tr></thead>
+<tbody id="lc-body"></tbody>
+</table></div>
+<div class="fgrid" style="margin:.75rem 0">
+  <div class="full"><label for="lc-stop">Stop rule <span class="hint">· the result that ends or rolls back the launch, and who can call it</span></label><textarea id="lc-stop"></textarea></div>
+  <div class="full"><label for="lc-roll">Rollback <span class="hint">· how you return to the old way, how fast, and when you will test it</span></label><textarea id="lc-roll"></textarea></div>
+  <div><label for="lc-rev">Review date</label><input type="text" id="lc-rev" placeholder="For example: 30 days after go-live"></div>
+  <div><label for="lc-own">Owner of the decision after launch</label><input type="text" id="lc-own"></div>
+</div>
+<div class="substep">Part 3 · Pre-mortem</div>
+<p>It is six months after your decision, and it has gone badly wrong. Write each reason as if it already happened, then the control you are adding now. Ask someone else to write their own list before they read yours.</p>
+<div class="scroll"><table class="mrow wide" aria-label="Pre-mortem">
+<thead><tr><th>#</th><th>"It went wrong because…"</th><th>Who was harmed or lost out</th><th>Control added to the plan</th></tr></thead>
+<tbody id="pm-body"></tbody>
+</table></div>
+<ul class="warnlist" id="lc-flags" aria-live="polite"></ul>
+
+<!-- Tool 5 -->
+<h3>Tool 5 · The recommendation</h3>
+<p>Write the paper the panel will read first. Decision first, then reasons, then evidence.</p>
+<p class="row"><button class="btn" type="button" id="tmpl">Insert outline</button></p>
+<label for="memo" class="eyebrow" style="display:block;margin:.75rem 0 .3rem">Your recommendation</label>
+<textarea id="memo" class="long"></textarea>
+<p class="row"><span id="wc">0 words</span></p>
+<ul class="warnlist" id="memo-flags" aria-live="polite"></ul>
+
+<!-- REHEARSE -->
+<h2 id="rehearse"><span class="step">Week 13 · Rehearse · about 2 hours · not graded</span>Prepare the defence</h2>
+<h3>Tool 6 · Slides, questions and a dry run</h3>
+<div class="substep">Part 1 · Slide outline (ten slides or fewer)</div>
+<p>One line per slide: its headline (a sentence that makes a claim, not a topic) and what is on it.</p>
+<div class="fields" id="sl-fields"></div>
+<div class="substep">Part 2 · The questions you most fear</div>
+<p>Write the two hardest questions each panel member could ask about your recommendation, and the answer you would give: answer, evidence, limit.</p>
+<div id="pq-fields"></div>
+<div class="fields"><div><label for="pq-steel">The best case against your recommendation <span class="hint">· written as its strongest supporter would put it</span></label><textarea id="pq-steel"></textarea></div></div>
+<div class="substep">Part 3 · Peer dry run</div>
+<p>Give your 20-minute presentation to a colleague or fellow learner, and ask them to play one panel member for ten minutes. They score you here with the defence grid (0 to 4 on each), and you note what you will change. Do not record anything that identifies them.</p>
+<div class="fgrid" id="dr-fields"></div>
+<ul class="warnlist" id="re-flags" aria-live="polite"></ul>
+
+<h3>Before you submit the pack</h3>
+<div id="checks"></div>
+
+<!-- ================= CLOSE ================= -->
+<h2 id="close" class="week"><span class="step">Week 14 · Step 4 · Close · 3–4 hours · Graded 40%</span>Test, panel defence and the Week 0 memo</h2>
+
+<h3>Cumulative test · 25%</h3>
+<div class="note" id="gate"><p></p></div>
+<ul>
+  <li><strong>Format:</strong> 10 Yes/No questions (1 mark each) and 5 short-answer questions (up to 3 marks each), built around one new scenario. Total 25 marks.</li>
+  <li><strong>Rules:</strong> closed book, 30 minutes, taken once. A basic calculator is allowed. No notes, no AI tools.</li>
+  <li><strong>Covers:</strong> the whole programme. Expect to decide whether a problem needs AI, choose a design, read an error analysis and a judge's agreement figures, set a release gate, choose a level of human review, work out three-year cost and value, classify risk and fairness, choose build, buy or partner, and make a launch decision with stop rules.</li>
+  <li><strong>Opens:</strong> once both checkpoint quizzes are at mastery and your pack has been emailed. Ask the course team for the paper.</li>
+</ul>
+
+<h3>Panel defence · 15%</h3>
+<p>The defence is the capstone's viva (viva voce, Latin for "with the living voice"): a spoken examination. It is longer than the usual 10 minutes because it tests the whole programme.</p>
+<div class="scroll"><table>
+<thead><tr><th class="num">Minutes</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td class="num">0–20</td><td>Your presentation, ten slides or fewer. The panel does not interrupt.</td></tr>
+<tr><td class="num">20–35</td><td>Questions from the three roles: cost, patient safety, reliability and data. An assessor may play more than one role.</td></tr>
+<tr><td class="num">35–40</td><td>The panel changes one fact. You say on the spot what it does to your recommendation.</td></tr>
+</tbody></table></div>
+<p><strong>It is marked on:</strong> whether you defend your choices with evidence, whether you can explain the ideas from any module in plain words, how you handle the changed fact, and how clearly you present and answer. Changing your mind for a good reason scores well. A passed defence (at least 50%) is required to complete the programme.</p>
+
+<h3 id="w0">The Week 0 memo, again · required, not graded</h3>
+<p>Do this after your defence, in one sitting. Set a timer for 45 minutes, use no notes, references or AI tools, and write 300 to 450 words. The brief is exactly the one you answered in Week 0.</p>
+<div class="memo" style="font-family:var(--text);font-size:.95rem">
+<p><strong>The brief.</strong> A large public polyclinic group in Singapore wants a chatbot on its patient app that answers questions about the patient's own prescribed medicines: what each one is for, when to take it, common side effects, and what to do after a missed dose. It would draw on the patient's prescription record and the group's approved medicine leaflets. The chief executive wants a launch in six months and has asked you for a recommendation.</p>
+<p><strong>Write a memo that covers:</strong> (1) whether to build it, in full, in part or not at all, and why; (2) the smallest first version you would launch; (3) three things it must never do; (4) how you would know before launch that it is safe and useful; (5) the one risk you are least sure how to handle.</p>
+</div>
+<p class="row"><button class="btn" type="button" id="w0-start">Start the 45-minute timer</button><span class="timer" id="w0-timer" aria-live="off">45:00</span></p>
+<label for="w0-memo" class="eyebrow" style="display:block;margin:.5rem 0 .3rem">Your memo</label>
+<textarea id="w0-memo" class="long"></textarea>
+<p class="row"><span id="w0-wc">0 words</span></p>
+<div class="fields">
+  <div><label for="w0-ref">Afterwards: what has changed in how you decide? <span class="hint">· about 200 words; compare with your Week 0 memo once the timer has ended</span></label><textarea id="w0-ref"></textarea></div>
+</div>
+<p class="row"><button class="btn" type="button" id="w0-copy">Copy my Week 0 memo and reflection</button><span id="w0-msg" aria-live="polite"></span></p>
+<p class="small">Email it to <a data-submit-email href="#">the course team</a>. They compare it with your Week 0 memo using the same four criteria and send you a short note on what has changed.</p>
+
+<h3>Your capstone mark</h3>
+<div class="scroll"><table>
+<thead><tr><th>Component</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Capstone pack (the deliverable)</td><td class="num">60%</td></tr>
+<tr><td>Cumulative test</td><td class="num">25%</td></tr>
+<tr><td>Panel defence (the capstone viva)</td><td class="num">15%</td></tr>
+</tbody></table></div>
+<p>Bands: <strong>Distinction</strong> 75% and above · <strong>Merit</strong> 60–74% · <strong>Pass</strong> 50–59% · <strong>Resubmit</strong> below 50% (one resubmission of the pack, capped at Pass; the defence can be taken once more). To complete the programme: Merit or better on at least 9 of the 11 taught modules, a capstone mark of at least 50%, at least 50% on the defence, and the Week 0 memo repeated.</p>
+
+<h3>Submit your work</h3>
+<p>Your quiz answers, decision frame, evidence map, change log, launch criteria, pre-mortem, recommendation, slide outline, rehearsal notes and checklist go in the email as plain text. Attach your recommendation, slides and revised appendices as documents.</p>
+<div class="submit-box" data-submit="m12" data-subject="Module 12 capstone pack">
+<p style="margin:0">Submissions go to the course team at <a data-submit-email href="#">the course email address</a>.</p>
+<ol>
+<li>Assemble your pack in your own document and slide tools.</li>
+<li>Press <strong>Email my submission</strong>. It copies all your work on this page and opens an email to the course team. Paste your work into the email and attach your documents.</li>
+<li>Once the email is sent, tick the box below. The course team replies to arrange your test and defence.</li>
+</ol>
+<p class="row"><button class="btn primary" id="email-sub" type="button">Email my submission</button><button class="btn" id="copy" type="button">Copy my work only</button><span id="copied" aria-live="polite"></span></p>
+<label class="sent"><input type="checkbox" id="sent"> I have emailed my capstone pack to the course team</label>
+<p id="sent-msg" aria-live="polite"></p>
+<p class="small">If no email app opens, press <strong>Copy my work only</strong> and send it from your usual email to the address above.</p>
+</div>
+<textarea id="fallback" hidden readonly aria-label="Your work as text"></textarea>
+
+<!-- ================= LAB ================= -->
+<h2 id="lab"><span class="step">Optional lab · 3–6 hours · not assessed</span>Build a working slice and show it</h2>
+<p>Capstones in courses such as Marily Nika's end with a working product. You can add one here: a thin, working version of one part of your chosen initiative, shown in no more than three minutes of your 20. It is not marked, but a working slice often answers questions the panel would otherwise ask.</p>
+<ul>
+  <li><strong>Choose the riskiest assumption</strong> from your evidence map and build only what tests it: for example a retrieval demo over five invented leaflets with your handover rules (A), a clickable rescheduling flow with a "talk to a person" route (B), a note template for chronic disease reviews run on an invented transcript (C), a reminder message in four languages read aloud by a speaker of each (D), or a serious-complaint flag run on 50 invented comments including sarcastic ones (E).</li>
+  <li><strong>Use no-code or low-code tools</strong> you are allowed to use, and invented data only. Never use real patient information.</li>
+  <li><strong>Test it the way the programme taught you:</strong> write the expected behaviour first, run each case more than once, and record failures.</li>
+</ul>
+<div class="fields">
+  <div><label for="lab-what">What I built, and the assumption it tests</label><textarea id="lab-what"></textarea></div>
+  <div><label for="lab-res">What happened, including failures</label><textarea id="lab-res"></textarea></div>
+</div>
+
+<!-- ================= MORE ================= -->
+<h2 id="more"><span class="step">Going further</span>Reading and practice ideas</h2>
+<h3>Reading</h3>
+<ul>
+  <li>Gary Klein, <a href="https://hbr.org/2007/09/performing-a-project-premortem">Performing a project premortem</a>, <em>Harvard Business Review</em> (September 2007). A page; about 10 minutes.</li>
+  <li>Andrew Wong and colleagues, <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2781307">External validation of a widely implemented proprietary sepsis prediction model in hospitalized patients</a>, <em>JAMA Internal Medicine</em> (2021). Read the key points and the discussion.</li>
+  <li>Emma Beede and colleagues, <a href="https://research.google/pubs/a-human-centered-evaluation-of-a-deep-learning-system-deployed-in-clinics-for-the-detection-of-diabetic-retinopathy/">A human-centered evaluation of a deep learning system deployed in clinics for the detection of diabetic retinopathy</a> (2020), and Google's <a href="https://blog.google/technology/health/healthcare-ai-systems-put-people-center/">short summary</a>.</li>
+  <li>Barbara Minto, <em>The Pyramid Principle</em>: the first two chapters, on putting the answer first.</li>
+  <li>Colin Bryar and Bill Carr, <em>Working Backwards</em> (2021): the chapter on the PR/FAQ.</li>
+  <li>Jeff Bezos, 2015 letter to Amazon shareholders: the passage on one-way and two-way doors.</li>
+  <li>Marily Nika, <a href="https://maven.com/marily-nika/ai-pm-bootcamp">AI Product Management Bootcamp</a>: the capstone and Demo Day outline, for how others structure a final project.</li>
+</ul>
+<h3>Practise on your own world</h3>
+<ul>
+  <li><strong>Run a pre-mortem</strong> at work before your next launch or big decision. Ask everyone to write reasons alone, before anyone speaks.</li>
+  <li><strong>Write the four answers</strong> (launch, limited, not yet, do not launch) for a product decision you are facing, with one sentence each on what would have to be true.</li>
+  <li><strong>Find the one-way door</strong> in a decision that is being rushed, and ask for evidence there only.</li>
+  <li><strong>Product idea:</strong> a "launch readiness review" tool that pulls a product's release gate results, adoption figures, cost and governance status into one page with the six dimensions and their strength. Most organisations assemble this by hand, late, for every launch.</li>
+</ul>
+
+<!-- ================= GLOSSARY ================= -->
+<h2 id="glossary"><span class="step">Reference</span>Glossary for the capstone</h2>
+<div class="scroll"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>AI</td><td>Artificial intelligence</td></tr>
+<tr><td>CEO · CFO · CIO · CMO · COO</td><td>Chief Executive Officer · Chief Financial Officer · Chief Information Officer · Chief Medical Officer · Chief Operating Officer</td></tr>
+<tr><td>Change log</td><td>A record of where earlier work no longer holds, what is now true, and what was changed</td></tr>
+<tr><td>Condition</td><td>Something that must be true before a launch goes ahead or expands, stated so anyone can check it</td></tr>
+<tr><td>Consistency audit</td><td>Checking every figure and claim a recommendation depends on against its source and the newest evidence</td></tr>
+<tr><td>DPO</td><td>Data protection officer</td></tr>
+<tr><td>Evidence map</td><td>A table of the claims a decision rests on, the evidence for each, its strength and what is missing</td></tr>
+<tr><td>Limited launch</td><td>Releasing to a defined group, place, language or set of tasks, with named conditions for going further</td></tr>
+<tr><td>One-way and two-way doors</td><td>Decisions that are hard to reverse, and decisions that can be undone cheaply (Jeff Bezos)</td></tr>
+<tr><td>Panel defence</td><td>The capstone's viva: a 20-minute presentation and 20 minutes of questions from executives with different concerns</td></tr>
+<tr><td>POC</td><td>Proof of concept: a short, limited trial that answers one question well enough to make a decision</td></tr>
+<tr><td>PR/FAQ</td><td>Press release and frequently asked questions: Amazon's habit of writing the launch announcement before building</td></tr>
+<tr><td>Pre-mortem</td><td>Imagining a decision has already failed and explaining why, before it is made (Gary Klein)</td></tr>
+<tr><td>Pyramid principle</td><td>Answer first, then the reasons, then the evidence (Barbara Minto)</td></tr>
+<tr><td>Rollback</td><td>Returning quickly and safely to the previous version or way of working</td></tr>
+<tr><td>Scope</td><td>Who gets a product, where, in which languages, for which tasks and from when</td></tr>
+<tr><td>Steelmanning</td><td>Stating the strongest version of the argument against your own position</td></tr>
+<tr><td>Stop rule</td><td>A result, set in advance, that ends or rolls back a launch at once, with a named person who can call it</td></tr>
+<tr><td>Sunk cost</td><td>Money or effort already spent that cannot be recovered; not a reason to continue</td></tr>
+<tr><td>Viva</td><td>Viva voce: a spoken examination</td></tr>
+<tr><td>Wilson interval</td><td>A way to give the likely range of a rate measured from a small number of cases</td></tr>
+</tbody></table></div>
+
+<nav class="pn" aria-label="Previous and next">
+  <a href="module-11.html"><small>← Previous</small>Module 11 · AI strategy, defensibility and rollout</a>
+  <a class="next" href="dashboard.html"><small>Next →</small>My course</a>
+</nav>
+<p class="foot">Module 12 · Capstone · Version 1.0 · 21 October 2026 · Harbourview Polyclinics, Riverside Public Library, Lumen Eye Clinics, Tidewater, Queuewise, the cluster platform, their staff, figures and results are fictional. Real studies and practices named in the lesson were checked on 21 October 2026. Nothing on this page is medical, procurement or legal advice.</p>
+</div>
+
+<script>
+/* ===== Storage (this browser only) ===== */
+const store = { get(k){ try { return JSON.parse(localStorage.getItem('m12:'+k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem('m12:'+k, JSON.stringify(v)); } catch(e){} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words = s => ((s||'').trim().match(/\S+/g) || []).length;
+const num = (v, d) => { const x = parseFloat(v); return isFinite(x) ? x : d; };
+const N = (x, d = 0) => x.toLocaleString('en-SG', { minimumFractionDigits: d, maximumFractionDigits: d });
+const S = x => (x < 0 ? '−S$' : 'S$') + N(Math.abs(Math.round(x)));
+function copyText(text, msgEl, okMsg){
+  const fb = $('fallback');
+  const fallback = () => { fb.hidden = false; fb.value = text; fb.focus(); fb.select(); if (msgEl) msgEl.textContent = 'Select all the text in the box at the end of the Submit section and copy it.'; };
+  try { navigator.clipboard.writeText(text).then(() => { if (msgEl) msgEl.textContent = okMsg; fb.hidden = true; }, fallback); } catch(e) { fallback(); }
+}
+function opts(list, val){ return list.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? ' selected' : ''}>${esc(l)}</option>`).join(''); }
+const T = id => ($(id) ? $(id).value : '');
+
+/* ===== Lesson calculator 1: cost and value over a period ===== */
+function vCalc(){
+  const one = num($('v-one').value, 0), run = num($('v-run').value, 0), val = num($('v-val').value, 0);
+  const hor = Math.max(1, Math.round(num($('v-hor').value, 36))), live = Math.min(hor, Math.max(0, Math.round(num($('v-live').value, 0))));
+  let cost = one, value = 0, cum = -one, be = null;
+  for (let m = 1; m <= hor; m++) { if (m > live) { cost += run; value += val; cum += val - run; } if (be === null && cum >= 0) be = m; }
+  const net = value - cost;
+  $('v-res').innerHTML = `Net ${S(net)}<small>Cost ${S(cost)} · value ${S(value)} over ${hor} months, ${hor - live} of them live</small><small>${be ? 'Pays back in month ' + be : 'Does not pay back in this period'}${val > run ? ` · break-even needs value of at least ${S(run + (one / Math.max(1, hor - live)))} a month` : ''}</small>`;
+}
+['v-one','v-run','v-val','v-live','v-hor'].forEach(id => $(id).addEventListener('input', vCalc)); vCalc();
+
+/* ===== Lesson calculator 2: Wilson interval ===== */
+function wilson(x, n){ const z = 1.96, p = x / n, d = 1 + z*z/n, c = (p + z*z/(2*n)) / d, h = z * Math.sqrt(p*(1-p)/n + z*z/(4*n*n)) / d; return [Math.max(0, c - h), Math.min(1, c + h)]; }
+function wCalc(){
+  const n = Math.max(1, Math.round(num($('w-n').value, 1))), x = Math.min(n, Math.max(0, Math.round(num($('w-x').value, 0)))), per = +$('w-per').value, lim = $('w-lim').value === '' ? null : num($('w-lim').value, null);
+  const [lo, hi] = wilson(x, n), f = v => per === 100 ? N(v * 100, 1) + '%' : N(v * 1000, 1) + ' per 1,000';
+  let cmp = '';
+  if (lim != null) { const L = lim / per; cmp = hi <= L ? 'The whole range is at or below the limit.' : lo > L ? 'The whole range is above the limit.' : 'The range straddles the limit: the true rate could be on either side.'; }
+  $('w-res').innerHTML = `${f(x / n)}<small>Likely range ${f(lo)} to ${f(hi)}</small>${x === 0 ? `<small>With none counted, the rule of three gives a likely upper limit of about ${f(3 / n)}.</small>` : ''}${cmp ? `<small>${cmp}</small>` : ''}`;
+}
+['w-x','w-n','w-per','w-lim'].forEach(id => $(id).addEventListener('input', wCalc)); wCalc();
+
+/* ===== Initiatives ===== */
+const INI = [
+ { id:'A', n:'A · Medicine questions assistant', q:'Should build 1.2.1 expand from Clementi and Bedok to Jurong and Ang Mo Kio from 2 November, and in which languages?' },
+ { id:'B', n:'B · Booking assistant (Queuewise)', q:'Should Harbourview sign Queuewise now and launch rescheduling and cancelling by chat at three clinics from January 2027?' },
+ { id:'C', n:'C · Consultation note drafter', q:'Which scribe should Harbourview choose, for how many doctors, from when, and on what contract terms?' },
+ { id:'D', n:'D · Missed-appointment predictor', q:'Should reminder calls extend from three clinics to all nine from 1 November, and what should the panel say about overbooking?' },
+ { id:'E', n:'E · Patient feedback analyser', q:'Should the analyser become the official way serious complaints are found and routed, replacing managers’ reading of one comment in ten, from November?' },
+ { id:'X', n:'My own product (agreed with the course team)', q:'' }
+];
+const REC = { launch:'Launch', limited:'Limited launch', notyet:'Not yet', stop:'Do not launch' };
+
+/* ===== Tool 1 · Frame ===== */
+let fr = store.get('fr') || {};
+$('f-ini').innerHTML = opts([['', 'Choose an initiative']].concat(INI.map(i => [i.id, i.n])), fr.ini || '');
+['f-q','f-rec','f-door','f-scope','f-alt','f-board'].forEach(id => { const k = id.slice(2); $(id).value = fr[k] || ''; $(id).addEventListener($(id).tagName === 'SELECT' ? 'change' : 'input', () => { fr[k] = $(id).value; store.set('fr', fr); allFlags(); progress(); }); });
+$('f-ini').addEventListener('change', () => { const prev = INI.find(i => i.id === fr.ini); fr.ini = $('f-ini').value; const ini = INI.find(i => i.id === fr.ini);
+  if (ini && (!fr.q || (prev && fr.q === prev.q))) { fr.q = ini.q; $('f-q').value = ini.q; }
+  store.set('fr', fr); allFlags(); progress(); });
+function frFlags(){
+  const F = [], i = fr.ini, sc = (fr.scope || '') + ' ' + (fr.alt || ''), r = fr.rec;
+  if (!i) return F;
+  if (r && words(fr.scope) < 6 && r !== 'stop') F.push('State the scope: who, where, which languages and tasks, and from when.');
+  if (r === 'limited' && words(fr.scope) >= 6 && !/until|when|once|after|condition|if /i.test(sc)) F.push('A limited launch needs a condition for going further. What has to be true, and when will you look again?');
+  if (r && words(fr.alt) < 8) F.push('Name the alternatives you considered and why each lost. The panel will ask about the one you did not choose.');
+  if (i === 'A' && /malay/i.test(fr.scope || '') && !/not|until|exclud|later|once|after|when/i.test(fr.scope || '')) F.push('The committee’s condition for Malay is complete leaflets (92% today) and a passing Malay emergency set. Does your scope meet it, and who covers Malay handovers after 6 pm?');
+  if (i === 'A' && words(fr.scope) >= 6 && !/stopped|out.of.date|record|list/i.test(sc + ' ' + T('lc-pre'))) F.push('In August, 2.1% of conversations involved a recently stopped medicine still shown in the app. How does your plan handle that before the December fix?');
+  if (i === 'B' && words(fr.scope) >= 6 && !/person|human|phone|staff|call/i.test(sc)) F.push('Grace Teo asked for a way to reach a person in every chat and no cuts to phone staff. Where are they in your scope?');
+  if (i === 'B' && r && r !== 'stop' && !/two.year|2.year|2028|minimum|term|break/i.test(sc + ' ' + T('f-door') + ' ' + T('memo'))) F.push('Queuewise asks for a two-year minimum term to December 2028, beyond the board’s period. That is a one-way door and needs the board.');
+  if (i === 'C' && words(sc) >= 8 && !/hokkien|teochew|dialect/i.test(sc)) F.push('14% of consultations at Jurong are partly in Hokkien or Teochew. What happens to them under your choice?');
+  if (i === 'C' && /tidewater/i.test(fr.scope || '') && !/non.?volunteer|1\.1|break.?even|1\.16/i.test(sc + ' ' + T('memo'))) F.push('On non-volunteers’ minutes, Tidewater does not pay back over three years at 30% adoption. What makes it worth it, or what would change that?');
+  if (i === 'C' && /120|30 sept/i.test(sc) ) F.push('Signing 120 seats by 30 September commits money before the panel meets and above 30% adoption. Is that a one-way door you mean to take?');
+  if (i === 'D' && /overbook/i.test(fr.scope || '') && !/not|no |declin|exclud|reject/i.test(fr.scope || '')) F.push('Overbooking is not approved by the committee or allowed by the data protection officer’s decision. A plan that includes it needs a new approval with conditions.');
+  if (i === 'D' && words(sc) >= 8 && !/malay|tamil|language|text/i.test(sc)) F.push('Calls reach 48% of Malay and 41% of Tamil speakers. Does extending them to nine clinics widen that gap?');
+  if (i === 'E' && /replac/i.test(fr.scope || '') && !/sample|check|audit|random/i.test(sc)) F.push('If the analyser replaces managers’ reading, what catches the serious complaints it misses (about 1 in 6 in the audit)? Keep some random reading as a check.');
+  if (i === 'E' && words(sc) >= 8 && !/malay|tamil|backlog|reader/i.test(sc)) F.push('Malay and Tamil complaints wait a median 6 working days. Is that acceptable for serious ones?');
+  if (i === 'X' && words(fr.q) < 6) F.push('Write the launch question for your own product, and make sure the course team has agreed it.');
+  return F;
+}
+
+/* ===== Tool 2 · Evidence map ===== */
+const DIM = [
+ ['val','Value'], ['safe','Quality and safety'], ['adopt','People and adoption'], ['cost','Cost and economics'], ['gov','Governance, risk and fairness'], ['ops','Reliability, data and operations']
+];
+const STR = [['', '–'], ['strong','Strong'], ['mod','Moderate'], ['weak','Weak'], ['assume','Assumption']];
+let em = store.get('em') || {};
+$('em-body').innerHTML = DIM.map(([k, l]) => `<tr><td>${esc(l)}</td>
+ <td><label class="sr" for="em-${k}-c">${esc(l)}: claim</label><textarea id="em-${k}-c" data-k="${k}" data-f="c">${esc((em[k]||{}).c)}</textarea></td>
+ <td><label class="sr" for="em-${k}-e">${esc(l)}: evidence</label><textarea id="em-${k}-e" data-k="${k}" data-f="e">${esc((em[k]||{}).e)}</textarea></td>
+ <td><label class="sr" for="em-${k}-s">${esc(l)}: strength</label><select id="em-${k}-s" data-k="${k}" data-f="s">${opts(STR, (em[k]||{}).s || '')}</select></td>
+ <td><label class="sr" for="em-${k}-g">${esc(l)}: missing</label><textarea id="em-${k}-g" data-k="${k}" data-f="g">${esc((em[k]||{}).g)}</textarea></td></tr>`).join('');
+$('em-body').querySelectorAll('[data-k]').forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { const k = el.dataset.k; em[k] = Object.assign(em[k] || {}, { [el.dataset.f]: el.value }); store.set('em', em); allFlags(); progress(); }));
+const emDone = () => DIM.filter(([k]) => { const r = em[k] || {}; return r.s && words(r.c) >= 4 && words(r.e) >= 4; }).length;
+function emFlags(){
+  const F = [], s = k => (em[k] || {}).s, r = fr.rec;
+  if (r === 'launch' && ['weak','assume'].includes(s('safe'))) F.push('You recommend a full launch while your safety evidence is weak or assumed. Either strengthen it, narrow the scope, or say why the risk is acceptable.');
+  if (r === 'launch' && DIM.some(([k]) => s(k) === 'assume')) F.push('A full launch with an assumption in the map: say how and when you will check it after launch.');
+  if ((r === 'notyet' || r === 'stop') && DIM.every(([k]) => ['strong','mod'].includes(s(k)))) F.push('Every dimension is strong or moderate, yet you recommend holding back. Which piece of evidence decides it?');
+  const allE = DIM.map(([k]) => (em[k] || {}).e || '').join(' ');
+  if (emDone() >= 4 && !/module|case|section|trial|gate|audit|study|M\d/i.test(allE)) F.push('Give the source of each piece of evidence: the module, the case section or the study.');
+  if (emDone() >= 4 && !DIM.some(([k]) => words((em[k] || {}).g) >= 3)) F.push('Nothing is missing anywhere? The panel will find a gap. Name the ones you know.');
+  if (fr.ini === 'C' && /4 in 2,?200|3 in 2,?000|1\.5 per|1\.8 per/i.test(allE) && !/range|interval|4\.4|4\.7|uncertain|small/i.test(allE + ' ' + ((em.safe || {}).g || ''))) F.push('Three or four errors is a small count: the likely ranges reach about 4.4 and 4.7 per 1,000, above the limit of 2. Use the lesson’s calculator.');
+  if (fr.ini === 'E' && /84|26 of 31/i.test(allE) && !/range|67|small|uncertain/i.test(allE + ' ' + ((em.safe || {}).g || ''))) F.push('26 of 31 is a small sample: the likely range of the catch rate is about 67% to 93%.');
+  if (fr.ini === 'D' && words((em.val || {}).e) >= 4 && !/random|29\.5|21\.0|8\.5/i.test((em.val || {}).e)) F.push('The reminder trial was randomised: that is what makes its value evidence strong. Say so, with the figures.');
+  return F;
+}
+
+/* ===== Tool 3 · Change log ===== */
+const CLCHECK = ['Volunteer or early figures replaced by measured ones','A threshold in one document differs from another','Languages or groups covered differ between documents','The level of human review differs between design and cost model','The board or committee decided differently from your earlier recommendation','The risk level in the trust pack does not match the planned use','A cost, price or contract term has changed'];
+let cl = store.get('cl') || { rows: [{},{},{}], ck: {} };
+$('cl-check').innerHTML = CLCHECK.map((c, i) => `<div class="check"><input type="checkbox" id="clc${i}" data-i="${i}"><label for="clc${i}">${esc(c)}</label></div>`).join('');
+$('cl-check').querySelectorAll('input').forEach(el => { el.checked = !!cl.ck[el.dataset.i]; el.addEventListener('change', () => { cl.ck[el.dataset.i] = el.checked; store.set('cl', cl); }); });
+function clDraw(){
+  $('cl-body').innerHTML = cl.rows.map((r, i) => `<tr>
+   <td><label class="sr" for="cl-${i}-m">Row ${i + 1}: earlier work</label><input type="text" id="cl-${i}-m" data-i="${i}" data-f="m" value="${esc(r.m)}" placeholder="For example: Module 9 model"></td>
+   <td><label class="sr" for="cl-${i}-o">Row ${i + 1}: what it said</label><textarea id="cl-${i}-o" data-i="${i}" data-f="o">${esc(r.o)}</textarea></td>
+   <td><label class="sr" for="cl-${i}-n">Row ${i + 1}: what is now true</label><textarea id="cl-${i}-n" data-i="${i}" data-f="n">${esc(r.n)}</textarea></td>
+   <td><label class="sr" for="cl-${i}-c">Row ${i + 1}: what you changed</label><textarea id="cl-${i}-c" data-i="${i}" data-f="c">${esc(r.c)}</textarea></td></tr>`).join('');
+  $('cl-body').querySelectorAll('[data-i]').forEach(el => el.addEventListener('input', () => { cl.rows[+el.dataset.i][el.dataset.f] = el.value; store.set('cl', cl); clSum(); progress(); }));
+  clSum();
+}
+const clDone = () => cl.rows.filter(r => words(r.o) >= 3 && words(r.n) >= 3 && words(r.c) >= 2).length;
+function clSum(){ const n = clDone(); $('cl-sum').textContent = `${n} complete ${n === 1 ? 'entry' : 'entries'}${n < 3 ? ' · at least 3 needed' : ''}`; }
+$('cl-add').addEventListener('click', () => { cl.rows.push({}); store.set('cl', cl); clDraw(); });
+clDraw();
+
+/* ===== Tool 4 · Launch criteria and pre-mortem ===== */
+const KIND = [['', '–'], ['value','Value'], ['safety','Safety'], ['use','Real use'], ['work','Work created'], ['cost','Cost'], ['fair','Fairness'], ['other','Other']];
+let lc = store.get('lc') || {}; lc.rows = lc.rows || [{},{},{},{},{}]; lc.pm = lc.pm || [{},{},{},{},{}];
+$('lc-body').innerHTML = lc.rows.map((r, i) => `<tr>
+ <td><label class="sr" for="lm-${i}-m">Measure ${i + 1}</label><input type="text" id="lm-${i}-m" data-i="${i}" data-f="m" value="${esc(r.m)}"></td>
+ <td><label class="sr" for="lm-${i}-k">Measure ${i + 1}: kind</label><select id="lm-${i}-k" data-i="${i}" data-f="k">${opts(KIND, r.k || '')}</select></td>
+ <td><label class="sr" for="lm-${i}-t">Measure ${i + 1}: threshold</label><input type="text" id="lm-${i}-t" data-i="${i}" data-f="t" value="${esc(r.t)}"></td>
+ <td><label class="sr" for="lm-${i}-h">Measure ${i + 1}: how measured</label><input type="text" id="lm-${i}-h" data-i="${i}" data-f="h" value="${esc(r.h)}"></td>
+ <td><label class="sr" for="lm-${i}-o">Measure ${i + 1}: owner</label><input type="text" id="lm-${i}-o" data-i="${i}" data-f="o" value="${esc(r.o)}"></td>
+ <td><label class="sr" for="lm-${i}-a">Measure ${i + 1}: action</label><input type="text" id="lm-${i}-a" data-i="${i}" data-f="a" value="${esc(r.a)}"></td></tr>`).join('');
+$('lc-body').querySelectorAll('[data-i]').forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { lc.rows[+el.dataset.i][el.dataset.f] = el.value; store.set('lc', lc); allFlags(); progress(); }));
+$('pm-body').innerHTML = lc.pm.map((r, i) => `<tr><td class="num">${i + 1}</td>
+ <td><label class="sr" for="pm-${i}-r">Pre-mortem ${i + 1}: reason</label><textarea id="pm-${i}-r" data-i="${i}" data-f="r">${esc(r.r)}</textarea></td>
+ <td><label class="sr" for="pm-${i}-w">Pre-mortem ${i + 1}: who</label><textarea id="pm-${i}-w" data-i="${i}" data-f="w">${esc(r.w)}</textarea></td>
+ <td><label class="sr" for="pm-${i}-c">Pre-mortem ${i + 1}: control</label><textarea id="pm-${i}-c" data-i="${i}" data-f="c">${esc(r.c)}</textarea></td></tr>`).join('');
+$('pm-body').querySelectorAll('[data-i]').forEach(el => el.addEventListener('input', () => { lc.pm[+el.dataset.i][el.dataset.f] = el.value; store.set('lc', lc); allFlags(); progress(); }));
+['lc-pre','lc-stop','lc-roll','lc-rev','lc-own'].forEach(id => { const k = id.slice(3); $(id).value = lc[k] || ''; $(id).addEventListener('input', () => { lc[k] = $(id).value; store.set('lc', lc); allFlags(); progress(); }); });
+const lcDone = () => lc.rows.filter(r => words(r.m) >= 2 && r.k && words(r.t) >= 1).length;
+const pmDone = () => lc.pm.filter(r => words(r.r) >= 5 && words(r.c) >= 3).length;
+function lcFlags(){
+  const F = [], kinds = new Set(lc.rows.filter(r => words(r.m) >= 2).map(r => r.k));
+  if (lcDone() >= 3) { ['value','safety','use','work'].forEach(k => { if (!kinds.has(k)) F.push(`No measure of ${({value:'value',safety:'safety',use:'real use',work:'the work the product creates for people'})[k]} yet.`); }); }
+  lc.rows.forEach((r, i) => { if (words(r.m) >= 2 && words(r.t) >= 1 && !/\d/.test(r.t)) F.push(`Measure ${i + 1}: give the threshold a number.`); if (words(r.m) >= 2 && words(r.t) >= 1 && words(r.o) < 1) F.push(`Measure ${i + 1}: name an owner.`); });
+  if (lcDone() >= 3 && words(lc.stop) < 6) F.push('Write the stop rule: the result that ends it, and who can call it.');
+  if (words(lc.stop) >= 6 && !/\d|any/i.test(lc.stop)) F.push('Make the stop rule specific enough that anyone can tell when it is triggered.');
+  if (lcDone() >= 3 && words(lc.roll) < 6) F.push('How do you return to the old way, how fast, and when will you test that?');
+  if (pmDone() >= 3) { const all = lc.pm.map(r => (r.r || '') + ' ' + (r.w || '')).join(' ');
+    if (!/older|65|70|75|elder|malay|tamil|hokkien|teochew|language|phone|subsid|disab/i.test(all)) F.push('None of your pre-mortem reasons is about the people least well served: older patients, other languages, people who will not use an app. The panel will ask.');
+    if (!/staff|rota|pharmacist|doctor|nurse|manager|call.?centre|capacity|workload/i.test(all)) F.push('None of your pre-mortem reasons is about staff: capacity, workload, people who stop checking. Is that likely?'); }
+  return F;
+}
+
+/* ===== Tool 5 · Recommendation ===== */
+let misc = store.get('misc') || {};
+const OUTLINE = `LAUNCH RECOMMENDATION · [initiative]
+For the Launch Review, Thursday 1 October 2026 · Head of Digital Products
+
+1. The decision we ask for
+[Two sentences: launch, limited launch, not yet or do not launch; the scope; the conditions]
+
+2. Why
+[Three reasons. For each: the claim, the strongest evidence, and its weakest point]
+
+3. What we are not doing, and why
+[The alternatives that lost; what is out of scope]
+
+4. Conditions before launch
+[What must be true on the day, and who confirms it]
+
+5. How we will know it is working, and when we will stop
+[The main measures and thresholds; the stop rule and who can call it; the review date]
+
+6. Risks we are accepting
+[From the pre-mortem: the risks left after controls, and who owns each]
+
+7. Cost and commitment
+[What it costs to December 2027; anything that commits Harbourview beyond that]
+
+8. Where I differ from the board's June decision (optional)
+[One paragraph, with reasons]
+
+9. What we ask the panel to decide today
+[One or two sentences]`;
+const memo = $('memo'); memo.value = misc.memo || '';
+function wc(){ const w = words(memo.value); $('wc').textContent = w + ' words' + (w > 1100 ? ' · aim for about two pages, around 900 words' : ''); }
+function memoFlags(){ const t = memo.value, F = [];
+  if (words(t) >= 200) {
+    const first = (t.replace(/^[^\n]*\n[^\n]*\n/, '').match(/\S+/g) || []).slice(0, 80).join(' ');
+    if (!/launch|not yet|do not|stop|hold|expand|sign|choose|extend/i.test(first)) F.push('Put the decision in the first two sentences, before any background.');
+    if (!/stop|roll ?back|switch off/i.test(t)) F.push('Say what will make you stop, and who can call it.');
+    if (!/\d/.test(t)) F.push('The CFO will look for the cost and the dates.');
+    if (!/not do|not doing|will not|won't|out of scope|instead/i.test(t)) F.push('Say what you are not doing.');
+    if (/seamless|transform|game.?chang|revolution|cutting.edge|world.class|leverage AI/i.test(t)) F.push('Words such as "transform" or "seamless" carry no evidence. Replace them with what will happen, for whom, by how much.');
+    if (/\[[^\]]{8,}\]/.test(t)) F.push('Some outline prompts in square brackets are still in the text.');
+  }
+  $('memo-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join(''); }
+memo.addEventListener('input', () => { misc.memo = memo.value; store.set('misc', misc); wc(); memoFlags(); allFlags(); progress(); });
+$('tmpl').addEventListener('click', () => { if (memo.value.trim() && !confirm('Replace your current draft with the outline?')) return; const ini = INI.find(i => i.id === fr.ini); memo.value = OUTLINE.replace('[initiative]', ini ? ini.n : '[initiative]'); misc.memo = memo.value; store.set('misc', misc); wc(); memoFlags(); progress(); memo.focus(); });
+wc(); memoFlags();
+
+/* ===== Tool 6 · Rehearse ===== */
+let re = store.get('re') || {}; re.sl = re.sl || []; re.pq = re.pq || {}; re.dr = re.dr || {};
+$('sl-fields').innerHTML = Array.from({ length: 10 }, (_, i) => `<div><label for="sl-${i}">Slide ${i + 1}${i === 0 ? ' <span class="hint">· the decision</span>' : i === 9 ? ' <span class="hint">· the ask</span>' : ''}</label><input type="text" id="sl-${i}" data-i="${i}" value="${esc(re.sl[i] || '')}"></div>`).join('');
+$('sl-fields').querySelectorAll('[data-i]').forEach(el => el.addEventListener('input', () => { re.sl[+el.dataset.i] = el.value; store.set('re', re); reFlags(); progress(); }));
+const ROLES = [['cfo','Chief financial officer · cost'], ['cmo','Chief medical officer · patient safety'], ['cio','Chief information officer · reliability and data']];
+$('pq-fields').innerHTML = ROLES.map(([k, l]) => `<div class="panel" style="margin:.5rem 0"><h4 style="margin-top:0;color:var(--ink)">${esc(l)}</h4><div class="fgrid">` +
+  [1, 2].map(j => `<div><label for="pq-${k}${j}q">Question ${j}</label><textarea id="pq-${k}${j}q" data-k="${k}${j}q">${esc(re.pq[k + j + 'q'])}</textarea></div><div><label for="pq-${k}${j}a">Your answer <span class="hint">· answer, evidence, limit</span></label><textarea id="pq-${k}${j}a" data-k="${k}${j}a">${esc(re.pq[k + j + 'a'])}</textarea></div>`).join('') + '</div></div>').join('');
+$('pq-fields').querySelectorAll('[data-k]').forEach(el => el.addEventListener('input', () => { re.pq[el.dataset.k] = el.value; store.set('re', re); reFlags(); progress(); }));
+$('pq-steel').value = re.steel || ''; $('pq-steel').addEventListener('input', e => { re.steel = e.target.value; store.set('re', re); reFlags(); progress(); });
+const DRC = [['ev','Defends choices with evidence'], ['ex','Explains ideas plainly'], ['ch','Handles a changed fact'], ['cl','Clarity']];
+const SC = [['', '–'], ['0','0'], ['1','1'], ['2','2'], ['3','3'], ['4','4']];
+$('dr-fields').innerHTML = DRC.map(([k, l]) => `<div><label for="dr-${k}">${esc(l)}</label><select id="dr-${k}" data-k="${k}">${opts(SC, re.dr[k] || '')}</select></div>`).join('') +
+  `<div class="full"><label for="dr-role">Which panel member did they play?</label><select id="dr-role" data-k="role">${opts([['', 'Choose']].concat(ROLES.map(([k, l]) => [k, l])), re.dr.role || '')}</select></div>
+   <div class="full"><label for="dr-good">What worked, in their words</label><textarea id="dr-good" data-k="good">${esc(re.dr.good)}</textarea></div>
+   <div class="full"><label for="dr-fix">What you will change before the panel</label><textarea id="dr-fix" data-k="fix">${esc(re.dr.fix)}</textarea></div>`;
+$('dr-fields').querySelectorAll('[data-k]').forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { re.dr[el.dataset.k] = el.value; store.set('re', re); reFlags(); progress(); }));
+const slDone = () => re.sl.filter(s => words(s) >= 3).length;
+const pqDone = () => ROLES.reduce((a, [k]) => a + [1, 2].filter(j => words(re.pq[k + j + 'q']) >= 4 && words(re.pq[k + j + 'a']) >= 8).length, 0);
+function reFlags(){ const F = [];
+  if (slDone() >= 3 && words(re.sl[0]) >= 1 && !/launch|not yet|do not|stop|expand|sign|choose|extend|recommend/i.test(re.sl[0])) F.push('Slide 1 should state the decision, not the background.');
+  if (slDone() >= 5 && re.sl.filter(s => words(s) >= 1 && words(s) <= 2).length >= 2) F.push('Some headlines are topics ("Costs", "Risks"). Make each one a claim the panel could disagree with.');
+  if (pqDone() >= 4 && words(re.steel) < 20) F.push('Write the best case against your recommendation. If you cannot, the panel will.');
+  const dv = DRC.map(([k]) => re.dr[k]).filter(v => v !== '' && v != null).map(Number);
+  if (dv.length === 4 && dv.reduce((a, b) => a + b, 0) / 4 < 2 && words(re.dr.fix) < 10) F.push('Your dry-run scores are low. Write what you will change, and consider a second dry run.');
+  $('re-flags').innerHTML = F.map(x => `<li>${esc(x)}</li>`).join(''); }
+reFlags();
+
+/* ===== Checklist ===== */
+const CHECKS = [
+  'The decision is in the first two sentences, with scope and conditions',
+  'I considered the other three answers and say why each lost',
+  'I know which part of the decision is hardest to reverse, and my evidence is strongest there',
+  'Every row of the evidence map has a source and a strength, and I say what is missing',
+  'I used the newest figures from the September case, with likely ranges where counts are small',
+  'My change log has at least three entries, and the appendices are updated to match',
+  'My launch criteria cover value, safety, real use and the work created, each with a number and an owner',
+  'There is a stop rule someone can call, and a rollback I have planned',
+  'My plan follows the committee’s conditions and the board’s decision, or says where and why it differs',
+  'Anything that commits Harbourview beyond December 2027 or above S$675,000 is named for the board',
+  'Ten slides or fewer; about two pages for the recommendation; every acronym spelled out once'
+];
+let ck = store.get('ck') || {};
+$('checks').innerHTML = CHECKS.map((c, i) => `<div class="check"><input type="checkbox" id="ck${i}" data-i="${i}"><label for="ck${i}">${esc(c)}</label></div>`).join('');
+document.querySelectorAll('#checks input').forEach(el => { el.checked = !!ck[el.dataset.i]; el.addEventListener('change', () => { ck[el.dataset.i] = el.checked; store.set('ck', ck); }); });
+
+function allFlags(){
+  $('f-flags').innerHTML = frFlags().map(x => `<li>${esc(x)}</li>`).join('');
+  $('em-flags').innerHTML = emFlags().map(x => `<li>${esc(x)}</li>`).join('');
+  $('lc-flags').innerHTML = lcFlags().map(x => `<li>${esc(x)}</li>`).join('');
+}
+
+/* ===== Week 0 repeat ===== */
+let w0 = store.get('w0') || {};
+$('w0-memo').value = w0.memo || ''; $('w0-ref').value = w0.ref || '';
+function w0wc(){ const w = words($('w0-memo').value); $('w0-wc').textContent = w + ' words' + (w > 450 ? ' · over the 450-word limit' : ''); }
+$('w0-memo').addEventListener('input', e => { w0.memo = e.target.value; store.set('w0', w0); w0wc(); progress(); });
+$('w0-ref').addEventListener('input', e => { w0.ref = e.target.value; store.set('w0', w0); progress(); });
+w0wc();
+let w0t = null;
+function w0tick(){ const left = Math.max(0, Math.round((w0.end - Date.now()) / 1000)); $('w0-timer').textContent = `${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`; if (left === 0) { clearInterval(w0t); w0t = null; $('w0-timer').textContent = 'Time is up'; $('w0-start').textContent = 'Start the timer again'; } }
+$('w0-start').addEventListener('click', () => { if (w0.end && w0.end > Date.now() && !confirm('Restart the timer from 45 minutes?')) return; w0.end = Date.now() + 45 * 60 * 1000; w0.started = new Date().toISOString(); store.set('w0', w0); $('w0-start').textContent = 'Restart the timer'; if (w0t) clearInterval(w0t); w0t = setInterval(w0tick, 1000); w0tick(); });
+if (w0.end && w0.end > Date.now()) { $('w0-start').textContent = 'Restart the timer'; w0t = setInterval(w0tick, 1000); w0tick(); }
+function w0Text(){ return ['WEEK 0 MEMO, REPEATED IN WEEK 14', w0.started ? `Timer started: ${w0.started}` : 'Timer not used', '', (w0.memo || '(blank)').trim(), `Word count: ${words(w0.memo)}`, '', 'WHAT HAS CHANGED IN HOW I DECIDE', (w0.ref || '(blank)').trim()].join('\n'); }
+$('w0-copy').addEventListener('click', () => copyText(w0Text(), $('w0-msg'), 'Copied. Paste it into an email to the course team.'));
+
+/* ===== Quiz content ===== */
+const QUIZ = {
+ qa: { need: 8, yn: [
+  ["Is a limited launch a separate answer from launch and do not launch, rather than a softer way of saying yes?","Yes","A limited launch has a defined scope (group, place, language or tasks) and named conditions for going further. It is the right answer when the evidence really differs by scope, and an evasion only when the limits or conditions are vague."],
+  ["Should a launch recommendation open with background and history, so the panel understands the context before the decision?","No","Put the answer first, then the reasons, then the evidence (Minto's pyramid principle). Busy executives read the first two sentences closely; background can follow."],
+  ["If two of your module deliverables use different figures for the same thing, is it acceptable to use whichever supports your recommendation, as long as both came from the case?","No","Say which figure you now rely on and why, update the earlier work, and record it in the change log. Panels look for exactly this kind of contradiction, and choosing the convenient one undermines everything else."],
+  ["Can a decision that is cheap and quick to reverse reasonably go ahead on less evidence than one that is hard to reverse?","Yes","That is the idea of two-way and one-way doors. Put most of your evidence where the decision cannot easily be undone: long contracts, staff changes, entries in medical records, patients' trust."],
+  ["When Michigan Medicine checked the Epic Sepsis Model independently, did it perform about as well as the developer had reported?","No","It ranked patients by risk much less well than reported, missed about two-thirds of the patients who developed sepsis at the alert threshold, and alerted on about one in five hospitalised patients. Evidence must come from your own setting."],
+  ["In a pre-mortem, does the team imagine that the launch has already failed and write down why?","Yes","Imagining the failure has happened makes it easier to explain how it could happen and safer to voice doubts. Each person writes reasons alone before discussion; each reason then gets a control."],
+  ["Does recommending \"do not launch\" mean the product manager has failed?","No","Stopping a weak product early saves money, people and trust. What fails is stopping without saying why, or continuing because of a sunk cost: work already done is not a reason to launch."],
+  ["If a model is highly accurate on test images in the lab, can you assume it will perform as well in the clinics where it will be used?","No","Google's diabetic eye disease system was accurate on test images, but in Thai clinics many photos were too poor to grade, slow internet delayed results and nurses had to change how they worked. Test in the real setting."],
+  ["When a panel member asks something you cannot answer, is it better to say so and explain how and when you would find out than to give your best guess as if it were known?","Yes","Panels forgive gaps; they do not forgive bluffing. Answer what you can, name the limit, and say how and by when you would close it."],
+  ["Should a launch plan include results that would stop or roll back the launch after it goes live?","Yes","A stop rule set in advance, with a named person who can call it and a tested way back, is what turns a recommendation into a decision someone can safely make."]
+ ], sa: [
+  ["Using a product you know (not Harbourview's), describe what launch, limited launch, not yet and do not launch would each mean for it. When would a limited launch be an evasion?",
+   ["A concrete product with each of the four answers defined in its own terms","Limited launch has a clear scope (group, place, language or tasks) and a condition for going further","Not yet names a specific condition and a date to look again","Evasion: vague limits (\"soft launch\"), no condition to go further, or a group chosen to make results look good"]],
+  ["Take one AI launch decision and split it into its parts. Which parts are two-way doors and which are one-way doors? Where would you put most of your evidence?",
+   ["Breaks the decision into at least three parts","Correctly identifies easily reversed parts (switching a feature on or off, a small pilot)","Correctly identifies hard-to-reverse parts (multi-year contracts, staff changes, records, trust, data shared)","Puts the heaviest evidence on the one-way parts and moves quickly on the two-way parts"]],
+  ["Run a short pre-mortem on a product launch you know: three reasons it failed, written as if they had already happened, each with a control you would add now.",
+   ["Reasons written in the past tense as if the failure had happened","At least one reason about the people least well served (for example older users, other languages)","At least one reason about staff, capacity or people who stop checking the AI","Each reason has a specific control, an owner or a measure, not a general hope"]]
+ ]},
+ qb: { need: 4, yn: [
+  ["Under the committee's condition from Module 10, can the medicine assistant launch in Malay at Jurong and Ang Mo Kio on the evidence in the September case?","No","The condition is complete Malay leaflets and a passing Malay emergency set. The emergency set passes, but leaflets are 92% translated, and the Head Pharmacist cannot yet cover Malay handovers after 6 pm. English and Mandarin first, Malay when both conditions are met, is consistent with the condition."],
+  ["On the trial's point estimates, do both scribes meet all three go criteria signed in July?","Yes","Tidewater: 1.1 minutes for non-volunteers, 1.5 critical errors per 1,000, 75% weekly use. Cluster: 1.0 minute, 1.8 per 1,000, 88%. Both pass on point estimates, so the trial alone does not choose between them; cost, languages, adoption depth and terms do."],
+  ["Do the trial's error counts show that each scribe's true critical error rate is below 2 per 1,000?","No","3 in 2,000 gives a likely range of about 0.5 to 4.4 per 1,000; 4 in 2,200 about 0.7 to 4.7. Both ranges reach above the limit. The point estimates pass, but the evidence is moderate, which is a reason for continued auditing and a stop rule after launch."],
+  ["At 30% adoption, using the minutes saved by doctors who had not volunteered, does Tidewater give a positive three-year net value?","No","With the 10% opt-out and 8% yearly rises, Tidewater costs about S$716,300 over three years and produces about S$678,200 of value at 1.1 minutes: about −S$38,100. It needs about 1.16 minutes to break even. The cluster scribe is about +S$108,900 at 1.0 minute."],
+  ["Does the reminder-call trial give good evidence that the calls themselves reduce missed appointments among flagged patients?","Yes","Flagged patients were randomly assigned to a call or no call each day, so the fall from 29.5% to 21.0% missed can be attributed to the calls. The trial does not show that calls work as well for patients they fail to reach: Malay and Tamil speakers answer far less often."]
+ ], sa: [
+  ["Choose your initiative. State the launch question, the four possible answers, and your provisional recommendation with three pieces of evidence from the case. What would change your mind?",
+   ["A launch question with scope and date","All four answers considered, with the provisional choice clearly stated","Three pieces of evidence from the September case, with figures","A specific finding that would change the recommendation"]],
+  ["Find two places where the September case changes or contradicts earlier work for your initiative (your own deliverables or the earlier case). Say what you will now rely on and why.",
+   ["Two specific changes, each naming the earlier source and the new fact","Examples: volunteer minutes replaced by non-volunteer minutes (C); handover rate 12% to 9% and capacity (A); call reach by language (D); the board's route differing from your Module 11 choice; Queuewise's two-year term (B); catch rate with its range (E)","Says which version is now relied on, with a reason","Says what in the pack will change as a result"]],
+  ["Write the hardest question the CFO, the CMO and the CIO would each ask about your recommendation, with a two-sentence answer for each.",
+   ["CFO question about cost, value that is real money, or commitment beyond the budget period","CMO question about errors, who checks, the least well served patients, or the stop rule","CIO question about data, supplier or model changes, switching off or leaving","Each answer gives the answer first, then evidence, then its limit"]]
+ ]}
+};
+const QSTATE = {}, EXPORT = {};
+let READY = false;
+function quiz(key){
+  const Q = QUIZ[key];
+  let yn = store.get(key+':yn') || {}, sa = store.get(key+':sa') || {}, self = store.get(key+':self') || {};
+  const ynBox = $(key+'-yn'), saBox = $(key+'-saq'), P = key.toUpperCase().slice(1);
+  ynBox.innerHTML = Q.yn.map((q,i)=>`<div class="q"><div class="stem"><span class="qn">${P}${i+1}</span>${esc(q[0])}</div>
+   <div class="yn" role="group" aria-label="Answer ${P}${i+1}"><button type="button" data-i="${i}" data-v="Yes" aria-pressed="false">Yes</button><button type="button" data-i="${i}" data-v="No" aria-pressed="false">No</button></div>
+   <div class="fb" id="${key}-fb${i}" hidden></div></div>`).join('');
+  saBox.innerHTML = Q.sa.map((q,i)=>`<div class="q"><label class="stem" for="${key}-t${i}"><span class="qn">${P}S${i+1}</span>${esc(q[0])}</label>
+   <textarea id="${key}-t${i}" data-i="${i}"></textarea>
+   <div class="row"><span id="${key}-w${i}">0 words</span><button class="btn" type="button" id="${key}-b${i}" data-i="${i}" disabled>Show key points</button></div>
+   <div class="model" id="${key}-m${i}" hidden><strong>A strong answer covers</strong><ul>${q[1].map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+   <label for="${key}-s${i}" style="display:block;margin-top:.5rem">How many of these points did you cover?</label>
+   <select id="${key}-s${i}" data-i="${i}" style="max-width:12rem"><option value="">Choose</option>${q[1].map((_,k)=>`<option>${k+1}</option>`).join('')}<option>0</option></select></div></div>`).join('');
+  function draw(){
+    let c=0,a=0;
+    Q.yn.forEach((q,i)=>{
+      const v=yn[i], fb=$(key+'-fb'+i);
+      ynBox.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===v));
+      if(!v){ fb.hidden=true; return; }
+      a++; const ok=v===q[1]; if(ok) c++;
+      fb.hidden=false; fb.className='fb '+(ok?'ok':'no');
+      fb.innerHTML=`<strong>${ok?'Correct.':'Not quite. The answer is '+q[1]+'.'}</strong> <span>${esc(q[2])}</span>`;
+    });
+    let n=0;
+    Q.sa.forEach((q,i)=>{ const w=words(sa[i]); $(key+'-w'+i).textContent=w+' words'; $(key+'-b'+i).disabled=w<20; if(w>=20) n++; });
+    $(key+'-sc').textContent=c; $(key+'-an').textContent=a; $(key+'-sa').textContent=n;
+    const all=a===Q.yn.length, mast=all&&c>=Q.need;
+    $(key+'-m').textContent = !all ? `${Q.need} of ${Q.yn.length} needed` : (mast ? 'Reached' : 'Not yet. Read the explanations, then retake');
+    QSTATE[key] = { c, a, n, mast, started: a>0||n>0, total: Q.yn.length };
+    progress();
+  }
+  Q.sa.forEach((q,i)=>{ $(key+'-t'+i).value=sa[i]||''; $(key+'-s'+i).value=self[i]||''; if(self[i]) $(key+'-m'+i).hidden=false; });
+  ynBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; yn[b.dataset.i]=b.dataset.v; store.set(key+':yn',yn); draw(); });
+  saBox.addEventListener('input',e=>{ if(e.target.tagName==='TEXTAREA'){ sa[e.target.dataset.i]=e.target.value; store.set(key+':sa',sa); draw(); } });
+  saBox.addEventListener('change',e=>{ if(e.target.tagName==='SELECT'){ self[e.target.dataset.i]=e.target.value; store.set(key+':self',self); } });
+  saBox.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b) $(key+'-m'+b.dataset.i).hidden=false; });
+  $(key+'-reset').addEventListener('click',()=>{ yn={}; store.set(key+':yn',yn); draw(); });
+  EXPORT[key] = () => {
+    const L=[]; Q.yn.forEach((q,i)=>{ const v=yn[i]||'-'; L.push(`${P}${i+1}: ${v}${yn[i]?(v===q[1]?' (correct)':' (incorrect)'):''}`); });
+    L.push(`Score: ${QSTATE[key].c}/${Q.yn.length}${QSTATE[key].mast?' · mastery reached':''}`,'');
+    Q.sa.forEach((q,i)=>L.push(`${P}S${i+1}. ${q[0]}`,(sa[i]||'(blank)').trim(),`Self-mark: ${self[i]||'-'} of ${q[1].length} key points`,''));
+    return L;
+  };
+  draw();
+}
+
+/* ===== Lab ===== */
+let lab = store.get('lab') || {};
+['lab-what','lab-res'].forEach(id => { const k = id.slice(4); $(id).value = lab[k] || ''; $(id).addEventListener('input', () => { lab[k] = $(id).value; store.set('lab', lab); }); });
+
+/* ===== Progress ===== */
+function qlabel(s){ return !s ? 'Not started' : s.mast ? 'Mastery reached' : s.started ? `In progress · ${s.c}/${s.total}` : 'Not started'; }
+function dot(id, s){ const d = $(id); if (!d) return; d.className = 'dot' + (s === 'done' ? ' done' : s === 'prog' ? ' prog' : ''); }
+function progress(){
+  if (!READY) return;
+  const a = QSTATE.qa, b = QSTATE.qb, ini = INI.find(i => i.id === fr.ini);
+  const nem = emDone(), nlc = lcDone(), npm = pmDone(), ncl = clDone(), w = words(memo.value);
+  if (a) { $('st-qa').textContent = qlabel(a); dot('d-qa', a.mast ? 'done' : a.started ? 'prog' : ''); dot('d-lesson', a.started ? 'done' : ''); }
+  if (b) { $('st-qb').textContent = qlabel(b); dot('d-qb', b.mast ? 'done' : b.started ? 'prog' : ''); dot('d-case', b.started ? 'done' : ''); }
+  $('st-ini').textContent = ini ? `${ini.id === 'X' ? 'Own product' : 'Initiative ' + ini.id}${fr.rec ? ' · ' + REC[fr.rec] : ''}` : 'Not chosen';
+  $('st-em').textContent = `${nem} of 6 rows`;
+  $('st-lc').textContent = `${nlc} of 5 measures · ${npm} of 5 pre-mortem`;
+  $('st-memo').textContent = `${w} words`;
+  const w0w = words(w0.memo);
+  $('st-w0').textContent = w0w >= 250 ? 'Written' : w0w ? `In progress · ${w0w} words` : 'Not started';
+  const started = ini || nem || nlc || npm || ncl || w;
+  dot('d-as', ini && fr.rec && nem === 6 && ncl >= 3 && nlc >= 4 && npm >= 5 && w >= 600 ? 'done' : started ? 'prog' : '');
+  const nre = slDone() + pqDone();
+  dot('d-re', slDone() >= 6 && pqDone() >= 6 ? 'done' : nre ? 'prog' : '');
+  let sent = false; try { sent = !!$('sent').checked; } catch(e) {}
+  const quizzes = a && b && a.mast && b.mast, open = quizzes && sent;
+  $('st-test').textContent = open ? 'Ready to request' : quizzes ? 'Email the pack first' : 'Locked';
+  dot('d-close', open ? (w0w >= 250 ? 'done' : 'prog') : '');
+  $('gate').querySelector('p').innerHTML = open
+    ? '<strong>Unlocked.</strong> Both checkpoint quizzes are at mastery and your pack is emailed. Ask the course team for the test paper and a defence date.'
+    : `<strong>Locked.</strong> Reach mastery on both checkpoint quizzes and email your pack first. Quiz A: ${a && a.mast ? 'done' : 'not yet'} · Quiz B: ${b && b.mast ? 'done' : 'not yet'} · Pack emailed: ${sent ? 'yes' : 'not yet'}.`;
+  const sum = q => q && q.started ? { c: q.c, total: q.total, mast: q.mast } : null;
+  try { localStorage.setItem('progress:m12', JSON.stringify({ qa: sum(a), qb: sum(b), deliverable: started ? 'drafting' : 'none' })); } catch(e) {}
+}
+try { $('sent').addEventListener('change', () => setTimeout(progress, 0)); } catch(e) {}
+
+/* ===== Step bar highlight ===== */
+const links = [...document.querySelectorAll('.stepbar a')], secs = links.map(l => document.querySelector(l.getAttribute('href')));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('here', l.getAttribute('href') === '#' + e.target.id)); const h = links.find(l => l.classList.contains('here')); if (h && h.scrollIntoView) h.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } }); }, { rootMargin: '-20% 0px -75% 0px' });
+  secs.forEach(s => s && io.observe(s));
+}
+
+/* ===== Start ===== */
+READY = true; allFlags(); quiz('qa'); quiz('qb'); progress();
+
+/* ===== Copy all ===== */
+function packText(){
+  const ini = INI.find(i => i.id === fr.ini), out = ['MODULE 12 SUBMISSION · Capstone: decide, evaluate and defend', '', 'CHECKPOINT QUIZ A', ...EXPORT.qa(), 'CHECKPOINT QUIZ B', ...EXPORT.qb()];
+  out.push('TOOL 1 · THE DECISION', `Initiative: ${ini ? ini.n : '-'}`, `Launch question: ${(fr.q || '').trim() || '-'}`, `Recommendation: ${REC[fr.rec] || '-'}`, `Scope: ${(fr.scope || '').trim() || '-'}`, `Hardest part to reverse: ${(fr.door || '').trim() || '-'}`, `Alternatives and why they lost: ${(fr.alt || '').trim() || '-'}`, `Where I differ from the board: ${(fr.board || '').trim() || '-'}`);
+  const SL = Object.fromEntries(STR);
+  out.push('', 'TOOL 2 · EVIDENCE MAP');
+  DIM.forEach(([k, l]) => { const r = em[k] || {}; out.push(`${l} · strength: ${SL[r.s] && r.s ? SL[r.s] : '-'}`, `  Claim: ${(r.c || '').trim() || '-'}`, `  Evidence and source: ${(r.e || '').trim() || '-'}`, `  Missing: ${(r.g || '').trim() || '-'}`); });
+  out.push('', 'TOOL 3 · CHANGE LOG');
+  cl.rows.forEach((r, i) => { if (words(r.m) + words(r.o) + words(r.n) + words(r.c)) out.push(`${i + 1}. ${(r.m || '').trim() || '-'} | said: ${(r.o || '').trim() || '-'} | now: ${(r.n || '').trim() || '-'} | changed: ${(r.c || '').trim() || '-'}`); });
+  out.push('Checked for: ' + (CLCHECK.filter((_, i) => cl.ck[i]).join('; ') || '-'));
+  const KL = Object.fromEntries(KIND);
+  out.push('', 'TOOL 4 · LAUNCH CRITERIA, STOP RULES AND PRE-MORTEM', 'Conditions before launch:', (lc.pre || '-').trim(), 'Measures:');
+  lc.rows.forEach((r, i) => { if (words(r.m)) out.push(`${i + 1}. ${r.m} (${KL[r.k] && r.k ? KL[r.k] : '-'}) | threshold: ${r.t || '-'} | measured: ${r.h || '-'} | owner: ${r.o || '-'} | action: ${r.a || '-'}`); });
+  out.push(`Stop rule: ${(lc.stop || '').trim() || '-'}`, `Rollback: ${(lc.roll || '').trim() || '-'}`, `Review date: ${(lc.rev || '').trim() || '-'}`, `Owner after launch: ${(lc.own || '').trim() || '-'}`, 'Pre-mortem:');
+  lc.pm.forEach((r, i) => { if (words(r.r)) out.push(`${i + 1}. ${r.r.trim()} | harmed: ${(r.w || '').trim() || '-'} | control: ${(r.c || '').trim() || '-'}`); });
+  out.push('', 'TOOL 5 · RECOMMENDATION', (misc.memo || '(blank)').trim(), `Word count: ${words(misc.memo)}`);
+  out.push('', 'TOOL 6 · REHEARSAL', 'Slides:'); re.sl.forEach((s, i) => { if (words(s)) out.push(`${i + 1}. ${s}`); });
+  out.push('Panel questions:'); ROLES.forEach(([k, l]) => [1, 2].forEach(j => { if (words(re.pq[k + j + 'q'])) out.push(`${l} Q${j}: ${re.pq[k + j + 'q'].trim()}`, `  Answer: ${(re.pq[k + j + 'a'] || '').trim() || '-'}`); }));
+  out.push(`Best case against: ${(re.steel || '').trim() || '-'}`, `Dry run (${(ROLES.find(r => r[0] === re.dr.role) || ['', '-'])[1]}): ${DRC.map(([k, l]) => l + ' ' + (re.dr[k] || '-')).join(', ')}`, `What worked: ${(re.dr.good || '').trim() || '-'}`, `What I will change: ${(re.dr.fix || '').trim() || '-'}`);
+  out.push('', 'CHECKLIST'); CHECKS.forEach((c, i) => out.push(`[${ck[i] ? 'x' : ' '}] ${c}`));
+  if (words(lab.what) || words(lab.res)) out.push('', 'OPTIONAL LAB', `Built: ${(lab.what || '').trim() || '-'}`, `Result: ${(lab.res || '').trim() || '-'}`);
+  if (words(w0.memo)) out.push('', w0Text());
+  return out.join('\n');
+}
+$('copy').addEventListener('click', () => copyText(packText(), $('copied'), 'Copied. Paste it into your email and attach your documents.'));
+</script>
+</body>
+</html>

@@ -205,7 +205,7 @@ nav.top a.ext::after { content: " ↗"; font-size: .8em; }
 <div class="scroll"><table>
 <thead><tr><th>Module</th><th class="num">Deliverable<br>60%</th><th class="num">Test<br>25%</th><th class="num">Viva<br>15%</th><th class="num">Module</th><th>Band</th><th>Course team's note</th></tr></thead>
 <tbody id="markRows"></tbody></table></div>
-<p style="font-size:.85rem;color:var(--muted)">Bands: Distinction 75% and above · Merit 60–74% · Pass 50–59% · Resubmit below 50%. One resubmission is allowed per module, capped at Pass. To complete the programme you need Merit or better on 9 of the 11 taught modules and a passed capstone defence.</p>
+<p style="font-size:.85rem;color:var(--muted)">Bands: Distinction 75% and above · Merit 60–74% · Pass 50–59% · Resubmit below 50%. One resubmission is allowed per module, capped at Pass. To complete the programme you need Merit or better on 9 of the 11 taught modules, a capstone mark of at least 50% including at least 50% on the panel defence, and the Week 0 memo repeated in Week 14.</p>
 
 <h2 id="data">Your data</h2>
 <p>This page shows only your email address, your progress through each module and the marks the course team enters. You can ask for your account and all your progress to be deleted at any time.</p>
@@ -228,7 +228,7 @@ const MODS = [
  {n:9,t:3,wk:'Week 9',title:'Unit economics and pricing of AI products',page:'module-09.html'},
  {n:10,t:3,wk:'Week 10',title:'Responsible AI, risk and governance',page:'module-10.html'},
  {n:11,t:3,wk:'Week 11',title:'AI strategy, defensibility and rollout',page:'module-11.html'},
- {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend'}
+ {n:12,t:4,wk:'Weeks 12–14',title:'Capstone: decide, evaluate and defend',page:'module-12.html'}
 ];
 const TERMS = {1:['Term I · Foundations','var(--t1)'],2:['Term II · Mastery','var(--t2)'],3:['Term III · Strategy and leadership','var(--t3)'],4:['Capstone','var(--cap)']};
 const STEPNAMES = ['Checkpoint quiz A','Checkpoint quiz B','Deliverable','End-of-module test and viva'];
@@ -330,11 +330,14 @@ function render(data) {
   const meritPlus = graded.filter(p => p >= 60).length;
   const finished = taught.filter(m => { const p = data.progress[m.n]; const pct = p ? moduleMark(p.marks) : null; return steps(p).every(s => s === 'done') && pct != null && pct >= 50; }).length;
   const avg = graded.length ? Math.round(graded.reduce((a, b) => a + b, 0) / graded.length) : null;
+  const cap = (data.progress[12] || {}).marks, capPct = moduleMark(cap);
+  const capState = capPct == null ? 'Not yet marked' : (capPct >= 50 && cap.viva >= 50) ? 'Passed' : 'Not yet passed';
   const w0 = data.week0 === 'done' ? 'Submitted' : data.week0 === 'started' ? 'In progress' : 'Not started';
   $('stats').innerHTML = [
     ['Modules completed', `${finished}<small> of 11</small>`, finished / 11],
     ['Merit or better', `${meritPlus}<small> of 9 needed</small>`, Math.min(meritPlus / 9, 1)],
     ['Average module mark', avg == null ? '—' : `${avg}%`, null],
+    ['Capstone', `<small style="font-size:1rem;color:var(--ink)">${capState}</small>`, null],
     ['Week 0 baseline', `<small style="font-size:1rem;color:var(--ink)">${w0}</small>`, null]
   ].map(([k, v, f]) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div>${f == null ? '' : `<div class="meter" role="img" aria-label="${Math.round(f * 100)}%"><i style="width:${Math.round(f * 100)}%"></i></div>`}</div>`).join('');
 
@@ -356,8 +359,7 @@ function render(data) {
     if (m.t !== lastT) { if (lastT) html += '</div></section>'; html += `<section class="term"><h3 style="color:${TERMS[m.t][1]}">${TERMS[m.t][0]}</h3><div class="mods">`; lastT = m.t; }
     const p = data.progress[m.n], s = steps(p), open = !!m.page && isOpen(data, m.n), st = status(m, p, open);
     const title = open ? `<a href="${m.page}">${esc(m.title)}</a>` : `<span class="ttl">${esc(m.title)}</span>`;
-    const bar = m.n === 12 ? `<div class="bar" style="font-size:.8rem;color:var(--muted)">Pack and 20-minute defence</div>` :
-      `<div class="bar"><div class="steps4" role="img" aria-label="${STEPNAMES.map((n, i) => n + ': ' + ({ done: 'done', half: 'in progress', lock: 'locked', '': 'not started' }[s[i]])).join('; ')}">${s.map(x => `<span class="${x}"></span>`).join('')}</div><div class="steps4l" aria-hidden="true"><span>QA</span><span>QB</span><span>DEL</span><span>TEST</span></div></div>`;
+    const bar = `<div class="bar"><div class="steps4" role="img" aria-label="${STEPNAMES.map((n, i) => n + ': ' + ({ done: 'done', half: 'in progress', lock: 'locked', '': 'not started' }[s[i]])).join('; ')}">${s.map(x => `<span class="${x}"></span>`).join('')}</div><div class="steps4l" aria-hidden="true"><span>QA</span><span>QB</span><span>DEL</span><span>TEST</span></div></div>`;
     html += `<div class="mrow"><span class="n">${String(m.n).padStart(2, '0')}</span><div class="t">${title}<span class="sub">${m.wk}${!m.page ? ' · page not yet published' : open ? '' : ' · ' + lockReason(m.n)}</span></div>${bar}<div class="st">${st.chip}<span class="mk">${esc(st.mk)}</span></div></div>`;
   });
   $('terms').innerHTML = html + '</div></section>';
