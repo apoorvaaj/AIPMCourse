@@ -66,7 +66,7 @@ Bands: Distinction 75%+ · Merit 60–74% · Pass 50–59% · Resubmit below 50%
 
 A locked page shows what is still needed, with a link back. The dashboard shows locked modules with the reason.
 
-**Submission:** each Week 0 and module page ends with *Email my submission*. It copies the learner's work and opens an email to the course address with the subject `AIPM · <part> · <learner email>`; the learner attaches their document and ticks "I have emailed my submission". The address is set in `docs/assets/site.js` (`submitEmail`, currently `testingattic@gmail.com`). The course team replies to arrange the end-of-module test and viva.
+**Submission:** each Week 0 and module page ends with *Email my submission*. It copies the learner's work and opens an email to the course address with the subject `AIPM · <part> · <learner email>`; the learner attaches their document and ticks "I have emailed my submission". The address is set in `docs/assets/site.js` (`submitEmail`, currently `aipmcourse@aspira.work`). The course team replies to arrange the end-of-module test and viva.
 
 **Course-owner tools:**
 - Add `?unlock=all` to any page address to open every page in your browser for reviewing; `?unlock=none` turns it off.
