@@ -4,8 +4,8 @@
 
    ===== Course owner: edit these settings only. ===== */
 window.SITE = {
-  supabaseUrl: '',            // e.g. https://abcdefgh.supabase.co  (empty = preview mode, code 123456)
-  supabaseAnonKey: '',        // the "anon" / publishable key. Never the service role key.
+  supabaseUrl: 'https://hidxmrxhqoxyokmtaycw.supabase.co',            // e.g. https://abcdefgh.supabase.co  (empty = preview mode, code 123456)
+  supabaseAnonKey: 'sb_publishable_aW--0zC6kH5_kaXE2X_TuQ_DrApArPR',        // the "anon" / publishable key. Never the service role key.
   submitEmail: 'aipmcourse@aspira.work',   // where learners email summative work
   publishedModules: 12,        // highest module number with a page (module-01.html, module-02.html …)
   whyUrl: 'https://apoorvaaj.github.io/learn-ai-product-management.html',
